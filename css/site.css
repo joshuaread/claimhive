@@ -309,34 +309,12 @@
 }
 
 .hero-image-caption-card {
-  position: absolute;
-  bottom: clamp(1rem, 3vw, 2rem);
-  left: clamp(1rem, 3vw, 2rem);
-  max-width: 580px;
-  background: rgba(11, 19, 43, 0.90);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(218, 169, 79, 0.35);
-  border-radius: var(--hive-radius-lg);
-  padding: clamp(1rem, 2vw, 1.35rem);
+  position: relative;
+  background: var(--hive-navy-950);
+  border-top: 1px solid rgba(218, 169, 79, 0.25);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.5rem, 3vw, 2.25rem);
   color: #FFFFFF;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   text-align: left;
-}
-
-@media (max-width: 768px) {
-  .hero-image-caption-card {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    max-width: 100%;
-    margin-top: -4px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    background: var(--hive-navy-950);
-    border: none;
-    border-top: 1px solid rgba(218, 169, 79, 0.25);
-  }
 }
 
 /* Pricing callout above fold */
