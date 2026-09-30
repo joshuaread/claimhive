@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Internal Confidential Strategy & Company Docs (NEVER COMMIT)
+company_os/
+*.pages
+Seats_200_submissions.log
+*.log
+
+# Dependencies & Build
+node_modules/
+dist/
+.vercel
+.netlify
+
+# Environment & credentials
+.env
+.env.local
+.env.*.local

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Lifecycle — Claim Hive</title>
+  <meta name="description" content="See exactly how a property claim file moves through Claim Hive: Intake, Evidence, Estimate, Demands, and Next Action. Honest UI, zero vaporware.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/site.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
+</head>
+<body class="bg-serene">
+
+  <!-- TOP ASSURANCE BAR -->
+  <div class="top-assurance-bar">
+    <span class="hide-mobile">HOW A CLAIM FILE MOVES &nbsp;•&nbsp;</span>
+    <span>HONEST UI WITH ZERO VAPORWARE</span>
+    &nbsp;•&nbsp;
+    <span class="highlight">✦ $80/SEAT FLAT • POLICYHOLDERS FREE</span>
+  </div>
+
+  <!-- STICKY SITE HEADER -->
+  <header class="site-header">
+    <div class="container container-wide">
+      <nav class="nav-bar">
+        <a href="index.html" class="brand-logo-link">
+          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="brand-logo-img">
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="product.html" class="nav-link active">Product</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="compare.html" class="nav-link">Compare</a></li>
+          <li><a href="security.html" class="nav-link">Security & Trust</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="design-system.html" class="nav-link" style="opacity: 0.7; font-size: 0.8125rem;">Design System</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="request.html" class="btn btn-sm btn-outline">Join January List</a>
+          <a href="request.html?cohort=alpha" class="btn btn-sm btn-gold">
+            <span>Request Alpha</span>
+            <span class="hive-star-icon">✦</span>
+          </a>
+          <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="mobile-menu-drawer">
+    <a href="product.html" class="nav-link active" style="font-size: 1.25rem;">Product Lifecycle</a>
+    <a href="pricing.html" class="nav-link" style="font-size: 1.25rem;">Pricing ($80/Seat)</a>
+    <a href="compare.html" class="nav-link" style="font-size: 1.25rem;">Compare Alternatives</a>
+    <a href="security.html" class="nav-link" style="font-size: 1.25rem;">Security & Data Vault</a>
+    <a href="about.html" class="nav-link" style="font-size: 1.25rem;">About Tom & The Team</a>
+    <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+      <a href="request.html" class="btn btn-lg btn-gold">Request Access</a>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="page-hero">
+    <div class="container container-narrow">
+      <span class="badge badge-gold" style="margin-bottom: 1.25rem;">THE CLAIM HIVE LIFECYCLE</span>
+      <h1 class="page-hero-title">
+        How a file actually moves.<br>
+        <span style="color: var(--hive-gold-600); font-weight: 400; font-style: italic;">From intake to settlement check.</span>
+      </h1>
+      <p class="page-hero-subtitle">
+        We didn't invent 40 convoluted modules. We built the exact 5 linear stages a Public Adjuster needs to move a claim file forward, defeat carrier stalls, and never miss a statutory cutoff date.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5 STAGES OF A FILE (EXPANSIVE CARDS WITH HONEST UI CODE MOCKUPS) -->
+  <section class="section-spacious" style="padding-top: 0;">
+    <div class="container">
+      <div class="stage-timeline">
+
+        <!-- STAGE 1: INTAKE & DOCKETING -->
+        <div class="stage-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+              <span class="badge badge-navy">STAGE 01</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.8125rem; color: var(--hive-gold-700);">INTAKE & DOCKETING</span>
+            </div>
+            <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--hive-navy-900); margin-bottom: 1rem;">
+              Upload contract. Clock starts ticking automatically.
+            </h2>
+            <p style="color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+              Drag in the signed representation agreement and carrier declaration page. Claim Hive instantly extracts the policy limits (Coverage A, B, C, D), deductible, and state statutory Proof of Loss (POL) cutoff dates.
+            </p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.9375rem; color: var(--hive-text-secondary);">
+              <li><strong style="color: var(--hive-navy-900);">✓ Automated 60-Day POL Vault:</strong> Pre-schedules carrier notifications 14, 7, and 3 days before cutoff.</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ Deductible & Endorsement Audit:</strong> Flags cosmetic roof exclusions and percentage hurricane deductibles instantly.</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ Multi-Carrier Contact Vault:</strong> Pre-populates certified claims department email and fax lines.</li>
+              <li><strong style="color: var(--hive-navy-900);">✦ Native In-App E-Signatures <span class="compare-roadmap-badge">Roadmap: Q1 2027</span>:</strong> Send representation agreements and Proof of Loss affidavits for instant, ESIGN-compliant signing.</li>
+            </ul>
+          </div>
+
+          <!-- Honest UI Representation -->
+          <div class="stage-mockup-window">
+            <div class="mockup-header-bar">
+              <span class="mockup-dot dot-red"></span>
+              <span class="mockup-dot dot-yellow"></span>
+              <span class="mockup-dot dot-green"></span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: #94A9CF; margin-left: 0.5rem;">file_intake_docket.json</span>
+            </div>
+            <div class="mockup-body">
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #1E253F; padding-bottom: 0.75rem; margin-bottom: 1rem;">
+                <span style="color: #F8D79F; font-weight: 600;">CLAIM #2026-FL-0881</span>
+                <span style="color: #4ADE80; font-family: var(--hive-font-mono);">POL: 42 DAYS REMAINING</span>
+              </div>
+              <div style="font-family: var(--hive-font-mono); font-size: 0.8125rem; color: #94A9CF; line-height: 1.8;">
+                <div><span style="color: #E2E8F0;">Policyholder:</span> Henderson Residence (Naples, FL)</div>
+                <div><span style="color: #E2E8F0;">Carrier:</span> Citizens Property Insurance Corp</div>
+                <div><span style="color: #E2E8F0;">Coverage A:</span> $625,000.00 &nbsp;|&nbsp; Deductible: $12,500 (2%)</div>
+                <div><span style="color: #E2E8F0;">Statutory Deadline:</span> Nov 12, 2026 (FL § 627.70131)</div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(218, 169, 79, 0.1); border-left: 3px solid #DAA94F; color: #FAF2DC;">
+                  ✦ Automated Certified Demands queued for Day 46, Day 53, and Day 57.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 2: EVIDENCE & SCOPING -->
+        <div class="stage-card reverse">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+              <span class="badge badge-navy">STAGE 02</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.8125rem; color: var(--hive-gold-700);">EVIDENCE & SCOPING</span>
+            </div>
+            <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--hive-navy-900); margin-bottom: 1rem;">
+              Stop spending Sunday nights renaming 800 photos.
+            </h2>
+            <p style="color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+              Adjusters take hundreds of inspection photos on site. Claim Hive groups and organizes photos directly from your phone into room folders, elevations, and roof slopes, tagging moisture readings and hail spatter with GPS-stamped EXIF verification.
+            </p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.9375rem; color: var(--hive-text-secondary);">
+              <li><strong style="color: var(--hive-navy-900);">✓ Instant Elevation Sorting:</strong> North, South, East, West elevations categorized on upload.</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ Chalk & Moisture Annotation:</strong> Highlights test squares, brittle shingles, and baseboard moisture readings.</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ One-Click Carrier PDF Bundle:</strong> Generates court-ready, photo-sheet exhibits with timestamps.</li>
+              <li><strong style="color: var(--hive-navy-900);">✦ NOAA Hail & Wind Overlays <span class="compare-roadmap-badge">Roadmap: Q1 2027</span>:</strong> Automated certified Doppler radar, hail swaths, and wind gust verification attached to scope.</li>
+            </ul>
+          </div>
+
+          <!-- Honest UI Representation -->
+          <div class="stage-mockup-window">
+            <div class="mockup-header-bar">
+              <span class="mockup-dot dot-red"></span>
+              <span class="mockup-dot dot-yellow"></span>
+              <span class="mockup-dot dot-green"></span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: #94A9CF; margin-left: 0.5rem;">photo_evidence_triage.view</span>
+            </div>
+            <div class="mockup-body">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+                <div style="background: #161B33; border: 1px solid #283359; border-radius: 6px; padding: 0.75rem; text-align: center;">
+                  <span style="font-size: 1.5rem;">📸</span>
+                  <div style="font-size: 0.75rem; color: #E2E8F0; margin-top: 0.25rem;">Roof Slope (South)</div>
+                  <span style="font-size: 0.6875rem; color: #DAA94F;">14 Hail Impacts / Test Square</span>
+                </div>
+                <div style="background: #161B33; border: 1px solid #283359; border-radius: 6px; padding: 0.75rem; text-align: center;">
+                  <span style="font-size: 1.5rem;">💧</span>
+                  <div style="font-size: 0.75rem; color: #E2E8F0; margin-top: 0.25rem;">Master Bath Drywall</div>
+                  <span style="font-size: 0.6875rem; color: #38BDF8;">Moisture Meter: 48.2% (Wet)</span>
+                </div>
+              </div>
+              <div style="font-size: 0.8125rem; color: #94A9CF; border-top: 1px solid #1E253F; padding-top: 0.75rem;">
+                Status: <strong>418 photos indexed</strong> across 7 rooms • 0 manual renames needed.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 3: ESTIMATE & RECONCILIATION -->
+        <div class="stage-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+              <span class="badge badge-navy">STAGE 03</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.8125rem; color: var(--hive-gold-700);">ESTIMATE & SCOPE GAP</span>
+            </div>
+            <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--hive-navy-900); margin-bottom: 1rem;">
+              Expose carrier underpayments line by line.
+            </h2>
+            <p style="color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+              Insurance carriers consistently omit starter shingles, drip edges, continuous gutters, and code-mandated ice & water shields. Claim Hive provides side-by-side scope reconciliation, tracking disputed supplements and contractor bids.
+            </p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.9375rem; color: var(--hive-text-secondary);">
+              <li><strong style="color: var(--hive-navy-900);">✓ Overhead & Profit (O&P) Tracking:</strong> Tracks three-trade complexity to defend 10 & 10.</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ Ordinance or Law (Code) Audit:</strong> Identifies mandatory building code triggers (e.g. 25% roof rule).</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ Scope Difference Variance:</strong> Instantly calculates carrier offer vs. real settlement target.</li>
+            </ul>
+          </div>
+
+          <!-- Honest UI Representation -->
+          <div class="stage-mockup-window">
+            <div class="mockup-header-bar">
+              <span class="mockup-dot dot-red"></span>
+              <span class="mockup-dot dot-yellow"></span>
+              <span class="mockup-dot dot-green"></span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: #94A9CF; margin-left: 0.5rem;">scope_gap_variance.matrix</span>
+            </div>
+            <div class="mockup-body">
+              <table style="width: 100%; border-collapse: collapse; font-family: var(--hive-font-mono); font-size: 0.75rem;">
+                <tr style="border-bottom: 1px solid #232B4C; color: #94A9CF;">
+                  <th style="text-align: left; padding: 0.5rem 0;">Line Item Scope</th>
+                  <th style="text-align: right; padding: 0.5rem 0;">Carrier</th>
+                  <th style="text-align: right; padding: 0.5rem 0;">PA Claim Hive</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #1E253F; color: #E2E8F0;">
+                  <td style="padding: 0.5rem 0;">Architectural Shingles (38.5 SQ)</td>
+                  <td style="text-align: right;">$14,200</td>
+                  <td style="text-align: right; color: #4ADE80;">$19,850</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #1E253F; color: #E2E8F0;">
+                  <td style="padding: 0.5rem 0;">Drip Edge & Ice Barrier</td>
+                  <td style="text-align: right; color: #EF4444;">OMITTED</td>
+                  <td style="text-align: right; color: #4ADE80;">$3,420</td>
+                </tr>
+                <tr style="color: #E2E8F0;">
+                  <td style="padding: 0.5rem 0;">General Contractor O&P (10/10)</td>
+                  <td style="text-align: right; color: #EF4444;">DENIED</td>
+                  <td style="text-align: right; color: #4ADE80;">$6,840</td>
+                </tr>
+              </table>
+              <div style="margin-top: 1rem; padding: 0.75rem; background: #161B33; border-radius: 6px; display: flex; justify-content: space-between; font-weight: 700;">
+                <span style="color: #CBD5E1;">Identified Scope Underpayment:</span>
+                <span style="color: #DAA94F; font-size: 0.9375rem;">+$15,910.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 4: LETTERS & CLIENT PORTAL -->
+        <div class="stage-card reverse">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+              <span class="badge badge-navy">STAGE 04</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.8125rem; color: var(--hive-gold-700);">LETTERS & CLIENT COMMUNICATION</span>
+            </div>
+            <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--hive-navy-900); margin-bottom: 1rem;">
+              Certified carrier demands + zero client anxiety.
+            </h2>
+            <p style="color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+              When desk adjusters stall, Claim Hive generates certified statutory demand letters citing state administrative insurance codes. Meanwhile, your policyholders receive a private, read-only status link where they see real progress—ending the daily "Any news on my roof?" calls.
+            </p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.9375rem; color: var(--hive-text-secondary);">
+              <li><strong style="color: var(--hive-navy-900);">✓ Automated Statutory Demands:</strong> Cites state response rules (e.g. Florida 14-day rule, Texas 15-day rule).</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ Free Policyholder Portals:</strong> Policyholders never pay for access. Clean, transparent timeline view.</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ Certified Mail & Email Tracker:</strong> Logs proof of receipt for bad-faith defense exhibits.</li>
+            </ul>
+          </div>
+
+          <!-- Honest UI Representation -->
+          <div class="stage-mockup-window">
+            <div class="mockup-header-bar">
+              <span class="mockup-dot dot-red"></span>
+              <span class="mockup-dot dot-yellow"></span>
+              <span class="mockup-dot dot-green"></span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: #94A9CF; margin-left: 0.5rem;">policyholder_status_portal.view</span>
+            </div>
+            <div class="mockup-body">
+              <div style="background: rgba(255,255,255,0.04); border-radius: 8px; padding: 1rem; border: 1px solid #1E253F;">
+                <div style="font-size: 0.75rem; color: #DAA94F; font-weight: 700; text-transform: uppercase;">Policyholder View (Free)</div>
+                <div style="font-size: 1rem; font-weight: 600; color: #FFFFFF; margin: 0.25rem 0;">Status: Appraisal Inspection Scheduled</div>
+                <div style="font-size: 0.8125rem; color: #94A9CF; line-height: 1.5; margin-top: 0.5rem;">
+                  "Your Public Adjuster Tom has submitted the certified structural supplement. Carrier umpire inspection scheduled for Thursday at 10:00 AM."
+                </div>
+              </div>
+              <div style="margin-top: 0.75rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #4ADE80;">
+                <span>✓ Policyholder notified via SMS</span>
+                <span>0 incoming status calls</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 5: NEXT ACTION ENGINE -->
+        <div class="stage-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+              <span class="badge badge-navy">STAGE 05</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.8125rem; color: var(--hive-gold-700);">NEXT ACTION ENGINE</span>
+            </div>
+            <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--hive-navy-900); margin-bottom: 1rem;">
+              Your morning docket: What needs to move today.
+            </h2>
+            <p style="color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+              When handling 25 active claims, files don't fail from poor estimating—they fail because a carrier deadline slipped or an adjuster failed to follow up on a supplement. The Next Action Engine reviews every open file and presents a clean daily action docket.
+            </p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.9375rem; color: var(--hive-text-secondary);">
+              <li><strong style="color: var(--hive-navy-900);">✓ Zero Dropped Deadlines:</strong> Highlights overdue checks, unacknowledged proofs of loss, and pending releases.</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ Priority Triage:</strong> Sorts daily tasks by statutory urgency, not whoever called you last.</li>
+              <li><strong style="color: var(--hive-navy-900);">✓ 15-Minute Morning Routine:</strong> Review your entire docket with a cup of coffee and clear your day.</li>
+            </ul>
+          </div>
+
+          <!-- Honest UI Representation -->
+          <div class="stage-mockup-window">
+            <div class="mockup-header-bar">
+              <span class="mockup-dot dot-red"></span>
+              <span class="mockup-dot dot-yellow"></span>
+              <span class="mockup-dot dot-green"></span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: #94A9CF; margin-left: 0.5rem;">morning_docket_oct30.act</span>
+            </div>
+            <div class="mockup-body">
+              <div style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: #94A9CF; margin-bottom: 0.75rem;">TODAY'S 3 CRITICAL ACTIONS:</div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <div style="background: rgba(239, 68, 68, 0.12); border-left: 3px solid #EF4444; padding: 0.5rem 0.75rem; font-size: 0.8125rem;">
+                  <strong style="color: #FCA5A5;">ACTION 1 (CRITICAL):</strong> Send POL Demand on Miller File (Day 57 of 60).
+                </div>
+                <div style="background: rgba(218, 169, 79, 0.12); border-left: 3px solid #DAA94F; padding: 0.5rem 0.75rem; font-size: 0.8125rem;">
+                  <strong style="color: #FDE047;">ACTION 2:</strong> Issue 14-Day Stall Notice to State Farm on Jenkins Supplement.
+                </div>
+                <div style="background: rgba(34, 197, 94, 0.12); border-left: 3px solid #22C55E; padding: 0.5rem 0.75rem; font-size: 0.8125rem;">
+                  <strong style="color: #86EFAC;">ACTION 3:</strong> Confirm release check received on Alvarez ($118,500).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM CONVERSION BANNER -->
+      <div style="text-align: center; margin-top: 5rem; padding: 3.5rem 2rem; background: #FFFFFF; border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-2xl);">
+        <h3 class="font-heading" style="font-size: 2rem; color: var(--hive-navy-900); margin-bottom: 0.75rem;">
+          Ready to experience the quiet file engine?
+        </h3>
+        <p style="color: var(--hive-text-secondary); max-width: 580px; margin: 0 auto 2rem; font-size: 1.0625rem;">
+          $80 per seat / month. Founding rate locked through June 30, 2027. Policyholders free forever.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="request.html?cohort=alpha" class="btn btn-lg btn-gold">
+            <span>Request Alpha Access</span>
+            <span class="hive-star-icon">✦</span>
+          </a>
+          <a href="pricing.html" class="btn btn-lg btn-outline">
+            <span>View Pricing Model</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="site-footer">
+    <div class="container container-wide">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="footer-logo-img">
+          <p class="footer-desc">
+            The calm operational backbone built exclusively for licensed USA Public Insurance Adjusters.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Platform</div>
+          <a href="product.html" class="footer-nav-link">Product Lifecycle</a>
+          <a href="pricing.html" class="footer-nav-link">Pricing ($80/Seat)</a>
+          <a href="compare.html" class="footer-nav-link">Compare Alternatives</a>
+          <a href="security.html" class="footer-nav-link">Security & Data Vault</a>
+          <a href="design-system.html" class="footer-nav-link">Design System</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Company</div>
+          <a href="about.html" class="footer-nav-link">About Tom & Team</a>
+          <a href="request.html" class="footer-nav-link">Request Access</a>
+          <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-nav-link">Terms of Service</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Direct Assurance</div>
+          <span style="font-size: 0.875rem; color: #CBD5E1;">Tom: (850) 400-HIVE</span>
+          <span style="font-size: 0.8125rem; color: #64748B;">Florida • Texas • Carolinas • Georgia</span>
+          <span style="font-size: 0.8125rem; color: var(--hive-gold-400); margin-top: 0.5rem;">✦ Policyholders Always Free</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Claim Hive Inc. Built for licensed property adjusters across all 50 states.</div>
+        <div>Confidential & Proprietary • Zero AI Training on Claim Files</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

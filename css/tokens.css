@@ -1,0 +1,182 @@
+/**
+ * Claim Hive Design System - Core Design Tokens ("HiveCore")
+ * Inspired by the expansive whitespace, minimal friction, and institutional trust
+ * of modern civic and consumer design (e.g. America.gov, Apple Store).
+ * 
+ * Target Persona: Overwhelmed USA-based Public Adjusters
+ * Visual Mission: Instant Psychological Relief • Expansive Breathing Room • Uncompromising Trust
+ */
+
+:root {
+  /* ==========================================================================
+     BRAND IDENTITY PALETTE
+     ========================================================================== */
+
+  /* Honey Gold Scale (From the Hive Circuit / Honeycomb Mark: #DAA94F) */
+  --hive-gold-50:   #FDFBF5; /* Whisper warm cream */
+  --hive-gold-100:  #FAF2DC; /* Soft warm badge tint */
+  --hive-gold-200:  #F4E2AB;
+  --hive-gold-300:  #ECCE72;
+  --hive-gold-400:  #E3BC4D;
+  --hive-gold-500:  #DAA94F; /* Primary Brand Honey Gold */
+  --hive-gold-600:  #B88530; /* Accessible interactive/hover state (4.6:1 AA) */
+  --hive-gold-700:  #8E631F;
+  --hive-gold-800:  #674415;
+  --hive-gold-900:  #442B0C;
+  --hive-gold-glow: rgba(218, 169, 79, 0.22);
+  --hive-gold-tint: rgba(218, 169, 79, 0.06);
+
+  /* Midnight Navy Scale (From the Wordmark Sparkle Star: #161B33) */
+  --hive-navy-50:   #F5F7FB;
+  --hive-navy-100:  #E5E9F3;
+  --hive-navy-200:  #C8D2E4;
+  --hive-navy-300:  #A1B2D0;
+  --hive-navy-400:  #728DB3;
+  --hive-navy-500:  #4B6993;
+  --hive-navy-600:  #334C72;
+  --hive-navy-700:  #243654;
+  --hive-navy-800:  #1B273F;
+  --hive-navy-900:  #161B33; /* Primary Midnight Navy - Deep Trust & Legal Gravitas */
+  --hive-navy-950:  #0C0F1D; /* Deepest Alabaster Contrast */
+
+  /* Relief Canvas & Expansive Surfaces (Inspired by America.gov / Apple Minimalism) */
+  --hive-canvas:          #FAF9F6; /* Alabaster Oatmeal: Zero glare, low cognitive load */
+  --hive-canvas-alt:      #F4F2EC; /* Gentle tinted surface for pacing transitions */
+  --hive-surface:         #FFFFFF; /* Pure elevated card surface */
+  --hive-surface-soft:    rgba(255, 255, 255, 0.85);
+  --hive-surface-dark:    #161B33;
+  --hive-surface-dark-card: #1D233F;
+
+  /* Whispering Borders & Dividers (Extremely light & unobtrusive) */
+  --hive-border-whisper:  rgba(22, 27, 51, 0.05); /* Barely-there containment */
+  --hive-border-subtle:   rgba(22, 27, 51, 0.09); /* Soft card border */
+  --hive-border-default:  #DFD9CE;
+  --hive-border-strong:   #C2B8A6;
+  --hive-border-gold:     rgba(218, 169, 79, 0.35);
+
+  /* Typography / Text Colors */
+  --hive-text-primary:    #121625; /* Midnight Charcoal for effortless reading */
+  --hive-text-secondary:  #4D576B; /* Soft reading grey */
+  --hive-text-muted:      #7C899E; /* Supporting metadata */
+  --hive-text-gold:       #9E6E22; /* Accessible text gold on white */
+  --hive-text-inverse:    #FFFFFF;
+  --hive-text-inverse-muted: #9BB0D1;
+
+  /* Semantic Status Colors (Public Adjuster Workflows) */
+  --hive-success:         #0D7A4D;
+  --hive-success-bg:      #EEFAF3;
+  --hive-success-border:  #B2E7CB;
+  
+  --hive-danger:          #C93828;
+  --hive-danger-bg:       #FEF3F2;
+  --hive-danger-border:   #FAC1BB;
+
+  --hive-info:            #1A65B5;
+  --hive-info-bg:         #EFF5FD;
+  --hive-info-border:     #B5D5F7;
+
+  --hive-warning:         #BF7110;
+  --hive-warning-bg:      #FEF8EC;
+  --hive-warning-border:  #F8D79F;
+
+  /* ==========================================================================
+     TYPOGRAPHY TOKENS
+     ========================================================================== */
+  /* Primary Major Headings (H1, H2, Hero Display): Merriweather for sturdy, grounded authority */
+  --hive-font-heading:   'Merriweather', Georgia, 'Times New Roman', serif;
+  
+  /* Editorial Accents & Sub-Headings: Newsreader for refined, elegant card headings */
+  --hive-font-editorial: 'Newsreader', Georgia, 'Times New Roman', serif;
+  
+  /* Modern Display for badges, pills, interactive labels, and buttons */
+  --hive-font-display:   'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Ultra-legible body font */
+  --hive-font-body:      'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Monospace for claim numbers and audit figures */
+  --hive-font-mono:      'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Font Sizes */
+  --hive-text-2xs: 0.6875rem; /* 11px */
+  --hive-text-xs:  0.75rem;   /* 12px */
+  --hive-text-sm:  0.875rem;  /* 14px */
+  --hive-text-base:1rem;      /* 16px */
+  --hive-text-lg:  1.125rem;  /* 18px */
+  --hive-text-xl:  1.25rem;   /* 20px */
+  --hive-text-2xl: 1.5rem;    /* 24px */
+  --hive-text-3xl: 1.875rem;  /* 30px */
+  --hive-text-4xl: 2.25rem;   /* 36px */
+  --hive-text-5xl: 3rem;      /* 48px */
+  --hive-text-6xl: 3.875rem;  /* 62px */
+  --hive-text-7xl: 4.75rem;   /* 76px */
+
+  /* Line Heights (Spacious & Breathable) */
+  --hive-leading-tight:     1.18;
+  --hive-leading-snug:      1.28;
+  --hive-leading-normal:    1.6;
+  --hive-leading-editorial: 1.8;
+
+  /* Font Weights */
+  --hive-weight-light:    300;
+  --hive-weight-regular:  400;
+  --hive-weight-medium:   500;
+  --hive-weight-semibold: 600;
+  --hive-weight-bold:     700;
+  --hive-weight-extrabold:900;
+
+  /* ==========================================================================
+     SPATIAL & LAYOUT TOKENS (Expansive America.gov Breathing Room)
+     ========================================================================== */
+  --hive-space-1:  0.25rem; /* 4px */
+  --hive-space-2:  0.5rem;  /* 8px */
+  --hive-space-3:  0.75rem; /* 12px */
+  --hive-space-4:  1rem;    /* 16px */
+  --hive-space-6:  1.5rem;  /* 24px */
+  --hive-space-8:  2rem;    /* 32px */
+  --hive-space-10: 2.5rem;  /* 40px */
+  --hive-space-12: 3rem;    /* 48px */
+  --hive-space-16: 4rem;    /* 64px */
+  --hive-space-20: 5rem;    /* 80px */
+  --hive-space-24: 6rem;    /* 96px */
+  --hive-space-28: 7rem;    /* 112px */
+  --hive-space-32: 8rem;    /* 128px */
+  --hive-space-36: 9.5rem;  /* 152px */
+  --hive-space-44: 12rem;   /* 192px */
+
+  /* Fluid Section Spacing (Creates vast, peaceful vertical breathing room) */
+  --hive-section-y: clamp(5rem, 8vw, 9.5rem);
+  --hive-hero-y:    clamp(5.5rem, 9vw, 10rem);
+
+  /* Max Widths */
+  --hive-max-reading: 720px;  /* Focused, fatigue-free reading width */
+  --hive-max-hero:    900px;  /* Central focus hero width */
+  --hive-max-content: 1140px; /* Spacious content grid */
+  --hive-max-wide:    1320px; /* Outer frame container */
+
+  /* ==========================================================================
+     BORDER RADIUS (Organic Pill & Calm Architecture)
+     ========================================================================== */
+  --hive-radius-xs:   4px;
+  --hive-radius-sm:   8px;
+  --hive-radius-md:   14px;
+  --hive-radius-lg:   20px;
+  --hive-radius-xl:   28px;
+  --hive-radius-2xl:  36px;
+  --hive-radius-pill: 9999px;
+
+  /* ==========================================================================
+     ELEVATION & AMBIENT SHADOWS (Airy, Diffused, Soft)
+     ========================================================================== */
+  --hive-shadow-ambient: 0 1px 3px rgba(18, 22, 37, 0.03);
+  --hive-shadow-soft:    0 4px 20px rgba(18, 22, 37, 0.04), 0 1px 3px rgba(18, 22, 37, 0.02);
+  --hive-shadow-card:    0 10px 30px rgba(18, 22, 37, 0.05), 0 2px 8px rgba(18, 22, 37, 0.02);
+  --hive-shadow-hero:    0 20px 60px rgba(18, 22, 37, 0.07), 0 4px 16px rgba(18, 22, 37, 0.03);
+  --hive-shadow-gold:    0 12px 36px rgba(218, 169, 79, 0.22);
+  --hive-shadow-navy:    0 20px 50px rgba(22, 27, 51, 0.32);
+
+  /* Transitions */
+  --hive-transition-fast:   180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --hive-transition-smooth: 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  --hive-transition-spring: 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}

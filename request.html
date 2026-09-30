@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Access — Claim Hive</title>
+  <meta name="description" content="Apply for Claim Hive Founding Member Access ($80/seat/month). Hand-guided onboarding directly with Tom for licensed USA Public Adjusters.">
+  
+  <!-- Fonts: Merriweather, Newsreader, Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/site.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
+</head>
+<body class="bg-serene">
+
+  <!-- TOP ASSURANCE BAR -->
+  <div class="top-assurance-bar">
+    <span class="hide-mobile">FOUNDING ACCESS LIMITED TO 200 FIRMS &nbsp;•&nbsp;</span>
+    <span>$80/SEAT FLAT • ZERO PER-CLAIM FEES</span>
+    &nbsp;•&nbsp;
+    <span class="highlight">✦ ONBOARDING SCHEDULED WITHIN 24 HOURS</span>
+  </div>
+
+  <!-- STICKY SITE HEADER -->
+  <header class="site-header">
+    <div class="container container-wide">
+      <nav class="nav-bar">
+        <a href="index.html" class="brand-logo-link">
+          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="brand-logo-img">
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="product.html" class="nav-link">Product</a></li>
+          <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="compare.html" class="nav-link">Compare</a></li>
+          <li><a href="security.html" class="nav-link">Security & Trust</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="design-system.html" class="nav-link" style="opacity: 0.7; font-size: 0.8125rem;">Design System</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="pricing.html" class="btn btn-sm btn-outline">Review $80 Pricing</a>
+          <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="mobile-menu-drawer">
+    <a href="product.html" class="nav-link" style="font-size: 1.25rem;">Product Lifecycle</a>
+    <a href="pricing.html" class="nav-link" style="font-size: 1.25rem;">Pricing ($80/Seat)</a>
+    <a href="compare.html" class="nav-link" style="font-size: 1.25rem;">Compare Alternatives</a>
+    <a href="security.html" class="nav-link" style="font-size: 1.25rem;">Security & Data Vault</a>
+    <a href="about.html" class="nav-link" style="font-size: 1.25rem;">About Tom & The Team</a>
+    <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+      <a href="pricing.html" class="btn btn-lg btn-navy">View Pricing</a>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="page-hero" style="padding-bottom: 2rem;">
+    <div class="container container-narrow">
+      <span class="badge badge-gold" style="margin-bottom: 1.25rem;">
+        <span class="hive-star-gold">✦</span> DIRECT FOUNDING ONBOARDING
+      </span>
+      <h1 class="page-hero-title">
+        Request Access to Claim Hive.<br>
+        <span style="color: var(--hive-gold-600); font-weight: 400; font-style: italic;">Lock in your $80/seat founding rate.</span>
+      </h1>
+      <p class="page-hero-subtitle">
+        We onboard adjusters in small, hand-guided cohorts directly with Tom to ensure your open claims are properly imported and your state statutory deadlines are mapped.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORM CONTAINER SECTION -->
+  <section style="padding: 0 0 var(--hive-section-y);">
+    <div class="container container-reading">
+      
+      <!-- INTAKE FORM SHELL -->
+      <div id="request-form-container" class="form-shell-card">
+        
+        <div style="margin-bottom: 2.25rem; border-bottom: 1px solid var(--hive-border-whisper); padding-bottom: 1.5rem;">
+          <h2 class="font-heading" style="font-size: 1.5rem; color: var(--hive-navy-900); margin-bottom: 0.35rem;">
+            Public Adjuster Intake Application
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--hive-text-secondary);">
+            Fields marked with an asterisk (<span style="color: var(--hive-danger);">*</span>) are required. All information is confidential and will never be shared.
+          </p>
+        </div>
+
+        <form id="claim-hive-request-form" novalidate>
+          
+          <!-- Honeypot Bot Trap (Invisible to humans) -->
+          <input type="text" name="hp_website_url" id="hp_website_url" class="hp-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <!-- 1. COHORT SELECTOR -->
+          <div class="field-group full-width" style="margin-bottom: 2rem;">
+            <label class="field-label">Select Your Onboarding Cohort <span class="req">*</span></label>
+            <div class="cohort-selector-grid">
+              
+              <label class="cohort-card-label selected" id="label-cohort-alpha">
+                <input type="radio" name="cohort" value="Alpha Cohort (Q4 2026)" checked>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span class="badge badge-gold" style="font-size: 0.6875rem;">IMMEDIATE ACCESS</span>
+                  <span class="hive-star-gold" style="font-size: 1rem;">✦</span>
+                </div>
+                <div style="font-family: var(--hive-font-display); font-weight: 700; color: var(--hive-navy-900); font-size: 1rem; margin-top: 0.25rem;">
+                  Immediate Alpha (Q4 2026)
+                </div>
+                <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.4;">
+                  For firms actively handling claims now. Direct 1-on-1 setup session with Tom this week.
+                </div>
+              </label>
+
+              <label class="cohort-card-label" id="label-cohort-january">
+                <input type="radio" name="cohort" value="January 2027 Cohort">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span class="badge badge-navy" style="font-size: 0.6875rem;">RESERVE SPOT</span>
+                  <span>📅</span>
+                </div>
+                <div style="font-family: var(--hive-font-display); font-weight: 700; color: var(--hive-navy-900); font-size: 1rem; margin-top: 0.25rem;">
+                  January 2027 Waitlist
+                </div>
+                <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.4;">
+                  Lock in the $80 founding price now. Launch alongside our main New Year cohort.
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- 2. CONTACT & FIRM DETAILS GRID -->
+          <div class="form-field-grid">
+            
+            <div class="field-group">
+              <label for="fullName" class="field-label">Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" class="field-input" placeholder="e.g. Marcus Vance" required>
+            </div>
+
+            <div class="field-group">
+              <label for="firmName" class="field-label">Firm or Company Name <span class="req">*</span></label>
+              <input type="text" id="firmName" class="field-input" placeholder="e.g. Vance Public Adjusting LLC" required>
+            </div>
+
+            <div class="field-group">
+              <label for="workEmail" class="field-label">Work Email <span class="req">*</span></label>
+              <input type="email" id="workEmail" class="field-input" placeholder="marcus@vanceclaims.com" required>
+              <span class="field-hint">We'll send your cohort docket invitation here.</span>
+            </div>
+
+            <div class="field-group">
+              <label for="phone" class="field-label">Direct Cell Phone <span class="req">*</span></label>
+              <input type="tel" id="phone" class="field-input" placeholder="(555) 000-0000" required>
+              <span class="field-hint">Used by Tom to coordinate your setup call.</span>
+            </div>
+
+            <div class="field-group">
+              <label for="licenseStates" class="field-label">Primary Licensed State(s) <span class="req">*</span></label>
+              <input type="text" id="licenseStates" class="field-input" placeholder="e.g. Florida, Texas, Louisiana" required>
+              <span class="field-hint">Ensures your state statutory timelines (POL, bad-faith) are configured.</span>
+            </div>
+
+            <div class="field-group">
+              <label for="seatsNeeded" class="field-label">Number of Staff Seats Needed <span class="req">*</span></label>
+              <input type="number" id="seatsNeeded" class="field-input" min="1" max="50" value="1" required>
+              <span class="field-hint">Only internal staff. Insured clients are always 100% free.</span>
+            </div>
+
+            <div class="field-group">
+              <label for="currentStack" class="field-label">Current Claim Management System</label>
+              <select id="currentStack" class="field-select">
+                <option value="Paper & Manila Folders">Paper Folders & Physical Binders</option>
+                <option value="Excel / Google Sheets">Excel / Google Sheets / Dropbox</option>
+                <option value="Legacy Insurance CRM">Legacy Insurance Software / Generic CRM</option>
+                <option value="Custom Internal Tool">In-house Custom Software</option>
+                <option value="Other">Other / Combination</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="openFiles" class="field-label">Active Claims Managed Annually</label>
+              <select id="openFiles" class="field-select">
+                <option value="1 - 10 active claims">1 – 10 active claims (Solo Practitioner)</option>
+                <option value="11 - 25 active claims" selected>11 – 25 active claims (Boutique Practice)</option>
+                <option value="26 - 60 active claims">26 – 60 active claims (Growing Firm)</option>
+                <option value="60+ claims / Storm deployment">60+ claims (High-volume Catastrophe Team)</option>
+              </select>
+            </div>
+
+            <div class="field-group full-width">
+              <label for="referral" class="field-label">How did you hear about Claim Hive / Who referred you?</label>
+              <input type="text" id="referral" class="field-input" placeholder="e.g. Tom told me to reach out, AAPIA conference, LinkedIn...">
+              <span class="field-hint">Adjusters referred by Tom are prioritized directly on his personal calendar.</span>
+            </div>
+
+          </div>
+
+          <!-- SUBMIT ACTION -->
+          <div style="margin-top: 2.5rem; border-top: 1px solid var(--hive-border-whisper); padding-top: 2rem; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <button type="submit" class="btn btn-lg btn-gold" style="width: 100%; max-width: 420px; justify-content: center;">
+              <span>Submit Founding Application</span>
+              <span class="hive-star-icon">✦</span>
+            </button>
+            <p style="font-size: 0.8125rem; color: var(--hive-text-muted); text-align: center; margin: 0;">
+              🔒 Guaranteed Rate Lock: $80/seat through June 30, 2027 • No commitment • Cancel anytime
+            </p>
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- SUCCESS CONFIRMATION CONTAINER (REPLACES FORM ON SUBMISSION) -->
+      <div id="request-success-container" class="form-shell-card" style="display: none; text-align: center;">
+        
+        <div style="width: 72px; height: 72px; border-radius: 50%; background: var(--hive-gold-50); border: 2px solid var(--hive-gold-500); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.5rem; color: var(--hive-gold-700);">
+          ✓
+        </div>
+
+        <span class="badge badge-gold" style="margin-bottom: 1rem;">APPLICATION RECEIVED</span>
+        <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--hive-navy-900); margin-bottom: 0.75rem;">
+          You're on the docket, <span id="success-user-name">Adjuster</span>.
+        </h2>
+
+        <p id="success-routing-note" style="font-size: 1.0625rem; color: var(--hive-text-secondary); max-width: 540px; margin: 0 auto 2rem; line-height: 1.7;">
+          Our onboarding team will review your firm profile and follow up within 24 hours.
+        </p>
+
+        <!-- Confirmation Details Box -->
+        <div style="background: var(--hive-canvas-alt); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.75rem; text-align: left; max-width: 540px; margin: 0 auto 2rem;">
+          <h4 class="font-display" style="font-size: 0.9375rem; color: var(--hive-navy-900); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🛡️</span> Your Founding Member Reservation
+          </h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; color: var(--hive-text-secondary);">
+            <li><strong>Rate Locked:</strong> $80 / seat / month (Guaranteed through June 30, 2027)</li>
+            <li><strong>Insured Clients:</strong> Always 100% free with unlimited portal access</li>
+            <li><strong>Privacy Guarantee:</strong> Zero AI training on your customer claim files</li>
+            <li><strong>Pipeline Status:</strong> Logged into founding cohort tracker (<code>Seats_200</code>)</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="product.html" class="btn btn-outline">Review Product Walkthrough</a>
+          <a href="index.html" class="btn btn-navy">Return to Home</a>
+        </div>
+
+        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--hive-border-whisper); font-size: 0.8125rem; color: var(--hive-text-muted);">
+          Urgent claim stall question? Text Tom directly at <strong>(850) 400-HIVE</strong>.
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="site-footer">
+    <div class="container container-wide">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="footer-logo-img">
+          <p class="footer-desc">
+            The calm operational backbone built exclusively for licensed USA Public Insurance Adjusters.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Platform</div>
+          <a href="product.html" class="footer-nav-link">Product Lifecycle</a>
+          <a href="pricing.html" class="footer-nav-link">Pricing ($80/Seat)</a>
+          <a href="compare.html" class="footer-nav-link">Compare Alternatives</a>
+          <a href="security.html" class="footer-nav-link">Security & Data Vault</a>
+          <a href="design-system.html" class="footer-nav-link">Design System</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Company</div>
+          <a href="about.html" class="footer-nav-link">About Tom & Team</a>
+          <a href="request.html" class="footer-nav-link">Request Access</a>
+          <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-nav-link">Terms of Service</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Direct Assurance</div>
+          <span style="font-size: 0.875rem; color: #CBD5E1;">Tom: (850) 400-HIVE</span>
+          <span style="font-size: 0.8125rem; color: #64748B;">Florida • Texas • Carolinas • Georgia</span>
+          <span style="font-size: 0.8125rem; color: var(--hive-gold-400); margin-top: 0.5rem;">✦ Policyholders Always Free</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Claim Hive Inc. Built for licensed property adjusters across all 50 states.</div>
+        <div>Confidential & Proprietary • Zero AI Training on Claim Files</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="js/site.js"></script>
+  <script src="js/request-form.js?v=5.0"></script>
+  <script>
+    // URL parameter pre-selection for cohort (?cohort=alpha vs ?cohort=january)
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cohortParam = urlParams.get('cohort');
+      const alphaCard = document.getElementById('label-cohort-alpha');
+      const janCard = document.getElementById('label-cohort-january');
+
+      if (cohortParam === 'january' && janCard && alphaCard) {
+        alphaCard.classList.remove('selected');
+        janCard.classList.add('selected');
+        const janRadio = janCard.querySelector('input[type="radio"]');
+        if (janRadio) janRadio.checked = true;
+      }
+    });
+  </script>
+</body>
+</html>

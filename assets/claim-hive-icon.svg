@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444 393" fill="none">
+  <!-- Claim Hive - Icon Only (Honey Gold: #DAA94F) -->
+  <!-- Honey Gold Hive Circuit Elements -->
+  <!-- Seamless Bridge 1 -->
+  <path d="M 169 37 A 12 12 0 0 1 181 49 L 181 62 A 12 12 0 0 1 169 74 L 226 74 A 12 12 0 0 1 214 62 L 214 49 A 12 12 0 0 1 226 37 Z" fill="#DAA94F" />
+  <!-- Seamless Bridge 2 -->
+  <path d="M 280 111 A 12 12 0 0 1 292 123 L 292 133 A 12 12 0 0 1 280 145 L 337 145 A 12 12 0 0 1 325 133 L 325 123 A 12 12 0 0 1 337 111 Z" fill="#DAA94F" />
+  <!-- Seamless Bridge 3 -->
+  <path d="M 108 248 A 12 12 0 0 1 120 260 L 120 272 A 12 12 0 0 1 108 284 L 165 284 A 12 12 0 0 1 153 272 L 153 260 A 12 12 0 0 1 165 248 Z" fill="#DAA94F" />
+  <!-- Seamless Bridge 4 -->
+  <path d="M 219 321 A 12 12 0 0 1 231 333 L 231 344 A 12 12 0 0 1 219 356 L 276 356 A 12 12 0 0 1 264 344 L 264 333 A 12 12 0 0 1 276 321 Z" fill="#DAA94F" />
+  <!-- Horizontal Pills -->
+  <rect x="114" y="0" width="141" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="286" y="0" width="55" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="43" y="74" width="361" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="0" y="145" width="56" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="82" y="145" width="140" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="244" y="145" width="197" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="3" y="211" width="198" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="222" y="211" width="140" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="388" y="211" width="56" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="40" y="284" width="361" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="103" y="356" width="55" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+  <rect x="189" y="356" width="141" height="37" rx="18.5" ry="18.5" fill="#DAA94F" />
+</svg>

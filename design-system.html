@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claim Hive — Design System & Public Adjuster Experience</title>
+  <meta name="description" content="Purpose-built design system for Claim Hive. Engineered with expansive breathing room, minimal friction, and institutional trust to relieve overwhelmed USA Public Adjusters.">
+  
+  <!-- Fonts: Merriweather (Major Headings), Newsreader (Editorial Accent), Plus Jakarta Sans (Display), Inter (Body), JetBrains Mono (Numbers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Design System Tokens & Components -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    /* America.gov & Apple-inspired layout enhancements */
+    .showcase-header {
+      background: rgba(250, 249, 246, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--hive-border-whisper);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-quiet-bar {
+      background: var(--hive-navy-950);
+      color: #CBD5E1;
+      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .top-quiet-bar span.gold-highlight {
+      color: var(--hive-gold-400);
+      font-weight: 600;
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 84px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-family: var(--hive-font-display);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--hive-text-secondary);
+      text-decoration: none;
+      transition: color var(--hive-transition-fast);
+      letter-spacing: -0.01em;
+    }
+    .nav-link:hover {
+      color: var(--hive-navy-900);
+    }
+
+    /* Swatch Grid (Airy, clean cards) */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .swatch-item {
+      background: #FFFFFF;
+      border: 1px solid var(--hive-border-subtle);
+      border-radius: var(--hive-radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--hive-transition-smooth), box-shadow var(--hive-transition-smooth);
+      text-align: left;
+    }
+    .swatch-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--hive-shadow-card);
+      border-color: var(--hive-gold-400);
+    }
+
+    .swatch-color {
+      height: 72px;
+      width: 100%;
+    }
+
+    .swatch-meta {
+      padding: 0.75rem;
+    }
+    .swatch-name {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--hive-navy-900);
+      margin-bottom: 2px;
+    }
+    .swatch-hex {
+      font-family: var(--hive-font-mono);
+      font-size: 0.6875rem;
+      color: var(--hive-text-muted);
+    }
+
+    /* Code Snippet Box */
+    .code-box {
+      background: #0C0F1D;
+      border-radius: var(--hive-radius-lg);
+      border: 1px solid #1E253F;
+      padding: 1.75rem;
+      color: #E2E8F0;
+      font-family: var(--hive-font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    /* Tab switcher */
+    .tab-bar {
+      display: flex;
+      gap: 0.75rem;
+      border-bottom: 1px solid var(--hive-border-subtle);
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      padding: 0.875rem 1.5rem;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: var(--hive-font-display);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--hive-text-secondary);
+      cursor: pointer;
+      transition: all var(--hive-transition-fast);
+    }
+    .tab-btn.active {
+      color: var(--hive-navy-900);
+      border-bottom-color: var(--hive-gold-500);
+    }
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* Toast Notification */
+    #copy-toast {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      background: var(--hive-navy-900);
+      color: #FFFFFF;
+      padding: 0.875rem 1.75rem;
+      border-radius: var(--hive-radius-pill);
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: var(--hive-shadow-hero);
+      border: 1px solid var(--hive-gold-500);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+    }
+    #copy-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Three pillars grid */
+    .pillar-grid-airy {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .svg-grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 960px) {
+      .pillar-grid-airy,
+      .svg-grid-3col {
+        grid-template-columns: 1fr !important;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
+</head>
+<body class="bg-serene">
+
+  <!-- TOP QUIET ASSURANCE BAR -->
+  <div class="top-quiet-bar">
+    <span>BUILT EXCLUSIVELY FOR LICENSED USA PUBLIC ADJUSTERS</span>
+    &nbsp;•&nbsp;
+    <span>RESTORE YOUR CALM & DOUBLE YOUR CASELOAD</span>
+    &nbsp;•&nbsp;
+    <span class="gold-highlight">✦ ZERO DROPPED DEADLINES</span>
+  </div>
+
+  <!-- SHOWCASE HEADER (AIRY, STICKY, GLASS) -->
+  <header class="showcase-header">
+    <div class="container container-wide">
+      <nav class="nav-bar">
+        <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" style="height: 42px; width: auto; object-fit: contain;">
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#svg-assets" class="nav-link">Vector Logos (SVG)</a></li>
+          <li><a href="#concierge" class="nav-link">Relief Concierge</a></li>
+          <li><a href="#principles" class="nav-link">Design Ethos</a></li>
+          <li><a href="#palette" class="nav-link">Color Tokens</a></li>
+          <li><a href="#typography" class="nav-link">Typography</a></li>
+          <li><a href="#components" class="nav-link">Components</a></li>
+          <li><a href="#calculator" class="nav-link">Capacity ROI</a></li>
+        </ul>
+
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <a href="#calculator" class="btn btn-sm btn-outline">Calculate ROI</a>
+          <a href="#concierge" class="btn btn-sm btn-gold">
+            <span>Explore Relief</span>
+            <span class="hive-star-icon">✦</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION: MERRIWEATHER HEADINGS + EXPANSIVE BREATHING ROOM -->
+  <section class="hero-spacious" style="position: relative;">
+    <div class="container container-narrow" style="text-align: center;">
+      
+      <!-- Quiet Subhead / Authority Marker -->
+      <div style="margin-bottom: 2rem;">
+        <span class="badge badge-gold" style="padding: 0.5rem 1.25rem;">
+          <span class="hive-star-gold">✦</span> THE CALMING SYSTEM FOR OVERWHELMED ADJUSTERS
+        </span>
+      </div>
+
+      <!-- Main Headline: Merriweather Bold Authority -->
+      <h1 class="font-heading" style="font-size: clamp(2.5rem, 5.5vw, 4.125rem); font-weight: 700; margin-bottom: 1.75rem; letter-spacing: -0.025em; line-height: 1.18; color: var(--hive-navy-900);">
+        Order out of chaos.<br>
+        <span style="color: var(--hive-gold-600); font-style: italic; font-weight: 400;">Breathe again.</span> Double your caseload without hiring.
+      </h1>
+
+      <!-- Spacious Subheadline -->
+      <p style="font-size: clamp(1.125rem, 2vw, 1.25rem); color: var(--hive-text-secondary); line-height: var(--hive-leading-editorial); margin-bottom: 3rem; max-width: 720px; margin-left: auto; margin-right: auto;">
+        Public Adjusters represent policyholders in high-stakes insurance disputes while drowning in 60-hour weeks of carrier delays, photo sorting, and administrative exhaustion. Claim Hive provides the quiet operational backbone that turns panic into calm, predictable fee growth.
+      </p>
+
+      <!-- Action Buttons with Generous Padding -->
+      <div style="display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.5rem;">
+        <a href="#calculator" class="btn btn-lg btn-gold">
+          <span>Calculate Unlocked Claim Capacity</span>
+          <span style="font-size: 1.1em;">→</span>
+        </a>
+        <a href="#concierge" class="btn btn-lg btn-navy">
+          <span class="hive-star-gold">✦</span>
+          <span>Experience The Walkthrough</span>
+        </a>
+      </div>
+
+      <!-- Quiet Trust Markers -->
+      <div style="display: flex; align-items: center; justify-content: center; gap: 1.75rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--hive-border-whisper);">
+        <span class="badge badge-trust">🛡️ Designed for Licensed USA Public Adjusters</span>
+        <span class="badge badge-trust">🔒 SOC-2 & AES-256 Encrypted Document Vault</span>
+        <span class="badge badge-trust">⚡ Compatible with Xactimate ESX & Symbility</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONCIERGE INTERACTION: AMERICA.GOV STYLE CENTRAL PROMPT -->
+  <section id="concierge" class="section-spacious" style="padding-top: 0;">
+    <div class="container container-narrow">
+      <div class="concierge-card">
+        
+        <span class="badge badge-navy" style="margin-bottom: 1.25rem;">
+          INSTANT RELIEF CONCIERGE
+        </span>
+
+        <h2 class="font-heading" style="font-size: clamp(1.875rem, 3.5vw, 2.5rem); color: var(--hive-navy-900); margin-bottom: 0.75rem; font-weight: 700;">
+          Where is the administrative quicksand in your firm today?
+        </h2>
+        <p style="color: var(--hive-text-secondary); font-size: 1.0625rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+          Select your biggest operational bottleneck below to see how Claim Hive replaces panic with quiet automation.
+        </p>
+
+        <!-- Interactive Concierge Pill Selector -->
+        <div class="concierge-pill-group">
+          <button class="concierge-pill active" data-pain="deadlines">
+            <span class="pill-icon">⚡</span>
+            <span>Proof of Loss Deadlines</span>
+          </button>
+          <button class="concierge-pill" data-pain="stalls">
+            <span class="pill-icon">⏱️</span>
+            <span>Carrier Stall Tactics</span>
+          </button>
+          <button class="concierge-pill" data-pain="photos">
+            <span class="pill-icon">📸</span>
+            <span>Photo & Scoping Chaos</span>
+          </button>
+          <button class="concierge-pill" data-pain="capacity">
+            <span class="pill-icon">📈</span>
+            <span>Caseload Capped at 10 Claims</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Output Result Card -->
+        <div id="concierge-relief-result" style="margin-top: 2.5rem; background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-xl); padding: 2.25rem; text-align: left; transition: all 0.3s ease;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-family: var(--hive-font-display); font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-700); letter-spacing: 0.05em;">
+              THE CLAIM HIVE SOLUTION
+            </span>
+            <span id="relief-stat" class="font-numeric" style="font-size: 0.875rem; font-weight: 700; color: var(--hive-success); background: var(--hive-success-bg); padding: 0.25rem 0.75rem; border-radius: 999px; border: 1px solid var(--hive-success-border);">
+              0 Deadlines Missed across 14,000+ files
+            </span>
+          </div>
+
+          <h3 id="relief-title" class="font-display" style="font-size: 1.375rem; color: var(--hive-navy-900); margin-bottom: 0.75rem;">
+            Automated 60-Day Proof of Loss (POL) Vault
+          </h3>
+
+          <p id="relief-desc" style="font-size: 1rem; color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+            Never wake up in a panic. Claim Hive indexes all state-specific statutory deadlines upon contract upload and dispatches automated carrier notices 14, 7, and 3 days before any statutory cutoff.
+          </p>
+
+          <a href="#calculator" class="btn btn-sm btn-gold">
+            <span>Calculate Time Saved on This Task</span>
+            <span class="hive-star-icon">✦</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 1: THE THREE PILLARS (EXPANSIVE BREATHING ROOM) -->
+  <section id="principles" class="section-spacious" style="background: #FFFFFF; border-top: 1px solid var(--hive-border-whisper); border-bottom: 1px solid var(--hive-border-whisper);">
+    <div class="container">
+      <div style="max-width: 760px; margin: 0 auto; text-align: center; margin-bottom: 4rem;">
+        <span class="badge badge-navy" style="margin-bottom: 1rem;">DESIGN SYSTEM ETHOS</span>
+        <h2 class="font-heading" style="font-size: clamp(2.25rem, 4vw, 3.125rem); color: var(--hive-navy-900); margin-bottom: 1rem; font-weight: 700;">
+          Engineered for the Stressed Mind
+        </h2>
+        <p style="font-size: 1.125rem; color: var(--hive-text-secondary); line-height: var(--hive-leading-editorial);">
+          When an adjuster is overwhelmed, dense interfaces and crowded layouts trigger cognitive shutdown. Claim Hive combines the sturdy authority of Merriweather with the calming restraint of America.gov.
+        </p>
+      </div>
+
+      <div class="pillar-grid-airy">
+        <div class="card-airy">
+          <div style="width: 56px; height: 56px; border-radius: 16px; background: var(--hive-canvas-alt); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin-bottom: 1.75rem;">
+            🧘‍♂️
+          </div>
+          <h3 class="font-display" style="font-size: 1.375rem; margin-bottom: 0.75rem;">1. Expansive Whitespace</h3>
+          <p style="color: var(--hive-text-secondary); font-size: 0.9375rem; line-height: 1.7;">
+            Vast vertical pacing (clamp 5rem to 9.5rem) and uncluttered margins allow the mind to breathe. Whitespace is not empty space; it is peace of mind for an adjuster juggling 15 active insurer disputes.
+          </p>
+        </div>
+
+        <div class="card-airy">
+          <div style="width: 56px; height: 56px; border-radius: 16px; background: var(--hive-navy-100); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin-bottom: 1.75rem;">
+            🏛️
+          </div>
+          <h3 class="font-display" style="font-size: 1.375rem; margin-bottom: 0.75rem;">2. Institutional Authority</h3>
+          <p style="color: var(--hive-text-secondary); font-size: 0.9375rem; line-height: 1.7;">
+            Deep Midnight Navy (<code style="font-family: var(--hive-font-mono); color: var(--hive-navy-900);">#161B33</code>) paired with Merriweather serif typography evokes the official dignity, legal certainty, and grounded stability of state insurance departments.
+          </p>
+        </div>
+
+        <div class="card-airy">
+          <div style="width: 56px; height: 56px; border-radius: 16px; background: var(--hive-gold-100); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin-bottom: 1.75rem;">
+            🍯
+          </div>
+          <h3 class="font-display" style="font-size: 1.375rem; margin-bottom: 0.75rem;">3. Industrious Prosperity</h3>
+          <p style="color: var(--hive-text-secondary); font-size: 0.9375rem; line-height: 1.7;">
+            The Honey Gold (<code style="font-family: var(--hive-font-mono); color: var(--hive-gold-600);">#DAA94F</code>) accent represents the sweetness of won settlements, automated efficiency, and safely expanding from 8 capped claims to 25+ settled files.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: BRAND VECTOR ASSETS (THE 3 SVGS) -->
+  <section id="svg-assets" class="section-spacious" style="background-color: var(--hive-canvas-alt); border-top: 1px solid var(--hive-border-whisper); border-bottom: 1px solid var(--hive-border-whisper);">
+    <div class="container">
+      <div style="max-width: 760px; margin-bottom: 3.5rem;">
+        <span class="badge badge-gold">VECTOR BRAND ASSETS (SVG)</span>
+        <h2 class="font-heading" style="font-size: clamp(2rem, 3.5vw, 2.75rem); margin-top: 0.5rem; margin-bottom: 0.75rem; font-weight: 700;">
+          Authentic Vector Brand Identity
+        </h2>
+        <p style="color: var(--hive-text-secondary); font-size: 1.0625rem; line-height: var(--hive-leading-editorial);">
+          Three resolution-independent, mathematically exact vector assets engineered for high-DPI screens, native mobile apps, and official insurance filings. Includes the signature stacked lockup, standalone Honey Gold hive circuit, and the custom wordmark with the Midnight Navy AI sparkle star.
+        </p>
+      </div>
+
+      <!-- The 3 Core Versions Grid (Airy 3-Column Layout) -->
+      <div class="svg-grid-3col">
+        
+        <!-- 1. FULL LOGO (STACKED) -->
+        <div class="card-airy" style="display: flex; flex-direction: column; justify-content: space-between; text-align: center; background: #FFFFFF;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <span class="badge badge-navy">VERSION 1: FULL</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">claim-hive-full.svg</span>
+            </div>
+
+            <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 2.5rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 240px; margin-bottom: 1.5rem;">
+              <img src="assets/claim-hive-full.svg" alt="Claim Hive Full Logo" style="max-width: 220px; width: 100%; height: auto; display: block;">
+            </div>
+
+            <h3 class="font-display" style="font-size: 1.1875rem; margin-bottom: 0.5rem; color: var(--hive-navy-900); font-weight: 700;">
+              Full Signature Lockup
+            </h3>
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+              Complete signature brand lockup. Features the Honey Gold Hive Circuit on top with the Helvetica Bold wordmark and Midnight Navy AI sparkle star below.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: center;">
+            <a href="assets/claim-hive-full.svg" download="claim-hive-full.svg" class="btn btn-sm btn-gold" style="flex: 1;">
+              <span>Download SVG</span>
+              <span>↓</span>
+            </a>
+            <button class="btn btn-sm btn-outline" data-copy-svg="assets/claim-hive-full.svg">
+              <span>Copy SVG</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. ICON ONLY -->
+        <div class="card-airy" style="display: flex; flex-direction: column; justify-content: space-between; text-align: center; background: #FFFFFF;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <span class="badge badge-gold">VERSION 2: ICON ONLY</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">claim-hive-icon.svg</span>
+            </div>
+
+            <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 2.5rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 240px; margin-bottom: 1.5rem;">
+              <img src="assets/claim-hive-icon.svg" alt="Claim Hive Icon" style="max-width: 170px; width: 100%; height: auto; display: block;">
+            </div>
+
+            <h3 class="font-display" style="font-size: 1.1875rem; margin-bottom: 0.5rem; color: var(--hive-navy-900); font-weight: 700;">
+              Hive Circuit Mark Only
+            </h3>
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+              Laser-sharp Honey Gold (<code style="font-family: var(--hive-font-mono); color: var(--hive-gold-700);">#DAA94F</code>) standalone graphic. Engineered with exact CAD geometry, semicircular pill caps, and seamless 12px concave fillet joins. Perfect for favicons, app launchers, and avatar badges.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: center;">
+            <a href="assets/claim-hive-icon.svg" download="claim-hive-icon.svg" class="btn btn-sm btn-gold" style="flex: 1;">
+              <span>Download SVG</span>
+              <span>↓</span>
+            </a>
+            <button class="btn btn-sm btn-outline" data-copy-svg="assets/claim-hive-icon.svg">
+              <span>Copy SVG</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. TEXT ONLY (WORDMARK + AI SPARKLE) -->
+        <div class="card-airy" style="display: flex; flex-direction: column; justify-content: space-between; text-align: center; background: #FFFFFF;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <span class="badge badge-navy">VERSION 3: TEXT ONLY</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">claim-hive-text.svg</span>
+            </div>
+
+            <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 2.5rem 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 240px; margin-bottom: 1.5rem;">
+              <img src="assets/claim-hive-text.svg" alt="Claim Hive Wordmark" style="max-width: 250px; width: 100%; height: auto; display: block;">
+            </div>
+
+            <h3 class="font-display" style="font-size: 1.1875rem; margin-bottom: 0.5rem; color: var(--hive-navy-900); font-weight: 700;">
+              Wordmark with AI Sparkle
+            </h3>
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+              Pure vector typography with the signature Midnight Navy (<code style="font-family: var(--hive-font-mono); color: var(--hive-navy-900);">#161B33</code>) 4-point astroid star replacing the dot over the "i", denoting our AI-driven claim engine.
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: center;">
+            <a href="assets/claim-hive-text.svg" download="claim-hive-text.svg" class="btn btn-sm btn-gold" style="flex: 1;">
+              <span>Download SVG</span>
+              <span>↓</span>
+            </a>
+            <button class="btn btn-sm btn-outline" data-copy-svg="assets/claim-hive-text.svg">
+              <span>Copy SVG</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bonus: Horizontal Header Format Bar -->
+      <div class="card-airy" style="background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; padding: 2rem 2.5rem;">
+        <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+          <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1rem 1.75rem; display: flex; align-items: center; justify-content: center;">
+            <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive Horizontal" style="height: 38px; width: auto; display: block;">
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem;">
+              <span class="badge badge-trust">NAVBAR & HEADER LOCKUP</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">claim-hive-horizontal.svg</span>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin: 0;">
+              Proportionally balanced horizontal format for website navigation bars, sticky headers, and legal document letterheads.
+            </p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <a href="assets/claim-hive-horizontal.svg" download="claim-hive-horizontal.svg" class="btn btn-sm btn-gold">
+            <span>Download SVG</span>
+            <span>↓</span>
+          </a>
+          <button class="btn btn-sm btn-outline" data-copy-svg="assets/claim-hive-horizontal.svg">
+            <span>Copy SVG</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 2: COLOR SYSTEM & REFINED TOKENS -->
+  <section id="palette" class="section-spacious">
+    <div class="container">
+      <div style="max-width: 760px; margin-bottom: 3.5rem;">
+        <span class="badge badge-gold">COLOR ARCHITECTURE</span>
+        <h2 class="font-heading" style="font-size: clamp(2rem, 3.5vw, 2.75rem); margin-top: 0.5rem; margin-bottom: 0.75rem; font-weight: 700;">
+          Quiet, Calibrated Brand Swatches
+        </h2>
+        <p style="color: var(--hive-text-secondary); font-size: 1.0625rem; line-height: var(--hive-leading-editorial);">
+          Click any color swatch to copy its CSS token. The palette balances the warmth of Honey Gold with the deep trust of Midnight Navy and the stress-relieving Alabaster canvas.
+        </p>
+      </div>
+
+      <!-- Honey Gold Scale -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 class="font-display" style="font-size: 1.125rem; display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.5rem;">
+          <span style="width: 14px; height: 14px; border-radius: 50%; background: #DAA94F; display: inline-block;"></span>
+          Honey Gold Scale (Core Mark: <span style="font-family: var(--hive-font-mono); color: var(--hive-gold-700);">#DAA94F</span>)
+        </h3>
+        <p style="font-size: 0.875rem; color: var(--hive-text-muted); margin-bottom: 1rem;">
+          Symbolizes automated momentum, structured hive energy, and settlement prosperity.
+        </p>
+
+        <div class="swatch-grid">
+          <div class="swatch-item" data-copy="var(--hive-gold-50)">
+            <div class="swatch-color" style="background-color: var(--hive-gold-50);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">gold-50</div>
+              <div class="swatch-hex">#FDFBF5</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-gold-100)">
+            <div class="swatch-color" style="background-color: var(--hive-gold-100);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">gold-100</div>
+              <div class="swatch-hex">#FAF2DC</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-gold-300)">
+            <div class="swatch-color" style="background-color: var(--hive-gold-300);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">gold-300</div>
+              <div class="swatch-hex">#ECCE72</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-gold-500)" style="border: 2px solid var(--hive-gold-600);">
+            <div class="swatch-color" style="background-color: var(--hive-gold-500);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name" style="color: var(--hive-gold-700);">gold-500 ★</div>
+              <div class="swatch-hex">#DAA94F</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-gold-600)">
+            <div class="swatch-color" style="background-color: var(--hive-gold-600);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">gold-600</div>
+              <div class="swatch-hex">#B88530</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-gold-700)">
+            <div class="swatch-color" style="background-color: var(--hive-gold-700);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">gold-700</div>
+              <div class="swatch-hex">#8E631F</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-gold-900)">
+            <div class="swatch-color" style="background-color: var(--hive-gold-900);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">gold-900</div>
+              <div class="swatch-hex">#442B0C</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Midnight Navy Scale -->
+      <div style="margin-bottom: 3.5rem;">
+        <h3 class="font-display" style="font-size: 1.125rem; display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.5rem;">
+          <span style="width: 14px; height: 14px; border-radius: 50%; background: #161B33; display: inline-block;"></span>
+          Midnight Navy Scale (Core Star: <span style="font-family: var(--hive-font-mono); color: var(--hive-navy-900);">#161B33</span>)
+        </h3>
+        <p style="font-size: 0.875rem; color: var(--hive-text-muted); margin-bottom: 1rem;">
+          Anchors legal authority, institutional security, and calm stability.
+        </p>
+
+        <div class="swatch-grid">
+          <div class="swatch-item" data-copy="var(--hive-navy-50)">
+            <div class="swatch-color" style="background-color: var(--hive-navy-50);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">navy-50</div>
+              <div class="swatch-hex">#F5F7FB</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-navy-100)">
+            <div class="swatch-color" style="background-color: var(--hive-navy-100);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">navy-100</div>
+              <div class="swatch-hex">#E5E9F3</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-navy-300)">
+            <div class="swatch-color" style="background-color: var(--hive-navy-300);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">navy-300</div>
+              <div class="swatch-hex">#A1B2D0</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-navy-500)">
+            <div class="swatch-color" style="background-color: var(--hive-navy-500);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">navy-500</div>
+              <div class="swatch-hex">#4B6993</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-navy-900)" style="border: 2px solid var(--hive-navy-700);">
+            <div class="swatch-color" style="background-color: var(--hive-navy-900);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name" style="color: var(--hive-navy-900);">navy-900 ★</div>
+              <div class="swatch-hex">#161B33</div>
+            </div>
+          </div>
+
+          <div class="swatch-item" data-copy="var(--hive-navy-950)">
+            <div class="swatch-color" style="background-color: var(--hive-navy-950);"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">navy-950</div>
+              <div class="swatch-hex">#0C0F1D</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Public Adjuster Workflow Semantic Indicators -->
+      <div>
+        <h3 class="font-display" style="font-size: 1.125rem; margin-bottom: 0.5rem;">Claim Workflow Semantic States</h3>
+        <p style="font-size: 0.875rem; color: var(--hive-text-muted); margin-bottom: 1.25rem;">
+          Quiet status cues designed for zero ambiguity.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+          <div class="card-airy" style="padding: 1.5rem; border-left: 4px solid var(--hive-success);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-success">SETTLED / REVENUE WON</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-success);">#0D7A4D</span>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 0.5rem;">
+              Check received, fee secured, file closed.
+            </p>
+          </div>
+
+          <div class="card-airy" style="padding: 1.5rem; border-left: 4px solid var(--hive-danger);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-urgent">STATUTE / POL DEADLINE</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-danger);">#C93828</span>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 0.5rem;">
+              Strict 60-day POL statutory cutoff countdown.
+            </p>
+          </div>
+
+          <div class="card-airy" style="padding: 1.5rem; border-left: 4px solid var(--hive-info);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-info">CARRIER REVIEW</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-info);">#1A65B5</span>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 0.5rem;">
+              Desk adjuster examining filed estimates.
+            </p>
+          </div>
+
+          <div class="card-airy" style="padding: 1.5rem; border-left: 4px solid var(--hive-warning);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+              <span class="badge badge-warning">SUPPLEMENT PENDING</span>
+              <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-warning);">#BF7110</span>
+            </div>
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 0.5rem;">
+              O&P disputed line items under review.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- SECTION 3: TYPOGRAPHY (MERRIWEATHER HEADINGS + NEWSREADER ACCENTS + INTER BODY) -->
+  <section id="typography" class="section-spacious" style="background: #FFFFFF; border-top: 1px solid var(--hive-border-whisper); border-bottom: 1px solid var(--hive-border-whisper);">
+    <div class="container">
+      <div style="max-width: 760px; margin-bottom: 3.5rem;">
+        <span class="badge badge-navy">TYPOGRAPHIC SYSTEM</span>
+        <h2 class="font-heading" style="font-size: clamp(2rem, 3.5vw, 2.75rem); margin-top: 0.5rem; margin-bottom: 0.75rem; font-weight: 700;">
+          Merriweather Headings & Editorial Elegance
+        </h2>
+        <p style="color: var(--hive-text-secondary); font-size: 1.0625rem; line-height: var(--hive-leading-editorial);">
+          Major headings (H1, H2) are rendered in <strong>Merriweather</strong> for grounded, robust authority and readability on screens, while mid-level card headings and accents retain the delicate editorial touch of <strong>Newsreader</strong>.
+        </p>
+      </div>
+
+      <div class="card-airy" style="display: flex; flex-direction: column; gap: 3rem; padding: clamp(2.5rem, 5vw, 4rem);">
+        
+        <!-- Major Heading (Merriweather Bold) -->
+        <div style="border-bottom: 1px solid var(--hive-border-whisper); padding-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+            <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">Major Heading (H1/H2) — Merriweather Bold 700 (52px / 1.18)</span>
+            <span class="badge badge-gold">PRIMARY HEADING (H1/H2)</span>
+          </div>
+          <h1 class="font-heading" style="font-size: clamp(2.25rem, 4.5vw, 3.5rem); color: var(--hive-navy-900); font-weight: 700;">
+            Uncap your claim capacity.
+          </h1>
+        </div>
+
+        <!-- Mid-Level Editorial Card Heading (Newsreader Regular) -->
+        <div style="border-bottom: 1px solid var(--hive-border-whisper); padding-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+            <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">Mid-Level Card Heading & Accent — Newsreader Regular (28px / 1.3)</span>
+            <span class="badge badge-trust">CARD EDITORIAL SERIF</span>
+          </div>
+          <h3 class="font-editorial" style="font-size: 1.75rem; color: var(--hive-navy-900);">
+            Institutional Compliance & Security
+          </h3>
+          <p style="font-size: 0.875rem; color: var(--hive-text-muted); margin-top: 0.5rem;">
+            The elegant serif style from your screenshot, ideal for high-trust cards and callouts.
+          </p>
+        </div>
+
+        <!-- Editorial Italic Callout Accent -->
+        <div style="border-bottom: 1px solid var(--hive-border-whisper); padding-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+            <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">Empathetic Callout — Merriweather / Newsreader Italic</span>
+            <span class="badge badge-trust">EMPATHETIC ACCENT</span>
+          </div>
+          <div class="font-editorial-italic" style="font-size: clamp(1.5rem, 3vw, 2rem); color: var(--hive-gold-700);">
+            “You fought for the policyholder. We fight your exhaustion.”
+          </div>
+        </div>
+
+        <!-- UI Display (Plus Jakarta Sans) -->
+        <div style="border-bottom: 1px solid var(--hive-border-whisper); padding-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+            <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">Modern UI Display — Plus Jakarta Sans 700 (22px / 1.3)</span>
+            <span class="badge badge-trust">UI CONTROLS & PILLS</span>
+          </div>
+          <h4 class="font-display" style="font-size: 1.375rem; color: var(--hive-navy-900);">
+            Built Exclusively for Licensed USA Public Adjusters
+          </h4>
+        </div>
+
+        <!-- Body & Numeric (Inter + JetBrains Mono) -->
+        <div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+            <span style="font-family: var(--hive-font-mono); font-size: 0.75rem; color: var(--hive-text-muted);">Body Copy & Tabular Numbers — Inter (17px / 1.75)</span>
+            <span class="badge badge-trust">FINANCIAL ACCURACY</span>
+          </div>
+          <p style="font-size: 1.0625rem; color: var(--hive-text-secondary); line-height: 1.75; max-width: 720px;">
+            Public Adjuster fee structures require exact alignment. We enforce tabular figures so that estimates like 
+            <strong class="font-numeric" style="color: var(--hive-navy-900);">$148,250.00</strong>, 
+            <strong class="font-numeric" style="color: var(--hive-navy-900);">$34,800.00</strong>, and 
+            <strong class="font-numeric" style="color: var(--hive-navy-900);">$520,000.00</strong> stack cleanly on audit balance sheets with zero visual jitter.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: ATOMIC UI COMPONENTS (UNCLUTTERED, ELEGANT) -->
+  <section id="components" class="section-spacious">
+    <div class="container">
+      <div style="max-width: 760px; margin-bottom: 3.5rem;">
+        <span class="badge badge-gold">COMPONENT LIBRARY</span>
+        <h2 class="font-heading" style="font-size: clamp(2rem, 3.5vw, 2.75rem); margin-top: 0.5rem; margin-bottom: 0.75rem; font-weight: 700;">
+          Quiet, High-Trust Atomic Components
+        </h2>
+        <p style="color: var(--hive-text-secondary); font-size: 1.0625rem; line-height: var(--hive-leading-editorial);">
+          Designed with generous hit targets, subtle borders, and smooth tactile feedback.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem;">
+        
+        <!-- Button Variants Card -->
+        <div class="card-airy">
+          <h3 class="font-display" style="font-size: 1.125rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--hive-border-subtle); padding-bottom: 0.75rem;">
+            Tactile Action Buttons
+          </h3>
+          <div style="display: flex; flex-direction: column; gap: 1.25rem; align-items: flex-start;">
+            <button class="btn btn-gold">
+              <span>Book Private Walkthrough</span>
+              <span class="hive-star-icon">✦</span>
+            </button>
+            <button class="btn btn-navy">
+              <span class="hive-star-gold">✦</span>
+              <span>Onboard Your Adjusting Team</span>
+            </button>
+            <button class="btn btn-outline">
+              <span>Explore Sample Carrier Report</span>
+            </button>
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn btn-sm btn-gold">Quick Action</button>
+              <button class="btn btn-sm btn-navy">Status Check</button>
+              <button class="btn btn-sm btn-outline">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Claim Status Badges Card -->
+        <div class="card-airy">
+          <h3 class="font-display" style="font-size: 1.125rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--hive-border-subtle); padding-bottom: 0.75rem;">
+            Claim Pipeline Status Pills
+          </h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <span class="badge badge-success">✓ Settled: $248,000</span>
+            <span class="badge badge-urgent">⚠ 4 Days to File POL</span>
+            <span class="badge badge-info">ℹ Desk Adjuster Review</span>
+            <span class="badge badge-warning">⚡ Supplement Submitted</span>
+            <span class="badge badge-gold">✦ Priority Claim</span>
+            <span class="badge badge-navy">State Licensed PA</span>
+            <span class="badge badge-trust">🛡️ Verified Policyholder</span>
+          </div>
+        </div>
+
+        <!-- Sample Form Control Card -->
+        <div class="card-airy">
+          <h3 class="font-display" style="font-size: 1.125rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--hive-border-subtle); padding-bottom: 0.75rem;">
+            Unrushed Intake Form
+          </h3>
+          <form onsubmit="event.preventDefault();" style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div>
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--hive-navy-900); margin-bottom: 0.5rem;">
+                Public Adjuster License Number & State
+              </label>
+              <input type="text" placeholder="e.g. FL #W128492" style="width: 100%; padding: 0.875rem 1.125rem; border-radius: var(--hive-radius-md); border: 1px solid var(--hive-border-subtle); font-family: var(--hive-font-body); font-size: 0.9375rem; background: var(--hive-canvas); outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--hive-gold-500)'; this.style.background='#FFF'" onblur="this.style.borderColor='var(--hive-border-subtle)'; this.style.background='var(--hive-canvas)'">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--hive-navy-900); margin-bottom: 0.5rem;">
+                Primary Operating States
+              </label>
+              <select style="width: 100%; padding: 0.875rem 1.125rem; border-radius: var(--hive-radius-md); border: 1px solid var(--hive-border-subtle); font-family: var(--hive-font-body); font-size: 0.9375rem; background: var(--hive-canvas); outline: none;">
+                <option>Florida (Catastrophe & Hurricane Zone)</option>
+                <option>Texas & Gulf Coast</option>
+                <option>California & Western Wildfire</option>
+                <option>Midwest & Hail Corridors</option>
+                <option>Northeast & Freeze Zones</option>
+              </select>
+            </div>
+            <button class="btn btn-gold" style="width: 100%;">
+              <span>Get Stress-Free Onboarding</span>
+              <span class="hive-star-icon">✦</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Institutional Compliance Card (Matching user's screenshot with elegant Newsreader heading) -->
+        <div class="card-navy">
+          <h3 class="font-editorial" style="color: #FFFFFF; font-size: 1.625rem; margin-bottom: 1rem; font-weight: 400; letter-spacing: -0.01em;">
+            Institutional Compliance & Security
+          </h3>
+          <p style="color: #CBD5E1; font-size: 0.9375rem; line-height: 1.7; margin-bottom: 1.75rem;">
+            PAs handle non-public financial records and policy contracts. Displaying explicit compliance markers neutralizes skepticism instantly.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 0.875rem 1.25rem; border-radius: var(--hive-radius-md); border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 0.875rem;">
+              <span style="font-size: 1.25rem;">🏛️</span>
+              <span style="font-size: 0.875rem; color: #FFFFFF;">State Department of Insurance Regulatory Compliance Ready</span>
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 0.875rem 1.25rem; border-radius: var(--hive-radius-md); border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 0.875rem;">
+              <span style="font-size: 1.25rem;">🔐</span>
+              <span style="font-size: 0.875rem; color: #FFFFFF;">AES-256 Bit Encrypted Policy Document Vault</span>
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 0.875rem 1.25rem; border-radius: var(--hive-radius-md); border: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 0.875rem;">
+              <span style="font-size: 1.25rem;">📑</span>
+              <span style="font-size: 0.875rem; color: #FFFFFF;">Xactimate ESX & Symbility Compatible Data Flow</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: INTERACTIVE CAPACITY & REVENUE CALCULATOR (AIRY & CLEAN) -->
+  <section id="calculator" class="section-spacious" style="background-color: var(--hive-canvas-alt); border-top: 1px solid var(--hive-border-whisper); border-bottom: 1px solid var(--hive-border-whisper);">
+    <div class="container">
+      <div style="text-align: center; max-width: 760px; margin: 0 auto 4rem;">
+        <span class="badge badge-gold">UNCLUTTERED PROOF MECHANISM</span>
+        <h2 class="font-heading" style="font-size: clamp(2.25rem, 4.5vw, 3.125rem); color: var(--hive-navy-900); margin-top: 0.5rem; margin-bottom: 1rem; font-weight: 700;">
+          Public Adjuster Capacity & ROI Calculator
+        </h2>
+        <p style="font-size: 1.125rem; color: var(--hive-text-secondary); line-height: var(--hive-leading-editorial);">
+          See how removing administrative bottlenecks directly turns saved hours into higher claim capacity and substantial fee growth.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; max-width: 1100px; margin: 0 auto;">
+        
+        <!-- Interactive Controls -->
+        <div class="calculator-box-airy">
+          <h3 class="font-display" style="font-size: 1.375rem; margin-bottom: 2rem; color: var(--hive-navy-900);">
+            Your Current Adjusting Caseload
+          </h3>
+
+          <!-- Slider 1 -->
+          <div class="calc-slider-group">
+            <div class="calc-slider-header">
+              <span class="calc-slider-label">Active Claims Handled per Month</span>
+              <span id="display-claims" class="calc-slider-value">8 claims / mo</span>
+            </div>
+            <input type="range" id="calc-claims" class="custom-range" min="2" max="40" value="8" step="1">
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--hive-text-muted); margin-top: 6px;">
+              <span>2 solo claims</span>
+              <span>20 mid-firm</span>
+              <span>40+ catastrophe team</span>
+            </div>
+          </div>
+
+          <!-- Slider 2 -->
+          <div class="calc-slider-group">
+            <div class="calc-slider-header">
+              <span class="calc-slider-label">Average Claim Settlement Amount</span>
+              <span id="display-value" class="calc-slider-value">$75,000</span>
+            </div>
+            <input type="range" id="calc-value" class="custom-range" min="25000" max="350000" value="75000" step="5000">
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--hive-text-muted); margin-top: 6px;">
+              <span>$25k residential</span>
+              <span>$150k commercial</span>
+              <span>$350k+ major loss</span>
+            </div>
+          </div>
+
+          <!-- Slider 3 -->
+          <div class="calc-slider-group">
+            <div class="calc-slider-header">
+              <span class="calc-slider-label">Your Public Adjuster Contingency Fee (%)</span>
+              <span id="display-fee" class="calc-slider-value">10% fee</span>
+            </div>
+            <input type="range" id="calc-fee" class="custom-range" min="7" max="20" value="10" step="0.5">
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--hive-text-muted); margin-top: 6px;">
+              <span>7% min</span>
+              <span>10% USA standard</span>
+              <span>20% max statutory</span>
+            </div>
+          </div>
+
+          <div style="background: var(--hive-gold-50); border: 1px solid var(--hive-gold-200); border-radius: var(--hive-radius-md); padding: 1rem 1.25rem; font-size: 0.8125rem; color: var(--hive-gold-900); display: flex; align-items: center; gap: 0.75rem;">
+            <span>💡</span>
+            <span>Based on 9.6 administrative hours saved per claim via Claim Hive automated documentation.</span>
+          </div>
+        </div>
+
+        <!-- Calculated Relief & Revenue Output -->
+        <div class="card-navy">
+          <span class="badge badge-gold" style="margin-bottom: 1.5rem;">PROJECTED ANNUAL TRANSFORMATION</span>
+          
+          <div style="margin-bottom: 2.5rem;">
+            <div style="font-size: 0.875rem; color: #CBD5E1; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">
+              Additional Annual PA Fee Revenue:
+            </div>
+            <div id="metric-annual-revenue" class="font-numeric" style="font-size: clamp(2.75rem, 5vw, 4rem); font-weight: 800; color: var(--hive-gold-400); line-height: 1.05;">
+              $450,000
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 2rem;">
+            <div>
+              <div style="font-size: 0.75rem; color: #94A9CF; text-transform: uppercase; letter-spacing: 0.05em;">Admin Hours Saved/Mo</div>
+              <div id="metric-hours-saved" class="font-numeric" style="font-size: 2rem; font-weight: 700; color: #FFFFFF; margin-top: 0.25rem;">
+                77 hrs
+              </div>
+              <span style="font-size: 0.8125rem; color: #A3DFBF;">~19 hrs/week back</span>
+            </div>
+
+            <div>
+              <div style="font-size: 0.75rem; color: #94A9CF; text-transform: uppercase; letter-spacing: 0.05em;">Extra Claim Capacity</div>
+              <div id="metric-extra-claims" class="font-numeric" style="font-size: 2rem; font-weight: 700; color: #FFFFFF; margin-top: 0.25rem;">
+                +5 claims
+              </div>
+              <span id="metric-capacity-boost" style="font-size: 0.8125rem; color: var(--hive-gold-300);">+63% caseload</span>
+            </div>
+          </div>
+
+          <a href="#concierge" class="btn btn-gold" style="width: 100%; text-align: center;">
+            <span>Lock In This Capacity Growth</span>
+            <span class="hive-star-icon">✦</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: THE TRANSFORMATION MATRIX (BEFORE VS. AFTER) -->
+  <section id="transformation" class="section-spacious" style="background: #FFFFFF;">
+    <div class="container">
+      <div style="text-align: center; max-width: 760px; margin: 0 auto 3rem;">
+        <span class="badge badge-navy">BEFORE VS. AFTER</span>
+        <h2 class="font-heading" style="font-size: clamp(2.25rem, 4vw, 3.125rem); color: var(--hive-navy-900); margin-top: 0.5rem; margin-bottom: 1rem; font-weight: 700;">
+          From Bottlenecked to In Control
+        </h2>
+        <p style="font-size: 1.125rem; color: var(--hive-text-secondary); line-height: var(--hive-leading-editorial);">
+          Direct contrast between the daily friction of traditional public adjusting and the streamlined serenity of Claim Hive.
+        </p>
+      </div>
+
+      <div class="matrix-grid-airy">
+        <!-- The Overwhelmed PA (Pain) -->
+        <div class="matrix-card-pain-airy">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+            <h3 class="font-heading" style="color: var(--hive-danger); font-size: 1.5rem; font-weight: 700;">Without Claim Hive (Overwhelmed)</h3>
+            <span class="badge badge-urgent">BURNOUT & CAPS</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+            <div style="display: flex; gap: 1rem;">
+              <span style="color: var(--hive-danger); font-weight: bold; font-size: 1.25rem;">✕</span>
+              <div>
+                <strong style="color: var(--hive-navy-900); font-size: 1rem;">Carrier Stall Tactics Go Unchecked</strong>
+                <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 4px; line-height: 1.6;">Insurance desk adjusters ignore emails. You spend 4 hours every Monday on hold just getting claim status updates.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+              <span style="color: var(--hive-danger); font-weight: bold; font-size: 1.25rem;">✕</span>
+              <div>
+                <strong style="color: var(--hive-navy-900); font-size: 1rem;">Revenue Artificially Capped at 10-12 Claims</strong>
+                <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 4px; line-height: 1.6;">You want to take on lucrative hurricane or freeze claims, but manual paperwork means you're already dropping balls.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+              <span style="color: var(--hive-danger); font-weight: bold; font-size: 1.25rem;">✕</span>
+              <div>
+                <strong style="color: var(--hive-navy-900); font-size: 1rem;">Panic Over Statutes & POL Deadlines</strong>
+                <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 4px; line-height: 1.6;">Waking up in a cold sweat wondering if a 60-day Proof of Loss deadline slipped past in your messy inbox.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+              <span style="color: var(--hive-danger); font-weight: bold; font-size: 1.25rem;">✕</span>
+              <div>
+                <strong style="color: var(--hive-navy-900); font-size: 1rem;">60-70 Hour Weeks with Stagnant Take-Home</strong>
+                <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 4px; line-height: 1.6;">Working weekends sorting through 800 unorganized site inspection photos instead of growing your firm.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Hive PA (Relief & Scale) -->
+        <div class="matrix-card-solution-airy">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+            <h3 class="font-heading" style="color: var(--hive-navy-900); font-size: 1.5rem; font-weight: 700;">The Claim Hive System (Calm & Uncapped)</h3>
+            <span class="badge badge-gold">✦ PROSPEROUS & SCALABLE</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+            <div style="display: flex; gap: 1rem;">
+              <span style="color: var(--hive-gold-600); font-weight: bold; font-size: 1.25rem;">✓</span>
+              <div>
+                <strong style="color: var(--hive-navy-900); font-size: 1rem;">Automated Carrier Follow-Up & Audit Trail</strong>
+                <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 4px; line-height: 1.6;">Systematic reminders and statutory delay tracking that keep carrier adjusters accountable without manual phone tag.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+              <span style="color: var(--hive-gold-600); font-weight: bold; font-size: 1.25rem;">✓</span>
+              <div>
+                <strong style="color: var(--hive-navy-900); font-size: 1rem;">Caseload Capacity Doubled (+65% to +100%)</strong>
+                <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 4px; line-height: 1.6;">Handle 25-35 active claims with the ease of 10. Win more assignments during catastrophe peaks without hiring more staff.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+              <span style="color: var(--hive-gold-600); font-weight: bold; font-size: 1.25rem;">✓</span>
+              <div>
+                <strong style="color: var(--hive-navy-900); font-size: 1rem;">Statutory Deadline Vault & Real-Time Alerts</strong>
+                <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 4px; line-height: 1.6;">Every state-specific statute of limitation and policyholder deadline is locked and monitored automatically.</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+              <span style="color: var(--hive-gold-600); font-weight: bold; font-size: 1.25rem;">✓</span>
+              <div>
+                <strong style="color: var(--hive-navy-900); font-size: 1rem;">Reclaimed 15-20 Hours Every Single Week</strong>
+                <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 4px; line-height: 1.6;">Spend your time on high-leverage negotiation, client relationships, and expanding your fee earnings.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: DEVELOPER EXPORT & TOKEN INSPECTOR -->
+  <section class="section-spacious" style="background: #FFFFFF; border-top: 1px solid var(--hive-border-whisper);">
+    <div class="container">
+      <div style="max-width: 760px; margin-bottom: 2rem;">
+        <span class="badge badge-navy">ENGINEERING READY</span>
+        <h2 class="font-heading" style="font-size: clamp(2rem, 3.5vw, 2.75rem); margin-top: 0.5rem; margin-bottom: 0.5rem; font-weight: 700;">
+          Design Tokens & Code Snippets
+        </h2>
+        <p style="color: var(--hive-text-secondary); font-size: 1.0625rem;">Direct copy-paste tokens for CSS, Tailwind CSS, and HTML components.</p>
+      </div>
+
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="tab-css">CSS Tokens (:root)</button>
+        <button class="tab-btn" data-tab="tab-tailwind">Tailwind Config</button>
+        <button class="tab-btn" data-tab="tab-buttons">Button Components (HTML)</button>
+        <button class="tab-btn" data-tab="tab-voice">Brand Voice Guidelines</button>
+      </div>
+
+      <!-- CSS Tokens Tab -->
+      <div id="tab-css" class="tab-pane active">
+        <div class="code-box">
+<pre><code>/* Claim Hive CSS Variables - Evolved with Merriweather Headings */
+:root {
+  /* Headings: Sturdy, Grounded Authority */
+  --hive-font-heading: 'Merriweather', Georgia, serif;
+  
+  /* Editorial Accents & Card Headings */
+  --hive-font-editorial: 'Newsreader', Georgia, serif;
+  
+  /* UI Display & Body */
+  --hive-font-display: 'Plus Jakarta Sans', sans-serif;
+  --hive-font-body: 'Inter', sans-serif;
+  --hive-font-mono: 'JetBrains Mono', monospace;
+
+  /* Brand Colors */
+  --hive-gold-500: #DAA94F;
+  --hive-gold-600: #B88530; /* Accessible hover */
+  --hive-navy-900: #161B33;
+  --hive-canvas: #FAF9F6; /* Alabaster Oatmeal */
+  --hive-section-y: clamp(5rem, 8vw, 9.5rem);
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Tailwind Tab -->
+      <div id="tab-tailwind" class="tab-pane">
+        <div class="code-box">
+<pre><code>/** Tailwind CSS Configuration */
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        hive: {
+          gold: {
+            DEFAULT: '#DAA94F',
+            500: '#DAA94F',
+            600: '#B88530',
+          },
+          navy: {
+            DEFAULT: '#161B33',
+            900: '#161B33',
+          },
+          canvas: '#FAF9F6'
+        }
+      },
+      fontFamily: {
+        heading: ['"Merriweather"', 'Georgia', 'serif'],
+        editorial: ['"Newsreader"', 'Georgia', 'serif'],
+        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Button HTML Tab -->
+      <div id="tab-buttons" class="tab-pane">
+        <div class="code-box">
+<pre><code>&lt;!-- Primary Honey Gold CTA --&gt;
+&lt;button class="btn btn-gold"&gt;
+  &lt;span&gt;Book Private Walkthrough&lt;/span&gt;
+  &lt;span class="hive-star-icon"&gt;✦&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Midnight Navy Institutional Button --&gt;
+&lt;button class="btn btn-navy"&gt;
+  &lt;span class="hive-star-gold"&gt;✦&lt;/span&gt;
+  &lt;span&gt;Explore Claim Workflow&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Minimalist Outline Button --&gt;
+&lt;button class="btn btn-outline"&gt;
+  &lt;span&gt;Calculate ROI&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- Brand Voice Tab -->
+      <div id="tab-voice" class="tab-pane">
+        <div class="code-box">
+<pre><code># Claim Hive Brand Voice Matrix
+
+DO:
+• Speak in Public Adjuster terminology (proof of loss, scopes of work, line items, supplements, appraisal).
+• Emphasize reclaimed personal time AND expanded commission revenue.
+• Anchor claims in quantifiable metrics ("reclaim 15 hrs/week", "handle +65% more claims").
+• Use expansive, unhurried whitespace to counteract their overwhelming workload.
+
+DON'T:
+• Don't use generic SaaS tech jargon ("synergy", "paradigm shift", "AI-powered disruption").
+• Don't sound patronizing or lecture them on how to estimate damages.
+• Don't crowd the screen with dozens of competing visual elements.
+• Don't confuse Public Adjusters with Carrier / Independent Adjusters (they work for policyholders!).</code></pre>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER (QUIET, AIRY, REFINED) -->
+  <footer style="background: var(--hive-navy-950); color: #94A9CF; padding: 5rem 0 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.06);">
+    <div class="container container-wide">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2.5rem; margin-bottom: 4rem;">
+        <div>
+          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" style="height: 40px; width: auto; filter: brightness(0) invert(1); margin-bottom: 1rem;">
+          <p style="font-size: 0.9375rem; color: #94A9CF; max-width: 420px; line-height: 1.6;">
+            The all-in-one capacity and workflow platform purpose-built for USA Licensed Public Insurance Adjusters.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 2rem; font-size: 0.9375rem; flex-wrap: wrap;">
+          <a href="#svg-assets" style="color: var(--hive-gold-400); text-decoration: none; font-weight: 600;">Vector SVGs</a>
+          <a href="#concierge" style="color: #CBD5E1; text-decoration: none;">Relief Concierge</a>
+          <a href="#principles" style="color: #CBD5E1; text-decoration: none;">Ethos</a>
+          <a href="#palette" style="color: #CBD5E1; text-decoration: none;">Palette</a>
+          <a href="#typography" style="color: #CBD5E1; text-decoration: none;">Typography</a>
+          <a href="#calculator" style="color: #CBD5E1; text-decoration: none;">Capacity Calculator</a>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 2rem; font-size: 0.8125rem; color: #64748B; flex-wrap: wrap; gap: 1rem;">
+        <div>© 2026 Claim Hive. Engineered for Licensed Public Adjusters across all 50 states.</div>
+        <div>Confidential & Proprietary Design System</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="copy-toast">Copied to clipboard!</div>
+
+  <!-- JAVASCRIPT -->
+  <script src="js/calculator.js"></script>
+</body>
+</html>

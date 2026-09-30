@@ -1,0 +1,455 @@
+/**
+ * Claim Hive Design System - UI Components
+ * Evolved with the expansive breathing room, minimal friction, and institutional trust
+ * of modern civic and consumer design (e.g. America.gov, Apple Store).
+ */
+
+/* ==========================================================================
+   RESET & BASE UTILITIES
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--hive-font-body);
+  background-color: var(--hive-canvas);
+  color: var(--hive-text-primary);
+  line-height: var(--hive-leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Typography Headings: Merriweather for H1 and H2 */
+h1, h2 {
+  font-family: var(--hive-font-heading);
+  color: var(--hive-navy-900);
+  line-height: var(--hive-leading-tight);
+  font-weight: var(--hive-weight-bold);
+  letter-spacing: -0.02em;
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--hive-font-display);
+  color: var(--hive-navy-900);
+  line-height: var(--hive-leading-snug);
+  letter-spacing: -0.015em;
+}
+
+/* Heading Classes */
+.font-heading {
+  font-family: var(--hive-font-heading);
+  letter-spacing: -0.02em;
+}
+
+.font-editorial {
+  font-family: var(--hive-font-editorial);
+  font-weight: var(--hive-weight-regular);
+  letter-spacing: -0.015em;
+}
+
+.font-editorial-italic {
+  font-family: var(--hive-font-editorial);
+  font-style: italic;
+  font-weight: var(--hive-weight-regular);
+}
+
+.font-display {
+  font-family: var(--hive-font-display);
+  font-weight: var(--hive-weight-bold);
+  letter-spacing: -0.02em;
+}
+
+.font-numeric {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+}
+
+/* ==========================================================================
+   BREATHING ROOM & SECTION ARCHITECTURE (America.gov Spaciousness)
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--hive-max-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, var(--hive-space-8));
+  padding-right: clamp(1rem, 4vw, var(--hive-space-8));
+}
+
+.container-wide {
+  max-width: var(--hive-max-wide);
+}
+
+.container-narrow {
+  max-width: var(--hive-max-hero);
+}
+
+.container-reading {
+  max-width: var(--hive-max-reading);
+}
+
+/* Expansive vertical section rhythms */
+.section-spacious {
+  padding-top: var(--hive-section-y);
+  padding-bottom: var(--hive-section-y);
+}
+
+.hero-spacious {
+  padding-top: var(--hive-hero-y);
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+/* Minimalist ambient canvas gradients */
+.bg-serene {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(218, 169, 79, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 90%, rgba(22, 27, 51, 0.03) 0%, transparent 70%),
+    var(--hive-canvas);
+}
+
+.bg-warm-cloud {
+  background-color: var(--hive-canvas-alt);
+}
+
+/* ==========================================================================
+   CONCIERGE PROMPT COMPONENT (America.gov inspired central query)
+   ========================================================================== */
+.concierge-card {
+  background: var(--hive-surface);
+  border: 1px solid var(--hive-border-subtle);
+  border-radius: var(--hive-radius-2xl);
+  box-shadow: var(--hive-shadow-hero);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  position: relative;
+  transition: box-shadow var(--hive-transition-smooth);
+}
+
+.concierge-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.concierge-pill {
+  background: var(--hive-canvas);
+  border: 1px solid var(--hive-border-subtle);
+  color: var(--hive-navy-900);
+  font-family: var(--hive-font-display);
+  font-size: var(--hive-text-sm);
+  font-weight: 600;
+  padding: 0.75rem 1.375rem;
+  border-radius: var(--hive-radius-pill);
+  cursor: pointer;
+  transition: all var(--hive-transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.concierge-pill:hover,
+.concierge-pill.active {
+  background: var(--hive-navy-900);
+  color: #FFFFFF;
+  border-color: var(--hive-navy-900);
+  box-shadow: 0 4px 14px rgba(22, 27, 51, 0.18);
+  transform: translateY(-2px);
+}
+
+.concierge-pill.active .pill-icon {
+  color: var(--hive-gold-400);
+}
+
+/* ==========================================================================
+   BUTTONS (Uncluttered, Confident, Tactile)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  font-family: var(--hive-font-display);
+  font-weight: var(--hive-weight-semibold);
+  font-size: var(--hive-text-base);
+  line-height: 1;
+  padding: 1rem 2rem;
+  border-radius: var(--hive-radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--hive-transition-smooth);
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--hive-gold-500);
+  outline-offset: 4px;
+}
+
+/* Primary Honey Gold */
+.btn-gold {
+  background: linear-gradient(135deg, #E6BF55 0%, #DAA94F 60%, #C99639 100%);
+  color: var(--hive-navy-950);
+  box-shadow: 0 4px 16px rgba(218, 169, 79, 0.28);
+  font-weight: var(--hive-weight-bold);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(218, 169, 79, 0.38);
+}
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+/* Midnight Navy */
+.btn-navy {
+  background-color: var(--hive-navy-900);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(22, 27, 51, 0.18);
+}
+.btn-navy:hover {
+  background-color: #1F2748;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(22, 27, 51, 0.28);
+}
+
+/* Minimalist Outline */
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--hive-border-default);
+  color: var(--hive-navy-900);
+}
+.btn-outline:hover {
+  background-color: rgba(22, 27, 51, 0.04);
+  border-color: var(--hive-navy-900);
+  transform: translateY(-1px);
+}
+
+.btn-sm {
+  padding: 0.625rem 1.25rem;
+  font-size: var(--hive-text-sm);
+}
+
+.btn-lg {
+  padding: 1.125rem 2.5rem;
+  font-size: var(--hive-text-lg);
+  font-weight: var(--hive-weight-bold);
+}
+
+/* ==========================================================================
+   BADGES & PILLS
+   ========================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--hive-font-display);
+  font-size: var(--hive-text-xs);
+  font-weight: var(--hive-weight-semibold);
+  padding: 0.4rem 1rem;
+  border-radius: var(--hive-radius-pill);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-gold {
+  background-color: var(--hive-gold-100);
+  color: var(--hive-gold-900);
+  border: 1px solid var(--hive-gold-300);
+}
+
+.badge-navy {
+  background-color: var(--hive-navy-900);
+  color: #FFFFFF;
+}
+
+.badge-trust {
+  background-color: #FFFFFF;
+  color: var(--hive-navy-900);
+  border: 1px solid var(--hive-border-subtle);
+  box-shadow: var(--hive-shadow-ambient);
+  text-transform: none;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+}
+
+.badge-success {
+  background-color: var(--hive-success-bg);
+  color: var(--hive-success);
+  border: 1px solid var(--hive-success-border);
+}
+
+.badge-urgent {
+  background-color: var(--hive-danger-bg);
+  color: var(--hive-danger);
+  border: 1px solid var(--hive-danger-border);
+}
+
+.badge-info {
+  background-color: var(--hive-info-bg);
+  color: var(--hive-info);
+  border: 1px solid var(--hive-info-border);
+}
+
+.badge-warning {
+  background-color: var(--hive-warning-bg);
+  color: var(--hive-warning);
+  border: 1px solid var(--hive-warning-border);
+}
+
+/* ==========================================================================
+   AIRY CARDS & SURFACES (Generous Internal Margins)
+   ========================================================================== */
+.card-airy {
+  background-color: var(--hive-surface);
+  border-radius: var(--hive-radius-2xl);
+  border: 1px solid var(--hive-border-subtle);
+  padding: clamp(2rem, 4vw, 3.25rem);
+  box-shadow: var(--hive-shadow-soft);
+  transition: all var(--hive-transition-smooth);
+}
+.card-airy:hover {
+  box-shadow: var(--hive-shadow-card);
+  border-color: var(--hive-border-default);
+}
+
+.card-navy {
+  background: linear-gradient(160deg, #1A213D 0%, #161B33 100%);
+  color: #FFFFFF;
+  border-radius: var(--hive-radius-2xl);
+  border: 1px solid rgba(218, 169, 79, 0.25);
+  box-shadow: var(--hive-shadow-navy);
+  padding: clamp(2.25rem, 5vw, 3.75rem);
+}
+.card-navy h1, .card-navy h2, .card-navy h3, .card-navy h4 {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   INTERACTIVE ROI & CAPACITY CALCULATOR (Spacious & Clean)
+   ========================================================================== */
+.calculator-box-airy {
+  background: #FFFFFF;
+  border-radius: var(--hive-radius-2xl);
+  border: 1px solid var(--hive-border-subtle);
+  box-shadow: var(--hive-shadow-hero);
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+
+.calc-slider-group {
+  margin-bottom: 2rem;
+}
+
+.calc-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.calc-slider-label {
+  font-weight: var(--hive-weight-semibold);
+  color: var(--hive-navy-900);
+  font-size: 0.9375rem;
+}
+
+.calc-slider-value {
+  font-family: var(--hive-font-display);
+  font-weight: var(--hive-weight-bold);
+  color: var(--hive-gold-700);
+  font-size: 1.125rem;
+  background-color: var(--hive-gold-50);
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--hive-radius-pill);
+  border: 1px solid var(--hive-gold-200);
+}
+
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #E8E2D6;
+  outline: none;
+  margin-top: 0.75rem;
+}
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #DAA94F;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.custom-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #B88530;
+}
+
+/* ==========================================================================
+   TRANSFORMATION MATRIX (Airy 2-Column Editorial Comparison)
+   ========================================================================== */
+.matrix-grid-airy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 860px) {
+  .matrix-grid-airy {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.matrix-card-pain-airy {
+  background-color: #FFFDFD;
+  border: 1px solid rgba(201, 56, 40, 0.15);
+  border-radius: var(--hive-radius-2xl);
+  padding: clamp(2rem, 4vw, 3.25rem);
+}
+
+.matrix-card-solution-airy {
+  background: #FFFFFF;
+  border: 1px solid var(--hive-gold-300);
+  border-radius: var(--hive-radius-2xl);
+  padding: clamp(2rem, 4vw, 3.25rem);
+  box-shadow: var(--hive-shadow-card);
+  position: relative;
+}
+
+/* Star Motif from Logo ('i' dot: ✦) */
+.hive-star-icon {
+  display: inline-block;
+  color: var(--hive-navy-900);
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.hive-star-gold {
+  color: var(--hive-gold-500);
+}
