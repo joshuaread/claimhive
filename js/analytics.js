@@ -11,9 +11,9 @@
 (function () {
   'use strict';
 
-  // CONFIGURATION: Paste your production IDs here to activate tracking
-  var GA4_MEASUREMENT_ID = ''; // e.g., 'G-XXXXXXXXXX'
-  var CLARITY_PROJECT_ID = ''; // e.g., 'k8s7d6f5'
+  // CONFIGURATION: Production IDs
+  var GA4_MEASUREMENT_ID = 'G-RFKHW7R33G';
+  var CLARITY_PROJECT_ID = 'yqkd00qg3h';
 
   // Ensure dataLayer exists for GA4
   window.dataLayer = window.dataLayer || [];
