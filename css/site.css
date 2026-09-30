@@ -287,6 +287,58 @@
   }
 }
 
+/* Hero Visual Showcase */
+.hero-showcase-container {
+  padding: 0 0 clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.hero-showcase-frame {
+  position: relative;
+  border-radius: var(--hive-radius-xl);
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(11, 19, 43, 0.22), 0 0 0 1px rgba(11, 19, 43, 0.08);
+  background: var(--hive-navy-950);
+}
+
+.hero-showcase-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+.hero-image-caption-card {
+  position: absolute;
+  bottom: clamp(1rem, 3vw, 2rem);
+  left: clamp(1rem, 3vw, 2rem);
+  max-width: 580px;
+  background: rgba(11, 19, 43, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(218, 169, 79, 0.35);
+  border-radius: var(--hive-radius-lg);
+  padding: clamp(1rem, 2vw, 1.35rem);
+  color: #FFFFFF;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .hero-image-caption-card {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    max-width: 100%;
+    margin-top: -4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background: var(--hive-navy-950);
+    border: none;
+    border-top: 1px solid rgba(218, 169, 79, 0.25);
+  }
+}
+
 /* Pricing callout above fold */
 .pricing-pill-callout {
   display: inline-flex;
