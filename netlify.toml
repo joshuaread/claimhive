@@ -19,8 +19,13 @@
 
 [[redirects]]
   from = "/compare"
-  to = "/compare.html"
-  status = 200
+  to = "/pricing.html"
+  status = 301
+
+[[redirects]]
+  from = "/compare.html"
+  to = "/pricing.html"
+  status = 301
 
 [[redirects]]
   from = "/security"
