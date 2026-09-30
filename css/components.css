@@ -115,16 +115,32 @@ h3, h4, h5, h6 {
   padding-bottom: clamp(4rem, 8vw, 8rem);
 }
 
-/* Minimalist ambient canvas gradients */
+/* Minimalist ambient canvas gradients with whisper honeycomb agent swarm texture */
 .bg-serene {
-  background: 
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(218, 169, 79, 0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 85% 90%, rgba(22, 27, 51, 0.03) 0%, transparent 70%),
-    var(--hive-canvas);
+  background-color: var(--hive-canvas);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(218, 169, 79, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 90%, rgba(22, 27, 51, 0.035) 0%, transparent 70%),
+    var(--hive-pattern-light);
+  background-size: 100% 100%, 100% 100%, 56px 96px;
+  background-repeat: no-repeat, no-repeat, repeat;
 }
 
 .bg-warm-cloud {
   background-color: var(--hive-canvas-alt);
+}
+
+/* Honeycomb Swarm Texture Utility Classes */
+.bg-honeycomb-light {
+  background-image: var(--hive-pattern-light);
+  background-size: 56px 96px;
+  background-repeat: repeat;
+}
+
+.bg-honeycomb-dark {
+  background-image: var(--hive-pattern-dark);
+  background-size: 56px 96px;
+  background-repeat: repeat;
 }
 
 /* ==========================================================================
@@ -452,4 +468,54 @@ h3, h4, h5, h6 {
 
 .hive-star-gold {
   color: var(--hive-gold-500);
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE REFINEMENTS (< 640px)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .btn-lg {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    min-height: 48px;
+    letter-spacing: -0.01em;
+  }
+
+  .concierge-card {
+    padding: 1.75rem 1.125rem;
+  }
+
+  .concierge-pill-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .concierge-pill {
+    width: 100%;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8125rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .badge-trust {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .concierge-pill-group {
+    grid-template-columns: 1fr;
+  }
 }

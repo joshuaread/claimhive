@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileDrawer.classList.add('open');
     if (mobileToggle) {
       mobileToggle.setAttribute('aria-expanded', 'true');
-      mobileToggle.textContent = '✕';
+      mobileToggle.innerHTML = '✕';
     }
     document.body.style.overflow = 'hidden';
   }
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileDrawer) mobileDrawer.classList.remove('open');
     if (mobileToggle) {
       mobileToggle.setAttribute('aria-expanded', 'false');
-      mobileToggle.textContent = '☰';
+      mobileToggle.innerHTML = '☰';
     }
     document.body.style.overflow = '';
   }
@@ -68,11 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Active Page Highlighting across desktop nav & mobile drawer
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  // 2. Robust Active Page Highlighting (supports clean URLs, GitHub Pages subpaths, and .html)
+  const rawPath = window.location.pathname.split('/').filter(Boolean).pop() || 'index';
+  const cleanCurrent = rawPath.replace(/\.html$/, '');
+
   document.querySelectorAll('.nav-link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+    const rawHref = (link.getAttribute('href') || '').split('?')[0].split('#')[0];
+    const cleanHref = (rawHref.split('/').pop() || '').replace(/\.html$/, '');
+
+    const isMatch = (cleanHref === cleanCurrent) ||
+                    ((cleanCurrent === 'claimhive' || cleanCurrent === 'index') && (cleanHref === 'index' || cleanHref === ''));
+
+    if (isMatch && cleanHref !== '') {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
