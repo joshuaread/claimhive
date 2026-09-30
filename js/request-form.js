@@ -112,6 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (alphaCard) selectCohort(alphaCard);
   }
 
+  // If redirected from "Log in" button (?view=login)
+  if (urlParams.get('view') === 'login') {
+    const loginNotice = document.getElementById('login-portal-notice');
+    if (loginNotice) {
+      loginNotice.style.display = 'block';
+    }
+  }
+
   if (!form) return;
 
   // Form Submission Handler
@@ -200,6 +208,17 @@ document.addEventListener('DOMContentLoaded', () => {
       localSubmissions.push(payload);
       localStorage.setItem('claim_hive_seats_200', JSON.stringify(localSubmissions));
     } catch (e) {}
+
+    // Trigger Analytics Event (GA4 & Clarity: request_alpha vs join_january)
+    if (typeof window.trackClaimHiveEvent === 'function') {
+      const eventName = cohort.includes('Alpha') ? 'request_alpha' : 'join_january';
+      window.trackClaimHiveEvent(eventName, {
+        firm_name: firmName,
+        seats_hoped: seatsNeeded,
+        cohort: cohort,
+        owner: owner
+      });
+    }
 
     // Dispatch EXACTLY ONCE to Google Sheets Webhook
     dispatchToGoogleSheets(payload);

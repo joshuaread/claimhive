@@ -17,6 +17,25 @@
   <link rel="stylesheet" href="css/site.css">
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://claimhive.app/request.html">
+  <meta property="og:title" content="Request Access — Claim Hive">
+  <meta property="og:description" content="Apply for Claim Hive Founding Member Access ($80/seat/month). Hand-guided onboarding directly with Tom for licensed USA Public Adjusters.">
+  <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://claimhive.app/request.html">
+  <meta name="twitter:title" content="Request Access — Claim Hive">
+  <meta name="twitter:description" content="Apply for Claim Hive Founding Member Access ($80/seat/month). Hand-guided onboarding directly with Tom for licensed USA Public Adjusters.">
+  <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
+
+  <!-- Unified Analytics -->
+  <script src="js/analytics.js" defer></script>
 </head>
 <body class="bg-serene">
 
@@ -45,6 +64,7 @@
         </ul>
 
         <div class="nav-actions">
+          <a href="request.html?view=login" class="nav-link hide-mobile" style="font-weight: 600; margin-right: 0.5rem;">Log in</a>
           <a href="pricing.html" class="btn btn-sm btn-outline">Review $80 Pricing</a>
           <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
         </div>
@@ -59,6 +79,7 @@
     <a href="compare.html" class="nav-link" style="font-size: 1.25rem;">Compare Alternatives</a>
     <a href="security.html" class="nav-link" style="font-size: 1.25rem;">Security & Data Vault</a>
     <a href="about.html" class="nav-link" style="font-size: 1.25rem;">About Tom & The Team</a>
+    <a href="request.html?view=login" class="nav-link" style="font-size: 1.25rem; font-weight: 700; color: var(--hive-gold-600);">Log In</a>
     <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
       <a href="pricing.html" class="btn btn-lg btn-navy">View Pricing</a>
     </div>
@@ -86,6 +107,17 @@
       
       <!-- INTAKE FORM SHELL -->
       <div id="request-form-container" class="form-shell-card">
+        
+        <!-- Dedicated Notice for Adjusters Clicking "Log in" -->
+        <div id="login-portal-notice" style="display: none; background: var(--hive-gold-50); border: 1.5px solid var(--hive-gold-400); border-radius: var(--hive-radius-md); padding: 1.25rem; margin-bottom: 2rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+            <span class="badge badge-gold" style="font-size: 0.75rem;">ALPHA ACCESS</span>
+            <strong style="color: var(--hive-navy-950); font-size: 0.95rem;">Looking to Log In to Your Claim Hive Workspace?</strong>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--hive-navy-900); line-height: 1.5; margin: 0;">
+            During Phase 0 Alpha, member firm workspaces are provisioned directly with custom team URLs. If your firm has received credentials from Tom or Josh, use your firm's direct login link. If you need credentials or want to onboard an active file, complete the request form below or text Tom directly.
+          </p>
+        </div>
         
         <div style="margin-bottom: 2.25rem; border-bottom: 1px solid var(--hive-border-whisper); padding-bottom: 1.5rem;">
           <h2 class="font-heading" style="font-size: 1.5rem; color: var(--hive-navy-900); margin-bottom: 0.35rem;">

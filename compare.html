@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compare Adjuster Software — Claim Hive vs. Claim Wizard, ClaimOS & Spreadsheets</title>
-  <meta name="description" content="An honest, architectural comparison of Claim Hive against legacy CRMs (Claim Wizard), modern AI prompt tools (ClaimOS.net), and spreadsheets. Flat $80/seat, zero base fees, zero AI model training.">
+  <title>Compare Adjuster Software — Claim Hive vs. Legacy CRMs, Generic AI Tools & Spreadsheets</title>
+  <meta name="description" content="An honest, architectural comparison of Claim Hive against legacy enterprise CRMs, generic AI prompt wrappers, and spreadsheets. Flat $80/seat, zero base fees, zero AI model training.">
   
   <!-- Fonts: Merriweather, Newsreader, Plus Jakarta Sans, Inter, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +17,25 @@
   <link rel="stylesheet" href="css/site.css">
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://claimhive.app/compare.html">
+  <meta property="og:title" content="Compare Public Adjuster Software — Claim Hive">
+  <meta property="og:description" content="An honest architectural comparison of Claim Hive against legacy enterprise CRMs, generic AI chatbots, and spreadsheets. Flat $80/seat.">
+  <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://claimhive.app/compare.html">
+  <meta name="twitter:title" content="Compare Public Adjuster Software — Claim Hive">
+  <meta name="twitter:description" content="An honest architectural comparison of Claim Hive against legacy enterprise CRMs, generic AI chatbots, and spreadsheets. Flat $80/seat.">
+  <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
+
+  <!-- Unified Analytics -->
+  <script src="js/analytics.js" defer></script>
 </head>
 <body class="bg-serene">
 
@@ -45,6 +64,7 @@
         </ul>
 
         <div class="nav-actions">
+          <a href="request.html?view=login" class="nav-link hide-mobile" style="font-weight: 600; margin-right: 0.5rem;">Log in</a>
           <a href="request.html" class="btn btn-sm btn-outline">Join January List</a>
           <a href="request.html?cohort=alpha" class="btn btn-sm btn-gold">
             <span>Request Alpha</span>
@@ -63,6 +83,7 @@
     <a href="compare.html" class="nav-link active" style="font-size: 1.25rem;">Compare Alternatives</a>
     <a href="security.html" class="nav-link" style="font-size: 1.25rem;">Security & Data Vault</a>
     <a href="about.html" class="nav-link" style="font-size: 1.25rem;">About Tom & The Team</a>
+    <a href="request.html?view=login" class="nav-link" style="font-size: 1.25rem; font-weight: 700; color: var(--hive-gold-600);">Log In</a>
     <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
       <a href="request.html" class="btn btn-lg btn-gold">Request Access</a>
     </div>
@@ -104,30 +125,30 @@
           </div>
         </div>
 
-        <!-- LEGACY CRMS (CLAIM WIZARD ARCHETYPE) -->
+        <!-- LEGACY CRMS (ENTERPRISE ARCHETYPE) -->
         <div class="compare-verdict-card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
             <span class="badge badge-navy" style="font-size: 0.75rem; padding: 0.2rem 0.6rem;">LEGACY INCUMBENT</span>
             <span style="font-size: 1.15rem; font-weight: 700; color: var(--hive-text-muted); font-family: var(--hive-font-display);">$250–$350+</span>
           </div>
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--hive-navy-900);">Claim Wizard Archetype</h3>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--hive-navy-900);">Legacy Adjuster CRMs</h3>
           <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.5; flex-grow: 1; margin-bottom: 1.25rem;">
-            <strong>The Enterprise Relic (Est. 2012).</strong> High market share among 50-person brokerages. Powerful 50-state bond tracking and multi-tier commission splits, but buried behind 35 nested tabs and a grueling 6-week onboarding curve.
+            <strong>The Enterprise Relic.</strong> Built over a decade ago. Powerful 50-state bond tracking and multi-tier commission splits, but buried behind 35 nested tabs and a grueling 6-week onboarding curve.
           </p>
           <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); background: var(--hive-canvas-alt); padding: 0.75rem 1rem; border-radius: var(--hive-radius-md);">
             <strong>Trade-off:</strong> Massive cost, mandatory annual lock-in, and steep administrative drag.
           </div>
         </div>
 
-        <!-- NEW AI TOOLS (CLAIMOS ARCHETYPE) -->
+        <!-- NEW AI TOOLS (GENERIC WRAPPER ARCHETYPE) -->
         <div class="compare-verdict-card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
             <span class="badge badge-navy" style="font-size: 0.75rem; padding: 0.2rem 0.6rem;">NEW AI BOT</span>
             <span style="font-size: 1.15rem; font-weight: 700; color: var(--hive-text-muted); font-family: var(--hive-font-display);">$199 + $99/seat</span>
           </div>
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--hive-navy-900);">ClaimOS Archetype</h3>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--hive-navy-900);">Generic AI Wrappers</h3>
           <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.5; flex-grow: 1; margin-bottom: 1.25rem;">
-            <strong>The AI Chatbot Wrapper (Est. 2024).</strong> Conversational "Claim Brain" chat interface with built-in weather maps. Imposes a punitive $199/mo base platform toll before seat costs, and lacks explicit court-tested Zero-AI Training covenants.
+            <strong>The AI Chatbot Wrapper.</strong> Conversational chat interfaces with unverified claims. Imposes a punitive $199/mo base platform toll before seat costs, and lacks explicit court-tested Zero-AI Training covenants.
           </p>
           <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); background: var(--hive-canvas-alt); padding: 0.75rem 1rem; border-radius: var(--hive-radius-md);">
             <strong>Trade-off:</strong> $397/mo for 3 adjusters + exposure to carrier discovery subpoenas.
@@ -183,11 +204,11 @@
               </th>
               <th style="width: 18%; min-width: 160px; text-align: center;">
                 <div style="font-weight: 700;">Legacy CRM</div>
-                <div style="font-size: 0.75rem; color: var(--hive-text-muted); font-weight: 400; margin-top: 0.2rem;">Claim Wizard Archetype</div>
+                <div style="font-size: 0.75rem; color: var(--hive-text-muted); font-weight: 400; margin-top: 0.2rem;">Enterprise Incumbents</div>
               </th>
               <th style="width: 18%; min-width: 160px; text-align: center;">
                 <div style="font-weight: 700;">AI Chat CRM</div>
-                <div style="font-size: 0.75rem; color: var(--hive-text-muted); font-weight: 400; margin-top: 0.2rem;">ClaimOS Archetype</div>
+                <div style="font-size: 0.75rem; color: var(--hive-text-muted); font-weight: 400; margin-top: 0.2rem;">Generic AI Wrappers</div>
               </th>
               <th style="width: 12%; min-width: 130px; text-align: center;">
                 <div style="font-weight: 700;">Paper & Excel</div>
@@ -442,11 +463,11 @@
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 2rem;">
         
-        <!-- CARD 1: SWITCHING FROM CLAIM WIZARD -->
+        <!-- CARD 1: SWITCHING FROM LEGACY CRMS -->
         <div class="battlecard-card">
           <div style="display: flex; align-items: center; gap: 0.75rem;">
             <span class="badge badge-navy" style="font-size: 0.75rem;">LEGACY SWITCHER</span>
-            <span style="font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-700);">Claim Wizard Alternative</span>
+            <span style="font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-700);">Legacy CRM Alternative</span>
           </div>
 
           <h3 style="font-size: 1.35rem; color: var(--hive-navy-900);">"I'm drowning in 35 tabs and paying $1,000+ a month."</h3>
@@ -465,21 +486,21 @@
           </div>
         </div>
 
-        <!-- CARD 2: EVALUATING CLAIMOS.NET -->
+        <!-- CARD 2: EVALUATING GENERIC AI TOOLS -->
         <div class="battlecard-card">
           <div style="display: flex; align-items: center; gap: 0.75rem;">
             <span class="badge badge-navy" style="font-size: 0.75rem;">MODERN EVALUATION</span>
-            <span style="font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-700);">ClaimOS Comparison</span>
+            <span style="font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-700);">Generic AI Comparison</span>
           </div>
 
-          <h3 style="font-size: 1.35rem; color: var(--hive-navy-900);">"I like modern software, but $199 base tolls and AI risks worry me."</h3>
+          <h3 style="font-size: 1.35rem; color: var(--hive-navy-900);">"I like modern software, but base tolls and AI leaks worry me."</h3>
           
           <div style="background: var(--hive-canvas); padding: 1.25rem; border-radius: var(--hive-radius-md); border-left: 3px solid var(--hive-danger); font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
-            <strong style="color: var(--hive-navy-900);">The Lived Pain:</strong> ClaimOS charges a $199 base fee plus $99/seat, which penalizes small firms ($397/mo for 3 adjusters vs $240/mo). Worse, conversational AI prompt interfaces raise serious legal red flags during carrier bad-faith depositions if claim work-product leaks into shared model training data.
+            <strong style="color: var(--hive-navy-900);">The Lived Pain:</strong> Newer AI tools charge a $199 base platform fee plus $99/seat, which penalizes small firms ($397/mo for 3 adjusters vs $240/mo). Worse, conversational AI prompt interfaces raise serious legal red flags during carrier bad-faith depositions if claim work-product leaks into shared model training data.
           </div>
 
           <div style="background: var(--hive-gold-50); padding: 1.25rem; border-radius: var(--hive-radius-md); border-left: 3px solid var(--hive-gold-500); font-size: 0.875rem; color: var(--hive-navy-900); line-height: 1.6;">
-            <strong style="color: var(--hive-gold-800);">The Claim Hive Fix:</strong> Flat $80/seat flat with zero base fee. And our terms include an ironclad, legally binding Zero AI Training covenant protecting attorney-client work product. Note: We are rolling out NOAA hail/wind overlays and native e-sign in Q1 2027 to match their features at a fraction of the cost.
+            <strong style="color: var(--hive-gold-800);">The Claim Hive Fix:</strong> Flat $80/seat flat with zero base fee. And our terms include an ironclad, legally binding Zero AI Training covenant protecting attorney-client work product. Note: We are rolling out NOAA hail/wind overlays and native e-sign in Q1 2027 to match and exceed external tools at a fraction of the cost.
           </div>
 
           <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--hive-border-whisper); display: flex; justify-content: space-between; align-items: center;">

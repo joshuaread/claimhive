@@ -120,6 +120,13 @@ function doPost(e) {
 
     sheet.appendRow(row);
 
+    // SLACK INCOMING WEBHOOK NOTIFICATION TO #inbound
+    try {
+      sendSlackNotification(data);
+    } catch (slackErr) {
+      Logger.log("Slack notification failed: " + slackErr.toString());
+    }
+
     return ContentService.createTextOutput(JSON.stringify({ result: "success", rowAdded: row }))
       .setMimeType(ContentService.MimeType.JSON);
 
@@ -129,7 +136,79 @@ function doPost(e) {
   }
 }
 
+/**
+ * Send instantaneous lead notification to private Slack channel #inbound.
+ * 
+ * SETUP INSTRUCTIONS:
+ * 1. In your Claim Hive Slack workspace, create an Incoming Webhook for #inbound.
+ * 2. In Google Apps Script, click Project Settings (gear icon) > Script Properties > Add script property:
+ *    Property: SLACK_WEBHOOK_URL
+ *    Value: https://hooks.slack.com/services/T.../B.../X...
+ * 3. (Optional) Alternatively, paste the webhook URL directly into FALLBACK_SLACK_WEBHOOK below.
+ */
+var FALLBACK_SLACK_WEBHOOK = ""; // Paste webhook URL here if not using Script Properties
+
+function sendSlackNotification(data) {
+  var webhookUrl = PropertiesService.getScriptProperties().getProperty('SLACK_WEBHOOK_URL') || FALLBACK_SLACK_WEBHOOK;
+  
+  if (!webhookUrl || webhookUrl.indexOf("https://hooks.slack.com") === -1) {
+    Logger.log("Slack Webhook URL not set. Skipping Slack ping.");
+    return;
+  }
+
+  var shop = data.Shop || data.Firm || (data.FullName + " — " + (data.Firm || "Independent"));
+  var poc = data.POC || data.FullName || "Adjuster";
+  var email = data.Email || "No email";
+  var phone = data.Phone || "No phone";
+  var cohort = data.Cohort || "Immediate Alpha (Q4 2026)";
+  var seats = data.Seats_hoped || "1";
+  var files = data.OpenFilesNow || "Not specified";
+  var stack = data.CurrentStack || "Not specified";
+  var referral = data.Referral ? ("\n• *Referral / Know Tom:* " + data.Referral) : "";
+
+  var slackPayload = {
+    text: "🐝 *New Inbound Lead on Claim Hive:* " + shop + " (" + seats + " seats)",
+    blocks: [
+      {
+        type: "header",
+        text: {
+          type: "plain_text",
+          text: "🐝 New Claim Hive Lead: " + poc + " (" + shop + ")",
+          emoji: true
+        }
+      },
+      {
+        type: "section",
+        fields: [
+          { type: "mrkdwn", text: "*Cohort:*\n" + cohort },
+          { type: "mrkdwn", text: "*Seats Needed:*\n" + seats + " seats" },
+          { type: "mrkdwn", text: "*Phone:*\n" + phone },
+          { type: "mrkdwn", text: "*Email:*\n" + email },
+          { type: "mrkdwn", text: "*Active Files:*\n" + files },
+          { type: "mrkdwn", text: "*Current Stack:*\n" + stack }
+        ]
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: "• *Next Action:* Tom text tomorrow\n• *Owner:* " + (data.Owner || "Tom") + referral
+        }
+      }
+    ]
+  };
+
+  var options = {
+    method: "post",
+    contentType: "application/json",
+    payload: JSON.stringify(slackPayload),
+    muteHttpExceptions: true
+  };
+
+  UrlFetchApp.fetch(webhookUrl, options);
+}
+
 // Browser GET check
 function doGet(e) {
-  return ContentService.createTextOutput("Claim Hive Google Sheets Webhook is active and ready.");
+  return ContentService.createTextOutput("Claim Hive Google Sheets & Slack Webhook is active and ready.");
 }
