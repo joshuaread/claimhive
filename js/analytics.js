@@ -11,11 +11,37 @@
 (function () {
   'use strict';
 
+  // CONFIGURATION: Paste your production IDs here to activate tracking
+  var GA4_MEASUREMENT_ID = ''; // e.g., 'G-XXXXXXXXXX'
+  var CLARITY_PROJECT_ID = ''; // e.g., 'k8s7d6f5'
+
   // Ensure dataLayer exists for GA4
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () {
     window.dataLayer.push(arguments);
   };
+
+  // 1. Automatically load GA4 when ID is configured
+  if (GA4_MEASUREMENT_ID && GA4_MEASUREMENT_ID.indexOf('G-') === 0) {
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID;
+    document.head.appendChild(gaScript);
+
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_MEASUREMENT_ID, {
+      send_page_view: true
+    });
+  }
+
+  // 2. Automatically load Microsoft Clarity when ID is configured
+  if (CLARITY_PROJECT_ID && CLARITY_PROJECT_ID.length > 4) {
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", CLARITY_PROJECT_ID);
+  }
 
   /**
    * Unified event dispatch function
