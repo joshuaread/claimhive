@@ -368,6 +368,93 @@ document.addEventListener('DOMContentLoaded', () => {
       renderParallax();
     }
   }
+
+  // 9. Interactive Caseload & Time Dial Engine
+  const caseloadSlider = document.getElementById('caseload-slider-input');
+  const caseloadSliderVal = document.getElementById('caseload-slider-val');
+  const caseloadPresets = document.querySelectorAll('.caseload-preset-btn');
+  const caseloadNumCurrent = document.getElementById('caseload-num-current');
+  const caseloadNumHive = document.getElementById('caseload-num-hive');
+  const caseloadGrowthLabel = document.getElementById('caseload-growth-label');
+  const hoursAdminCurrent = document.getElementById('hours-admin-current');
+  const hoursAdjustCurrent = document.getElementById('hours-adjust-current');
+  const barAdminCurrent = document.getElementById('bar-admin-current');
+  const barAdjustCurrent = document.getElementById('bar-adjust-current');
+  const lblAdminCurrent = document.getElementById('lbl-admin-current');
+  const lblAdjustCurrent = document.getElementById('lbl-adjust-current');
+  const hoursAdminHive = document.getElementById('hours-admin-hive');
+  const hoursAdjustHive = document.getElementById('hours-adjust-hive');
+  const barAdminHive = document.getElementById('bar-admin-hive');
+  const barAdjustHive = document.getElementById('bar-adjust-hive');
+  const lblAdminHive = document.getElementById('lbl-admin-hive');
+  const lblAdjustHive = document.getElementById('lbl-adjust-hive');
+  const reclaimedHoursPill = document.getElementById('reclaimed-hours-pill');
+  const summaryReclaimedHours = document.getElementById('summary-reclaimed-hours');
+
+  function updateCaseloadDial(cases) {
+    cases = parseInt(cases, 10);
+    if (isNaN(cases)) return;
+
+    if (caseloadSlider && caseloadSlider.value != cases) caseloadSlider.value = cases;
+    if (caseloadSliderVal) caseloadSliderVal.textContent = `${cases} Active Files`;
+
+    caseloadPresets.forEach(btn => {
+      const btnCases = parseInt(btn.getAttribute('data-cases'), 10);
+      btn.classList.toggle('active', btnCases === cases);
+    });
+
+    // Realistic public adjusting time model on a standard 50-hour week
+    const adminHours = Math.min(43, Math.max(18, Math.round(cases * 1.8)));
+    const adjustHours = 50 - adminHours;
+    const adminPct = Math.round((adminHours / 50) * 100);
+    const adjustPct = 100 - adminPct;
+
+    // With ClaimHive: 83% reduction in routine clerical through automation
+    const adminHive = Math.max(4, Math.round(adminHours * 0.17));
+    const adjustHive = 50 - adminHive;
+    const adminHivePct = Math.round((adminHive / 50) * 100);
+    const adjustHivePct = 100 - adminHivePct;
+
+    const reclaimedHours = adminHours - adminHive;
+    const projectedCases = Math.round(cases * 1.9);
+    const growthPct = Math.round(((projectedCases - cases) / cases) * 100);
+
+    if (caseloadNumCurrent) caseloadNumCurrent.textContent = cases;
+    if (caseloadNumHive) caseloadNumHive.textContent = projectedCases;
+    if (caseloadGrowthLabel) caseloadGrowthLabel.textContent = `+${growthPct}% caseload capacity`;
+
+    if (hoursAdminCurrent) hoursAdminCurrent.textContent = `${adminHours} hrs / wk`;
+    if (hoursAdjustCurrent) hoursAdjustCurrent.textContent = `${adjustHours} hrs / wk`;
+    if (barAdminCurrent) barAdminCurrent.style.width = `${adminPct}%`;
+    if (barAdjustCurrent) barAdjustCurrent.style.width = `${adjustPct}%`;
+    if (lblAdminCurrent) lblAdminCurrent.textContent = `${adminHours}h Clerical (${adminPct}%)`;
+    if (lblAdjustCurrent) lblAdjustCurrent.textContent = `${adjustHours}h Adjusting (${adjustPct}%)`;
+
+    if (hoursAdminHive) hoursAdminHive.textContent = `${adminHive} hrs / wk`;
+    if (hoursAdjustHive) hoursAdjustHive.textContent = `${adjustHive} hrs / wk`;
+    if (barAdminHive) barAdminHive.style.width = `${adminHivePct}%`;
+    if (barAdjustHive) barAdjustHive.style.width = `${adjustHivePct}%`;
+    if (lblAdminHive) lblAdminHive.textContent = `${adminHive}h AI Approvals (${adminHivePct}%)`;
+    if (lblAdjustHive) lblAdjustHive.textContent = `${adjustHive}h Adjusting (${adjustHivePct}%)`;
+
+    if (reclaimedHoursPill) reclaimedHoursPill.textContent = reclaimedHours;
+    if (summaryReclaimedHours) summaryReclaimedHours.textContent = reclaimedHours;
+  }
+
+  if (caseloadSlider) {
+    caseloadSlider.addEventListener('input', (e) => updateCaseloadDial(e.target.value));
+  }
+
+  caseloadPresets.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cases = btn.getAttribute('data-cases');
+      updateCaseloadDial(cases);
+    });
+  });
+
+  if (caseloadSlider) {
+    updateCaseloadDial(20);
+  }
 });
 
 

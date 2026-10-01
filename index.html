@@ -349,86 +349,185 @@
   <section class="section-dark-caseload">
     <div class="container container-wide">
       
-      <!-- Section Header -->
-      <div style="max-width: 780px;">
-        <span style="font-family: var(--hive-font-display); font-size: 0.6875rem; font-weight: 700; color: var(--hive-gold-honey); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.75rem;">
-          THE SAME WEEK. TWICE THE FILES.
-        </span>
-        <h2 class="dark-section-title">
-          Your hours aren't the problem.<br>
-          Where they go is.
-        </h2>
-      </div>
+      <div class="dark-caseload-console">
 
-      <!-- Two Side-by-Side Caseload Cards with Visual Time Allocation Bars -->
-      <div class="dark-caseload-grid">
+        <!-- Left Column: Context, Dial & 4 Time Thieves -->
+        <div class="caseload-console-left">
+          
+          <span style="font-family: var(--hive-font-display); font-size: 0.6875rem; font-weight: 700; color: var(--hive-gold-honey); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.4rem;">
+            THE SAME WEEK. TWICE THE FILES.
+          </span>
+          <h2 class="dark-section-title">
+            Your hours aren't the problem.<br>
+            Where they go is.
+          </h2>
+          <p class="caseload-console-sub">
+            Public adjusters don't burn out from adjusting claims. They burn out from carrier hold music, renaming ladder photos, and answering the same "any update?" text twenty times a day.
+          </p>
 
-        <!-- Card 1: WITHOUT CLAIM HIVE -->
-        <div class="dark-card">
-          <span class="dark-card-label">WITHOUT CLAIM HIVE</span>
-          <div class="dark-card-number">
-            20 <span class="dark-card-unit">active files</span>
-          </div>
-          <div class="dark-card-sub">50-hour week</div>
-
-          <!-- Time Progress Bar (70% Admin & Busywork, 30% Adjusting) -->
-          <div class="time-bar-wrap">
-            <div class="time-bar">
-              <div class="time-bar-segment-admin" style="width: 72%;"></div>
-              <div class="time-bar-segment-adjusting" style="width: 28%;"></div>
+          <!-- Interactive Caseload Dial Controller -->
+          <div class="caseload-dial-box">
+            <div class="caseload-dial-header">
+              <span class="caseload-dial-label">Active Caseload Per Adjuster:</span>
+              <div class="caseload-presets-group">
+                <button type="button" class="caseload-preset-btn" data-cases="15">15</button>
+                <button type="button" class="caseload-preset-btn active" data-cases="20">20 (Avg)</button>
+                <button type="button" class="caseload-preset-btn" data-cases="30">30</button>
+                <button type="button" class="caseload-preset-btn" data-cases="40">40</button>
+              </div>
             </div>
-            <div class="time-bar-labels">
-              <span>Admin and busywork</span>
-              <span>Adjusting</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: WITH CLAIM HIVE (Gold Highlight Border) -->
-        <div class="dark-card highlight">
-          <span class="dark-card-label">WITH CLAIM HIVE</span>
-          <div class="dark-card-number">
-            38 <span class="dark-card-unit" style="color: #F8D79F;">active files</span>
-          </div>
-          <div class="dark-card-sub" style="color: #CBD5E1;">Same 50-hour week</div>
-
-          <!-- Time Progress Bar (18% Admin, 82% Adjusting) -->
-          <div class="time-bar-wrap">
-            <div class="time-bar">
-              <div class="time-bar-segment-admin" style="width: 18%;"></div>
-              <div class="time-bar-segment-adjusting" style="width: 82%;"></div>
-            </div>
-            <div class="time-bar-labels">
-              <span>Admin</span>
-              <span style="color: var(--hive-gold-honey); font-weight: 700;">Adjusting</span>
+            <div class="caseload-slider-track-wrap">
+              <input type="range" id="caseload-slider-input" class="caseload-slider-input" min="10" max="45" value="20" aria-label="Adjust active caseload slider">
+              <span class="caseload-dial-badge" id="caseload-slider-val">20 Active Files</span>
             </div>
           </div>
+
+          <!-- 2x2 Sleek Time-Thief Micro Grid -->
+          <div class="console-thieves-grid">
+            <div class="console-thief-item">
+              <div class="console-thief-top">
+                <span class="console-thief-badge">+7 HRS / WK</span>
+                <span style="color: var(--hive-gold-honey); font-size: 0.95rem;">📷</span>
+              </div>
+              <div class="console-thief-title">Zero photo sorting</div>
+              <p class="console-thief-desc">150 ladder photos &amp; test squares file directly into the claim from your truck.</p>
+            </div>
+
+            <div class="console-thief-item">
+              <div class="console-thief-top">
+                <span class="console-thief-badge">+10 HRS / WK</span>
+                <span style="color: var(--hive-gold-honey); font-size: 0.95rem;">⚖️</span>
+              </div>
+              <div class="console-thief-title">Carrier hold autopilot</div>
+              <p class="console-thief-desc">Chip tracks statutory deadlines and sends demand letters when desk adjusters stall.</p>
+            </div>
+
+            <div class="console-thief-item">
+              <div class="console-thief-top">
+                <span class="console-thief-badge">+8 HRS / WK</span>
+                <span style="color: var(--hive-gold-honey); font-size: 0.95rem;">⚡</span>
+              </div>
+              <div class="console-thief-title">Zero manual intake</div>
+              <p class="console-thief-desc">Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.</p>
+            </div>
+
+            <div class="console-thief-item">
+              <div class="console-thief-top">
+                <span class="console-thief-badge">+7 HRS / WK</span>
+                <span style="color: var(--hive-gold-honey); font-size: 0.95rem;">🛡️</span>
+              </div>
+              <div class="console-thief-title">No "any update?" calls</div>
+              <p class="console-thief-desc">Clients and contractors track live claim milestones in their own secure visual portal.</p>
+            </div>
+          </div>
+
+          <!-- Total Time Reclaimed Quick Callout -->
+          <div class="dark-summary-callout-pill">
+            <span class="highlight-stat">
+              ✦ <span id="summary-reclaimed-hours">30</span> Hours Reclaimed Every Week
+            </span>
+            <span class="sub-note">0 Added Payroll &bull; Illustrative 50h schedule</span>
+          </div>
+
         </div>
 
-      </div>
+        <!-- Right Column: Two Side-by-Side Comparison Cards -->
+        <div class="caseload-console-right">
+          <div class="dark-caseload-grid">
 
-      <!-- 4-Column Breakdown of Where Time Returns -->
-      <div class="dark-breakdown-row">
-        <div class="dark-breakdown-col">
-          <h4>Documentation</h4>
-          <p>Photos, notes and estimates filed in the right claim—automatically.</p>
-        </div>
-        <div class="dark-breakdown-col">
-          <h4>Follow-ups</h4>
-          <p>Chip chases carriers, clients and deadlines so nothing slips.</p>
-        </div>
-        <div class="dark-breakdown-col">
-          <h4>Intake</h4>
-          <p>Emails, attachments and checks read and filed to the right claim automatically.</p>
-        </div>
-        <div class="dark-breakdown-col">
-          <h4>Status updates</h4>
-          <p>Clients see progress without calling you to ask.</p>
-        </div>
-      </div>
+            <!-- Card 1: WITHOUT CLAIMHIVE -->
+            <div class="dark-card">
+              <div>
+                <span class="dark-card-label">WITHOUT CLAIMHIVE (50-HR WEEK)</span>
+                <div class="dark-card-number">
+                  <span id="caseload-num-current">20</span> <span class="dark-card-unit">active files / PA</span>
+                </div>
+                <div class="dark-card-sub">50 hours committed every week</div>
 
-      <div style="font-size: 0.6875rem; color: #6E798D; font-style: italic;">
-        [Illustrative figures—replace with 60-day field results before launch]
+                <!-- Hour Breakdown Ledger -->
+                <div class="dark-hour-ledger">
+                  <div class="hour-ledger-item">
+                    <span class="hour-ledger-name">
+                      <span class="hour-ledger-dot admin"></span>
+                      Clerical, Intake &amp; Hold:
+                    </span>
+                    <span class="hour-ledger-val" id="hours-admin-current">36 hrs / wk</span>
+                  </div>
+                  <div class="hour-ledger-item">
+                    <span class="hour-ledger-name">
+                      <span class="hour-ledger-dot adjusting"></span>
+                      Fee-Earning Adjusting:
+                    </span>
+                    <span class="hour-ledger-val" id="hours-adjust-current">14 hrs / wk</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Time Progress Bar -->
+              <div class="time-bar-wrap">
+                <div class="time-bar">
+                  <div class="time-bar-segment-admin" id="bar-admin-current" style="width: 72%;"></div>
+                  <div class="time-bar-segment-adjusting" id="bar-adjust-current" style="width: 28%;"></div>
+                </div>
+                <div class="time-bar-labels">
+                  <span id="lbl-admin-current">36h Clerical (72%)</span>
+                  <span id="lbl-adjust-current">14h Adjusting (28%)</span>
+                </div>
+                <div>
+                  <span class="card-tag-pill">Capacity bottlenecked &bull; Overwhelmed</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: WITH CLAIMHIVE -->
+            <div class="dark-card highlight">
+              <div>
+                <span class="dark-card-label">WITH CLAIMHIVE (SAME 50-HR WEEK)</span>
+                <div class="dark-card-number">
+                  <span id="caseload-num-hive">38</span> <span class="dark-card-unit" style="color: #F8D79F;">active files / PA</span>
+                </div>
+                <div class="dark-card-sub">
+                  <span id="caseload-growth-label" style="color: var(--hive-gold-honey); font-weight: 600;">+90% caseload capacity</span> &bull; 0 new staff
+                </div>
+
+                <!-- Hour Breakdown Ledger -->
+                <div class="dark-hour-ledger">
+                  <div class="hour-ledger-item">
+                    <span class="hour-ledger-name">
+                      <span class="hour-ledger-dot admin"></span>
+                      Reviewing AI Drafts:
+                    </span>
+                    <span class="hour-ledger-val" id="hours-admin-hive">6 hrs / wk</span>
+                  </div>
+                  <div class="hour-ledger-item">
+                    <span class="hour-ledger-name">
+                      <span class="hour-ledger-dot adjusting"></span>
+                      Fee-Earning Negotiating:
+                    </span>
+                    <span class="hour-ledger-val gold" id="hours-adjust-hive">44 hrs / wk</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Time Progress Bar -->
+              <div class="time-bar-wrap">
+                <div class="time-bar">
+                  <div class="time-bar-segment-admin" id="bar-admin-hive" style="width: 12%;"></div>
+                  <div class="time-bar-segment-adjusting" id="bar-adjust-hive" style="width: 88%;"></div>
+                </div>
+                <div class="time-bar-labels">
+                  <span id="lbl-admin-hive">6h AI Approvals (12%)</span>
+                  <span id="lbl-adjust-hive" style="color: var(--hive-gold-honey); font-weight: 700;">44h Adjusting (88%)</span>
+                </div>
+                <div>
+                  <span class="card-tag-pill" style="border-color: rgba(217, 162, 27, 0.35); color: #F8D79F;">✦ <span id="reclaimed-hours-pill">30</span> Hours Reclaimed &bull; Uncapped Growth</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
     </div>

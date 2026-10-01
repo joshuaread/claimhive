@@ -2253,11 +2253,13 @@
   box-shadow: 0 3px 10px rgba(217, 162, 27, 0.2);
 }
 
-/* DARK CASLOAD SECTION ("Your hours aren't the problem. Where they go is.") */
+/* ==========================================================================
+   CONDENSED COMMAND CONSOLE (Laptop & Mobile Viewport Optimized)
+   ========================================================================== */
 .section-dark-caseload {
   background-color: #12151B;
   color: #FFFFFF;
-  padding: clamp(4rem, 8vw, 7.5rem) 0;
+  padding: clamp(2.25rem, 4vw, 3.5rem) 0;
   position: relative;
   overflow: hidden;
 }
@@ -2268,46 +2270,247 @@
   inset: 0;
   background-image: var(--hive-pattern-dark);
   background-size: 56px 96px;
-  opacity: 0.18;
+  opacity: 0.16;
   pointer-events: none;
+}
+
+/* Master 2-Column Console on Laptop / Desktop */
+.dark-caseload-console {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .dark-caseload-console {
+    grid-template-columns: 0.96fr 1.04fr;
+    gap: 2.75rem;
+    align-items: center;
+  }
+}
+
+/* Left Column: Context, Dial & 4 Time Thieves */
+.caseload-console-left {
+  display: flex;
+  flex-direction: column;
 }
 
 .dark-section-title {
   color: #FFFFFF;
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 3.5rem;
+  margin-bottom: 0.65rem;
 }
 
-.dark-caseload-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-  gap: 1.75rem;
-  margin-bottom: 3.5rem;
+.caseload-console-sub {
+  color: #9AA5B8;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  max-width: 520px;
 }
 
-.dark-card {
-  background: #181C24;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--hive-radius-lg);
-  padding: 2.25rem 2rem;
-  position: relative;
+/* Compact Caseload Dial */
+.caseload-dial-box {
+  background: rgba(24, 28, 36, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--hive-radius-md);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.15rem;
+  backdrop-filter: blur(10px);
 }
 
-.dark-card.highlight {
-  border-color: var(--hive-gold-deep);
-  box-shadow: 0 0 35px rgba(217, 162, 27, 0.12);
+.caseload-dial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
 }
 
-.dark-card-label {
+.caseload-dial-label {
   font-family: var(--hive-font-display);
   font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  color: #9AA5B8;
+}
+
+.caseload-presets-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.caseload-preset-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #CBD5E1;
+  font-family: var(--hive-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.caseload-preset-btn:hover {
+  background: rgba(217, 162, 27, 0.15);
+  border-color: rgba(217, 162, 27, 0.4);
+  color: #F8D79F;
+}
+
+.caseload-preset-btn.active {
+  background: var(--hive-gold-honey);
+  border-color: var(--hive-gold-deep);
+  color: #12151B;
+  font-weight: 700;
+}
+
+.caseload-slider-track-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.caseload-slider-input {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 999px;
+  background: #2D3546;
+  outline: none;
+  cursor: pointer;
+}
+
+.caseload-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--hive-gold-honey);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 10px rgba(217, 162, 27, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.caseload-dial-badge {
+  font-family: var(--hive-font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--hive-gold-honey);
+  background: rgba(217, 162, 27, 0.12);
+  border: 1px solid rgba(217, 162, 27, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* 2x2 Sleek Time-Thief Micro Grid */
+.console-thieves-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.console-thief-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--hive-radius-sm);
+  padding: 0.65rem 0.75rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.console-thief-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(217, 162, 27, 0.3);
+}
+
+.console-thief-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.console-thief-badge {
+  font-family: var(--hive-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--hive-gold-honey);
+  background: rgba(217, 162, 27, 0.12);
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(217, 162, 27, 0.25);
+}
+
+.console-thief-title {
+  color: #FFFFFF;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+  line-height: 1.25;
+}
+
+.console-thief-desc {
   color: #8C96A8;
-  margin-bottom: 1rem;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Right Column: Two Side-by-Side Comparison Cards */
+.caseload-console-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.dark-caseload-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .dark-caseload-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+.dark-card {
+  background: #181C24;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--hive-radius-md);
+  padding: 1.35rem 1.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dark-card.highlight {
+  border-color: var(--hive-gold-deep);
+  box-shadow: 0 0 28px rgba(217, 162, 27, 0.12);
+  background: linear-gradient(180deg, #1B202A 0%, #151821 100%);
+}
+
+.dark-card-label {
+  font-family: var(--hive-font-display);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8C96A8;
+  margin-bottom: 0.4rem;
   display: block;
 }
 
@@ -2317,10 +2520,11 @@
 
 .dark-card-number {
   font-family: var(--hive-font-heading);
-  font-size: clamp(2.75rem, 5vw, 3.75rem);
+  font-size: clamp(2.2rem, 3.2vw, 2.75rem);
   font-weight: 700;
   line-height: 1;
   color: #FFFFFF;
+  margin-bottom: 0.15rem;
 }
 
 .dark-card.highlight .dark-card-number {
@@ -2328,27 +2532,75 @@
 }
 
 .dark-card-unit {
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 400;
   color: #9AA5B8;
-  margin-left: 0.35rem;
+  margin-left: 0.25rem;
 }
 
 .dark-card-sub {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #7A8598;
-  margin-top: 0.5rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1rem;
 }
 
-/* Time Allocation Progress Bar */
+.dark-hour-ledger {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.hour-ledger-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.hour-ledger-name {
+  color: #9AA5B8;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hour-ledger-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hour-ledger-dot.admin {
+  background: #64748B;
+}
+
+.hour-ledger-dot.adjusting {
+  background: var(--hive-gold-honey);
+}
+
+.hour-ledger-val {
+  font-family: var(--hive-font-mono);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #FFFFFF;
+}
+
+.hour-ledger-val.gold {
+  color: var(--hive-gold-honey);
+}
+
 .time-bar-wrap {
-  margin-top: 1rem;
+  margin-top: auto;
 }
 
 .time-bar {
   display: flex;
-  height: 8px;
+  height: 7px;
   border-radius: 999px;
   overflow: hidden;
   background: #252B38;
@@ -2356,46 +2608,65 @@
 
 .time-bar-segment-admin {
   background: #475063;
-  transition: width 0.4s ease;
+  transition: width 0.35s ease;
 }
 
 .time-bar-segment-adjusting {
   background: var(--hive-gold-honey);
-  transition: width 0.4s ease;
+  transition: width 0.35s ease;
 }
 
 .time-bar-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-family: var(--hive-font-display);
   color: #7A8598;
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-/* Four Column Breakdown Under Cards */
-.dark-breakdown-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 2.25rem;
-  margin-bottom: 2rem;
-}
-
-.dark-breakdown-col h4 {
-  color: #FFFFFF;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-}
-
-.dark-breakdown-col p {
+.card-tag-pill {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
   color: #9AA5B8;
-  font-size: 0.8125rem;
-  line-height: 1.6;
+}
+
+.dark-card.highlight .card-tag-pill {
+  background: rgba(217, 162, 27, 0.15);
+  color: #F8D79F;
+  border: 1px solid rgba(217, 162, 27, 0.3);
+}
+
+.dark-summary-callout-pill {
+  margin-top: 0.85rem;
+  background: rgba(217, 162, 27, 0.08);
+  border: 1px solid rgba(217, 162, 27, 0.22);
+  border-radius: var(--hive-radius-sm);
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dark-summary-callout-pill .highlight-stat {
+  font-family: var(--hive-font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--hive-gold-honey);
+}
+
+.dark-summary-callout-pill .sub-note {
+  font-size: 0.6875rem;
+  color: #9AA5B8;
 }
 
 /* How It Works (One Hive. Every Claim.) */
