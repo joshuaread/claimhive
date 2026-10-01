@@ -2693,11 +2693,12 @@
 
 .shift-solution-desc {
   font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
-  color: #CBD5E1;
-  line-height: 1.4;
-  padding-left: 1.65rem;
-  display: none;
+  color: #94A3B8;
+  line-height: 1.35;
+  padding-left: calc(28px + 0.5rem);
+  display: block;
   animation: shiftFadeIn 0.3s ease;
+  transition: color 0.25s ease;
 }
 
 /* Clean SVG Icon Badges (replacing cartoon emojis) */
@@ -2748,7 +2749,7 @@
 }
 
 .shift-row.chore-row.is-delegated .shift-solution-desc {
-  color: #94A3B8;
+  color: #8C96A8;
   font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
   display: block;
 }
@@ -3024,6 +3025,7 @@
   border-top: 1.5px solid rgba(15, 18, 24, 0.2);
   margin-top: 0.75rem;
   padding-top: 0.65rem;
+  grid-template-columns: 1.25fr 0.85fr 0.9fr;
 }
 
 .aha-mini-metric {
@@ -3042,8 +3044,15 @@
 
 .shift-console-card[data-mode="chip"] .aha-mini-val {
   color: #0F1218;
-  font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+  font-size: clamp(0.95rem, 3.2vw, 1.25rem);
   font-weight: 800;
+  white-space: nowrap;
+}
+
+.shift-console-card[data-mode="chip"] .aha-mini-val#aha-metric-val-1 {
+  font-family: var(--hive-font-heading);
+  font-size: clamp(0.92rem, 3.1vw, 1.22rem);
+  letter-spacing: -0.02em;
 }
 
 .aha-mini-lbl {
@@ -3112,6 +3121,104 @@
 .btn-shift-sparkle {
   font-size: 0.95rem;
   flex-shrink: 0;
+}
+
+/* ==========================================================================
+   CLIMAX CTA BOX & TOGGLE BACK (Chip Mode)
+   ========================================================================== */
+.shift-climax-cta-box {
+  margin-top: 0.85rem;
+  animation: shiftFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-card-beta-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 52px;
+  padding: 0.85rem 1.25rem;
+  background: linear-gradient(135deg, #F5BA42 0%, #EEAF28 50%, #D99F16 100%);
+  color: #0F1218;
+  font-family: var(--hive-font-display);
+  font-size: clamp(0.8125rem, 3vw, 0.9375rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(217, 162, 27, 0.45), 0 0 0 1px rgba(253, 230, 138, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+}
+
+.btn-card-beta-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(217, 162, 27, 0.6), 0 0 0 1.5px #FDE68A;
+  color: #000000;
+}
+
+.btn-card-beta-cta:active {
+  transform: translateY(1px);
+}
+
+.climax-arrow {
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.btn-card-beta-cta:hover .climax-arrow {
+  transform: translateX(3px);
+}
+
+.climax-micro-assurance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  font-size: clamp(0.625rem, 2vw, 0.6875rem);
+  color: #8C96A8;
+  font-family: var(--hive-font-display);
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.climax-dot {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.55rem;
+}
+
+.shift-toggle-back-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.btn-toggle-back {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-family: var(--hive-font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--hive-radius-pill);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-toggle-back:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 @keyframes shiftFadeIn {

@@ -396,12 +396,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const shiftTitle1 = document.getElementById('shift-title-1');
   const shiftBadge1 = document.getElementById('shift-badge-1');
+  const shiftDesc1 = document.getElementById('shift-desc-1');
   const shiftTitle2 = document.getElementById('shift-title-2');
   const shiftBadge2 = document.getElementById('shift-badge-2');
+  const shiftDesc2 = document.getElementById('shift-desc-2');
   const shiftTitle3 = document.getElementById('shift-title-3');
   const shiftBadge3 = document.getElementById('shift-badge-3');
+  const shiftDesc3 = document.getElementById('shift-desc-3');
   const shiftTitle4 = document.getElementById('shift-title-4');
   const shiftBadge4 = document.getElementById('shift-badge-4');
+  const shiftDesc4 = document.getElementById('shift-desc-4');
 
   const adjustTopTag = document.getElementById('adjust-top-tag');
   const adjustTagDot = document.getElementById('adjust-tag-dot');
@@ -419,6 +423,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const ahaMetricVal1 = document.getElementById('aha-metric-val-1');
   const ahaMetricVal2 = document.getElementById('aha-metric-val-2');
   const ahaMetricVal3 = document.getElementById('aha-metric-val-3');
+
+  const shiftClimaxCtaBox = document.getElementById('shift-climax-cta-box');
+  const btnClimaxBeta = document.getElementById('btn-climax-beta');
+  const btnToggleBack = document.getElementById('btn-toggle-back');
 
   const shiftSummaryPill = document.getElementById('shift-summary-pill');
   const shiftSummaryStat = document.getElementById('shift-summary-stat');
@@ -453,6 +461,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const reclaimedHours = adminHours - adminHive;
     const projectedCases = Math.round(cases * 1.9);
     const growthPct = Math.round(((projectedCases - cases) / cases) * 100);
+
+    // Fee capacity expansion: conservative $6,000 avg PA contingency fee per closed file
+    const extraFiles = projectedCases - cases;
+    const extraFeeRevenue = extraFiles * 6000;
 
     if (!shiftCard) return;
 
@@ -497,24 +509,28 @@ document.addEventListener('DOMContentLoaded', () => {
         shiftBadge1.className = 'shift-badge quiet-reclaimed';
         shiftBadge1.textContent = `Automated • ${c1Hrs}h`;
       }
+      if (shiftDesc1) shiftDesc1.textContent = 'Chip auto-tracks statutory deadlines (FL § 627 / TX § 542) & queues ready-to-send bad-faith demands in drafts.';
 
       if (shiftTitle2) shiftTitle2.innerHTML = '<span class="delegated-check">✓</span> Zero manual intake (OCR)';
       if (shiftBadge2) {
         shiftBadge2.className = 'shift-badge quiet-reclaimed';
         shiftBadge2.textContent = `Automated • ${c2Hrs}h`;
       }
+      if (shiftDesc2) shiftDesc2.textContent = 'OCR parses policy PDFs, contractor bids & checks into claim fields in 30 seconds.';
 
       if (shiftTitle3) shiftTitle3.innerHTML = '<span class="delegated-check">✓</span> Zero photo sorting';
       if (shiftBadge3) {
         shiftBadge3.className = 'shift-badge quiet-reclaimed';
         shiftBadge3.textContent = `Automated • ${c3Hrs}h`;
       }
+      if (shiftDesc3) shiftDesc3.textContent = 'Photos auto-filed by slope, elevation & test square from phone before truck engine starts.';
 
-      if (shiftTitle4) shiftTitle4.innerHTML = '<span class="delegated-check">✓</span> No "any update?" calls';
+      if (shiftTitle4) shiftTitle4.innerHTML = '<span class="delegated-check">✓</span> Zero "update?" interruptions';
       if (shiftBadge4) {
         shiftBadge4.className = 'shift-badge quiet-reclaimed';
         shiftBadge4.textContent = `Automated • ${c4Hrs}h`;
       }
+      if (shiftDesc4) shiftDesc4.textContent = 'Live visual client portal answers homeowner questions 24/7—no more 8 PM panicked calls.';
 
       // Adjusting Row (Money-Making Engine Unleashed)
       if (adjustTopTag) adjustTopTag.className = 'adjusting-row-top-tag chip';
@@ -548,22 +564,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (ahaMetricStrip) {
         ahaMetricStrip.style.display = 'grid';
-        if (ahaMetricVal1) ahaMetricVal1.textContent = '3x';
-        if (ahaMetricVal2) ahaMetricVal2.textContent = `+${growthPct}%`;
+        if (ahaMetricVal1) ahaMetricVal1.textContent = `+$${extraFeeRevenue.toLocaleString()}/yr`;
+        if (ahaMetricVal2) ahaMetricVal2.textContent = '3x';
         if (ahaMetricVal3) ahaMetricVal3.textContent = '$0';
       }
 
-      // Action Button -> Reset Mode
-      if (btnShiftAction) btnShiftAction.className = 'btn-shift-action is-reset';
-      if (btnShiftSparkle) btnShiftSparkle.textContent = '↺';
-      if (btnShiftLabel) btnShiftLabel.textContent = "Reset to Today's Reality";
+      // Hide Today Trigger Button, Show Climax CTA Box
+      if (btnShiftAction) btnShiftAction.style.display = 'none';
+      if (shiftClimaxCtaBox) shiftClimaxCtaBox.style.display = 'block';
 
       // Summary Pill
       if (shiftSummaryPill) shiftSummaryPill.className = 'dark-summary-callout-pill';
       if (shiftSummaryStat) {
-        shiftSummaryStat.innerHTML = `✦ <span id="shift-reclaimed-hours">${reclaimedHours}</span> Hours Reclaimed Every Week`;
+        shiftSummaryStat.innerHTML = `✦ <span id="shift-reclaimed-hours">${reclaimedHours}</span> Hours Shifted to Revenue • +$${extraFeeRevenue.toLocaleString()}/yr Unlocked`;
       }
-      if (shiftSummarySub) shiftSummarySub.textContent = '0 Added Payroll • Illustrative 50h schedule';
+      if (shiftSummarySub) shiftSummarySub.textContent = '0 Added Staff Payroll • Illustrative 50h schedule';
 
     } else {
       // 'today' mode
@@ -607,24 +622,28 @@ document.addEventListener('DOMContentLoaded', () => {
         shiftBadge1.className = 'shift-badge warning';
         shiftBadge1.textContent = `${c1HrsToday} hrs / wk`;
       }
+      if (shiftDesc1) shiftDesc1.textContent = 'Chasing desk adjusters, sitting on hold, and drafting routine status letters.';
 
       if (shiftTitle2) shiftTitle2.textContent = 'Manual intake & PDF retyping';
       if (shiftBadge2) {
         shiftBadge2.className = 'shift-badge warning';
         shiftBadge2.textContent = `${c2HrsToday} hrs / wk`;
       }
+      if (shiftDesc2) shiftDesc2.textContent = 'Retyping policy DEC sheets, contractor estimates, and mortgage checks by hand.';
 
       if (shiftTitle3) shiftTitle3.textContent = 'Photo sorting in truck';
       if (shiftBadge3) {
         shiftBadge3.className = 'shift-badge warning';
         shiftBadge3.textContent = `${c3HrsToday} hrs / wk`;
       }
+      if (shiftDesc3) shiftDesc3.textContent = 'Sorting 150+ ladder inspection photos into desktop folders late in the evening.';
 
       if (shiftTitle4) shiftTitle4.textContent = '"Any update?" calls & texts';
       if (shiftBadge4) {
         shiftBadge4.className = 'shift-badge warning';
         shiftBadge4.textContent = `${c4HrsToday} hrs / wk`;
       }
+      if (shiftDesc4) shiftDesc4.textContent = 'Answering frantic "Any update?" calls and texts from homeowners and contractors.';
 
       // Adjusting Row (Today's Reality - Capped)
       if (adjustTopTag) adjustTopTag.className = 'adjusting-row-top-tag today';
@@ -660,10 +679,14 @@ document.addEventListener('DOMContentLoaded', () => {
         ahaMetricStrip.style.display = 'none';
       }
 
-      // Action Button -> Autopilot Mode
-      if (btnShiftAction) btnShiftAction.className = 'btn-shift-action';
+      // Show Today Trigger Button, Hide Climax CTA Box
+      if (btnShiftAction) {
+        btnShiftAction.style.display = 'flex';
+        btnShiftAction.className = 'btn-shift-action';
+      }
       if (btnShiftSparkle) btnShiftSparkle.textContent = '✦';
-      if (btnShiftLabel) btnShiftLabel.textContent = 'Hand Routine Busywork to Chip (Autopilot)';
+      if (btnShiftLabel) btnShiftLabel.textContent = 'Hand Routine Busywork to Chip (See The Shift)';
+      if (shiftClimaxCtaBox) shiftClimaxCtaBox.style.display = 'none';
 
       // Summary Pill
       if (shiftSummaryPill) shiftSummaryPill.className = 'dark-summary-callout-pill current';
@@ -676,8 +699,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnShiftAction) {
     btnShiftAction.addEventListener('click', () => {
-      shiftMode = (shiftMode === 'today' ? 'chip' : 'today');
+      shiftMode = 'chip';
       renderShiftConsole();
+    });
+  }
+
+  if (btnToggleBack) {
+    btnToggleBack.addEventListener('click', () => {
+      shiftMode = 'today';
+      renderShiftConsole();
+    });
+  }
+
+  if (btnClimaxBeta) {
+    btnClimaxBeta.addEventListener('click', (e) => {
+      e.preventDefault();
+      openAlphaModal();
     });
   }
 
