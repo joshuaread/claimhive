@@ -1,3 +1,13 @@
+
+document.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const refParam = urlParams.get('ref');
+  if (refParam) {
+    try {
+      localStorage.setItem('claimhive_ref', refParam);
+    } catch(e) {}
+  }
+});
 /**
  * Claim Hive — Universal Site Script ("site.js")
  * Manages responsive navigation, mobile drawer with viewport bounds & body scroll lock,
@@ -178,12 +188,12 @@ document.addEventListener('DOMContentLoaded', () => {
         Source: 'Website - Homepage Waitlist',
         Next_action: 'Tom text',
         Next_action_date: nextActionDate,
-        Notes: `Waitlist submission from homepage.`,
+        Notes: `Waitlist submission. Generated Ref Code: ${refCode}`,
         LicenseStates: 'N/A',
         CurrentStack: 'N/A',
         OpenFilesNow: 'N/A',
         Cohort: 'Waitlist',
-        Referral: 'N/A',
+        Referral: localStorage.getItem('claimhive_ref') || 'N/A',
         SubmittedAt: new Date().toISOString()
       };
 
@@ -206,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const position = 19 + Math.abs(hash % 14);
       const refCode = 'CH-' + Math.abs(hash % 9000 + 1000);
-      const refUrl = `https://claimhive.app/invite?ref=${refCode}`;
+      const refUrl = `https://claimhive.app/?ref=${refCode}`;
 
       container.innerHTML = `
         <div class="waitlist-revealed animate-fade-in" style="padding: 1.5rem 1rem; text-align: center;">

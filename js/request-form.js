@@ -149,7 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const openFiles = document.getElementById('openFiles')?.value || 'Not Specified';
     const cohortRadio = document.querySelector('input[name="cohort"]:checked');
     const cohort = cohortRadio ? cohortRadio.value : 'Immediate Alpha (Q4 2026)';
-    const referral = (document.getElementById('referral')?.value || '').trim();
+    let referral = (document.getElementById('referral')?.value || '').trim();
+    if (!referral) { try { referral = localStorage.getItem('claimhive_ref') || ''; } catch(e) {} }
 
     // Lock submission button immediately
     isSubmitting = true;
@@ -216,7 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
         firm_name: firmName,
         seats_hoped: seatsNeeded,
         cohort: cohort,
-        owner: owner
+        owner: owner,
+        referral_code: referral
       });
     }
 
