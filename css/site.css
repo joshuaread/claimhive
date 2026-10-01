@@ -2700,14 +2700,6 @@
   animation: shiftFadeIn 0.3s ease;
 }
 
-.shift-adjust-desc {
-  font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
-  color: #8C96A8;
-  line-height: 1.4;
-  padding-left: 1.65rem;
-  transition: color 0.2s ease;
-}
-
 .shift-row.is-delegated {
   background: rgba(217, 162, 27, 0.06);
   border-color: rgba(217, 162, 27, 0.22);
@@ -2750,37 +2742,216 @@
 .shift-divider {
   height: 1px;
   background: rgba(255, 255, 255, 0.08);
-  margin: 0.2rem 0;
+  margin: 0.35rem 0 0.15rem;
 }
 
+/* ==========================================================================
+   FEATURED MONEY-MAKING BOX (Adjusting & Negotiating Showcase)
+   ========================================================================== */
 .shift-row.adjusting-row {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.65rem 0.75rem;
+  background: rgba(14, 17, 24, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--hive-radius-md);
+  padding: 0.85rem 0.9rem;
+  margin-top: 0.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .shift-console-card[data-mode="chip"] .shift-row.adjusting-row {
-  background: rgba(217, 162, 27, 0.12);
-  border-color: rgba(217, 162, 27, 0.5);
-  box-shadow: 0 0 20px rgba(217, 162, 27, 0.15);
+  background: linear-gradient(180deg, rgba(34, 27, 16, 0.95) 0%, rgba(20, 23, 31, 0.98) 100%);
+  border: 1.5px solid rgba(217, 162, 27, 0.65);
+  box-shadow: 0 0 28px rgba(217, 162, 27, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.adjusting-row-top-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--hive-font-display);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  line-height: 1;
+}
+
+.adjusting-row-top-tag.today {
+  color: #F87171;
+}
+
+.adjusting-row-top-tag.chip {
+  color: var(--hive-gold-honey);
+}
+
+.adjusting-tag-dot {
+  font-size: 0.625rem;
+  line-height: 1;
+}
+
+.adjusting-tag-dot.red {
+  color: #EF4444;
+}
+
+.adjusting-tag-dot.gold {
+  color: var(--hive-gold-honey);
+  font-size: 0.75rem;
+}
+
+.shift-adjusting-titles {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.shift-row-tagline {
+  font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
+  color: #9AA5B8;
+  line-height: 1.35;
+  margin-top: 0.15rem;
+}
+
+.shift-badge-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  flex-shrink: 0;
 }
 
 .shift-badge.adjust {
   font-family: var(--hive-font-mono);
-  font-size: clamp(0.75rem, 2.5vw, 0.8125rem);
-  font-weight: 700;
+  font-size: clamp(0.8125rem, 2.6vw, 0.9375rem);
+  font-weight: 800;
   color: #CBD5E1;
   background: rgba(255, 255, 255, 0.08);
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.12);
+  line-height: 1.2;
 }
 
-.shift-console-card[data-mode="chip"] .shift-badge.adjust {
+.shift-badge.adjust.delegated {
   color: #12151B;
-  background: linear-gradient(135deg, var(--hive-gold-honey) 0%, var(--hive-gold-deep) 100%);
-  border-color: var(--hive-gold-deep);
-  box-shadow: 0 0 14px rgba(217, 162, 27, 0.4);
+  background: linear-gradient(135deg, #F5BA42 0%, #D9A21B 100%);
+  border-color: #D9A21B;
+  box-shadow: 0 0 14px rgba(217, 162, 27, 0.45);
+}
+
+.shift-badge-sub {
+  font-size: 0.625rem;
+  font-family: var(--hive-font-display);
+  font-weight: 600;
+  color: #8C96A8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.shift-badge-sub.gold {
+  color: var(--hive-gold-honey);
+}
+
+/* The Aha Callout Box */
+.shift-aha-callout {
+  border-radius: var(--hive-radius-sm);
+  padding: 0.75rem 0.85rem;
+  margin-top: 0.55rem;
+  transition: all 0.25s ease;
+}
+
+.shift-aha-callout.today {
+  background: rgba(239, 68, 68, 0.07);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+}
+
+.shift-aha-callout.chip {
+  background: rgba(217, 162, 27, 0.12);
+  border: 1px solid rgba(217, 162, 27, 0.4);
+  box-shadow: 0 0 20px rgba(217, 162, 27, 0.12);
+}
+
+.aha-lead-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--hive-font-display);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+  color: #FCA5A5;
+}
+
+.aha-lead-badge.gold {
+  color: var(--hive-gold-honey);
+}
+
+.aha-statement {
+  font-size: clamp(0.78125rem, 2.5vw, 0.875rem);
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.4;
+}
+
+.aha-statement.gold {
+  font-family: var(--hive-font-display);
+  font-size: clamp(0.84rem, 2.8vw, 0.9375rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.aha-subtext {
+  font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
+  color: #9AA5B8;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+.aha-subtext.gold {
+  color: #F8D79F;
+}
+
+.aha-metric-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(217, 162, 27, 0.25);
+  text-align: center;
+}
+
+.aha-mini-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aha-mini-val {
+  font-family: var(--hive-font-heading);
+  font-size: clamp(0.9375rem, 3vw, 1.15rem);
+  font-weight: 700;
+  color: var(--hive-gold-honey);
+  line-height: 1;
+}
+
+.aha-mini-lbl {
+  font-family: var(--hive-font-display);
+  font-size: clamp(0.5625rem, 1.8vw, 0.625rem);
+  font-weight: 600;
+  color: #CBD5E1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+  line-height: 1.2;
 }
 
 /* Big Action Trigger Button */

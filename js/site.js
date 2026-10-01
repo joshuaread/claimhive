@@ -403,8 +403,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const shiftTitle4 = document.getElementById('shift-title-4');
   const shiftBadge4 = document.getElementById('shift-badge-4');
 
+  const adjustTopTag = document.getElementById('adjust-top-tag');
+  const adjustTagDot = document.getElementById('adjust-tag-dot');
+  const adjustTagText = document.getElementById('adjust-tag-text');
   const shiftValAdjust = document.getElementById('shift-val-adjust');
-  const shiftDescAdjust = document.getElementById('shift-desc-adjust');
+  const shiftValAdjustSub = document.getElementById('shift-val-adjust-sub');
+
+  const shiftAhaCallout = document.getElementById('shift-aha-callout');
+  const ahaLeadBadge = document.getElementById('aha-lead-badge');
+  const ahaBadgeIcon = document.getElementById('aha-badge-icon');
+  const ahaBadgeText = document.getElementById('aha-badge-text');
+  const ahaStatement = document.getElementById('aha-statement');
+  const ahaSubtext = document.getElementById('aha-subtext');
+  const ahaMetricStrip = document.getElementById('aha-metric-strip');
+  const ahaMetricVal1 = document.getElementById('aha-metric-val-1');
+  const ahaMetricVal2 = document.getElementById('aha-metric-val-2');
+  const ahaMetricVal3 = document.getElementById('aha-metric-val-3');
 
   const shiftSummaryPill = document.getElementById('shift-summary-pill');
   const shiftSummaryStat = document.getElementById('shift-summary-stat');
@@ -502,10 +516,41 @@ document.addEventListener('DOMContentLoaded', () => {
         shiftBadge4.textContent = `+${c4Hrs}h Reclaimed`;
       }
 
-      // Adjusting Row
-      if (shiftValAdjust) shiftValAdjust.textContent = `${adjustHive} hrs / wk`;
-      if (shiftDescAdjust) {
-        shiftDescAdjust.innerHTML = `<strong style="color: var(--hive-gold-honey);">✦ +${reclaimedHours} hours</strong> shifted directly to high-margin claims adjusting.`;
+      // Adjusting Row (Money-Making Engine Unleashed)
+      if (adjustTopTag) adjustTopTag.className = 'adjusting-row-top-tag chip';
+      if (adjustTagDot) {
+        adjustTagDot.textContent = '✦';
+        adjustTagDot.className = 'adjusting-tag-dot gold';
+      }
+      if (adjustTagText) adjustTagText.textContent = 'YOUR REVENUE-GENERATING ENGINE (UNLEASHED)';
+
+      if (shiftValAdjust) {
+        shiftValAdjust.textContent = `${adjustHive} hrs / wk`;
+        shiftValAdjust.className = 'shift-badge adjust delegated';
+      }
+      if (shiftValAdjustSub) {
+        shiftValAdjustSub.textContent = `${adjustHivePct}% of week • 3x boost`;
+        shiftValAdjustSub.className = 'shift-badge-sub gold';
+      }
+
+      if (shiftAhaCallout) shiftAhaCallout.className = 'shift-aha-callout chip';
+      if (ahaLeadBadge) ahaLeadBadge.className = 'aha-lead-badge gold';
+      if (ahaBadgeIcon) ahaBadgeIcon.textContent = '✦';
+      if (ahaBadgeText) ahaBadgeText.textContent = 'THE REVENUE SHIFT';
+
+      if (ahaStatement) {
+        ahaStatement.className = 'aha-statement gold';
+        ahaStatement.innerHTML = `✦ +${reclaimedHours} hours shifted directly to high-margin claims adjusting.`;
+      }
+      if (ahaSubtext) {
+        ahaSubtext.className = 'aha-subtext gold';
+        ahaSubtext.textContent = `Spend ${adjustHive} hours every week on-site inspecting damage, uncovering missed scope items, and negotiating maximum carrier settlements.`;
+      }
+      if (ahaMetricStrip) {
+        ahaMetricStrip.style.display = 'grid';
+        if (ahaMetricVal1) ahaMetricVal1.textContent = '3x';
+        if (ahaMetricVal2) ahaMetricVal2.textContent = `+${growthPct}%`;
+        if (ahaMetricVal3) ahaMetricVal3.textContent = '$0';
       }
 
       // Action Button -> Reset Mode
@@ -581,10 +626,38 @@ document.addEventListener('DOMContentLoaded', () => {
         shiftBadge4.textContent = `${c4HrsToday} hrs / wk`;
       }
 
-      // Adjusting Row
-      if (shiftValAdjust) shiftValAdjust.textContent = `${adjustHours} hrs / wk`;
-      if (shiftDescAdjust) {
-        shiftDescAdjust.textContent = 'Inspecting, writing scopes, finding gap items, and closing settlements.';
+      // Adjusting Row (Today's Reality - Capped)
+      if (adjustTopTag) adjustTopTag.className = 'adjusting-row-top-tag today';
+      if (adjustTagDot) {
+        adjustTagDot.textContent = '●';
+        adjustTagDot.className = 'adjusting-tag-dot red';
+      }
+      if (adjustTagText) adjustTagText.textContent = 'YOUR ONLY REVENUE-GENERATING HOURS (SEVERELY CAPPED)';
+
+      if (shiftValAdjust) {
+        shiftValAdjust.textContent = `${adjustHours} hrs / wk`;
+        shiftValAdjust.className = 'shift-badge adjust';
+      }
+      if (shiftValAdjustSub) {
+        shiftValAdjustSub.textContent = `${adjustPct}% of week`;
+        shiftValAdjustSub.className = 'shift-badge-sub';
+      }
+
+      if (shiftAhaCallout) shiftAhaCallout.className = 'shift-aha-callout today';
+      if (ahaLeadBadge) ahaLeadBadge.className = 'aha-lead-badge today';
+      if (ahaBadgeIcon) ahaBadgeIcon.textContent = '⚠️';
+      if (ahaBadgeText) ahaBadgeText.textContent = 'CAPACITY BOTTLENECK';
+
+      if (ahaStatement) {
+        ahaStatement.className = 'aha-statement';
+        ahaStatement.innerHTML = `You only have <strong>${adjustHours} hours / week</strong> to actually generate revenue.`;
+      }
+      if (ahaSubtext) {
+        ahaSubtext.className = 'aha-subtext';
+        ahaSubtext.textContent = `${adminPct}% of your week is consumed by unpaid administrative drag instead of inspecting damage and closing claim settlements.`;
+      }
+      if (ahaMetricStrip) {
+        ahaMetricStrip.style.display = 'none';
       }
 
       // Action Button -> Autopilot Mode
