@@ -369,56 +369,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 9. Interactive Caseload & Time Flip Console Engine
+  // 9. Plan C: Interactive Hour-Shift Console Engine
   const caseloadSlider = document.getElementById('caseload-slider-input');
   const caseloadSliderVal = document.getElementById('caseload-slider-val');
   const caseloadPresets = document.querySelectorAll('.caseload-preset-btn');
-  const flipCard = document.getElementById('caseload-flip-card');
-  const flipTabCurrent = document.getElementById('flip-tab-current');
-  const flipTabHive = document.getElementById('flip-tab-hive');
+  const shiftCard = document.getElementById('caseload-shift-card');
+  const btnShiftAction = document.getElementById('btn-shift-action');
+  const btnShiftLabel = document.getElementById('btn-shift-label');
+  const btnShiftSparkle = document.getElementById('btn-shift-sparkle');
 
-  // Dynamic Card Elements
-  const flipCardViewLabel = document.getElementById('flip-card-view-label');
-  const flipCaseloadNum = document.getElementById('flip-caseload-num');
-  const flipCaseloadUnit = document.getElementById('flip-caseload-unit');
-  const flipCardSub = document.getElementById('flip-card-sub');
-  const flipStatusPill = document.getElementById('flip-status-pill');
+  const shiftViewLabel = document.getElementById('shift-view-label');
+  const shiftCaseloadNum = document.getElementById('shift-caseload-num');
+  const shiftCaseloadUnit = document.getElementById('shift-caseload-unit');
+  const shiftCardSub = document.getElementById('shift-card-sub');
+  const shiftStatusPill = document.getElementById('shift-status-pill');
 
-  const flipDotAdmin = document.getElementById('flip-dot-admin');
-  const flipLblAdminName = document.getElementById('flip-lbl-admin-name');
-  const flipValAdmin = document.getElementById('flip-val-admin');
-  const flipLblAdjustName = document.getElementById('flip-lbl-adjust-name');
-  const flipValAdjust = document.getElementById('flip-val-adjust');
+  const shiftBarAdmin = document.getElementById('shift-bar-admin');
+  const shiftBarAdjust = document.getElementById('shift-bar-adjust');
+  const shiftLblAdmin = document.getElementById('shift-lbl-admin');
+  const shiftLblAdjust = document.getElementById('shift-lbl-adjust');
 
-  const flipBarAdmin = document.getElementById('flip-bar-admin');
-  const flipBarAdjust = document.getElementById('flip-bar-adjust');
-  const flipLblAdmin = document.getElementById('flip-lbl-admin');
-  const flipLblAdjust = document.getElementById('flip-lbl-adjust');
+  const shiftRow1 = document.getElementById('shift-row-1');
+  const shiftRow2 = document.getElementById('shift-row-2');
+  const shiftRow3 = document.getElementById('shift-row-3');
+  const shiftRow4 = document.getElementById('shift-row-4');
 
-  const thiefBadge1 = document.getElementById('thief-badge-1');
-  const thiefTitle1 = document.getElementById('thief-title-1');
-  const thiefDesc1 = document.getElementById('thief-desc-1');
+  const shiftTitle1 = document.getElementById('shift-title-1');
+  const shiftBadge1 = document.getElementById('shift-badge-1');
+  const shiftTitle2 = document.getElementById('shift-title-2');
+  const shiftBadge2 = document.getElementById('shift-badge-2');
+  const shiftTitle3 = document.getElementById('shift-title-3');
+  const shiftBadge3 = document.getElementById('shift-badge-3');
+  const shiftTitle4 = document.getElementById('shift-title-4');
+  const shiftBadge4 = document.getElementById('shift-badge-4');
 
-  const thiefBadge2 = document.getElementById('thief-badge-2');
-  const thiefTitle2 = document.getElementById('thief-title-2');
-  const thiefDesc2 = document.getElementById('thief-desc-2');
+  const shiftValAdjust = document.getElementById('shift-val-adjust');
+  const shiftDescAdjust = document.getElementById('shift-desc-adjust');
 
-  const thiefBadge3 = document.getElementById('thief-badge-3');
-  const thiefTitle3 = document.getElementById('thief-title-3');
-  const thiefDesc3 = document.getElementById('thief-desc-3');
+  const shiftSummaryPill = document.getElementById('shift-summary-pill');
+  const shiftSummaryStat = document.getElementById('shift-summary-stat');
+  const shiftSummarySub = document.getElementById('shift-summary-sub');
 
-  const thiefBadge4 = document.getElementById('thief-badge-4');
-  const thiefTitle4 = document.getElementById('thief-title-4');
-  const thiefDesc4 = document.getElementById('thief-desc-4');
-
-  const flipSummaryPill = document.getElementById('flip-summary-pill');
-  const flipSummaryStat = document.getElementById('flip-summary-stat');
-  const flipSummarySub = document.getElementById('flip-summary-sub');
-
+  let shiftMode = 'today'; // 'today' or 'chip'
   let currentCases = 20;
-  let flipMode = 'hive'; // 'hive' or 'current'
 
-  function renderCaseloadConsole() {
+  function renderShiftConsole() {
     const cases = parseInt(currentCases, 10) || 20;
 
     if (caseloadSlider && caseloadSlider.value != cases) caseloadSlider.value = cases;
@@ -429,13 +424,13 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.toggle('active', btnCases === cases);
     });
 
-    // Model: standard 50-hour week for public adjusters
+    // Realistic public adjusting 50-hour week model
     const adminHours = Math.min(43, Math.max(18, Math.round(cases * 1.8)));
     const adjustHours = 50 - adminHours;
     const adminPct = Math.round((adminHours / 50) * 100);
     const adjustPct = 100 - adminPct;
 
-    // With ClaimHive: 83% reduction in repetitive admin
+    // With ClaimHive: 83% reduction in repetitive clerical
     const adminHive = Math.max(4, Math.round(adminHours * 0.17));
     const adjustHive = 50 - adminHive;
     const adminHivePct = Math.round((adminHive / 50) * 100);
@@ -445,197 +440,180 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectedCases = Math.round(cases * 1.9);
     const growthPct = Math.round(((projectedCases - cases) / cases) * 100);
 
-    if (!flipCard) return;
+    if (!shiftCard) return;
 
-    if (flipMode === 'hive') {
-      flipCard.setAttribute('data-view', 'hive');
-      if (flipTabHive) {
-        flipTabHive.classList.add('active');
-        flipTabHive.setAttribute('aria-selected', 'true');
-      }
-      if (flipTabCurrent) {
-        flipTabCurrent.classList.remove('active');
-        flipTabCurrent.setAttribute('aria-selected', 'false');
-      }
+    if (shiftMode === 'chip') {
+      shiftCard.setAttribute('data-mode', 'chip');
 
-      if (flipCardViewLabel) flipCardViewLabel.textContent = 'WITH CLAIMHIVE (SAME 50-HR WEEK)';
-      if (flipCaseloadNum) flipCaseloadNum.textContent = projectedCases;
-      if (flipCaseloadUnit) flipCaseloadUnit.textContent = 'active files / PA';
-      if (flipCardSub) {
-        flipCardSub.innerHTML = `<span style="color: var(--hive-gold-honey); font-weight: 600;">+${growthPct}% caseload capacity</span> &bull; 0 new staff`;
+      if (shiftViewLabel) shiftViewLabel.textContent = 'WITH CLAIMHIVE (SAME 50-HR WEEK)';
+      if (shiftCaseloadNum) {
+        shiftCaseloadNum.textContent = projectedCases;
+        shiftCaseloadNum.style.color = 'var(--hive-gold-honey)';
       }
-      if (flipStatusPill) {
-        flipStatusPill.className = 'card-tag-pill flip-badge-highlight';
-        flipStatusPill.textContent = '✦ Uncapped Growth • 0 Added Payroll';
+      if (shiftCaseloadUnit) shiftCaseloadUnit.textContent = 'active files / PA';
+      if (shiftCardSub) {
+        shiftCardSub.innerHTML = `<span style="color: var(--hive-gold-honey); font-weight: 600;">+${growthPct}% caseload capacity</span> &bull; 0 new staff`;
+      }
+      if (shiftStatusPill) {
+        shiftStatusPill.className = 'card-tag-pill shift-pill-gold';
+        shiftStatusPill.textContent = '✦ Uncapped Growth • 0 Added Payroll';
       }
 
-      if (flipDotAdmin) flipDotAdmin.className = 'hour-ledger-dot admin';
-      if (flipLblAdminName) flipLblAdminName.textContent = 'Reviewing AI Drafts:';
-      if (flipValAdmin) flipValAdmin.textContent = `${adminHive} hrs / wk`;
-
-      if (flipLblAdjustName) flipLblAdjustName.textContent = 'Fee-Earning Adjusting:';
-      if (flipValAdjust) {
-        flipValAdjust.className = 'hour-ledger-val gold';
-        flipValAdjust.textContent = `${adjustHive} hrs / wk`;
+      // Visual Time Bar
+      if (shiftBarAdmin) shiftBarAdmin.style.width = `${adminHivePct}%`;
+      if (shiftBarAdjust) shiftBarAdjust.style.width = `${adjustHivePct}%`;
+      if (shiftLblAdmin) shiftLblAdmin.textContent = `${adminHive}h AI Approvals (${adminHivePct}%)`;
+      if (shiftLblAdjust) {
+        shiftLblAdjust.textContent = `${adjustHive}h Fee-Earning Adjusting (${adjustHivePct}%)`;
+        shiftLblAdjust.style.color = 'var(--hive-gold-honey)';
       }
 
-      if (flipBarAdmin) flipBarAdmin.style.width = `${adminHivePct}%`;
-      if (flipBarAdjust) flipBarAdjust.style.width = `${adjustHivePct}%`;
+      // 4 Chore Rows: marked as delegated
+      [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
+        if (row) row.classList.add('is-delegated');
+      });
 
-      if (flipLblAdmin) flipLblAdmin.textContent = `${adminHive}h AI Approvals (${adminHivePct}%)`;
-      if (flipLblAdjust) {
-        flipLblAdjust.textContent = `${adjustHive}h Adjusting (${adjustHivePct}%)`;
-        flipLblAdjust.style.color = 'var(--hive-gold-honey)';
+      if (shiftTitle1) shiftTitle1.textContent = '✓ Carrier hold autopilot';
+      if (shiftBadge1) {
+        shiftBadge1.className = 'shift-badge delegated';
+        shiftBadge1.textContent = '+10h Reclaimed';
       }
 
-      // Feature Micro Cards: ClaimHive Solutions
-      if (thiefBadge1) {
-        thiefBadge1.className = 'console-thief-badge';
-        thiefBadge1.textContent = '+7 HRS / WK';
+      if (shiftTitle2) shiftTitle2.textContent = '✓ Zero manual intake (OCR)';
+      if (shiftBadge2) {
+        shiftBadge2.className = 'shift-badge delegated';
+        shiftBadge2.textContent = '+8h Reclaimed';
       }
-      if (thiefTitle1) thiefTitle1.textContent = 'Zero photo sorting';
-      if (thiefDesc1) thiefDesc1.textContent = '150 ladder photos & test squares file directly into the claim from your truck.';
 
-      if (thiefBadge2) {
-        thiefBadge2.className = 'console-thief-badge';
-        thiefBadge2.textContent = '+10 HRS / WK';
+      if (shiftTitle3) shiftTitle3.textContent = '✓ Zero photo sorting';
+      if (shiftBadge3) {
+        shiftBadge3.className = 'shift-badge delegated';
+        shiftBadge3.textContent = '+7h Reclaimed';
       }
-      if (thiefTitle2) thiefTitle2.textContent = 'Carrier hold autopilot';
-      if (thiefDesc2) thiefDesc2.textContent = 'Chip tracks statutory deadlines and drafts demand letters directly into your email drafts when desk adjusters stall—you review, add your voice, and send.';
 
-      if (thiefBadge3) {
-        thiefBadge3.className = 'console-thief-badge';
-        thiefBadge3.textContent = '+8 HRS / WK';
+      if (shiftTitle4) shiftTitle4.textContent = '✓ No "any update?" calls';
+      if (shiftBadge4) {
+        shiftBadge4.className = 'shift-badge delegated';
+        shiftBadge4.textContent = '+7h Reclaimed';
       }
-      if (thiefTitle3) thiefTitle3.textContent = 'Zero manual intake';
-      if (thiefDesc3) thiefDesc3.textContent = 'Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.';
 
-      if (thiefBadge4) {
-        thiefBadge4.className = 'console-thief-badge';
-        thiefBadge4.textContent = '+7 HRS / WK';
+      // Adjusting Row
+      if (shiftValAdjust) shiftValAdjust.textContent = `${adjustHive} hrs / wk`;
+      if (shiftDescAdjust) {
+        shiftDescAdjust.innerHTML = `<strong style="color: var(--hive-gold-honey);">✦ +${reclaimedHours} hours</strong> shifted directly to high-margin claims adjusting.`;
       }
-      if (thiefTitle4) thiefTitle4.textContent = 'No "any update?" calls';
-      if (thiefDesc4) thiefDesc4.textContent = 'Clients and contractors track live claim milestones in their own secure visual portal.';
 
-      // Bottom Summary Callout
-      if (flipSummaryPill) flipSummaryPill.className = 'dark-summary-callout-pill';
-      if (flipSummaryStat) {
-        flipSummaryStat.innerHTML = `✦ <span id="summary-reclaimed-hours">${reclaimedHours}</span> Hours Reclaimed Every Week`;
+      // Action Button -> Reset Mode
+      if (btnShiftAction) btnShiftAction.className = 'btn-shift-action is-reset';
+      if (btnShiftSparkle) btnShiftSparkle.textContent = '↺';
+      if (btnShiftLabel) btnShiftLabel.textContent = "Reset to Today's Reality";
+
+      // Summary Pill
+      if (shiftSummaryPill) shiftSummaryPill.className = 'dark-summary-callout-pill';
+      if (shiftSummaryStat) {
+        shiftSummaryStat.innerHTML = `✦ <span id="shift-reclaimed-hours">${reclaimedHours}</span> Hours Reclaimed Every Week`;
       }
-      if (flipSummarySub) flipSummarySub.textContent = '0 Added Payroll • Illustrative 50h schedule';
+      if (shiftSummarySub) shiftSummarySub.textContent = '0 Added Payroll • Illustrative 50h schedule';
 
     } else {
-      // 'current' view (Today's Reality)
-      flipCard.setAttribute('data-view', 'current');
-      if (flipTabCurrent) {
-        flipTabCurrent.classList.add('active');
-        flipTabCurrent.setAttribute('aria-selected', 'true');
+      // 'today' mode
+      shiftCard.setAttribute('data-mode', 'today');
+
+      if (shiftViewLabel) shiftViewLabel.textContent = "TODAY'S 50-HR WEEK";
+      if (shiftCaseloadNum) {
+        shiftCaseloadNum.textContent = cases;
+        shiftCaseloadNum.style.color = '#FFFFFF';
       }
-      if (flipTabHive) {
-        flipTabHive.classList.remove('active');
-        flipTabHive.setAttribute('aria-selected', 'false');
+      if (shiftCaseloadUnit) shiftCaseloadUnit.textContent = 'active files / PA';
+      if (shiftCardSub) {
+        shiftCardSub.textContent = '50 hours committed every week';
+      }
+      if (shiftStatusPill) {
+        shiftStatusPill.className = 'card-tag-pill shift-pill-warning';
+        shiftStatusPill.textContent = '🔴 Capacity Bottlenecked • Overwhelmed';
       }
 
-      if (flipCardViewLabel) flipCardViewLabel.textContent = 'WITHOUT CLAIMHIVE (50-HR WEEK)';
-      if (flipCaseloadNum) flipCaseloadNum.textContent = cases;
-      if (flipCaseloadUnit) flipCaseloadUnit.textContent = 'active files / PA';
-      if (flipCardSub) {
-        flipCardSub.textContent = '50 hours committed every week';
-      }
-      if (flipStatusPill) {
-        flipStatusPill.className = 'card-tag-pill flip-badge-warning';
-        flipStatusPill.textContent = '🔴 Capacity Bottlenecked • Overwhelmed';
+      // Visual Time Bar
+      if (shiftBarAdmin) shiftBarAdmin.style.width = `${adminPct}%`;
+      if (shiftBarAdjust) shiftBarAdjust.style.width = `${adjustPct}%`;
+      if (shiftLblAdmin) shiftLblAdmin.textContent = `${adminHours}h Routine Clerical (${adminPct}%)`;
+      if (shiftLblAdjust) {
+        shiftLblAdjust.textContent = `${adjustHours}h Adjusting (${adjustPct}%)`;
+        shiftLblAdjust.style.color = '#CBD5E1';
       }
 
-      if (flipDotAdmin) flipDotAdmin.className = 'hour-ledger-dot warning';
-      if (flipLblAdminName) flipLblAdminName.textContent = 'Clerical, Intake & Hold:';
-      if (flipValAdmin) flipValAdmin.textContent = `${adminHours} hrs / wk`;
+      // 4 Chore Rows: today's reality
+      [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
+        if (row) row.classList.remove('is-delegated');
+      });
 
-      if (flipLblAdjustName) flipLblAdjustName.textContent = 'Fee-Earning Adjusting:';
-      if (flipValAdjust) {
-        flipValAdjust.className = 'hour-ledger-val';
-        flipValAdjust.textContent = `${adjustHours} hrs / wk`;
+      if (shiftTitle1) shiftTitle1.textContent = 'Carrier hold & stall letters';
+      if (shiftBadge1) {
+        shiftBadge1.className = 'shift-badge warning';
+        shiftBadge1.textContent = '10 hrs / wk';
       }
 
-      if (flipBarAdmin) flipBarAdmin.style.width = `${adminPct}%`;
-      if (flipBarAdjust) flipBarAdjust.style.width = `${adjustPct}%`;
-
-      if (flipLblAdmin) flipLblAdmin.textContent = `${adminHours}h Clerical (${adminPct}%)`;
-      if (flipLblAdjust) {
-        flipLblAdjust.textContent = `${adjustHours}h Adjusting (${adjustPct}%)`;
-        flipLblAdjust.style.color = '#CBD5E1';
+      if (shiftTitle2) shiftTitle2.textContent = 'Manual intake & PDF retyping';
+      if (shiftBadge2) {
+        shiftBadge2.className = 'shift-badge warning';
+        shiftBadge2.textContent = '8 hrs / wk';
       }
 
-      // Feature Micro Cards: Today's Reality Pain Points
-      if (thiefBadge1) {
-        thiefBadge1.className = 'console-thief-badge warning';
-        thiefBadge1.textContent = '7 HRS / WK';
+      if (shiftTitle3) shiftTitle3.textContent = 'Photo sorting in truck';
+      if (shiftBadge3) {
+        shiftBadge3.className = 'shift-badge warning';
+        shiftBadge3.textContent = '7 hrs / wk';
       }
-      if (thiefTitle1) thiefTitle1.textContent = 'Photo sorting in truck';
-      if (thiefDesc1) thiefDesc1.textContent = 'Renaming 150 ladder photos, hail marks, and test squares by hand after every inspection.';
 
-      if (thiefBadge2) {
-        thiefBadge2.className = 'console-thief-badge warning';
-        thiefBadge2.textContent = '10 HRS / WK';
+      if (shiftTitle4) shiftTitle4.textContent = '"Any update?" calls & texts';
+      if (shiftBadge4) {
+        shiftBadge4.className = 'shift-badge warning';
+        shiftBadge4.textContent = '7 hrs / wk';
       }
-      if (thiefTitle2) thiefTitle2.textContent = 'Carrier hold & stall letters';
-      if (thiefDesc2) thiefDesc2.textContent = 'Trapped on hold with desk adjusters; tracking statutory reply deadlines on sticky notes.';
 
-      if (thiefBadge3) {
-        thiefBadge3.className = 'console-thief-badge warning';
-        thiefBadge3.textContent = '8 HRS / WK';
+      // Adjusting Row
+      if (shiftValAdjust) shiftValAdjust.textContent = `${adjustHours} hrs / wk`;
+      if (shiftDescAdjust) {
+        shiftDescAdjust.textContent = 'Inspecting, writing scopes, finding gap items, and closing settlements.';
       }
-      if (thiefTitle3) thiefTitle3.textContent = 'Manual intake & retyping';
-      if (thiefDesc3) thiefDesc3.textContent = 'Re-entering policy limits, endorsements, and line items from scanned PDF estimates.';
 
-      if (thiefBadge4) {
-        thiefBadge4.className = 'console-thief-badge warning';
-        thiefBadge4.textContent = '7 HRS / WK';
-      }
-      if (thiefTitle4) thiefTitle4.textContent = 'Repetitive update calls';
-      if (thiefDesc4) thiefDesc4.textContent = 'Answering the same "where\'s my check?" calls and texts from clients and contractors.';
+      // Action Button -> Autopilot Mode
+      if (btnShiftAction) btnShiftAction.className = 'btn-shift-action';
+      if (btnShiftSparkle) btnShiftSparkle.textContent = '✦';
+      if (btnShiftLabel) btnShiftLabel.textContent = 'Hand Routine Busywork to Chip (Autopilot)';
 
-      // Bottom Summary Callout
-      if (flipSummaryPill) flipSummaryPill.className = 'dark-summary-callout-pill current';
-      if (flipSummaryStat) {
-        flipSummaryStat.innerHTML = `⚠️ <span id="summary-reclaimed-hours">${adminHours}</span> Hours Drained by Routine Clerical`;
+      // Summary Pill
+      if (shiftSummaryPill) shiftSummaryPill.className = 'dark-summary-callout-pill current';
+      if (shiftSummaryStat) {
+        shiftSummaryStat.innerHTML = `⚠️ <span id="shift-reclaimed-hours">${adminHours}</span> Hours Drained by Routine Clerical`;
       }
-      if (flipSummarySub) flipSummarySub.textContent = 'Capacity Bottlenecked • Illustrative 50h schedule';
+      if (shiftSummarySub) shiftSummarySub.textContent = 'Capacity Bottlenecked • Illustrative 50h schedule';
     }
   }
 
-  // Toggle Tab Click Handlers
-  if (flipTabCurrent) {
-    flipTabCurrent.addEventListener('click', () => {
-      flipMode = 'current';
-      renderCaseloadConsole();
+  if (btnShiftAction) {
+    btnShiftAction.addEventListener('click', () => {
+      shiftMode = (shiftMode === 'today' ? 'chip' : 'today');
+      renderShiftConsole();
     });
   }
 
-  if (flipTabHive) {
-    flipTabHive.addEventListener('click', () => {
-      flipMode = 'hive';
-      renderCaseloadConsole();
-    });
-  }
-
-  // Slider & Presets
   if (caseloadSlider) {
     caseloadSlider.addEventListener('input', (e) => {
       currentCases = e.target.value;
-      renderCaseloadConsole();
+      renderShiftConsole();
     });
   }
 
   caseloadPresets.forEach(btn => {
     btn.addEventListener('click', () => {
       currentCases = btn.getAttribute('data-cases');
-      renderCaseloadConsole();
+      renderShiftConsole();
     });
   });
 
-  if (flipCard) {
-    renderCaseloadConsole();
+  if (shiftCard) {
+    renderShiftConsole();
   }
 });
 

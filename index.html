@@ -413,119 +413,128 @@
 
         </div>
 
-        <!-- Right Column: Unified Interactive Flip Console -->
+        <!-- Right Column: Interactive Hour-Shift Console (Plan C) -->
         <div class="caseload-console-right">
-          <div class="dark-card flip-card highlight" id="caseload-flip-card" data-view="hive">
+          <div class="dark-card shift-console-card" id="caseload-shift-card" data-mode="today">
             
-            <!-- Segmented Flip Toggle -->
-            <div class="flip-toggle-nav" role="tablist" aria-label="Caseload weekly comparison view toggle">
-              <button type="button" class="flip-toggle-tab" id="flip-tab-current" data-flip="current" role="tab" aria-selected="false">
-                <span class="flip-tab-icon warning">✕</span>
-                <span>Today's Reality</span>
-              </button>
-              <button type="button" class="flip-toggle-tab active" id="flip-tab-hive" data-flip="hive" role="tab" aria-selected="true">
-                <span class="flip-tab-icon gold">✦</span>
-                <span>With ClaimHive</span>
-              </button>
-            </div>
-
-            <!-- Top Metric Header -->
-            <div class="flip-card-head">
+            <!-- Card Header: Mode Label, Number, and Status Badge -->
+            <div class="shift-card-head">
               <div>
-                <span class="dark-card-label" id="flip-card-view-label">WITH CLAIMHIVE (SAME 50-HR WEEK)</span>
+                <span class="dark-card-label" id="shift-view-label">TODAY'S 50-HR WEEK</span>
                 <div class="dark-card-number">
-                  <span id="flip-caseload-num">38</span> <span class="dark-card-unit" id="flip-caseload-unit">active files / PA</span>
+                  <span id="shift-caseload-num">20</span> <span class="dark-card-unit" id="shift-caseload-unit">active files / PA</span>
                 </div>
-                <div class="dark-card-sub" id="flip-card-sub">
-                  <span id="flip-growth-label" style="color: var(--hive-gold-honey); font-weight: 600;">+90% caseload capacity</span> &bull; 0 new staff
+                <div class="dark-card-sub" id="shift-card-sub">
+                  50 hours committed every week
                 </div>
               </div>
               <div>
-                <span id="flip-status-pill" class="card-tag-pill flip-badge-highlight">✦ Uncapped Growth &bull; 0 Added Payroll</span>
+                <span id="shift-status-pill" class="card-tag-pill shift-pill-warning">🔴 Capacity Bottlenecked &bull; Overwhelmed</span>
               </div>
             </div>
 
-            <!-- Hour Breakdown Ledger -->
-            <div class="dark-hour-ledger">
-              <div class="hour-ledger-item">
-                <span class="hour-ledger-name">
-                  <span class="hour-ledger-dot admin" id="flip-dot-admin"></span>
-                  <span id="flip-lbl-admin-name">Reviewing AI Drafts:</span>
-                </span>
-                <span class="hour-ledger-val" id="flip-val-admin">6 hrs / wk</span>
-              </div>
-              <div class="hour-ledger-item">
-                <span class="hour-ledger-name">
-                  <span class="hour-ledger-dot adjusting" id="flip-dot-adjust"></span>
-                  <span id="flip-lbl-adjust-name">Fee-Earning Adjusting:</span>
-                </span>
-                <span class="hour-ledger-val gold" id="flip-val-adjust">44 hrs / wk</span>
-              </div>
-            </div>
-
-            <!-- Time Progress Bar -->
+            <!-- Visual 50-Hour Time Bar -->
             <div class="time-bar-wrap">
               <div class="time-bar">
-                <div class="time-bar-segment-admin" id="flip-bar-admin" style="width: 12%;"></div>
-                <div class="time-bar-segment-adjusting" id="flip-bar-adjust" style="width: 88%;"></div>
+                <div class="time-bar-segment-admin" id="shift-bar-admin" style="width: 72%;"></div>
+                <div class="time-bar-segment-adjusting" id="shift-bar-adjust" style="width: 28%;"></div>
               </div>
               <div class="time-bar-labels">
-                <span id="flip-lbl-admin">6h AI Approvals (12%)</span>
-                <span id="flip-lbl-adjust" style="color: var(--hive-gold-honey); font-weight: 700;">44h Adjusting (88%)</span>
+                <span id="shift-lbl-admin">36h Routine Clerical (72%)</span>
+                <span id="shift-lbl-adjust">14h Adjusting (28%)</span>
               </div>
             </div>
 
-            <!-- 2x2 Dynamic Micro-Grid (Morphs on Toggle) -->
-            <div class="console-thieves-grid" id="flip-thieves-grid" style="margin-top: 1rem;">
+            <!-- The 5-Row Weekly Breakdown Ledger -->
+            <div class="shift-breakdown-list" style="margin-top: 0.85rem;">
               
-              <!-- Item 1: Photo Sorting -->
-              <div class="console-thief-item">
-                <div class="console-thief-top">
-                  <span class="console-thief-badge" id="thief-badge-1">+7 HRS / WK</span>
-                  <span id="thief-icon-1" style="font-size: 0.95rem;">📷</span>
+              <!-- Chore 1: Carrier Hold -->
+              <div class="shift-row chore-row" id="shift-row-1">
+                <div class="shift-row-left">
+                  <span class="shift-row-icon" id="shift-icon-1">⏱️</span>
+                  <div class="shift-row-text">
+                    <div class="shift-row-title" id="shift-title-1">Carrier hold &amp; stall letters</div>
+                    <div class="shift-solution-desc" id="shift-desc-1">Chip tracks statutory deadlines &amp; drafts demand letters directly into your email drafts when desk adjusters stall—you review, add your voice, and send.</div>
+                  </div>
                 </div>
-                <div class="console-thief-title" id="thief-title-1">Zero photo sorting</div>
-                <p class="console-thief-desc" id="thief-desc-1">150 ladder photos &amp; test squares file directly into the claim from your truck.</p>
+                <div class="shift-row-right">
+                  <span class="shift-badge warning" id="shift-badge-1">10 hrs / wk</span>
+                </div>
               </div>
 
-              <!-- Item 2: Carrier Hold -->
-              <div class="console-thief-item">
-                <div class="console-thief-top">
-                  <span class="console-thief-badge" id="thief-badge-2">+10 HRS / WK</span>
-                  <span id="thief-icon-2" style="font-size: 0.95rem;">⚖️</span>
+              <!-- Chore 2: Manual Intake -->
+              <div class="shift-row chore-row" id="shift-row-2">
+                <div class="shift-row-left">
+                  <span class="shift-row-icon" id="shift-icon-2">⚡</span>
+                  <div class="shift-row-text">
+                    <div class="shift-row-title" id="shift-title-2">Manual intake &amp; PDF retyping</div>
+                    <div class="shift-solution-desc" id="shift-desc-2">Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.</div>
+                  </div>
                 </div>
-                <div class="console-thief-title" id="thief-title-2">Carrier hold autopilot</div>
-                <p class="console-thief-desc" id="thief-desc-2">Chip tracks statutory deadlines and drafts demand letters directly into your email drafts when desk adjusters stall—you review, add your voice, and send.</p>
+                <div class="shift-row-right">
+                  <span class="shift-badge warning" id="shift-badge-2">8 hrs / wk</span>
+                </div>
               </div>
 
-              <!-- Item 3: Manual Intake -->
-              <div class="console-thief-item">
-                <div class="console-thief-top">
-                  <span class="console-thief-badge" id="thief-badge-3">+8 HRS / WK</span>
-                  <span id="thief-icon-3" style="font-size: 0.95rem;">⚡</span>
+              <!-- Chore 3: Photo Sorting -->
+              <div class="shift-row chore-row" id="shift-row-3">
+                <div class="shift-row-left">
+                  <span class="shift-row-icon" id="shift-icon-3">📷</span>
+                  <div class="shift-row-text">
+                    <div class="shift-row-title" id="shift-title-3">Photo sorting in truck</div>
+                    <div class="shift-solution-desc" id="shift-desc-3">150 ladder photos &amp; test squares file directly into the claim from your phone.</div>
+                  </div>
                 </div>
-                <div class="console-thief-title" id="thief-title-3">Zero manual intake</div>
-                <p class="console-thief-desc" id="thief-desc-3">Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.</p>
+                <div class="shift-row-right">
+                  <span class="shift-badge warning" id="shift-badge-3">7 hrs / wk</span>
+                </div>
               </div>
 
-              <!-- Item 4: Update Calls -->
-              <div class="console-thief-item">
-                <div class="console-thief-top">
-                  <span class="console-thief-badge" id="thief-badge-4">+7 HRS / WK</span>
-                  <span id="thief-icon-4" style="font-size: 0.95rem;">🛡️</span>
+              <!-- Chore 4: Update Calls -->
+              <div class="shift-row chore-row" id="shift-row-4">
+                <div class="shift-row-left">
+                  <span class="shift-row-icon" id="shift-icon-4">🛡️</span>
+                  <div class="shift-row-text">
+                    <div class="shift-row-title" id="shift-title-4">"Any update?" calls &amp; texts</div>
+                    <div class="shift-solution-desc" id="shift-desc-4">Clients and contractors track live claim milestones in their own secure visual portal.</div>
+                  </div>
                 </div>
-                <div class="console-thief-title" id="thief-title-4">No "any update?" calls</div>
-                <p class="console-thief-desc" id="thief-desc-4">Clients and contractors track live claim milestones in their own secure visual portal.</p>
+                <div class="shift-row-right">
+                  <span class="shift-badge warning" id="shift-badge-4">7 hrs / wk</span>
+                </div>
+              </div>
+
+              <!-- Divider -->
+              <div class="shift-divider"></div>
+
+              <!-- Fee-Earning Adjusting Row (Destination Bucket) -->
+              <div class="shift-row adjusting-row" id="shift-row-adjust">
+                <div class="shift-row-left">
+                  <span class="shift-row-icon gold" id="shift-icon-adjust">⚖️</span>
+                  <div class="shift-row-text">
+                    <div class="shift-row-title gold" id="shift-title-adjust">Fee-Earning Adjusting &amp; Negotiating</div>
+                    <div class="shift-adjust-desc" id="shift-desc-adjust">Inspecting, writing scopes, finding gap items, and closing settlements.</div>
+                  </div>
+                </div>
+                <div class="shift-row-right">
+                  <span class="shift-badge adjust" id="shift-val-adjust">14 hrs / wk</span>
+                </div>
               </div>
 
             </div>
 
-            <!-- Dynamic Bottom Summary Callout -->
-            <div class="dark-summary-callout-pill" id="flip-summary-pill" style="margin-top: 1rem;">
-              <span class="highlight-stat" id="flip-summary-stat">
-                ✦ <span id="summary-reclaimed-hours">30</span> Hours Reclaimed Every Week
+            <!-- Big Action Trigger -->
+            <button type="button" class="btn-shift-action" id="btn-shift-action" aria-label="Delegate administrative busywork to Chip AI Autopilot">
+              <span class="btn-shift-sparkle" id="btn-shift-sparkle">✦</span>
+              <span id="btn-shift-label">Hand Routine Busywork to Chip (Autopilot)</span>
+            </button>
+
+            <!-- Bottom Summary Callout -->
+            <div class="dark-summary-callout-pill current" id="shift-summary-pill" style="margin-top: 0.85rem;">
+              <span class="highlight-stat" id="shift-summary-stat">
+                ⚠️ <span id="shift-reclaimed-hours">36</span> Hours Drained by Routine Clerical
               </span>
-              <span class="sub-note" id="flip-summary-sub">0 Added Payroll &bull; Illustrative 50h schedule</span>
+              <span class="sub-note" id="shift-summary-sub">Capacity Bottlenecked &bull; Illustrative 50h schedule</span>
             </div>
 
           </div>
