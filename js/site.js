@@ -492,28 +492,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const c3Hrs = Math.round(adminHours * 0.20);
       const c4Hrs = Math.round(adminHours * 0.20);
 
-      if (shiftTitle1) shiftTitle1.textContent = '✓ Carrier hold autopilot';
+      if (shiftTitle1) shiftTitle1.innerHTML = '<span class="delegated-check">✓</span> Carrier hold autopilot';
       if (shiftBadge1) {
-        shiftBadge1.className = 'shift-badge delegated';
-        shiftBadge1.textContent = `+${c1Hrs}h Reclaimed`;
+        shiftBadge1.className = 'shift-badge quiet-reclaimed';
+        shiftBadge1.textContent = `Automated • ${c1Hrs}h`;
       }
 
-      if (shiftTitle2) shiftTitle2.textContent = '✓ Zero manual intake (OCR)';
+      if (shiftTitle2) shiftTitle2.innerHTML = '<span class="delegated-check">✓</span> Zero manual intake (OCR)';
       if (shiftBadge2) {
-        shiftBadge2.className = 'shift-badge delegated';
-        shiftBadge2.textContent = `+${c2Hrs}h Reclaimed`;
+        shiftBadge2.className = 'shift-badge quiet-reclaimed';
+        shiftBadge2.textContent = `Automated • ${c2Hrs}h`;
       }
 
-      if (shiftTitle3) shiftTitle3.textContent = '✓ Zero photo sorting';
+      if (shiftTitle3) shiftTitle3.innerHTML = '<span class="delegated-check">✓</span> Zero photo sorting';
       if (shiftBadge3) {
-        shiftBadge3.className = 'shift-badge delegated';
-        shiftBadge3.textContent = `+${c3Hrs}h Reclaimed`;
+        shiftBadge3.className = 'shift-badge quiet-reclaimed';
+        shiftBadge3.textContent = `Automated • ${c3Hrs}h`;
       }
 
-      if (shiftTitle4) shiftTitle4.textContent = '✓ No "any update?" calls';
+      if (shiftTitle4) shiftTitle4.innerHTML = '<span class="delegated-check">✓</span> No "any update?" calls';
       if (shiftBadge4) {
-        shiftBadge4.className = 'shift-badge delegated';
-        shiftBadge4.textContent = `+${c4Hrs}h Reclaimed`;
+        shiftBadge4.className = 'shift-badge quiet-reclaimed';
+        shiftBadge4.textContent = `Automated • ${c4Hrs}h`;
       }
 
       // Adjusting Row (Money-Making Engine Unleashed)
