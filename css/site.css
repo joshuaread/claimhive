@@ -3105,9 +3105,9 @@
 }
 
 .shift-console-card[data-mode="chip"] .shift-aha-callout.chip {
-  background: rgba(15, 18, 24, 0.1);
-  border: 1.5px solid rgba(15, 18, 24, 0.22);
-  box-shadow: none;
+  background: linear-gradient(135deg, #F5BA42 0%, #EEAF28 45%, #D99F16 100%);
+  border: 1.5px solid #FDE68A;
+  box-shadow: 0 12px 40px rgba(217, 162, 27, 0.3);
 }
 
 .aha-lead-badge {
@@ -3645,3 +3645,257 @@
 
 
 
+
+/* CASELOAD CONVERSATIONAL HEADER */
+.conversational-header {
+  padding: 1rem 1rem 2rem 1rem;
+}
+.conversational-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+}
+.conv-line {
+  line-height: 1.4;
+}
+.conv-line-1 {
+  font-size: clamp(0.875rem, 3vw, 1.05rem);
+  color: var(--hive-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.conv-line-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.2rem 0;
+  flex-wrap: wrap;
+}
+.conv-line-3 {
+  font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+  color: #F87171; /* Warning red to match the original pill vibe */
+  font-weight: 600;
+}
+
+.caseload-btn-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.caseload-pop-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+  color: #FFFFFF;
+  font-family: var(--hive-font-heading);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+  padding: 0.25rem 1rem 0.25rem 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+.caseload-pop-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+.dropdown-icon {
+  color: #9AA5B8;
+  transition: color 0.2s;
+  margin-top: 0.2rem;
+}
+.caseload-pop-btn:hover .dropdown-icon {
+  color: #FFFFFF;
+}
+
+.caseload-pop-btn.chip-mode {
+  background: transparent;
+  border-color: transparent;
+  color: var(--hive-gold-honey);
+  box-shadow: none;
+  cursor: default;
+  padding: 0;
+  font-size: clamp(2rem, 4.5vw, 2.5rem);
+}
+.caseload-pop-btn.chip-mode:hover {
+  transform: none;
+  background: transparent;
+}
+.caseload-pop-btn.chip-mode .dropdown-icon {
+  display: none;
+}
+
+.conv-highlight {
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-family: var(--hive-font-heading);
+}
+
+/* DIAL POPUP */
+.caseload-dial-popup {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 320px;
+  background: var(--hive-navy-950);
+  border: 1px solid var(--hive-gold-deep);
+  border-radius: 12px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(217, 162, 27, 0.15);
+  z-index: 9999;
+  text-align: left;
+}
+/* Upward pointing arrow for popup */
+.caseload-dial-popup::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: var(--hive-navy-950);
+  border-top: 1px solid var(--hive-gold-deep);
+  border-left: 1px solid var(--hive-gold-deep);
+}
+
+.caseload-dial-popup.active {
+  display: block;
+  animation: popIn 0.2s ease forwards;
+}
+@keyframes popIn {
+  0% { opacity: 0; transform: translate(-50%, -10px); }
+  100% { opacity: 1; transform: translate(-50%, 0); }
+}
+.caseload-dial-popup-inner {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+.caseload-dial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.caseload-dial-label {
+  font-weight: 700;
+  color: var(--hive-gold-deep);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.popup-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--hive-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 0.5rem;
+}
+.popup-close-btn:hover {
+  color: var(--hive-light);
+}
+
+/* CASELOAD MOBILE UPDATES (Requested in Screenshot 2) */
+@media (max-width: 768px) {
+  .shift-icon-box {
+    display: none !important;
+  }
+  .shift-row-lead {
+    align-items: flex-start;
+  }
+  .shift-badge {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.5rem !important;
+    line-height: 1 !important;
+    min-width: 60px;
+  }
+  .shift-badge .b-val {
+    font-size: 1.35rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 0.2rem;
+  }
+  .shift-badge .b-unit {
+    font-size: 0.65rem !important;
+    opacity: 0.9 !important;
+  }
+}
+
+/* Make AHA STATEMENT larger globally (Requested in Screenshot 3) */
+.aha-statement {
+  font-size: clamp(1.15rem, 3.5vw, 1.4rem) !important;
+  line-height: 1.3 !important;
+}
+.shift-console-card[data-mode="chip"] .aha-statement.gold {
+  font-size: clamp(1.15rem, 3.5vw, 1.4rem) !important;
+}
+
+/* Fix visibility for 6h AI REVIEW meter segment */
+.shift-console-card[data-mode="chip"] .meter-segment.admin {
+  color: #FFFFFF !important;
+}
+.shift-console-card[data-mode="chip"] .meter-segment.admin .meter-val,
+.shift-console-card[data-mode="chip"] .meter-segment.admin .meter-lbl {
+  color: #FFFFFF !important;
+}
+
+/* ====== 10/1 MOBILE & CONTRAST UPDATES ====== */
+
+/* 1. Make the 6h Admin Meter segment wider on mobile so text is legible */
+.shift-console-card[data-mode="chip"] .meter-segment.admin {
+  min-width: 70px !important;
+}
+
+/* 2. Beta CTA Button Contrast (Chip Mode)
+   Since the box above it is now bright yellow, this needs to be dark to pop! */
+.btn-card-beta-cta {
+  background: var(--hive-navy-950) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(15, 18, 31, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  transition: all 0.2s ease;
+}
+.btn-card-beta-cta:hover {
+  background: #000000 !important;
+  border-color: rgba(217, 162, 27, 0.5) !important; /* subtle gold glow on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(217, 162, 27, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 3. Make Today Mode Button "Awake" */
+.btn-shift-action {
+  background: linear-gradient(135deg, #FDE68A 0%, #F5BA42 50%, #EEAF28 100%) !important;
+  color: #0F1218 !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(245, 186, 66, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.2s ease;
+}
+.btn-shift-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245, 186, 66, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Let the adjusting meter segment dynamically fill the remaining space */
+.meter-segment.adjusting {
+  flex-grow: 1 !important;
+  width: auto !important;
+}

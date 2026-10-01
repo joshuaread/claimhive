@@ -390,10 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const meterLblAdmin = document.getElementById('meter-lbl-admin');
   const meterValAdjust = document.getElementById('meter-val-adjust');
   const meterLblAdjust = document.getElementById('meter-lbl-adjust');
-  const telemetryStatusLine = document.getElementById('telemetry-status-line');
-  const telemetryDot = document.getElementById('telemetry-dot');
-  const telemetryMsg = document.getElementById('telemetry-msg');
-
+      
   const shiftRow1 = document.getElementById('shift-row-1');
   const shiftRow2 = document.getElementById('shift-row-2');
   const shiftRow3 = document.getElementById('shift-row-3');
@@ -412,12 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const shiftBadge4 = document.getElementById('shift-badge-4');
   const shiftDesc4 = document.getElementById('shift-desc-4');
 
-  const adjustTopTag = document.getElementById('adjust-top-tag');
-  const adjustTagDot = document.getElementById('adjust-tag-dot');
-  const adjustTagText = document.getElementById('adjust-tag-text');
-  const shiftValAdjust = document.getElementById('shift-val-adjust');
-  const shiftValAdjustSub = document.getElementById('shift-val-adjust-sub');
-
+          
   const shiftAhaCallout = document.getElementById('shift-aha-callout');
   const ahaLeadBadge = document.getElementById('aha-lead-badge');
   const ahaBadgeIcon = document.getElementById('aha-badge-icon');
@@ -433,10 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnClimaxBeta = document.getElementById('btn-climax-beta');
   const btnToggleBack = document.getElementById('btn-toggle-back');
 
-  const shiftSummaryPill = document.getElementById('shift-summary-pill');
-  const shiftSummaryStat = document.getElementById('shift-summary-stat');
-  const shiftSummarySub = document.getElementById('shift-summary-sub');
-
+      
   let shiftMode = 'today'; // 'today' or 'chip'
   let currentCases = 20;
 
@@ -473,36 +462,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!shiftCard) return;
 
-    if (shiftMode === 'chip') {
+    
+      
+      if (shiftMode === 'chip') {
       shiftCard.setAttribute('data-mode', 'chip');
 
-      if (shiftViewLabel) shiftViewLabel.textContent = 'WITH CLAIMHIVE (SAME 50-HR WEEK)';
-      if (shiftCaseloadNum) {
-        shiftCaseloadNum.textContent = projectedCases;
-        shiftCaseloadNum.style.color = 'var(--hive-gold-honey)';
+      const statementPrefix = document.getElementById('statement-prefix');
+      const statementMid = document.getElementById('statement-mid');
+            if (statementPrefix) statementPrefix.textContent = "With ClaimHive, that same 50-hour week lets you handle";
+      if (statementMid) statementMid.textContent = "active claims";
+      
+      const caseloadBtn = document.getElementById('shift-caseload-num');
+      const caseloadBtnVal = document.getElementById('caseload-btn-val');
+      if (caseloadBtnVal) {
+        caseloadBtnVal.textContent = projectedCases;
       }
-      if (shiftCaseloadUnit) shiftCaseloadUnit.textContent = 'active files / PA';
-      if (shiftCardSub) {
-        shiftCardSub.innerHTML = `<span style="color: var(--hive-gold-honey); font-weight: 600;">+${growthPct}% caseload capacity</span> &bull; 0 new staff`;
+      if (caseloadBtn) {
+        caseloadBtn.className = 'caseload-pop-btn chip-mode';
       }
-      if (shiftStatusPill) {
-        shiftStatusPill.className = 'card-tag-pill shift-pill-gold';
-        shiftStatusPill.textContent = '✦ 88% Fee-Earning Engine';
-      }
-
-      // Telemetry Ratio Meter (Musk First-Principles)
+// Telemetry Ratio Meter (Musk First-Principles)
       if (shiftBarAdmin) shiftBarAdmin.style.width = `${adminHivePct}%`;
-      if (shiftBarAdjust) shiftBarAdjust.style.width = `${adjustHivePct}%`;
+      
       if (meterValAdmin) meterValAdmin.textContent = `${adminHive}h`;
       if (meterLblAdmin) meterLblAdmin.textContent = 'AI Review';
       if (meterValAdjust) meterValAdjust.textContent = `${adjustHive}h`;
       if (meterLblAdjust) meterLblAdjust.textContent = 'Fee Adjusting ($$$)';
-
-      if (telemetryStatusLine) telemetryStatusLine.className = 'telemetry-status-line chip';
-      if (telemetryDot) telemetryDot.textContent = '✦';
-      if (telemetryMsg) {
-        telemetryMsg.innerHTML = `<strong>88% of your week is shifted directly to fee-earning adjusting.</strong> +$${extraFeeRevenue.toLocaleString()}/yr added fee capacity.`;
-      }
 
       // 4 Chore Rows: marked as delegated
       [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
@@ -517,47 +501,32 @@ document.addEventListener('DOMContentLoaded', () => {
       if (shiftTitle1) shiftTitle1.innerHTML = '<span class="delegated-check">✓</span> Carrier hold autopilot';
       if (shiftBadge1) {
         shiftBadge1.className = 'shift-badge quiet-reclaimed';
-        shiftBadge1.textContent = `Automated • ${c1Hrs}h`;
+        shiftBadge1.innerHTML = `<span class=\"b-val\">Automated</span> <span class=\"b-unit\">${c1Hrs}h</span>`;
       }
       if (shiftDesc1) shiftDesc1.textContent = 'Chip auto-tracks statutory deadlines (FL § 627 / TX § 542) & queues ready-to-send bad-faith demands in drafts.';
 
       if (shiftTitle2) shiftTitle2.innerHTML = '<span class="delegated-check">✓</span> Zero manual intake (OCR)';
       if (shiftBadge2) {
         shiftBadge2.className = 'shift-badge quiet-reclaimed';
-        shiftBadge2.textContent = `Automated • ${c2Hrs}h`;
+        shiftBadge2.innerHTML = `<span class=\"b-val\">Automated</span> <span class=\"b-unit\">${c2Hrs}h</span>`;
       }
       if (shiftDesc2) shiftDesc2.textContent = 'OCR parses policy PDFs, contractor bids & checks into claim fields in 30 seconds.';
 
       if (shiftTitle3) shiftTitle3.innerHTML = '<span class="delegated-check">✓</span> Zero photo sorting';
       if (shiftBadge3) {
         shiftBadge3.className = 'shift-badge quiet-reclaimed';
-        shiftBadge3.textContent = `Automated • ${c3Hrs}h`;
+        shiftBadge3.innerHTML = `<span class=\"b-val\">Automated</span> <span class=\"b-unit\">${c3Hrs}h</span>`;
       }
       if (shiftDesc3) shiftDesc3.textContent = 'Photos auto-filed by slope, elevation & test square from phone before truck engine starts.';
 
       if (shiftTitle4) shiftTitle4.innerHTML = '<span class="delegated-check">✓</span> Zero "update?" interruptions';
       if (shiftBadge4) {
         shiftBadge4.className = 'shift-badge quiet-reclaimed';
-        shiftBadge4.textContent = `Automated • ${c4Hrs}h`;
+        shiftBadge4.innerHTML = `<span class=\"b-val\">Automated</span> <span class=\"b-unit\">${c4Hrs}h</span>`;
       }
       if (shiftDesc4) shiftDesc4.textContent = 'Live visual client portal answers homeowner questions 24/7—no more 8 PM panicked calls.';
 
       // Adjusting Row (Money-Making Engine Unleashed)
-      if (adjustTopTag) adjustTopTag.className = 'adjusting-row-top-tag chip';
-      if (adjustTagDot) {
-        adjustTagDot.textContent = '✦';
-        adjustTagDot.className = 'adjusting-tag-dot gold';
-      }
-      if (adjustTagText) adjustTagText.textContent = 'YOUR REVENUE-GENERATING ENGINE (UNLEASHED)';
-
-      if (shiftValAdjust) {
-        shiftValAdjust.textContent = `${adjustHive} hrs / wk`;
-        shiftValAdjust.className = 'shift-badge adjust delegated';
-      }
-      if (shiftValAdjustSub) {
-        shiftValAdjustSub.textContent = `${adjustHivePct}% of week • 3x boost`;
-        shiftValAdjustSub.className = 'shift-badge-sub gold';
-      }
 
       if (shiftAhaCallout) shiftAhaCallout.className = 'shift-aha-callout chip';
       if (ahaLeadBadge) ahaLeadBadge.className = 'aha-lead-badge gold';
@@ -566,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (ahaStatement) {
         ahaStatement.className = 'aha-statement gold';
-        ahaStatement.innerHTML = `✦ +${reclaimedHours} hours shifted directly to high-margin claims adjusting.`;
+        ahaStatement.innerHTML = `+${reclaimedHours} hours shifted directly to high-margin claims adjusting.`;
       }
       if (ahaSubtext) {
         ahaSubtext.className = 'aha-subtext gold';
@@ -583,44 +552,30 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnShiftAction) btnShiftAction.style.display = 'none';
       if (shiftClimaxCtaBox) shiftClimaxCtaBox.style.display = 'block';
 
-      // Summary Pill
-      if (shiftSummaryPill) shiftSummaryPill.className = 'dark-summary-callout-pill';
-      if (shiftSummaryStat) {
-        shiftSummaryStat.innerHTML = `✦ <span id="shift-reclaimed-hours">${reclaimedHours}</span> Hours Shifted to Revenue • +$${extraFeeRevenue.toLocaleString()}/yr Unlocked`;
-      }
-      if (shiftSummarySub) shiftSummarySub.textContent = '0 Added Staff Payroll • Illustrative 50h schedule';
-
-    } else {
+      } else {
       // 'today' mode
       shiftCard.setAttribute('data-mode', 'today');
 
-      if (shiftViewLabel) shiftViewLabel.textContent = "TODAY'S 50-HR WEEK";
-      if (shiftCaseloadNum) {
-        shiftCaseloadNum.textContent = cases;
-        shiftCaseloadNum.style.color = '#FFFFFF';
+      const statementPrefix = document.getElementById('statement-prefix');
+      const statementMid = document.getElementById('statement-mid');
+            if (statementPrefix) statementPrefix.textContent = "A typical 50-hour workweek handling";
+      if (statementMid) statementMid.textContent = "active claims";
+      
+      const caseloadBtn = document.getElementById('shift-caseload-num');
+      const caseloadBtnVal = document.getElementById('caseload-btn-val');
+      if (caseloadBtnVal) {
+        caseloadBtnVal.textContent = cases;
       }
-      if (shiftCaseloadUnit) shiftCaseloadUnit.textContent = 'active files / PA';
-      if (shiftCardSub) {
-        shiftCardSub.textContent = '50 hours committed every week';
+      if (caseloadBtn) {
+        caseloadBtn.className = 'caseload-pop-btn';
       }
-      if (shiftStatusPill) {
-        shiftStatusPill.className = 'card-tag-pill shift-pill-warning';
-        shiftStatusPill.textContent = '🔴 72% Unpaid Overhead';
-      }
-
-      // Telemetry Ratio Meter (Musk First-Principles)
+// Telemetry Ratio Meter (Musk First-Principles)
       if (shiftBarAdmin) shiftBarAdmin.style.width = `${adminPct}%`;
-      if (shiftBarAdjust) shiftBarAdjust.style.width = `${adjustPct}%`;
+      
       if (meterValAdmin) meterValAdmin.textContent = `${adminHours}h`;
       if (meterLblAdmin) meterLblAdmin.textContent = `Unpaid Admin ($0)`;
       if (meterValAdjust) meterValAdjust.textContent = `${adjustHours}h`;
       if (meterLblAdjust) meterLblAdjust.textContent = `Revenue ($$$)`;
-
-      if (telemetryStatusLine) telemetryStatusLine.className = 'telemetry-status-line today';
-      if (telemetryDot) telemetryDot.textContent = '⚠️';
-      if (telemetryMsg) {
-        telemetryMsg.innerHTML = `<strong>72% of your week earns $0 in fees.</strong> Your entire income depends on that ${adjustHours}-hour sliver.`;
-      }
 
       // 4 Chore Rows: today's reality
       [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
@@ -635,47 +590,32 @@ document.addEventListener('DOMContentLoaded', () => {
       if (shiftTitle1) shiftTitle1.textContent = 'Carrier hold & stall letters';
       if (shiftBadge1) {
         shiftBadge1.className = 'shift-badge warning';
-        shiftBadge1.textContent = `${c1HrsToday} hrs / wk`;
+        shiftBadge1.innerHTML = `<span class=\"b-val\">${c1HrsToday}</span> <span class=\"b-unit\">hrs / wk</span>`;
       }
       if (shiftDesc1) shiftDesc1.textContent = 'Chasing desk adjusters, sitting on hold, and drafting routine status letters.';
 
       if (shiftTitle2) shiftTitle2.textContent = 'Manual intake & PDF retyping';
       if (shiftBadge2) {
         shiftBadge2.className = 'shift-badge warning';
-        shiftBadge2.textContent = `${c2HrsToday} hrs / wk`;
+        shiftBadge2.innerHTML = `<span class=\"b-val\">${c2HrsToday}</span> <span class=\"b-unit\">hrs / wk</span>`;
       }
       if (shiftDesc2) shiftDesc2.textContent = 'Retyping policy DEC sheets, contractor estimates, and mortgage checks by hand.';
 
       if (shiftTitle3) shiftTitle3.textContent = 'Photo sorting in truck';
       if (shiftBadge3) {
         shiftBadge3.className = 'shift-badge warning';
-        shiftBadge3.textContent = `${c3HrsToday} hrs / wk`;
+        shiftBadge3.innerHTML = `<span class=\"b-val\">${c3HrsToday}</span> <span class=\"b-unit\">hrs / wk</span>`;
       }
       if (shiftDesc3) shiftDesc3.textContent = 'Sorting 150+ ladder inspection photos into desktop folders late in the evening.';
 
       if (shiftTitle4) shiftTitle4.textContent = '"Any update?" calls & texts';
       if (shiftBadge4) {
         shiftBadge4.className = 'shift-badge warning';
-        shiftBadge4.textContent = `${c4HrsToday} hrs / wk`;
+        shiftBadge4.innerHTML = `<span class=\"b-val\">${c4HrsToday}</span> <span class=\"b-unit\">hrs / wk</span>`;
       }
       if (shiftDesc4) shiftDesc4.textContent = 'Answering frantic "Any update?" calls and texts from homeowners and contractors.';
 
       // Adjusting Row (Today's Reality - Capped)
-      if (adjustTopTag) adjustTopTag.className = 'adjusting-row-top-tag today';
-      if (adjustTagDot) {
-        adjustTagDot.textContent = '●';
-        adjustTagDot.className = 'adjusting-tag-dot red';
-      }
-      if (adjustTagText) adjustTagText.textContent = 'YOUR ONLY REVENUE-GENERATING HOURS (SEVERELY CAPPED)';
-
-      if (shiftValAdjust) {
-        shiftValAdjust.textContent = `${adjustHours} hrs / wk`;
-        shiftValAdjust.className = 'shift-badge adjust';
-      }
-      if (shiftValAdjustSub) {
-        shiftValAdjustSub.textContent = `${adjustPct}% of week`;
-        shiftValAdjustSub.className = 'shift-badge-sub';
-      }
 
       if (shiftAhaCallout) shiftAhaCallout.className = 'shift-aha-callout today';
       if (ahaLeadBadge) ahaLeadBadge.className = 'aha-lead-badge today';
@@ -684,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (ahaStatement) {
         ahaStatement.className = 'aha-statement';
-        ahaStatement.innerHTML = `You only have <strong>${adjustHours} hours / week</strong> to actually generate revenue.`;
+        ahaStatement.innerHTML = `You only have ${adjustHours} hours / week to actually generate revenue.`;
       }
       if (ahaSubtext) {
         ahaSubtext.className = 'aha-subtext';
@@ -703,13 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btnShiftLabel) btnShiftLabel.textContent = 'Hand Routine Busywork to Chip (See The Shift)';
       if (shiftClimaxCtaBox) shiftClimaxCtaBox.style.display = 'none';
 
-      // Summary Pill
-      if (shiftSummaryPill) shiftSummaryPill.className = 'dark-summary-callout-pill current';
-      if (shiftSummaryStat) {
-        shiftSummaryStat.innerHTML = `⚠️ <span id="shift-reclaimed-hours">${adminHours}</span> Hours Drained by Routine Clerical`;
       }
-      if (shiftSummarySub) shiftSummarySub.textContent = 'Capacity Bottlenecked • Illustrative 50h schedule';
-    }
   }
 
   if (btnShiftAction) {
@@ -747,9 +681,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  
+  const caseloadPopBtn = document.getElementById('shift-caseload-num');
+  const caseloadDialPopup = document.getElementById('caseload-dial-popup');
+  const caseloadPopupClose = document.getElementById('caseload-popup-close');
+
+  if (caseloadPopBtn && caseloadDialPopup) {
+    caseloadPopBtn.addEventListener('click', (e) => {
+      if (shiftMode === 'chip') return; // only toggle in today mode
+      e.stopPropagation();
+      caseloadDialPopup.classList.toggle('active');
+    });
+
+    if (caseloadPopupClose) {
+      caseloadPopupClose.addEventListener('click', () => {
+        caseloadDialPopup.classList.remove('active');
+      });
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!caseloadDialPopup.contains(e.target) && !caseloadPopBtn.contains(e.target)) {
+        caseloadDialPopup.classList.remove('active');
+      }
+    });
+  }
+
   if (shiftCard) {
     renderShiftConsole();
   }
 });
-
-
