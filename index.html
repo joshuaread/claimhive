@@ -351,7 +351,7 @@
       
       <div class="dark-caseload-console">
 
-        <!-- Left Column: Context, Dial & 4 Time Thieves -->
+        <!-- Left Column: Context, Dial & Key Value Takeaways -->
         <div class="caseload-console-left">
           
           <span style="font-family: var(--hive-font-display); font-size: 0.6875rem; font-weight: 700; color: var(--hive-gold-honey); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.4rem;">
@@ -382,147 +382,150 @@
             </div>
           </div>
 
-          <!-- 2x2 Sleek Time-Thief Micro Grid -->
-          <div class="console-thieves-grid">
-            <div class="console-thief-item">
-              <div class="console-thief-top">
-                <span class="console-thief-badge">+7 HRS / WK</span>
-                <span style="color: var(--hive-gold-honey); font-size: 0.95rem;">📷</span>
+          <!-- Key Operational Realities Box -->
+          <div class="caseload-insights-card">
+            <div class="insight-row">
+              <span class="insight-icon">✦</span>
+              <div class="insight-text">
+                <strong>Reclaim 30 hours every week:</strong> Routine clerical drops from 36 hours down to 6 hours of high-leverage review.
               </div>
-              <div class="console-thief-title">Zero photo sorting</div>
-              <p class="console-thief-desc">150 ladder photos &amp; test squares file directly into the claim from your truck.</p>
             </div>
-
-            <div class="console-thief-item">
-              <div class="console-thief-top">
-                <span class="console-thief-badge">+10 HRS / WK</span>
-                <span style="color: var(--hive-gold-honey); font-size: 0.95rem;">⚖️</span>
+            <div class="insight-row">
+              <span class="insight-icon">✦</span>
+              <div class="insight-text">
+                <strong>+90% caseload capacity:</strong> Safely carry nearly twice the active files before hiring another junior adjuster.
               </div>
-              <div class="console-thief-title">Carrier hold autopilot</div>
-              <p class="console-thief-desc">Chip tracks statutory deadlines and drafts demand letters directly into your email drafts when desk adjusters stall—you review, add your voice, and send.</p>
             </div>
-
-            <div class="console-thief-item">
-              <div class="console-thief-top">
-                <span class="console-thief-badge">+8 HRS / WK</span>
-                <span style="color: var(--hive-gold-honey); font-size: 0.95rem;">⚡</span>
+            <div class="insight-row">
+              <span class="insight-icon">✦</span>
+              <div class="insight-text">
+                <strong>Human in the loop:</strong> Chip drafts statutory demands and organizes photos—you review, add your voice, and send.
               </div>
-              <div class="console-thief-title">Zero manual intake</div>
-              <p class="console-thief-desc">Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.</p>
-            </div>
-
-            <div class="console-thief-item">
-              <div class="console-thief-top">
-                <span class="console-thief-badge">+7 HRS / WK</span>
-                <span style="color: var(--hive-gold-honey); font-size: 0.95rem;">🛡️</span>
-              </div>
-              <div class="console-thief-title">No "any update?" calls</div>
-              <p class="console-thief-desc">Clients and contractors track live claim milestones in their own secure visual portal.</p>
             </div>
           </div>
 
-          <!-- Total Time Reclaimed Quick Callout -->
-          <div class="dark-summary-callout-pill">
-            <span class="highlight-stat">
-              ✦ <span id="summary-reclaimed-hours">30</span> Hours Reclaimed Every Week
-            </span>
-            <span class="sub-note">0 Added Payroll &bull; Illustrative 50h schedule</span>
+          <div style="margin-top: 1.25rem;">
+            <a href="index.html#waitlist" class="btn btn-gold" data-open-modal="beta">
+              <span>Request beta access</span>
+              <span class="hive-star-icon">✦</span>
+            </a>
           </div>
 
         </div>
 
-        <!-- Right Column: Two Side-by-Side Comparison Cards -->
+        <!-- Right Column: Unified Interactive Flip Console -->
         <div class="caseload-console-right">
-          <div class="dark-caseload-grid">
+          <div class="dark-card flip-card highlight" id="caseload-flip-card" data-view="hive">
+            
+            <!-- Segmented Flip Toggle -->
+            <div class="flip-toggle-nav" role="tablist" aria-label="Caseload weekly comparison view toggle">
+              <button type="button" class="flip-toggle-tab" id="flip-tab-current" data-flip="current" role="tab" aria-selected="false">
+                <span class="flip-tab-icon warning">✕</span>
+                <span>Today's Reality</span>
+              </button>
+              <button type="button" class="flip-toggle-tab active" id="flip-tab-hive" data-flip="hive" role="tab" aria-selected="true">
+                <span class="flip-tab-icon gold">✦</span>
+                <span>With ClaimHive</span>
+              </button>
+            </div>
 
-            <!-- Card 1: WITHOUT CLAIMHIVE -->
-            <div class="dark-card">
+            <!-- Top Metric Header -->
+            <div class="flip-card-head">
               <div>
-                <span class="dark-card-label">WITHOUT CLAIMHIVE (50-HR WEEK)</span>
+                <span class="dark-card-label" id="flip-card-view-label">WITH CLAIMHIVE (SAME 50-HR WEEK)</span>
                 <div class="dark-card-number">
-                  <span id="caseload-num-current">20</span> <span class="dark-card-unit">active files / PA</span>
+                  <span id="flip-caseload-num">38</span> <span class="dark-card-unit" id="flip-caseload-unit">active files / PA</span>
                 </div>
-                <div class="dark-card-sub">50 hours committed every week</div>
-
-                <!-- Hour Breakdown Ledger -->
-                <div class="dark-hour-ledger">
-                  <div class="hour-ledger-item">
-                    <span class="hour-ledger-name">
-                      <span class="hour-ledger-dot admin"></span>
-                      Clerical, Intake &amp; Hold:
-                    </span>
-                    <span class="hour-ledger-val" id="hours-admin-current">36 hrs / wk</span>
-                  </div>
-                  <div class="hour-ledger-item">
-                    <span class="hour-ledger-name">
-                      <span class="hour-ledger-dot adjusting"></span>
-                      Fee-Earning Adjusting:
-                    </span>
-                    <span class="hour-ledger-val" id="hours-adjust-current">14 hrs / wk</span>
-                  </div>
+                <div class="dark-card-sub" id="flip-card-sub">
+                  <span id="flip-growth-label" style="color: var(--hive-gold-honey); font-weight: 600;">+90% caseload capacity</span> &bull; 0 new staff
                 </div>
               </div>
-
-              <!-- Time Progress Bar -->
-              <div class="time-bar-wrap">
-                <div class="time-bar">
-                  <div class="time-bar-segment-admin" id="bar-admin-current" style="width: 72%;"></div>
-                  <div class="time-bar-segment-adjusting" id="bar-adjust-current" style="width: 28%;"></div>
-                </div>
-                <div class="time-bar-labels">
-                  <span id="lbl-admin-current">36h Clerical (72%)</span>
-                  <span id="lbl-adjust-current">14h Adjusting (28%)</span>
-                </div>
-                <div>
-                  <span class="card-tag-pill">Capacity bottlenecked &bull; Overwhelmed</span>
-                </div>
+              <div>
+                <span id="flip-status-pill" class="card-tag-pill flip-badge-highlight">✦ Uncapped Growth &bull; 0 Added Payroll</span>
               </div>
             </div>
 
-            <!-- Card 2: WITH CLAIMHIVE -->
-            <div class="dark-card highlight">
-              <div>
-                <span class="dark-card-label">WITH CLAIMHIVE (SAME 50-HR WEEK)</span>
-                <div class="dark-card-number">
-                  <span id="caseload-num-hive">38</span> <span class="dark-card-unit" style="color: #F8D79F;">active files / PA</span>
-                </div>
-                <div class="dark-card-sub">
-                  <span id="caseload-growth-label" style="color: var(--hive-gold-honey); font-weight: 600;">+90% caseload capacity</span> &bull; 0 new staff
-                </div>
+            <!-- Hour Breakdown Ledger -->
+            <div class="dark-hour-ledger">
+              <div class="hour-ledger-item">
+                <span class="hour-ledger-name">
+                  <span class="hour-ledger-dot admin" id="flip-dot-admin"></span>
+                  <span id="flip-lbl-admin-name">Reviewing AI Drafts:</span>
+                </span>
+                <span class="hour-ledger-val" id="flip-val-admin">6 hrs / wk</span>
+              </div>
+              <div class="hour-ledger-item">
+                <span class="hour-ledger-name">
+                  <span class="hour-ledger-dot adjusting" id="flip-dot-adjust"></span>
+                  <span id="flip-lbl-adjust-name">Fee-Earning Adjusting:</span>
+                </span>
+                <span class="hour-ledger-val gold" id="flip-val-adjust">44 hrs / wk</span>
+              </div>
+            </div>
 
-                <!-- Hour Breakdown Ledger -->
-                <div class="dark-hour-ledger">
-                  <div class="hour-ledger-item">
-                    <span class="hour-ledger-name">
-                      <span class="hour-ledger-dot admin"></span>
-                      Reviewing AI Drafts:
-                    </span>
-                    <span class="hour-ledger-val" id="hours-admin-hive">6 hrs / wk</span>
-                  </div>
-                  <div class="hour-ledger-item">
-                    <span class="hour-ledger-name">
-                      <span class="hour-ledger-dot adjusting"></span>
-                      Fee-Earning Negotiating:
-                    </span>
-                    <span class="hour-ledger-val gold" id="hours-adjust-hive">44 hrs / wk</span>
-                  </div>
+            <!-- Time Progress Bar -->
+            <div class="time-bar-wrap">
+              <div class="time-bar">
+                <div class="time-bar-segment-admin" id="flip-bar-admin" style="width: 12%;"></div>
+                <div class="time-bar-segment-adjusting" id="flip-bar-adjust" style="width: 88%;"></div>
+              </div>
+              <div class="time-bar-labels">
+                <span id="flip-lbl-admin">6h AI Approvals (12%)</span>
+                <span id="flip-lbl-adjust" style="color: var(--hive-gold-honey); font-weight: 700;">44h Adjusting (88%)</span>
+              </div>
+            </div>
+
+            <!-- 2x2 Dynamic Micro-Grid (Morphs on Toggle) -->
+            <div class="console-thieves-grid" id="flip-thieves-grid" style="margin-top: 1rem;">
+              
+              <!-- Item 1: Photo Sorting -->
+              <div class="console-thief-item">
+                <div class="console-thief-top">
+                  <span class="console-thief-badge" id="thief-badge-1">+7 HRS / WK</span>
+                  <span id="thief-icon-1" style="font-size: 0.95rem;">📷</span>
                 </div>
+                <div class="console-thief-title" id="thief-title-1">Zero photo sorting</div>
+                <p class="console-thief-desc" id="thief-desc-1">150 ladder photos &amp; test squares file directly into the claim from your truck.</p>
               </div>
 
-              <!-- Time Progress Bar -->
-              <div class="time-bar-wrap">
-                <div class="time-bar">
-                  <div class="time-bar-segment-admin" id="bar-admin-hive" style="width: 12%;"></div>
-                  <div class="time-bar-segment-adjusting" id="bar-adjust-hive" style="width: 88%;"></div>
+              <!-- Item 2: Carrier Hold -->
+              <div class="console-thief-item">
+                <div class="console-thief-top">
+                  <span class="console-thief-badge" id="thief-badge-2">+10 HRS / WK</span>
+                  <span id="thief-icon-2" style="font-size: 0.95rem;">⚖️</span>
                 </div>
-                <div class="time-bar-labels">
-                  <span id="lbl-admin-hive">6h AI Approvals (12%)</span>
-                  <span id="lbl-adjust-hive" style="color: var(--hive-gold-honey); font-weight: 700;">44h Adjusting (88%)</span>
-                </div>
-                <div>
-                  <span class="card-tag-pill" style="border-color: rgba(217, 162, 27, 0.35); color: #F8D79F;">✦ <span id="reclaimed-hours-pill">30</span> Hours Reclaimed &bull; Uncapped Growth</span>
-                </div>
+                <div class="console-thief-title" id="thief-title-2">Carrier hold autopilot</div>
+                <p class="console-thief-desc" id="thief-desc-2">Chip tracks statutory deadlines and drafts demand letters directly into your email drafts when desk adjusters stall—you review, add your voice, and send.</p>
               </div>
+
+              <!-- Item 3: Manual Intake -->
+              <div class="console-thief-item">
+                <div class="console-thief-top">
+                  <span class="console-thief-badge" id="thief-badge-3">+8 HRS / WK</span>
+                  <span id="thief-icon-3" style="font-size: 0.95rem;">⚡</span>
+                </div>
+                <div class="console-thief-title" id="thief-title-3">Zero manual intake</div>
+                <p class="console-thief-desc" id="thief-desc-3">Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.</p>
+              </div>
+
+              <!-- Item 4: Update Calls -->
+              <div class="console-thief-item">
+                <div class="console-thief-top">
+                  <span class="console-thief-badge" id="thief-badge-4">+7 HRS / WK</span>
+                  <span id="thief-icon-4" style="font-size: 0.95rem;">🛡️</span>
+                </div>
+                <div class="console-thief-title" id="thief-title-4">No "any update?" calls</div>
+                <p class="console-thief-desc" id="thief-desc-4">Clients and contractors track live claim milestones in their own secure visual portal.</p>
+              </div>
+
+            </div>
+
+            <!-- Dynamic Bottom Summary Callout -->
+            <div class="dark-summary-callout-pill" id="flip-summary-pill" style="margin-top: 1rem;">
+              <span class="highlight-stat" id="flip-summary-stat">
+                ✦ <span id="summary-reclaimed-hours">30</span> Hours Reclaimed Every Week
+              </span>
+              <span class="sub-note" id="flip-summary-sub">0 Added Payroll &bull; Illustrative 50h schedule</span>
             </div>
 
           </div>

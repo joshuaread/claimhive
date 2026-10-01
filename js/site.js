@@ -369,31 +369,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 9. Interactive Caseload & Time Dial Engine
+  // 9. Interactive Caseload & Time Flip Console Engine
   const caseloadSlider = document.getElementById('caseload-slider-input');
   const caseloadSliderVal = document.getElementById('caseload-slider-val');
   const caseloadPresets = document.querySelectorAll('.caseload-preset-btn');
-  const caseloadNumCurrent = document.getElementById('caseload-num-current');
-  const caseloadNumHive = document.getElementById('caseload-num-hive');
-  const caseloadGrowthLabel = document.getElementById('caseload-growth-label');
-  const hoursAdminCurrent = document.getElementById('hours-admin-current');
-  const hoursAdjustCurrent = document.getElementById('hours-adjust-current');
-  const barAdminCurrent = document.getElementById('bar-admin-current');
-  const barAdjustCurrent = document.getElementById('bar-adjust-current');
-  const lblAdminCurrent = document.getElementById('lbl-admin-current');
-  const lblAdjustCurrent = document.getElementById('lbl-adjust-current');
-  const hoursAdminHive = document.getElementById('hours-admin-hive');
-  const hoursAdjustHive = document.getElementById('hours-adjust-hive');
-  const barAdminHive = document.getElementById('bar-admin-hive');
-  const barAdjustHive = document.getElementById('bar-adjust-hive');
-  const lblAdminHive = document.getElementById('lbl-admin-hive');
-  const lblAdjustHive = document.getElementById('lbl-adjust-hive');
-  const reclaimedHoursPill = document.getElementById('reclaimed-hours-pill');
-  const summaryReclaimedHours = document.getElementById('summary-reclaimed-hours');
+  const flipCard = document.getElementById('caseload-flip-card');
+  const flipTabCurrent = document.getElementById('flip-tab-current');
+  const flipTabHive = document.getElementById('flip-tab-hive');
 
-  function updateCaseloadDial(cases) {
-    cases = parseInt(cases, 10);
-    if (isNaN(cases)) return;
+  // Dynamic Card Elements
+  const flipCardViewLabel = document.getElementById('flip-card-view-label');
+  const flipCaseloadNum = document.getElementById('flip-caseload-num');
+  const flipCaseloadUnit = document.getElementById('flip-caseload-unit');
+  const flipCardSub = document.getElementById('flip-card-sub');
+  const flipStatusPill = document.getElementById('flip-status-pill');
+
+  const flipDotAdmin = document.getElementById('flip-dot-admin');
+  const flipLblAdminName = document.getElementById('flip-lbl-admin-name');
+  const flipValAdmin = document.getElementById('flip-val-admin');
+  const flipLblAdjustName = document.getElementById('flip-lbl-adjust-name');
+  const flipValAdjust = document.getElementById('flip-val-adjust');
+
+  const flipBarAdmin = document.getElementById('flip-bar-admin');
+  const flipBarAdjust = document.getElementById('flip-bar-adjust');
+  const flipLblAdmin = document.getElementById('flip-lbl-admin');
+  const flipLblAdjust = document.getElementById('flip-lbl-adjust');
+
+  const thiefBadge1 = document.getElementById('thief-badge-1');
+  const thiefTitle1 = document.getElementById('thief-title-1');
+  const thiefDesc1 = document.getElementById('thief-desc-1');
+
+  const thiefBadge2 = document.getElementById('thief-badge-2');
+  const thiefTitle2 = document.getElementById('thief-title-2');
+  const thiefDesc2 = document.getElementById('thief-desc-2');
+
+  const thiefBadge3 = document.getElementById('thief-badge-3');
+  const thiefTitle3 = document.getElementById('thief-title-3');
+  const thiefDesc3 = document.getElementById('thief-desc-3');
+
+  const thiefBadge4 = document.getElementById('thief-badge-4');
+  const thiefTitle4 = document.getElementById('thief-title-4');
+  const thiefDesc4 = document.getElementById('thief-desc-4');
+
+  const flipSummaryPill = document.getElementById('flip-summary-pill');
+  const flipSummaryStat = document.getElementById('flip-summary-stat');
+  const flipSummarySub = document.getElementById('flip-summary-sub');
+
+  let currentCases = 20;
+  let flipMode = 'hive'; // 'hive' or 'current'
+
+  function renderCaseloadConsole() {
+    const cases = parseInt(currentCases, 10) || 20;
 
     if (caseloadSlider && caseloadSlider.value != cases) caseloadSlider.value = cases;
     if (caseloadSliderVal) caseloadSliderVal.textContent = `${cases} Active Files`;
@@ -403,13 +429,13 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.toggle('active', btnCases === cases);
     });
 
-    // Realistic public adjusting time model on a standard 50-hour week
+    // Model: standard 50-hour week for public adjusters
     const adminHours = Math.min(43, Math.max(18, Math.round(cases * 1.8)));
     const adjustHours = 50 - adminHours;
     const adminPct = Math.round((adminHours / 50) * 100);
     const adjustPct = 100 - adminPct;
 
-    // With ClaimHive: 83% reduction in routine clerical through automation
+    // With ClaimHive: 83% reduction in repetitive admin
     const adminHive = Math.max(4, Math.round(adminHours * 0.17));
     const adjustHive = 50 - adminHive;
     const adminHivePct = Math.round((adminHive / 50) * 100);
@@ -419,41 +445,197 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectedCases = Math.round(cases * 1.9);
     const growthPct = Math.round(((projectedCases - cases) / cases) * 100);
 
-    if (caseloadNumCurrent) caseloadNumCurrent.textContent = cases;
-    if (caseloadNumHive) caseloadNumHive.textContent = projectedCases;
-    if (caseloadGrowthLabel) caseloadGrowthLabel.textContent = `+${growthPct}% caseload capacity`;
+    if (!flipCard) return;
 
-    if (hoursAdminCurrent) hoursAdminCurrent.textContent = `${adminHours} hrs / wk`;
-    if (hoursAdjustCurrent) hoursAdjustCurrent.textContent = `${adjustHours} hrs / wk`;
-    if (barAdminCurrent) barAdminCurrent.style.width = `${adminPct}%`;
-    if (barAdjustCurrent) barAdjustCurrent.style.width = `${adjustPct}%`;
-    if (lblAdminCurrent) lblAdminCurrent.textContent = `${adminHours}h Clerical (${adminPct}%)`;
-    if (lblAdjustCurrent) lblAdjustCurrent.textContent = `${adjustHours}h Adjusting (${adjustPct}%)`;
+    if (flipMode === 'hive') {
+      flipCard.setAttribute('data-view', 'hive');
+      if (flipTabHive) {
+        flipTabHive.classList.add('active');
+        flipTabHive.setAttribute('aria-selected', 'true');
+      }
+      if (flipTabCurrent) {
+        flipTabCurrent.classList.remove('active');
+        flipTabCurrent.setAttribute('aria-selected', 'false');
+      }
 
-    if (hoursAdminHive) hoursAdminHive.textContent = `${adminHive} hrs / wk`;
-    if (hoursAdjustHive) hoursAdjustHive.textContent = `${adjustHive} hrs / wk`;
-    if (barAdminHive) barAdminHive.style.width = `${adminHivePct}%`;
-    if (barAdjustHive) barAdjustHive.style.width = `${adjustHivePct}%`;
-    if (lblAdminHive) lblAdminHive.textContent = `${adminHive}h AI Approvals (${adminHivePct}%)`;
-    if (lblAdjustHive) lblAdjustHive.textContent = `${adjustHive}h Adjusting (${adjustHivePct}%)`;
+      if (flipCardViewLabel) flipCardViewLabel.textContent = 'WITH CLAIMHIVE (SAME 50-HR WEEK)';
+      if (flipCaseloadNum) flipCaseloadNum.textContent = projectedCases;
+      if (flipCaseloadUnit) flipCaseloadUnit.textContent = 'active files / PA';
+      if (flipCardSub) {
+        flipCardSub.innerHTML = `<span style="color: var(--hive-gold-honey); font-weight: 600;">+${growthPct}% caseload capacity</span> &bull; 0 new staff`;
+      }
+      if (flipStatusPill) {
+        flipStatusPill.className = 'card-tag-pill flip-badge-highlight';
+        flipStatusPill.textContent = '✦ Uncapped Growth • 0 Added Payroll';
+      }
 
-    if (reclaimedHoursPill) reclaimedHoursPill.textContent = reclaimedHours;
-    if (summaryReclaimedHours) summaryReclaimedHours.textContent = reclaimedHours;
+      if (flipDotAdmin) flipDotAdmin.className = 'hour-ledger-dot admin';
+      if (flipLblAdminName) flipLblAdminName.textContent = 'Reviewing AI Drafts:';
+      if (flipValAdmin) flipValAdmin.textContent = `${adminHive} hrs / wk`;
+
+      if (flipLblAdjustName) flipLblAdjustName.textContent = 'Fee-Earning Adjusting:';
+      if (flipValAdjust) {
+        flipValAdjust.className = 'hour-ledger-val gold';
+        flipValAdjust.textContent = `${adjustHive} hrs / wk`;
+      }
+
+      if (flipBarAdmin) flipBarAdmin.style.width = `${adminHivePct}%`;
+      if (flipBarAdjust) flipBarAdjust.style.width = `${adjustHivePct}%`;
+
+      if (flipLblAdmin) flipLblAdmin.textContent = `${adminHive}h AI Approvals (${adminHivePct}%)`;
+      if (flipLblAdjust) {
+        flipLblAdjust.textContent = `${adjustHive}h Adjusting (${adjustHivePct}%)`;
+        flipLblAdjust.style.color = 'var(--hive-gold-honey)';
+      }
+
+      // Feature Micro Cards: ClaimHive Solutions
+      if (thiefBadge1) {
+        thiefBadge1.className = 'console-thief-badge';
+        thiefBadge1.textContent = '+7 HRS / WK';
+      }
+      if (thiefTitle1) thiefTitle1.textContent = 'Zero photo sorting';
+      if (thiefDesc1) thiefDesc1.textContent = '150 ladder photos & test squares file directly into the claim from your truck.';
+
+      if (thiefBadge2) {
+        thiefBadge2.className = 'console-thief-badge';
+        thiefBadge2.textContent = '+10 HRS / WK';
+      }
+      if (thiefTitle2) thiefTitle2.textContent = 'Carrier hold autopilot';
+      if (thiefDesc2) thiefDesc2.textContent = 'Chip tracks statutory deadlines and drafts demand letters directly into your email drafts when desk adjusters stall—you review, add your voice, and send.';
+
+      if (thiefBadge3) {
+        thiefBadge3.className = 'console-thief-badge';
+        thiefBadge3.textContent = '+8 HRS / WK';
+      }
+      if (thiefTitle3) thiefTitle3.textContent = 'Zero manual intake';
+      if (thiefDesc3) thiefDesc3.textContent = 'Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.';
+
+      if (thiefBadge4) {
+        thiefBadge4.className = 'console-thief-badge';
+        thiefBadge4.textContent = '+7 HRS / WK';
+      }
+      if (thiefTitle4) thiefTitle4.textContent = 'No "any update?" calls';
+      if (thiefDesc4) thiefDesc4.textContent = 'Clients and contractors track live claim milestones in their own secure visual portal.';
+
+      // Bottom Summary Callout
+      if (flipSummaryPill) flipSummaryPill.className = 'dark-summary-callout-pill';
+      if (flipSummaryStat) {
+        flipSummaryStat.innerHTML = `✦ <span id="summary-reclaimed-hours">${reclaimedHours}</span> Hours Reclaimed Every Week`;
+      }
+      if (flipSummarySub) flipSummarySub.textContent = '0 Added Payroll • Illustrative 50h schedule';
+
+    } else {
+      // 'current' view (Today's Reality)
+      flipCard.setAttribute('data-view', 'current');
+      if (flipTabCurrent) {
+        flipTabCurrent.classList.add('active');
+        flipTabCurrent.setAttribute('aria-selected', 'true');
+      }
+      if (flipTabHive) {
+        flipTabHive.classList.remove('active');
+        flipTabHive.setAttribute('aria-selected', 'false');
+      }
+
+      if (flipCardViewLabel) flipCardViewLabel.textContent = 'WITHOUT CLAIMHIVE (50-HR WEEK)';
+      if (flipCaseloadNum) flipCaseloadNum.textContent = cases;
+      if (flipCaseloadUnit) flipCaseloadUnit.textContent = 'active files / PA';
+      if (flipCardSub) {
+        flipCardSub.textContent = '50 hours committed every week';
+      }
+      if (flipStatusPill) {
+        flipStatusPill.className = 'card-tag-pill flip-badge-warning';
+        flipStatusPill.textContent = '🔴 Capacity Bottlenecked • Overwhelmed';
+      }
+
+      if (flipDotAdmin) flipDotAdmin.className = 'hour-ledger-dot warning';
+      if (flipLblAdminName) flipLblAdminName.textContent = 'Clerical, Intake & Hold:';
+      if (flipValAdmin) flipValAdmin.textContent = `${adminHours} hrs / wk`;
+
+      if (flipLblAdjustName) flipLblAdjustName.textContent = 'Fee-Earning Adjusting:';
+      if (flipValAdjust) {
+        flipValAdjust.className = 'hour-ledger-val';
+        flipValAdjust.textContent = `${adjustHours} hrs / wk`;
+      }
+
+      if (flipBarAdmin) flipBarAdmin.style.width = `${adminPct}%`;
+      if (flipBarAdjust) flipBarAdjust.style.width = `${adjustPct}%`;
+
+      if (flipLblAdmin) flipLblAdmin.textContent = `${adminHours}h Clerical (${adminPct}%)`;
+      if (flipLblAdjust) {
+        flipLblAdjust.textContent = `${adjustHours}h Adjusting (${adjustPct}%)`;
+        flipLblAdjust.style.color = '#CBD5E1';
+      }
+
+      // Feature Micro Cards: Today's Reality Pain Points
+      if (thiefBadge1) {
+        thiefBadge1.className = 'console-thief-badge warning';
+        thiefBadge1.textContent = '7 HRS / WK';
+      }
+      if (thiefTitle1) thiefTitle1.textContent = 'Photo sorting in truck';
+      if (thiefDesc1) thiefDesc1.textContent = 'Renaming 150 ladder photos, hail marks, and test squares by hand after every inspection.';
+
+      if (thiefBadge2) {
+        thiefBadge2.className = 'console-thief-badge warning';
+        thiefBadge2.textContent = '10 HRS / WK';
+      }
+      if (thiefTitle2) thiefTitle2.textContent = 'Carrier hold & stall letters';
+      if (thiefDesc2) thiefDesc2.textContent = 'Trapped on hold with desk adjusters; tracking statutory reply deadlines on sticky notes.';
+
+      if (thiefBadge3) {
+        thiefBadge3.className = 'console-thief-badge warning';
+        thiefBadge3.textContent = '8 HRS / WK';
+      }
+      if (thiefTitle3) thiefTitle3.textContent = 'Manual intake & retyping';
+      if (thiefDesc3) thiefDesc3.textContent = 'Re-entering policy limits, endorsements, and line items from scanned PDF estimates.';
+
+      if (thiefBadge4) {
+        thiefBadge4.className = 'console-thief-badge warning';
+        thiefBadge4.textContent = '7 HRS / WK';
+      }
+      if (thiefTitle4) thiefTitle4.textContent = 'Repetitive update calls';
+      if (thiefDesc4) thiefDesc4.textContent = 'Answering the same "where\'s my check?" calls and texts from clients and contractors.';
+
+      // Bottom Summary Callout
+      if (flipSummaryPill) flipSummaryPill.className = 'dark-summary-callout-pill current';
+      if (flipSummaryStat) {
+        flipSummaryStat.innerHTML = `⚠️ <span id="summary-reclaimed-hours">${adminHours}</span> Hours Drained by Routine Clerical`;
+      }
+      if (flipSummarySub) flipSummarySub.textContent = 'Capacity Bottlenecked • Illustrative 50h schedule';
+    }
   }
 
+  // Toggle Tab Click Handlers
+  if (flipTabCurrent) {
+    flipTabCurrent.addEventListener('click', () => {
+      flipMode = 'current';
+      renderCaseloadConsole();
+    });
+  }
+
+  if (flipTabHive) {
+    flipTabHive.addEventListener('click', () => {
+      flipMode = 'hive';
+      renderCaseloadConsole();
+    });
+  }
+
+  // Slider & Presets
   if (caseloadSlider) {
-    caseloadSlider.addEventListener('input', (e) => updateCaseloadDial(e.target.value));
+    caseloadSlider.addEventListener('input', (e) => {
+      currentCases = e.target.value;
+      renderCaseloadConsole();
+    });
   }
 
   caseloadPresets.forEach(btn => {
     btn.addEventListener('click', () => {
-      const cases = btn.getAttribute('data-cases');
-      updateCaseloadDial(cases);
+      currentCases = btn.getAttribute('data-cases');
+      renderCaseloadConsole();
     });
   });
 
-  if (caseloadSlider) {
-    updateCaseloadDial(20);
+  if (flipCard) {
+    renderCaseloadConsole();
   }
 });
 
