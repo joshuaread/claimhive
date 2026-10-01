@@ -3,70 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing — $80/Seat/Month Flat | Claim Hive</title>
-  <meta name="description" content="Radically transparent pricing for USA Public Adjusters. $80 per seat / month flat. Policyholders always free. Zero per-claim fees. Founding rate locked through June 30, 2027.">
-  
-  <!-- Fonts: Merriweather, Newsreader, Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <title>Pricing — $80/Seat + Token Usage | ClaimHive</title>
+  <meta name="description" content="Simple, honest pricing. $80 per seat per month plus direct token usage. All 54 AI agents included with zero plan caps. Private Alpha in progress. Beta opens November 1, 2026. GA January 1, 2027.">
+
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Stylesheets -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/site.css">
-  <!-- Favicon -->
+
   <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
-
-  <!-- Open Graph / Social Sharing -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://claimhive.app/pricing.html">
-  <meta property="og:title" content="Transparent Pricing ($80/Seat) — Claim Hive">
-  <meta property="og:description" content="Simple, honest pricing for Public Adjusters. $80/seat/month, policyholders free, unlimited storage, zero base fees, rate locked through June 30, 2027.">
-  <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://claimhive.app/pricing.html">
-  <meta name="twitter:title" content="Transparent Pricing ($80/Seat) — Claim Hive">
-  <meta name="twitter:description" content="Simple, honest pricing for Public Adjusters. $80/seat/month, policyholders free, unlimited storage, zero base fees, rate locked through June 30, 2027.">
-  <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
-
-  <!-- Unified Analytics (Auto-tracks pricing_view) -->
   <script src="js/analytics.js" defer></script>
+  <script src="js/site.js" defer></script>
 </head>
 <body class="bg-serene">
 
-  <!-- TOP ASSURANCE BAR -->
+  <!-- TOP ASSURANCE / SCARCITY STRIP -->
   <div class="top-assurance-bar">
-    <span class="hide-mobile">NO "CONTACT SALES" GIMMICKS &nbsp;•&nbsp;</span>
-    <span>$80/SEAT FLAT • POLICYHOLDERS ALWAYS FREE</span>
+    <span class="hide-mobile">PRIVATE ALPHA IN PROGRESS &nbsp;•&nbsp;</span>
+    <span>REQUEST BETA ACCESS (OPENS NOV 1) &nbsp;•&nbsp; GA JAN 1, 2027</span>
     &nbsp;•&nbsp;
-    <span class="highlight">✦ FOUNDING RATE LOCKED THROUGH JUNE 30, 2027</span>
+    <span class="highlight">✦ 54 AI AGENTS INCLUDED • ZERO PUBLIC MODEL TRAINING</span>
   </div>
 
   <!-- STICKY SITE HEADER -->
   <header class="site-header">
     <div class="container container-wide">
       <nav class="nav-bar">
-        <a href="index.html" class="brand-logo-link">
-          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="brand-logo-img">
+        <a href="index.html" class="brand-logo-link" aria-label="ClaimHive Home">
+          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="brand-logo-img">
         </a>
 
         <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="product.html" class="nav-link">Product</a></li>
           <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
-          <li><a href="security.html" class="nav-link">Security & Trust</a></li>
           <li><a href="about.html" class="nav-link">About Us</a></li>
         </ul>
 
         <div class="nav-actions">
-          <a href="request.html?view=login" class="nav-link hide-mobile" style="font-weight: 600; margin-right: 0.5rem;">Log in</a>
-          <a href="request.html" class="btn btn-sm btn-outline">Join January List</a>
-          <a href="request.html?cohort=alpha" class="btn btn-sm btn-gold">
-            <span>Request Alpha</span>
+          <a href="index.html#waitlist" class="btn btn-sm btn-gold" data-open-modal="beta">
+            <span>Request beta access</span>
             <span class="hive-star-icon">✦</span>
           </a>
           <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
@@ -77,402 +58,371 @@
 
   <!-- MOBILE MENU DRAWER -->
   <div class="mobile-menu-drawer">
-    <a href="product.html" class="nav-link" style="font-size: 1.25rem;">Product Lifecycle</a>
-    <a href="pricing.html" class="nav-link active" style="font-size: 1.25rem;">Pricing ($80/Seat)</a>
-    <a href="security.html" class="nav-link" style="font-size: 1.25rem;">Security & Data Vault</a>
-    <a href="about.html" class="nav-link" style="font-size: 1.25rem;">About Tom & The Team</a>
-    <a href="request.html?view=login" class="nav-link" style="font-size: 1.25rem; font-weight: 700; color: var(--hive-gold-600);">Log In</a>
-    <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
-      <a href="request.html" class="btn btn-lg btn-gold">Request Access</a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="product.html" class="nav-link">Product (Six Hubs)</a>
+    <a href="pricing.html" class="nav-link active">Pricing ($80 + Usage)</a>
+    <a href="about.html" class="nav-link">About Us</a>
+    <div style="margin-top: 1.5rem;">
+      <a href="index.html#waitlist" class="btn btn-lg btn-gold" style="width: 100%; text-align: center;" data-open-modal="beta">
+        Request beta access ✦
+      </a>
     </div>
   </div>
 
   <!-- HERO SECTION -->
-  <section class="page-hero">
+  <section class="hero-spacious" style="padding-bottom: clamp(2rem, 5vw, 4rem); text-align: center;">
     <div class="container container-narrow">
       <span class="badge badge-gold" style="margin-bottom: 1.25rem;">
-        <span class="hive-star-gold">✦</span> RADICALLY TRANSPARENT PRICING
+        ✦ FAIR &amp; TRANSPARENT
       </span>
-      <h1 class="page-hero-title">
+      <h1 class="page-hero-title" style="font-size: clamp(2.25rem, 4.5vw, 3.5rem); color: var(--hive-ink); margin-bottom: 1.25rem;">
         $80 per seat / month.<br>
-        <span style="color: var(--hive-gold-600); font-weight: 400; font-style: italic;">No percentages. No surprises.</span>
+        <span style="color: var(--hive-gold-deep); font-weight: 400; font-style: italic;">Plus token usage.</span>
       </h1>
-      <p class="page-hero-subtitle">
-        We don't take a haircut on your settlement fees, charge per-claim tolls, or force you into an annual contract lock-in. Policyholders and outside experts are always 100% free.
+      <p class="page-hero-subtitle" style="font-size: clamp(1rem, 2vw, 1.1875rem); color: var(--hive-text-secondary); max-width: 680px; margin: 0 auto 2.5rem; line-height: 1.65;">
+        Fair for everyone: light users pay less, power users pay for the power. All 54 AI agents included—no add-ons, no plan caps, and zero percentage surcharges on your fees.
+      </p>
+
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#estimator" class="btn btn-lg btn-gold">
+          <span>Estimate your firm's cost</span>
+          <span class="hive-star-icon">✦</span>
+        </a>
+        <a href="#competitors" class="btn btn-lg btn-outline">
+          <span>Compare competitor pricing</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN VALUE CARD: ALL AI INCLUDED -->
+  <section style="padding: 0 0 clamp(3rem, 6vw, 5rem);">
+    <div class="container container-reading">
+      <div style="background: #FFFFFF; border: 2px solid var(--hive-gold-honey); border-radius: var(--hive-radius-2xl); padding: clamp(2rem, 5vw, 3.5rem); box-shadow: var(--hive-shadow-card); position: relative;">
+        <div style="position: absolute; top: -12px; right: 2rem; background: var(--hive-gold-honey); color: #FFFFFF; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; padding: 0.25rem 0.85rem; border-radius: var(--hive-radius-pill); letter-spacing: 0.04em;">
+          All 54 Agents Included
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--hive-border-whisper); padding-bottom: 1.5rem;">
+          <div>
+            <span style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.05em;">
+              CORE PLATFORM SEAT
+            </span>
+            <h3 style="font-size: 1.75rem; color: var(--hive-ink); margin-top: 0.25rem;">Adjuster &amp; Staff License</h3>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-family: var(--hive-font-heading); font-size: 2.75rem; font-weight: 800; color: var(--hive-ink); line-height: 1;">
+              $80
+            </div>
+            <span style="font-size: 0.8125rem; color: var(--hive-text-secondary);">/ seat / month + token usage</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.6; margin-bottom: 1.75rem;">
+          We do not claim ClaimHive is cheaper per seat across the board—we win because <strong>every AI agent is unlocked from day one</strong>. You never hit an artificial feature gate or pay for bundled capacity you don't use.
+        </p>
+
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.9375rem; color: var(--hive-text-secondary); margin-bottom: 2.5rem;">
+          <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--hive-success); font-weight: 700;">✓</span>
+            <div><strong style="color: var(--hive-ink);">All 54 Specialized AI Agents Included:</strong> Policy extraction, estimate omission audits, demand letter generation, and voice field notes with zero tier surcharges.</div>
+          </li>
+          <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--hive-success); font-weight: 700;">✓</span>
+            <div><strong style="color: var(--hive-ink);">Direct Token Metering:</strong> LLM inference is passed through at cost. Light months cost less; heavy CAT seasons pay only for the exact computing power utilized.</div>
+          </li>
+          <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--hive-success); font-weight: 700;">✓</span>
+            <div><strong style="color: var(--hive-ink);">Unlimited Claims &amp; Photo Vaults:</strong> No storage tolls, per-file charges, or penalties for high-resolution photo sheets.</div>
+          </li>
+          <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--hive-success); font-weight: 700;">✓</span>
+            <div><strong style="color: var(--hive-ink);">Free Policyholder &amp; Expert Access:</strong> Clients, engineers, and outside attorneys collaborate at $0 seat cost via secure magic links.</div>
+          </li>
+        </ul>
+
+        <div style="text-align: center;">
+          <a href="index.html#waitlist" class="btn btn-lg btn-gold" style="width: 100%;" data-open-modal="beta">
+            <span>Request beta access</span>
+            <span class="hive-star-icon">✦</span>
+          </a>
+          <div style="font-size: 0.75rem; color: var(--hive-text-muted); margin-top: 0.75rem;">
+            Month-to-month billing. Cancel anytime. 1-click full data export.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE SEAT ESTIMATOR -->
+  <section id="estimator" class="section-spacious" style="background: var(--hive-canvas-alt); border-top: 1px solid var(--hive-border-subtle); border-bottom: 1px solid var(--hive-border-subtle);">
+    <div class="container container-reading">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <span class="badge badge-navy" style="margin-bottom: 0.75rem;">SEAT CALCULATOR</span>
+        <h2 style="font-size: clamp(1.75rem, 3vw, 2.375rem); color: var(--hive-ink); margin-bottom: 0.5rem;">
+          Estimate your monthly seat cost.
+        </h2>
+        <p style="font-size: 0.9375rem; color: var(--hive-text-secondary);">
+          Drag the slider to calculate pricing for your firm. Teams past 10 seats transition to our Enterprise plan.
+        </p>
+      </div>
+
+      <div class="seat-estimator-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <label for="seat-slider" style="font-weight: 600; color: var(--hive-ink); font-size: 1rem;">Active Team Seats:</label>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="number" id="seat-input" min="1" max="25" value="3" style="width: 60px; text-align: center; font-family: var(--hive-font-mono); font-weight: 700; font-size: 1.125rem; padding: 0.4rem; border: 1px solid var(--hive-border-default); border-radius: 6px; background: #FFFFFF; color: var(--hive-ink);">
+            <span style="font-size: 0.875rem; color: var(--hive-text-secondary);">seats</span>
+          </div>
+        </div>
+
+        <div class="seat-slider-wrap">
+          <input type="range" id="seat-slider" min="1" max="15" value="3" class="seat-range-slider" aria-label="Adjust seat count slider">
+          <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--hive-text-muted); margin-top: 0.5rem;">
+            <span>1 seat</span>
+            <span>5 seats</span>
+            <span>10 seats (Enterprise cutoff)</span>
+            <span>15+</span>
+          </div>
+        </div>
+
+        <!-- Calculated Price Display Box -->
+        <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.75rem; text-align: center; margin-bottom: 1.75rem;">
+          <div style="font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+            Estimated Base Platform
+          </div>
+          <div id="seat-price-display" style="font-family: var(--hive-font-heading); font-size: 3rem; font-weight: 800; color: var(--hive-ink); line-height: 1.1;">
+            $240
+          </div>
+          <div id="seat-total-display" style="font-size: 0.875rem; color: var(--hive-text-secondary); margin-top: 0.5rem;">
+            3 seats at $80 / seat / mo (+ token usage)
+          </div>
+
+          <!-- Enterprise Callout Message (Hidden by default, shown >10 seats) -->
+          <div id="enterprise-notice" style="display: none; margin-top: 1.25rem; padding: 1rem; background: var(--hive-gold-100); border: 1px solid var(--hive-gold-honey); border-radius: var(--hive-radius-md); text-align: left;">
+            <strong style="color: var(--hive-gold-deep); font-size: 0.875rem; display: block; margin-bottom: 0.25rem;">
+              ✦ Firms with more than 10 users: enterprise pricing — Let's talk
+            </strong>
+            <p style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.5; margin: 0;">
+              Large firms receive dedicated cloud instances, custom multi-state regulatory rulesets, tailored accounting integrations, and priority engineering support.
+            </p>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="index.html#waitlist" id="seat-cta-btn" class="btn btn-lg btn-gold" style="width: 100%;" data-open-modal="beta">
+            <span>Request beta access</span>
+            <span class="hive-star-icon">✦</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETITOR PRICE CARDS -->
+  <section id="competitors" class="section-spacious">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 3.5rem;">
+        <span class="badge badge-gold" style="margin-bottom: 1rem;">INDUSTRY BENCHMARKS</span>
+        <h2 style="font-size: clamp(2rem, 3.5vw, 2.75rem); color: var(--hive-ink); margin-bottom: 1rem;">
+          How Competitors Price
+        </h2>
+        <p style="font-size: 1.0625rem; color: var(--hive-text-secondary); line-height: 1.65;">
+          Published pricing models across property claims software as of September 30, 2026.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+
+        <!-- Competitor 1: Claim Titan -->
+        <div style="background: #FFFFFF; border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 1.25rem; color: var(--hive-ink); margin-bottom: 0.5rem;">Claim Titan</h3>
+            <div style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-ink); margin: 0.5rem 0;">
+              $99 <span style="font-size: 0.8125rem; font-weight: 400; color: var(--hive-text-secondary);">/ user / mo</span>
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin-bottom: 1rem;">
+              ($82.50 / mo when billed annually)
+            </p>
+            <ul style="list-style: none; font-size: 0.8125rem; color: var(--hive-text-secondary); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>• Base platform features included</li>
+              <li>• <strong>AI add-on:</strong> from $50 / mo extra</li>
+              <li>• Target: PAs, roofers, and restoration</li>
+            </ul>
+          </div>
+          <div style="margin-top: 1.5rem; font-size: 0.6875rem; color: var(--hive-text-muted); border-top: 1px solid var(--hive-border-whisper); padding-top: 0.75rem;">
+            Source: claimtitan.com (Sept 30, 2026)
+          </div>
+        </div>
+
+        <!-- Competitor 2: ClaimWizard -->
+        <div style="background: #FFFFFF; border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 1.25rem; color: var(--hive-ink); margin-bottom: 0.5rem;">ClaimWizard</h3>
+            <div style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-ink); margin: 0.5rem 0;">
+              $99 – $250+
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin-bottom: 1rem;">
+              Tiered by firm headcount
+            </p>
+            <ul style="list-style: none; font-size: 0.8125rem; color: var(--hive-text-secondary); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>• <strong>Solo:</strong> $99 / mo (1 PA, 0 staff permitted)</li>
+              <li>• <strong>Business:</strong> $250 / mo for 3 licenses</li>
+              <li>• +$50 / mo per additional license</li>
+              <li>• Setup &amp; training packages extra</li>
+            </ul>
+          </div>
+          <div style="margin-top: 1.5rem; font-size: 0.6875rem; color: var(--hive-text-muted); border-top: 1px solid var(--hive-border-whisper); padding-top: 0.75rem;">
+            Source: claimwizard.com (Sept 30, 2026)
+          </div>
+        </div>
+
+        <!-- Competitor 3: Brelly -->
+        <div style="background: #FFFFFF; border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 1.25rem; color: var(--hive-ink); margin-bottom: 0.5rem;">Brelly</h3>
+            <div style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-ink); margin: 0.5rem 0;">
+              $125 – $600+
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin-bottom: 1rem;">
+              Usage capped by plan tier
+            </p>
+            <ul style="list-style: none; font-size: 0.8125rem; color: var(--hive-text-secondary); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>• <strong>Solo:</strong> $125 / mo</li>
+              <li>• <strong>Teams:</strong> $600 / mo for 2 seats</li>
+              <li>• +$85 / seat up to 10 seats</li>
+              <li>• AI analysis volume capped by tier</li>
+            </ul>
+          </div>
+          <div style="margin-top: 1.5rem; font-size: 0.6875rem; color: var(--hive-text-muted); border-top: 1px solid var(--hive-border-whisper); padding-top: 0.75rem;">
+            Source: brelly.com (Sept 30, 2026)
+          </div>
+        </div>
+
+        <!-- Competitor 4: Drodat -->
+        <div style="background: #FFFFFF; border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 1.25rem; color: var(--hive-ink); margin-bottom: 0.5rem;">Drodat</h3>
+            <div style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-ink); margin: 0.5rem 0;">
+              Unpublished
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin-bottom: 1rem;">
+              Requires sales consultation
+            </p>
+            <ul style="list-style: none; font-size: 0.8125rem; color: var(--hive-text-secondary); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>• Pricing not published on public website</li>
+              <li>• Demo required for quote</li>
+              <li>• Custom enterprise agreements</li>
+            </ul>
+          </div>
+          <div style="margin-top: 1.5rem; font-size: 0.6875rem; color: var(--hive-text-muted); border-top: 1px solid var(--hive-border-whisper); padding-top: 0.75rem;">
+            Source: drodat.com (Sept 30, 2026)
+          </div>
+        </div>
+
+      </div>
+
+      <p style="text-align: center; font-size: 0.75rem; color: var(--hive-text-muted); font-style: italic;">
+        *Data compiled from public vendor marketing websites on September 30, 2026. '—' denotes feature or pricing not publicly listed.
       </p>
     </div>
   </section>
 
-  <!-- MAIN PRICING HERO CARD -->
-  <section style="padding: 0 0 var(--hive-section-y);">
-    <div class="container">
-      <div class="pricing-hero-box">
-        
-        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--hive-gold-50); border: 1px solid var(--hive-gold-400); padding: 0.35rem 1rem; border-radius: var(--hive-radius-pill); font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-800); text-transform: uppercase; letter-spacing: 0.04em;">
-          <span>✦ FOUNDING MEMBER TIER</span>
-          <span>•</span>
-          <span>LIMITED TO FIRST 200 FIRMS</span>
-        </div>
-
-        <div class="price-main-display">
-          <span class="price-currency">$</span>
-          <span class="price-number">80</span>
-          <span class="price-period">/ seat / month</span>
-        </div>
-
-        <p style="font-size: 1.0625rem; color: var(--hive-navy-900); font-weight: 600; margin-bottom: 0.5rem;">
-          Rate locked through June 30, 2027. Billed monthly. Cancel anytime.
-        </p>
-        <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); max-width: 580px; margin: 0 auto 2.25rem;">
-          Every active adjuster or internal team member gets unlimited claims, unlimited photo vaults, and automated statutory letters. Your clients never pay a cent.
-        </p>
-
-        <div class="hero-cta-group" style="margin-bottom: 2rem;">
-          <a href="request.html?cohort=alpha" class="btn btn-lg btn-gold">
-            <span>Apply for Founding Rate ($80/mo)</span>
-            <span class="hive-star-icon">✦</span>
-          </a>
-          <a href="request.html?cohort=january" class="btn btn-lg btn-navy">
-            <span>Join January 2027 Cohort</span>
-          </a>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.875rem; color: var(--hive-text-muted); border-top: 1px solid var(--hive-border-whisper); padding-top: 1.5rem;">
-          <span>✓ Month-to-month billing</span>
-          <span>✓ Zero setup or onboarding fees</span>
-          <span>✓ 1-click full data export</span>
-          <span>✓ Direct line to Tom</span>
-        </div>
-      </div>
-
-      <!-- WHAT IS A SEAT VS WHAT IS ALWAYS FREE -->
-      <div style="text-align: center; margin-bottom: 2.5rem;">
-        <span class="badge badge-navy">COMPLETE CLARITY</span>
-        <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.375rem); color: var(--hive-navy-900); margin-top: 0.75rem;">
-          What you pay for. And what is always free.
-        </h2>
-      </div>
-
-      <div class="pricing-breakdown-grid">
-        
-        <!-- CARD 1: WHAT 1 SEAT INCLUDES -->
-        <div class="pricing-feature-card highlight">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
-            <div>
-              <span class="badge badge-gold" style="font-size: 0.75rem;">1 INTERNAL SEAT</span>
-              <h3 class="font-display" style="font-size: 1.375rem; margin-top: 0.5rem; color: var(--hive-navy-900);">
-                Adjuster & Team Member
-              </h3>
-            </div>
-            <div style="text-align: right;">
-              <span style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 800; color: var(--hive-navy-900);">$80</span>
-              <span style="font-size: 0.8125rem; color: var(--hive-text-secondary); display: block;">/ month</span>
-            </div>
-          </div>
-
-          <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.6;">
-            A seat is required only for licensed Public Adjusters, apprentices, in-house estimators, and administrative case managers working within your firm.
-          </p>
-
-          <ul class="feature-checklist">
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-gold">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Unlimited Active Claims:</strong> Handle 5 files or 50 files per adjuster without arbitrary tier caps or extra charges.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-gold">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Unlimited Storage & Photos:</strong> Upload thousands of high-res inspection photos, PDFs, and engineering reports per claim.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-gold">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Automated POL Countdown Vault:</strong> Automatic tracking of 60-day Proof of Loss deadlines and carrier acknowledgement cutoffs.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-gold">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">State-Specific Statutory Letters:</strong> 1-click generated carrier stall demand letters citing exact state insurance code statutes.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-gold">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Daily Morning Docket:</strong> The Next Action engine surfaces exactly which claims need attention before you open your inbox.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-gold">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Direct Founder Escalation:</strong> Direct phone and text access to Tom and our US-based technical support team.</div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- CARD 2: WHAT IS ALWAYS FREE -->
-        <div class="pricing-feature-card">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
-            <div>
-              <span class="badge badge-navy" style="font-size: 0.75rem;">EXTERNAL COLLABORATORS</span>
-              <h3 class="font-display" style="font-size: 1.375rem; margin-top: 0.5rem; color: var(--hive-navy-900);">
-                Policyholders & Experts
-              </h3>
-            </div>
-            <div style="text-align: right;">
-              <span style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 800; color: #10B981;">$0</span>
-              <span style="font-size: 0.8125rem; color: var(--hive-text-secondary); display: block;">Forever Free</span>
-            </div>
-          </div>
-
-          <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.6;">
-            We believe you should never be penalized for communicating with your clients or bringing in expert witnesses to win a claim.
-          </p>
-
-          <ul class="feature-checklist">
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-green">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Policyholders & Property Owners:</strong> Clean, password-less read-only client portal. Clients see claim milestones live, ending 10+ weekly "Any update?" calls.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-green">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Independent Structural Engineers:</strong> Secure guest link to upload causation reports, diagrams, and site findings directly into the file.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-green">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Forensic Accountants & Estimators:</strong> External experts review scope line items and business interruption calculations without a seat fee.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-green">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Attorneys & Co-Counsel:</strong> Share privileged claim chronologies and statutory evidence files with 1-click encrypted links.</div>
-            </li>
-            <li class="feature-check-item">
-              <span class="feature-check-icon icon-check-green">✓</span>
-              <div><strong style="color: var(--hive-navy-900);">Zero Settlement Percentage:</strong> We never touch your contingent fee. Whether you settle a \$40,000 roof or a \$3.2M commercial warehouse, our price remains \$80.</div>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- FOUNDING MEMBER GUARANTEE CALLOUT -->
-      <div class="founding-pact-banner">
-        <div style="font-size: 3rem; text-align: center;">🛡️</div>
-        <div>
-          <span style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-800); text-transform: uppercase; letter-spacing: 0.05em;">
-            THE FOUNDING MEMBER PRICE PACT
-          </span>
-          <h3 class="font-heading" style="font-size: 1.5rem; color: var(--hive-navy-900); margin: 0.35rem 0 0.5rem;">
-            Guaranteed $80/seat locked through June 30, 2027
-          </h3>
-          <p style="color: var(--hive-text-secondary); font-size: 0.9375rem; line-height: 1.7; margin: 0;">
-            Most enterprise software hooks adjusters with cheap teaser rates and doubles pricing after year one. As a Founding Member in our first 200 firms, your $80/seat rate is legally locked through June 30, 2027. Even as we release advanced document intelligence and multi-carrier integration, your price will not increase by a single nickel.
-          </p>
-        </div>
-      </div>
-
-      <!-- TRANSPARENT COMPARISON TABLE -->
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <span class="badge badge-gold">HONEST COMPARISON</span>
-        <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.375rem); color: var(--hive-navy-900); margin-top: 0.75rem;">
-          How Claim Hive Compares
-        </h2>
-        <p style="font-size: 1.0625rem; color: var(--hive-text-secondary); max-width: 620px; margin: 0.5rem auto 0;">
-          Look at the total cost of ownership. We engineered Claim Hive to eliminate predatory software contracts.
-        </p>
-      </div>
-
-      <!-- Mobile Horizontal Scroll Cue -->
-      <div class="mobile-swipe-hint">← Swipe to compare all details →</div>
-
-      <div class="pricing-comparison-wrap">
-        <table class="pricing-comparison-table">
-          <thead>
-            <tr>
-              <th style="width: 28%;">Capability / Term</th>
-              <th class="col-highlight" style="width: 26%; text-align: center;">Claim Hive</th>
-              <th style="width: 23%; text-align: center;">Carrier-Bloat CRMs</th>
-              <th style="width: 23%; text-align: center;">Folders & Spreadsheets</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Monthly Cost per Seat</strong></td>
-              <td class="col-highlight" style="text-align: center; color: var(--hive-gold-700); font-weight: 700; font-size: 1.125rem;">$80 / mo</td>
-              <td style="text-align: center; color: var(--hive-text-muted);">$250 – $450 / mo</td>
-              <td style="text-align: center; color: var(--hive-text-muted);">$0 (Cash only)</td>
-            </tr>
-            <tr>
-              <td><strong>Per-Claim Transaction Fee</strong></td>
-              <td class="col-highlight" style="text-align: center; color: #10B981;">$0 (None)</td>
-              <td style="text-align: center; color: var(--hive-danger);">$15 – $40 per file or 1%</td>
-              <td style="text-align: center;">$0</td>
-            </tr>
-            <tr>
-              <td><strong>Policyholder Status Portal</strong></td>
-              <td class="col-highlight" style="text-align: center; color: #10B981;">100% Free & Unlimited</td>
-              <td style="text-align: center; color: var(--hive-danger);">$50+/mo add-on module</td>
-              <td style="text-align: center;">Manual phone calls</td>
-            </tr>
-            <tr>
-              <td><strong>External Specialist Seats</strong></td>
-              <td class="col-highlight" style="text-align: center; color: #10B981;">Free Guest Access</td>
-              <td style="text-align: center; color: var(--hive-danger);">Full paid seat required</td>
-              <td style="text-align: center;">Unsecured email links</td>
-            </tr>
-            <tr>
-              <td><strong>Statutory POL Deadlines</strong></td>
-              <td class="col-highlight" style="text-align: center; color: var(--hive-navy-900);">Automated 60-day vault</td>
-              <td style="text-align: center;">Manual calendar setup</td>
-              <td style="text-align: center; color: var(--hive-danger);">Post-it notes & high risk</td>
-            </tr>
-            <tr>
-              <td><strong>AI Claim Data Privacy</strong></td>
-              <td class="col-highlight" style="text-align: center; color: #10B981;">Zero model training (Strict)</td>
-              <td style="text-align: center; color: var(--hive-danger);">Opt-out or shared models</td>
-              <td style="text-align: center;">Local files</td>
-            </tr>
-            <tr>
-              <td><strong>Contract Commitment</strong></td>
-              <td class="col-highlight" style="text-align: center; color: var(--hive-navy-900);">Month-to-month</td>
-              <td style="text-align: center; color: var(--hive-danger);">12 to 36 month lock-in</td>
-              <td style="text-align: center;">None</td>
-            </tr>
-            <tr>
-              <td><strong>Onboarding & Setup Tolls</strong></td>
-              <td class="col-highlight" style="text-align: center; color: #10B981;">$0 (Personal setup w/ Tom)</td>
-              <td style="text-align: center; color: var(--hive-danger);">$1,500 – $5,000 "Implementation"</td>
-              <td style="text-align: center;">Tens of wasted hours</td>
-            </tr>
-            <tr>
-              <td><strong>1-Click Data Export</strong></td>
-              <td class="col-highlight" style="text-align: center; color: #10B981;">Instant ZIP of PDFs & photos</td>
-              <td style="text-align: center; color: var(--hive-danger);">Proprietary lock-in / slow dump</td>
-              <td style="text-align: center;">Manual file copying</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- FAQ SECTION -->
-      <div style="text-align: center; margin-top: 5rem; margin-bottom: 2.5rem;">
-        <span class="badge badge-navy">PRICING CLARIFICATIONS</span>
-        <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.375rem); color: var(--hive-navy-900); margin-top: 0.75rem;">
+  <!-- FAQ SECTION -->
+  <section class="section-spacious" style="background: #FFFFFF; border-top: 1px solid var(--hive-border-subtle); border-bottom: 1px solid var(--hive-border-subtle);">
+    <div class="container container-reading">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <span class="badge badge-navy" style="margin-bottom: 0.75rem;">CLEAR ANSWERS</span>
+        <h2 style="font-size: clamp(1.875rem, 3.5vw, 2.5rem); color: var(--hive-ink); margin-bottom: 0.5rem;">
           Frequently Asked Questions
         </h2>
       </div>
 
-      <div class="faq-grid">
-        <div class="faq-card">
-          <div class="faq-question">What happens after June 30, 2027?</div>
-          <div class="faq-answer">
-            Founding Members who join during our Alpha and January cohorts will retain their preferred pricing terms. Even if our public list price increases for new firms in 2027, you will receive our guaranteed grandfathered rates and first access to new capabilities.
-          </div>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1.5rem;">
+          <h4 style="font-size: 1.0625rem; color: var(--hive-ink); margin-bottom: 0.5rem;">How does token usage work?</h4>
+          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
+            Token usage covers the exact raw computing power when Chip reads an 80-page policy PDF, compares line-item estimates, or drafts a complex statutory demand letter. Tokens are passed through transparently at direct wholesale rates. An average claim costs just a few dollars in token usage over its entire lifecycle.
+          </p>
         </div>
 
-        <div class="faq-card">
-          <div class="faq-question">Can I add or remove seats during storm season?</div>
-          <div class="faq-answer">
-            Yes. You can add temporary seats when a hurricane or severe freeze hits, and scale them down when the storm docket settles. You are only billed for active seats on a month-to-month basis with zero penalties.
-          </div>
+        <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1.5rem;">
+          <h4 style="font-size: 1.0625rem; color: var(--hive-ink); margin-bottom: 0.5rem;">What are the terms for Beta access and early cohorts?</h4>
+          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
+            Private Alpha is underway with founding firms through October. Public Beta opens November 1, 2026. Beta firms receive personal, direct onboarding with our engineering team, early access to new agent releases, and a permanent rate lock on their base seat price through General Availability (GA) on January 1, 2027.
+          </p>
         </div>
 
-        <div class="faq-card">
-          <div class="faq-question">Why don't you charge a percentage of claim settlements?</div>
-          <div class="faq-answer">
-            Because that contingent fee belongs to you. You climbed the steep roof, negotiated with hostile carrier adjusters, and spent hours preparing the estimate. Software is a utility, not a partner in your business. We charge a fair flat fee for the tool and let you keep 100% of your earnings.
-          </div>
+        <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1.5rem;">
+          <h4 style="font-size: 1.0625rem; color: var(--hive-ink); margin-bottom: 0.5rem;">Am I locked into an annual contract?</h4>
+          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
+            No. ClaimHive operates on straightforward month-to-month billing. You can export your full data archive in a standard ZIP file at any time with a single click.
+          </p>
         </div>
 
-        <div class="faq-card">
-          <div class="faq-question">Do policyholders have to pay or install an app?</div>
-          <div class="faq-answer">
-            Never. Your policyholder receives a secure, SMS-verified web link that works on any smartphone or browser. They can view real-time claim status, see inspection photos, and upload receipts without paying a dime or remembering a password.
-          </div>
+        <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1.5rem;">
+          <h4 style="font-size: 1.0625rem; color: var(--hive-ink); margin-bottom: 0.5rem;">Do you charge per-claim fees or take a fee split?</h4>
+          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
+            Never. We charge $80 per seat plus token usage. Whether your firm settles a $30,000 residential water claim or a $5,000,000 commercial loss, we never take a percentage or charge a per-file fee.
+          </p>
         </div>
 
-        <div class="faq-card">
-          <div class="faq-question">How does onboarding work? Is there a setup fee?</div>
-          <div class="faq-answer">
-            Zero setup fees. When you are admitted to Claim Hive, Tom and our team walk you through your first three claims on a private 1-on-1 screen share. We configure your state's statutory rules, import your existing open claims, and get you moving in under an hour.
-          </div>
-        </div>
-
-        <div class="faq-card">
-          <div class="faq-question">How hard is it to switch from our current software or spreadsheets?</div>
-          <div class="faq-answer">
-            Most adjusters avoid switching because legacy systems take weeks to set up. With Claim Hive, there's zero downtime. You don't have to migrate your entire 10-year historical archive on day one. You can import your current active files in under 30 minutes, or simply run your next three new claims in Claim Hive. Tom personally guides your setup on a private screen share so you never drop a deadline.
-          </div>
-        </div>
-
-        <div class="faq-card">
-          <div class="faq-question">What payment methods do you accept?</div>
-          <div class="faq-answer">
-            We accept all major corporate credit cards (Visa, MasterCard, American Express) and ACH bank transfers for firms with 5 or more seats. Invoices and receipts are automatically generated each month for your accounting records.
-          </div>
-        </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- BOTTOM CALLOUT BANNER -->
-  <section class="section-spacious" style="background: var(--hive-navy-950); border-top: 1px solid rgba(255,255,255,0.08);">
-    <div class="container container-narrow" style="text-align: center;">
-      <span class="badge badge-gold" style="margin-bottom: 1.5rem;">SECURE YOUR RATE</span>
-      <h2 class="font-heading" style="font-size: clamp(2.25rem, 4vw, 3.25rem); color: #FFFFFF; margin-bottom: 1.25rem; font-weight: 700;">
-        Lock in your $80/seat founding spot.
-      </h2>
-      <p style="color: #CBD5E1; font-size: 1.125rem; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7;">
-        Onboarding is capped to maintain personal attention and ensure every firm thrives. Apply today to secure your founding rate through June 30, 2027.
-      </p>
-
-      <div style="display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap;">
-        <a href="request.html?cohort=alpha" class="btn btn-lg btn-gold">
-          <span>Apply for Alpha Access</span>
+      <div style="text-align: center; margin-top: 3.5rem;">
+        <a href="index.html#waitlist" class="btn btn-lg btn-gold" data-open-modal="beta">
+          <span>Request beta access</span>
           <span class="hive-star-icon">✦</span>
         </a>
-        <a href="request.html?cohort=january" class="btn btn-lg btn-outline" style="border-color: rgba(255,255,255,0.2); color: #FFFFFF;">
-          <span>Join January 2027 Waitlist</span>
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- GLOBAL FOOTER -->
+  <!-- GLOBAL SITE FOOTER -->
   <footer class="site-footer">
     <div class="container container-wide">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="footer-logo-img">
+          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="footer-logo-img">
           <p class="footer-desc">
-            The calm operational backbone built exclusively for licensed USA Public Insurance Adjusters.
+            The AI-powered command center built inside a working public adjusting firm.
           </p>
         </div>
 
         <div class="footer-nav-col">
-          <div class="footer-nav-title">Platform</div>
-          <a href="product.html" class="footer-nav-link">Product Lifecycle</a>
-          <a href="pricing.html" class="footer-nav-link">Pricing ($80/Seat)</a>
-          <a href="security.html" class="footer-nav-link">Security & Data Vault</a>
+          <div class="footer-nav-title">Navigation</div>
+          <a href="index.html" class="footer-nav-link">Home</a>
+          <a href="product.html" class="footer-nav-link">Product (Six Hubs)</a>
+          <a href="pricing.html" class="footer-nav-link">Pricing ($80 + Usage)</a>
+          <a href="about.html" class="footer-nav-link">About Us</a>
         </div>
 
         <div class="footer-nav-col">
-          <div class="footer-nav-title">Company</div>
-          <a href="about.html" class="footer-nav-link">About Tom & Team</a>
-          <a href="request.html" class="footer-nav-link">Request Access</a>
-          <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
-          <a href="terms.html" class="footer-nav-link">Terms of Service</a>
+          <div class="footer-nav-title">Six Hubs</div>
+          <span class="footer-nav-link">1. Claim CRM</span>
+          <span class="footer-nav-link">2. Weather Intel + Roofs</span>
+          <span class="footer-nav-link">3. Chip + 54 AI Agents</span>
+          <span class="footer-nav-link">4. Client Portal</span>
+          <span class="footer-nav-link">5. Growth Hub</span>
+          <span class="footer-nav-link">6. Back Office</span>
         </div>
 
         <div class="footer-nav-col">
-          <div class="footer-nav-title">Direct Assurance</div>
-          <span style="font-size: 0.875rem; color: #CBD5E1;">Tom: (850) 400-HIVE</span>
-          <span style="font-size: 0.8125rem; color: #64748B;">Florida • Texas • Carolinas • Georgia</span>
-          <span style="font-size: 0.8125rem; color: var(--hive-gold-400); margin-top: 0.5rem;">✦ Policyholders Always Free</span>
+          <div class="footer-nav-title">Velvet-Rope Access</div>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">Alpha: In Progress (Invite-Only)</span>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">Beta: November 1, 2026</span>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">GA: January 1, 2027</span>
+          <span style="font-size: 0.8125rem; color: var(--hive-gold-honey); margin-top: 0.5rem;">✦ 24 Exclusive Capabilities</span>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>© 2026 Claim Hive Inc. Built for licensed property adjusters across all 50 states.</div>
-        <div>Confidential & Proprietary • Zero AI Training on Claim Files</div>
+        <div>© 2026 ClaimHive Inc. Built for licensed public adjusters across the United States.</div>
+        <div>Private Harnessed LLM • Zero Public Model Training Guarantee</div>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="js/site.js"></script>
 </body>
 </html>

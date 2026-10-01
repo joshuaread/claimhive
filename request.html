@@ -137,30 +137,30 @@
             <div class="cohort-selector-grid">
               
               <label class="cohort-card-label selected" id="label-cohort-alpha">
-                <input type="radio" name="cohort" value="Alpha Cohort (Q4 2026)" checked>
+                <input type="radio" name="cohort" value="Beta Cohort (Nov 1, 2026)" checked>
                 <div style="display: flex; align-items: center; justify-content: space-between;">
-                  <span class="badge badge-gold" style="font-size: 0.6875rem;">IMMEDIATE ACCESS</span>
+                  <span class="badge badge-gold" style="font-size: 0.6875rem;">BETA ACCESS</span>
                   <span class="hive-star-gold" style="font-size: 1rem;">✦</span>
                 </div>
                 <div style="font-family: var(--hive-font-display); font-weight: 700; color: var(--hive-navy-900); font-size: 1rem; margin-top: 0.25rem;">
-                  Immediate Alpha (Q4 2026)
+                  Beta Access (Nov 1, 2026)
                 </div>
                 <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.4;">
-                  For firms actively handling claims now. Direct 1-on-1 setup session with Tom this week.
+                  Reserve your firm's spot for our November 1 rollout. Direct onboarding with locked $80 founding pricing.
                 </div>
               </label>
 
               <label class="cohort-card-label" id="label-cohort-january">
-                <input type="radio" name="cohort" value="January 2027 Cohort">
+                <input type="radio" name="cohort" value="General Availability (Jan 1, 2027)">
                 <div style="display: flex; align-items: center; justify-content: space-between;">
-                  <span class="badge badge-navy" style="font-size: 0.6875rem;">RESERVE SPOT</span>
+                  <span class="badge badge-navy" style="font-size: 0.6875rem;">GA LAUNCH</span>
                   <span>📅</span>
                 </div>
                 <div style="font-family: var(--hive-font-display); font-weight: 700; color: var(--hive-navy-900); font-size: 1rem; margin-top: 0.25rem;">
-                  January 2027 Waitlist
+                  General Availability (Jan 1, 2027)
                 </div>
                 <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.4;">
-                  Lock in the $80 founding price now. Launch alongside our main New Year cohort.
+                  Launch alongside our commercial release in the new year. Secure early onboarding before public queues open.
                 </div>
               </label>
 
@@ -336,18 +336,18 @@
   <script src="js/site.js"></script>
   <script src="js/request-form.js?v=5.0"></script>
   <script>
-    // URL parameter pre-selection for cohort (?cohort=alpha vs ?cohort=january)
+    // URL parameter pre-selection for cohort (?cohort=beta vs ?cohort=ga)
     document.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const cohortParam = urlParams.get('cohort');
-      const alphaCard = document.getElementById('label-cohort-alpha');
-      const janCard = document.getElementById('label-cohort-january');
+      const cohortParam = (urlParams.get('cohort') || '').toLowerCase();
+      const betaCard = document.getElementById('label-cohort-alpha');
+      const gaCard = document.getElementById('label-cohort-january');
 
-      if (cohortParam === 'january' && janCard && alphaCard) {
-        alphaCard.classList.remove('selected');
-        janCard.classList.add('selected');
-        const janRadio = janCard.querySelector('input[type="radio"]');
-        if (janRadio) janRadio.checked = true;
+      if ((cohortParam === 'january' || cohortParam === 'ga') && gaCard && betaCard) {
+        betaCard.classList.remove('selected');
+        gaCard.classList.add('selected');
+        const gaRadio = gaCard.querySelector('input[type="radio"]');
+        if (gaRadio) gaRadio.checked = true;
       }
     });
   </script>

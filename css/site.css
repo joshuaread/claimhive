@@ -1594,4 +1594,969 @@
   }
 }
 
+/* ==========================================================================
+   VELVET-ROPE SCARCITY & LAUNCH COMPONENTS
+   ========================================================================== */
+
+/* Countdown Container */
+.countdown-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid var(--hive-border-subtle);
+  border-radius: var(--hive-radius-pill);
+  padding: 0.6rem 1.5rem;
+  box-shadow: var(--hive-shadow-soft);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.countdown-segment {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.8125rem;
+  color: var(--hive-text-secondary);
+}
+
+.countdown-label {
+  font-family: var(--hive-font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.6875rem;
+  color: var(--hive-gold-deep);
+}
+
+.countdown-timer {
+  font-family: var(--hive-font-mono);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--hive-ink);
+}
+
+.countdown-unit strong {
+  font-size: 1.0625rem;
+  color: var(--hive-navy-900);
+}
+
+/* Waitlist Box (Velvet Rope) */
+.waitlist-card {
+  background: #FFFFFF;
+  border: 1px solid var(--hive-border-subtle);
+  border-radius: var(--hive-radius-xl);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  box-shadow: var(--hive-shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.waitlist-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--hive-gold-deep), var(--hive-gold-honey), var(--hive-gold-highlight));
+}
+
+.waitlist-form-row {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .waitlist-form-row {
+    flex-direction: column;
+  }
+}
+
+.waitlist-input {
+  flex: 1;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.9375rem;
+  border: 1px solid var(--hive-border-default);
+  border-radius: var(--hive-radius-pill);
+  background: var(--hive-canvas);
+  color: var(--hive-ink);
+  outline: none;
+  transition: all var(--hive-transition-fast);
+}
+
+.waitlist-input:focus {
+  border-color: var(--hive-gold-honey);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px var(--hive-gold-glow);
+}
+
+/* Seat Estimator Component */
+.seat-estimator-box {
+  background: #FFFFFF;
+  border: 1px solid var(--hive-border-subtle);
+  border-radius: var(--hive-radius-2xl);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  box-shadow: var(--hive-shadow-card);
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.seat-slider-wrap {
+  margin: 2rem 0;
+}
+
+.seat-range-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--hive-canvas-alt);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.seat-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--hive-gold-honey);
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform var(--hive-transition-fast);
+}
+
+.seat-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Global Alpha Modal */
+.alpha-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 18, 31, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--hive-transition-smooth);
+}
+
+.alpha-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.alpha-modal-content {
+  background: #FFFFFF;
+  border: 1px solid var(--hive-border-subtle);
+  border-radius: var(--hive-radius-xl);
+  padding: clamp(2rem, 4vw, 3rem);
+  max-width: 520px;
+  width: 100%;
+  box-shadow: var(--hive-shadow-hero);
+  position: relative;
+  transform: translateY(20px);
+  transition: transform var(--hive-transition-spring);
+}
+
+.alpha-modal-backdrop.open .alpha-modal-content {
+  transform: translateY(0);
+}
+
+.alpha-modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--hive-canvas);
+  border: 1px solid var(--hive-border-subtle);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--hive-ink);
+  transition: all var(--hive-transition-fast);
+}
+
+.alpha-modal-close-btn:hover {
+  background: var(--hive-gold-100);
+  border-color: var(--hive-gold-honey);
+}
+
+/* ==========================================================================
+   SOLUTION-FIRST HOMEPAGE PATTERNS (Claude / Apple Velvet-Rope Layout)
+   ========================================================================== */
+
+/* Hero Split with Responsive Stacking */
+.hero-split-wrap {
+  display: grid;
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+@media (min-width: 900px) {
+  .hero-split-wrap {
+    grid-template-columns: 1.08fr 0.92fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "intro graphic"
+      "alpha graphic";
+    column-gap: 3.5rem;
+    row-gap: 2rem;
+    align-items: center;
+  }
+
+  .hero-copy-intro {
+    grid-area: intro;
+    text-align: left;
+  }
+
+  .alpha-live-block {
+    grid-area: alpha;
+    text-align: left;
+    margin-top: 0;
+  }
+
+  .hero-graphic-side {
+    grid-area: graphic;
+  }
+}
+
+@media (max-width: 899px) {
+  .hero-split-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: left;
+  }
+
+  .hero-copy-intro {
+    order: 1;
+  }
+
+  .hero-graphic-side {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+
+  .alpha-live-block {
+    order: 3;
+    margin-top: 0;
+  }
+}
+
+.hero-text-side {
+  text-align: left;
+}
+
+.hero-graphic-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  perspective: 1200px;
+}
+
+/* Apple-style Interactive Hub Stage */
+.hero-hub-stage {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: hubIdleFloat 6.5s ease-in-out infinite;
+}
+
+.hub-parallax-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+@keyframes hubIdleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* Background Hex Constellation Grid */
+.hub-constellation-bg {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+  opacity: 0.85;
+  transform: translateZ(-25px);
+  transition: transform 0.2s ease-out;
+}
+
+/* Central Hive Cluster SVG */
+.hub-svg-cluster {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(10px);
+  filter: drop-shadow(0 15px 35px rgba(217, 162, 27, 0.08));
+}
+
+/* Hexagon Node Interactions */
+.hex-node {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.hex-node:hover {
+  transform: scale(1.04);
+}
+
+.hex-node:hover polygon.hex-outline {
+  stroke: var(--hive-gold-deep);
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 12px rgba(217, 162, 27, 0.35));
+}
+
+.hex-node:not(.active-gold):not(.hex-center):hover text:nth-of-type(1) {
+  fill: var(--hive-gold-deep);
+}
+
+/* Active Glowing Cell (Chip AI) */
+.hex-node.active-gold polygon.hex-fill {
+  animation: honeyBreathe 4s ease-in-out infinite;
+}
+
+@keyframes honeyBreathe {
+  0%, 100% {
+    fill-opacity: 0.65;
+    stroke-width: 1.5px;
+    filter: drop-shadow(0 0 8px rgba(217, 162, 27, 0.25));
+  }
+  50% {
+    fill-opacity: 0.95;
+    stroke-width: 2.2px;
+    filter: drop-shadow(0 0 20px rgba(217, 162, 27, 0.45));
+  }
+}
+
+/* ==========================================================================
+   MULTI-PLANE 3D DEPTH STACKING & BIDIRECTIONAL DATA FLOW
+   ========================================================================== */
+
+/* 3D Depth Planes inside Parallax Card */
+.hub-3d-plane {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hub-3d-plane .hex-node {
+  pointer-events: auto;
+}
+
+/* Plane Z-Depths & Ambient Soft Elevation Shadows */
+.plane-bg {
+  transform: translateZ(-35px);
+  opacity: 0.85;
+}
+
+.plane-conduits {
+  transform: translateZ(0px);
+}
+
+.plane-tier1 {
+  transform: translateZ(26px);
+  filter: drop-shadow(0 8px 20px rgba(22, 27, 51, 0.07));
+}
+
+.plane-tier2 {
+  transform: translateZ(44px);
+  filter: drop-shadow(0 12px 28px rgba(22, 27, 51, 0.09));
+}
+
+.plane-core {
+  transform: translateZ(62px);
+  filter: drop-shadow(0 16px 36px rgba(217, 162, 27, 0.18));
+}
+
+.plane-chip {
+  transform: translateZ(82px);
+  filter: drop-shadow(0 22px 48px rgba(217, 162, 27, 0.35));
+}
+
+/* Persistent Conduit Baseline Tracks */
+.conduit-track {
+  stroke: #D9A21B;
+  stroke-opacity: 0.22;
+  stroke-width: 1.5;
+}
+
+/* Bidirectional Data Pulse Streams */
+/* 1. Forward Stream (A -> B: Warm Gold) */
+.pulse-stream-fwd,
+.circuit-pulse-radial,
+.circuit-pulse-orbital {
+  stroke: #D9A21B;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 8 46;
+  animation: pulseFwd 3.2s linear infinite;
+}
+
+@keyframes pulseFwd {
+  from {
+    stroke-dashoffset: 54;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 2. Reverse Stream (B -> A: Luminous Honey Highlight) */
+.pulse-stream-rev {
+  stroke: #F5D81D;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 6 50;
+  animation: pulseRev 2.7s linear infinite;
+  filter: drop-shadow(0 0 5px rgba(245, 216, 29, 0.75));
+}
+
+@keyframes pulseRev {
+  from {
+    stroke-dashoffset: 56;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 3. Hero Active Stream (Core <-> Chip AI High-Throughput Highway) */
+.pulse-stream-hero {
+  stroke: #D9A21B;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-dasharray: 10 38;
+  animation: pulseFwd 2.4s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(217, 162, 27, 0.65));
+}
+
+@media (max-width: 899px) {
+  .hero-graphic-side {
+    display: flex;
+    margin-top: 1.5rem;
+  }
+  .hero-hub-stage {
+    max-width: 480px;
+    height: 450px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-hub-stage {
+    max-width: 360px;
+    height: 340px;
+  }
+}
+
+/* Inline Live Alpha Strip */
+.alpha-live-block {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+}
+
+.alpha-live-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.alpha-live-label {
+  font-family: var(--hive-font-display);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--hive-text-muted);
+}
+
+.alpha-live-title {
+  font-family: var(--hive-font-heading);
+  font-size: 1.625rem;
+  color: var(--hive-gold-deep);
+  font-weight: 700;
+}
+
+.beta-sub-countdown {
+  font-size: 0.75rem;
+  color: var(--hive-text-muted);
+  font-family: var(--hive-font-mono);
+}
+
+/* ==========================================================================
+   ALPHA CTA ATTENTION PULSE (Rhythmic glint & halo pulse every 3.5s)
+   ========================================================================== */
+.btn-alpha-pulse {
+  position: relative;
+  overflow: hidden;
+  animation: alphaButtonPulse 3.5s ease-in-out infinite;
+  box-shadow: 0 4px 14px rgba(217, 162, 27, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-alpha-pulse::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.42) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  animation: alphaButtonSheen 3.5s ease-in-out infinite;
+}
+
+.btn-alpha-pulse:hover {
+  transform: scale(1.04) translateY(-1px);
+  box-shadow: 0 8px 24px rgba(217, 162, 27, 0.45);
+}
+
+@keyframes alphaButtonPulse {
+  0%, 72%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 14px rgba(217, 162, 27, 0.28);
+  }
+  78% {
+    transform: scale(1.035);
+    box-shadow: 0 6px 26px rgba(217, 162, 27, 0.55), 0 0 0 4px rgba(217, 162, 27, 0.22);
+  }
+  86% {
+    transform: scale(1);
+    box-shadow: 0 4px 18px rgba(217, 162, 27, 0.35), 0 0 0 8px rgba(217, 162, 27, 0);
+  }
+}
+
+@keyframes alphaButtonSheen {
+  0%, 70% {
+    left: -80%;
+    opacity: 0;
+  }
+  72% {
+    opacity: 1;
+  }
+  84% {
+    left: 140%;
+    opacity: 1;
+  }
+  85%, 100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+/* 24 Features Clean Single-Line Strip */
+.features-single-strip {
+  border-top: 1px solid rgba(217, 162, 27, 0.28);
+  border-bottom: 1px solid rgba(217, 162, 27, 0.28);
+  background: linear-gradient(90deg, #FAF6EC 0%, #F5ECDA 50%, #FAF6EC 100%);
+  padding: 1.15rem 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 10px rgba(217, 162, 27, 0.05);
+}
+
+.features-strip-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--hive-ink);
+}
+
+.features-strip-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.num-exclusive-24 {
+  font-family: var(--hive-font-editorial);
+  font-style: italic;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--hive-gold-deep);
+  line-height: 1;
+}
+
+.strip-compare-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--hive-gold-deep);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(217, 162, 27, 0.35);
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.strip-compare-link:hover {
+  background: #FFFFFF;
+  border-color: var(--hive-gold-deep);
+  color: var(--hive-ink);
+  transform: translateX(3px);
+  box-shadow: 0 3px 10px rgba(217, 162, 27, 0.2);
+}
+
+/* DARK CASLOAD SECTION ("Your hours aren't the problem. Where they go is.") */
+.section-dark-caseload {
+  background-color: #12151B;
+  color: #FFFFFF;
+  padding: clamp(4rem, 8vw, 7.5rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-dark-caseload::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--hive-pattern-dark);
+  background-size: 56px 96px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.dark-section-title {
+  color: #FFFFFF;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 3.5rem;
+}
+
+.dark-caseload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+.dark-card {
+  background: #181C24;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--hive-radius-lg);
+  padding: 2.25rem 2rem;
+  position: relative;
+}
+
+.dark-card.highlight {
+  border-color: var(--hive-gold-deep);
+  box-shadow: 0 0 35px rgba(217, 162, 27, 0.12);
+}
+
+.dark-card-label {
+  font-family: var(--hive-font-display);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8C96A8;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.dark-card.highlight .dark-card-label {
+  color: var(--hive-gold-honey);
+}
+
+.dark-card-number {
+  font-family: var(--hive-font-heading);
+  font-size: clamp(2.75rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #FFFFFF;
+}
+
+.dark-card.highlight .dark-card-number {
+  color: var(--hive-gold-honey);
+}
+
+.dark-card-unit {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #9AA5B8;
+  margin-left: 0.35rem;
+}
+
+.dark-card-sub {
+  font-size: 0.875rem;
+  color: #7A8598;
+  margin-top: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+/* Time Allocation Progress Bar */
+.time-bar-wrap {
+  margin-top: 1rem;
+}
+
+.time-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #252B38;
+}
+
+.time-bar-segment-admin {
+  background: #475063;
+  transition: width 0.4s ease;
+}
+
+.time-bar-segment-adjusting {
+  background: var(--hive-gold-honey);
+  transition: width 0.4s ease;
+}
+
+.time-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  font-family: var(--hive-font-display);
+  color: #7A8598;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Four Column Breakdown Under Cards */
+.dark-breakdown-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2.25rem;
+  margin-bottom: 2rem;
+}
+
+.dark-breakdown-col h4 {
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.dark-breakdown-col p {
+  color: #9AA5B8;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+/* How It Works (One Hive. Every Claim.) */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.pillar-col {
+  text-align: left;
+}
+
+.pillar-icon-box {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--hive-border-default);
+  border-radius: var(--hive-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  background: #FFFFFF;
+  color: var(--hive-gold-deep);
+}
+
+.pillar-col h3 {
+  font-size: 1.1875rem;
+  color: var(--hive-ink);
+  margin-bottom: 0.5rem;
+}
+
+.pillar-col p {
+  font-size: 0.875rem;
+  color: var(--hive-text-secondary);
+  line-height: 1.6;
+}
+
+/* Three-Step Timeline Grid */
+.timeline-pills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  border-top: 1px solid var(--hive-border-subtle);
+  padding-top: 2.75rem;
+}
+
+.timeline-pill-item {
+  text-align: left;
+}
+
+.timeline-dot-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--hive-font-display);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--hive-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.timeline-dot.gold {
+  background: var(--hive-gold-honey);
+  box-shadow: 0 0 6px var(--hive-gold-glow);
+}
+
+.timeline-dot.muted {
+  background: #B4BCC8;
+}
+
+.timeline-pill-item h4 {
+  font-family: var(--hive-font-heading);
+  font-size: 1.375rem;
+  color: var(--hive-ink);
+  margin-bottom: 0.4rem;
+}
+
+.timeline-pill-item p {
+  font-size: 0.8125rem;
+  color: var(--hive-text-secondary);
+  line-height: 1.6;
+}
+
+/* Pricing Banner Card (Warm Cream) */
+.pricing-banner-card {
+  background: #F8F5EE;
+  border: 1px solid var(--hive-border-default);
+  border-radius: var(--hive-radius-xl);
+  padding: clamp(2rem, 4vw, 3rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+}
+
+.pricing-banner-left {
+  text-align: left;
+  max-width: 600px;
+}
+
+.pricing-banner-num {
+  font-family: var(--hive-font-heading);
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
+  font-weight: 800;
+  color: var(--hive-ink);
+  line-height: 1;
+}
+
+/* Dedicated Velvet-Rope Footer Form */
+.velvet-form-card {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.velvet-field-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.velvet-field-label {
+  font-family: var(--hive-font-display);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--hive-text-muted);
+}
+
+.velvet-input {
+  width: 100%;
+  padding: 0.8125rem 1rem;
+  font-size: 0.9375rem;
+  border: 1px solid var(--hive-border-default);
+  border-radius: var(--hive-radius-sm);
+  background: #FFFFFF;
+  color: var(--hive-ink);
+  outline: none;
+  transition: all var(--hive-transition-fast);
+}
+
+.velvet-input:focus {
+  border-color: var(--hive-gold-honey);
+  box-shadow: 0 0 0 3px var(--hive-gold-glow);
+}
+
+
+
 

@@ -3,117 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claim Hive — The Operating System for USA Public Adjusters</title>
-  <meta name="description" content="Purpose-built for licensed USA Public Adjusters. Eliminate 60% of administrative busywork, restore calm, and double your caseload at $80/seat/month.">
-  
-  <!-- Fonts: Merriweather, Newsreader, Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <title>ClaimHive — Nearly double your caseload. Not your hours.</title>
+  <meta name="description" content="Nearly double your caseload. Not your hours. ClaimHive is the AI command center built by working public adjusters. Alpha invite-only is live.">
+
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Stylesheets -->
+
+  <!-- Core Stylesheets -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/site.css">
-  <!-- Favicon -->
+
   <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
-
-  <!-- Open Graph / Social Sharing -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://claimhive.app/">
-  <meta property="og:title" content="Claim Hive — The Operating System for USA Public Adjusters">
-  <meta property="og:description" content="Purpose-built for licensed USA Public Adjusters. Eliminate 60% of administrative busywork, restore calm, and double your caseload at $80/seat/month.">
-  <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://claimhive.app/">
-  <meta name="twitter:title" content="Claim Hive — The Operating System for USA Public Adjusters">
-  <meta name="twitter:description" content="Purpose-built for licensed USA Public Adjusters. Eliminate 60% of administrative busywork, restore calm, and double your caseload at $80/seat/month.">
-  <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
-
-  <!-- Schema.org JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://claimhive.app/#organization",
-        "name": "Claim Hive",
-        "url": "https://claimhive.app",
-        "logo": "https://claimhive.app/assets/claim-hive-horizontal.svg",
-        "founder": {
-          "@type": "Person",
-          "@id": "https://claimhive.app/#tom",
-          "name": "Tom",
-          "jobTitle": "Co-Founder & Public Adjuster",
-          "description": "Licensed Public Adjuster with 25+ years handling complex commercial and residential property losses across the USA."
-        },
-        "description": "The calm operating system and workflow automation platform built exclusively for licensed USA Public Adjusters."
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://claimhive.app/#software",
-        "name": "Claim Hive",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web Browser",
-        "offers": {
-          "@type": "Offer",
-          "price": "80.00",
-          "priceCurrency": "USD",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "80.00",
-            "priceCurrency": "USD",
-            "unitText": "seat / month"
-          },
-          "description": "Founding rate locked through June 30, 2027. Policyholders free, unlimited storage, zero base fees."
-        },
-        "author": {
-          "@id": "https://claimhive.app/#organization"
-        }
-      }
-    ]
-  }
-  </script>
-
-  <!-- Unified Analytics -->
   <script src="js/analytics.js" defer></script>
+  <script src="js/site.js" defer></script>
 </head>
 <body class="bg-serene">
 
-  <!-- TOP ASSURANCE BAR -->
-  <div class="top-assurance-bar">
-    <span class="hide-mobile">BUILT EXCLUSIVELY FOR LICENSED USA PUBLIC ADJUSTERS &nbsp;•&nbsp;</span>
-    <span>$80/SEAT FLAT • RATE LOCKED THROUGH JUNE 30, 2027</span>
-    &nbsp;•&nbsp;
-    <span class="highlight">✦ ZERO AI TRAINING ON CLAIM FILES</span>
-  </div>
-
   <!-- STICKY SITE HEADER -->
-  <header class="site-header">
+  <header class="site-header" style="border-bottom: 1px solid var(--hive-border-subtle); background: rgba(250, 249, 246, 0.94);">
     <div class="container container-wide">
-      <nav class="nav-bar">
-        <a href="index.html" class="brand-logo-link">
-          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="brand-logo-img">
+      <nav class="nav-bar" style="height: 72px;">
+        <a href="index.html" class="brand-logo-link" aria-label="ClaimHive Home">
+          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="brand-logo-img" style="height: 32px;">
         </a>
 
         <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
           <li><a href="product.html" class="nav-link">Product</a></li>
           <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-          <li><a href="security.html" class="nav-link">Security & Trust</a></li>
-          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
         </ul>
 
         <div class="nav-actions">
-          <a href="request.html?view=login" class="nav-link hide-mobile" style="font-weight: 600; margin-right: 0.5rem;">Log in</a>
-          <a href="request.html" class="btn btn-sm btn-outline">Join January List</a>
-          <a href="request.html?cohort=alpha" class="btn btn-sm btn-gold">
-            <span>Request Alpha</span>
-            <span class="hive-star-icon">✦</span>
+          <a href="#waitlist" class="btn btn-sm btn-navy" style="background: #1A1A1A; color: #FFFFFF; border-radius: 999px; padding: 0.5rem 1.15rem; font-size: 0.8125rem; font-weight: 600;" data-open-modal="beta">
+            Request beta access
           </a>
           <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
         </div>
@@ -123,412 +49,631 @@
 
   <!-- MOBILE MENU DRAWER -->
   <div class="mobile-menu-drawer">
-    <a href="product.html" class="nav-link" style="font-size: 1.25rem;">Product Lifecycle</a>
-    <a href="pricing.html" class="nav-link" style="font-size: 1.25rem;">Pricing ($80/Seat)</a>
-    <a href="security.html" class="nav-link" style="font-size: 1.25rem;">Security & Data Vault</a>
-    <a href="about.html" class="nav-link" style="font-size: 1.25rem;">About Tom & The Team</a>
-    <a href="request.html?view=login" class="nav-link" style="font-size: 1.25rem; font-weight: 700; color: var(--hive-gold-600);">Log In</a>
-    <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
-      <a href="request.html" class="btn btn-lg btn-gold">Request Access</a>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="product.html" class="nav-link">Product</a>
+    <a href="pricing.html" class="nav-link">Pricing</a>
+    <a href="about.html" class="nav-link">About</a>
+    <div style="margin-top: 1.5rem;">
+      <a href="#waitlist" class="btn btn-lg btn-gold" style="width: 100%; text-align: center;" data-open-modal="beta">
+        Request beta access
+      </a>
     </div>
   </div>
 
-  <!-- HERO SECTION: $80/SEAT ABOVE THE FOLD + MERRIWEATHER HEADLINE -->
-  <section class="page-hero">
-    <div class="container container-narrow">
-      
-      <!-- Authority Marker -->
-      <div style="margin-bottom: 1.5rem;">
-        <span class="badge badge-gold" style="padding: 0.5rem 1.25rem;">
-          <span class="hive-star-gold">✦</span> THE OPERATIONAL BACKBONE FOR OVERWHELMED ADJUSTERS
-        </span>
-      </div>
-
-      <!-- Main Headline (Merriweather Bold) -->
-      <h1 class="page-hero-title">
-        Order out of chaos.<br>
-        <span style="color: var(--hive-gold-600); font-style: italic; font-weight: 400;">Breathe again.</span> Double your caseload without hiring.
-      </h1>
-
-      <!-- Radical Pricing Transparency Above the Fold -->
-      <div style="margin-bottom: 1.75rem;">
-        <div class="pricing-pill-callout">
-          <span class="price-bold">$80</span>
-          <span style="color: var(--hive-text-secondary); font-size: 0.875rem;">/ seat / month</span>
-          <span class="pill-separator" style="color: var(--hive-border-default);">•</span>
-          <span class="tag">Policyholders Always Free</span>
-          <span class="pill-separator" style="color: var(--hive-border-default);">•</span>
-          <span style="font-size: 0.8125rem; color: var(--hive-text-secondary);">Founding Lock Through 30 June 2027</span>
-        </div>
-      </div>
-
-      <!-- Spacious Subheadline -->
-      <p class="page-hero-subtitle">
-        Licensed Public Adjusters represent policyholders in high-stakes property battles while drowning in 60-hour weeks of carrier stall letters, photo sorting, and statutory Proof of Loss countdowns. Claim Hive provides the calm operational system that turns administrative exhaustion into predictable fee growth.
-      </p>
-
-      <!-- Action Buttons with Generous Padding -->
-      <div class="hero-cta-group" style="margin-bottom: 3.5rem;">
-        <a href="request.html?cohort=alpha" class="btn btn-lg btn-gold">
-          <span>Request Alpha Access</span>
-          <span style="font-size: 1.1em;">→</span>
-        </a>
-        <a href="request.html?cohort=january" class="btn btn-lg btn-navy">
-          <span class="hive-star-gold">✦</span>
-          <span>Join January Waitlist</span>
-        </a>
-      </div>
-
-      <!-- Quiet Trust Markers -->
-      <div style="display: flex; align-items: center; justify-content: center; gap: 1.75rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--hive-border-whisper);">
-        <span class="badge badge-trust">🛡️ Designed Exclusively for Licensed USA Public Adjusters</span>
-        <span class="badge badge-trust">🔒 SOC-2 Vault • AES-256 Document Encryption</span>
-        <span class="badge badge-trust">⚡ Zero AI Training on Customer Claim Files</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- HERO SHOWCASE: THE NEXT ACTION ENGINE IN THE FIELD -->
-  <section class="hero-showcase-container">
-    <div class="container">
-      <div class="hero-showcase-frame">
-        <img 
-          src="assets/hero-adjuster-truck.jpg?v=2" 
-          alt="Public adjuster in work truck with iPhone mounted showing ClaimHive's Next Action Engine" 
-          class="hero-showcase-img"
-          loading="eager"
-          width="1376"
-          height="768"
-        >
-        <div class="hero-image-caption-card">
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
-            <div style="max-width: 540px;">
-              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
-                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981;"></span>
-                <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--hive-gold-400);">
-                  The Next Action Engine • In the Field
-                </span>
-              </div>
-              <h3 style="font-size: clamp(1.125rem, 2vw, 1.35rem); font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.3;">
-                Stuck in traffic. Never stuck on what to do next.
-              </h3>
-            </div>
-            <div style="max-width: 520px;">
-              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.82); line-height: 1.55; margin: 0;">
-                Public adjusters spend hours on the road every day. Claim Hive collates every statutory deadline, carrier response, and file task into a singular, prioritized Next Action. Zero mental baggage. Nothing slips through the cracks.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTERACTIVE RELIEF CONCIERGE: 4 BOTTLENECKS SOLVED -->
-  <section class="section-spacious" style="padding-top: 0;">
-    <div class="container container-narrow">
-      <div class="card-airy" style="background: #FFFFFF; border: 1px solid var(--hive-border-subtle); padding: clamp(2.5rem, 5vw, 4rem); text-align: center;">
+  <!-- HERO SECTION: SOLUTION-FIRST SPLIT -->
+  <section style="padding: clamp(2rem, 5vw, 4.5rem) 0 2rem;">
+    <div class="container container-wide">
+      <div class="hero-split-wrap">
         
-        <span class="badge badge-navy" style="margin-bottom: 1.25rem;">
-          INSTANT RELIEF CONCIERGE
-        </span>
+        <!-- Hero Intro Copy (Desktop: Top Left, Mobile: Order 1) -->
+        <div class="hero-copy-intro">
+          <span style="font-family: var(--hive-font-display); font-size: 0.6875rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 1rem;">
+            FOR PUBLIC ADJUSTING FIRMS
+          </span>
 
-        <h2 class="font-heading" style="font-size: clamp(1.875rem, 3.5vw, 2.5rem); color: var(--hive-navy-900); margin-bottom: 0.75rem; font-weight: 700;">
-          Where is the administrative quicksand in your firm today?
-        </h2>
-        <p style="color: var(--hive-text-secondary); font-size: 1.0625rem; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.6;">
-          Select your biggest operational bottleneck below to see how Claim Hive replaces panic with quiet automation.
-        </p>
+          <h1 class="page-hero-title" style="font-size: clamp(2.5rem, 5.5vw, 4.25rem); line-height: 1.1; color: var(--hive-ink); margin-bottom: 1.25rem; letter-spacing: -0.025em;">
+            Nearly double your caseload.<br>
+            <span class="font-editorial-italic" style="color: var(--hive-gold-deep); font-weight: 400;">Not your hours.</span>
+          </h1>
 
-        <!-- Interactive Concierge Pill Selector -->
-        <div class="concierge-pill-group">
-          <button class="concierge-pill active" data-pain="deadlines">
-            <span class="pill-icon">⚡</span>
-            <span>Proof of Loss Deadlines</span>
-          </button>
-          <button class="concierge-pill" data-pain="stalls">
-            <span class="pill-icon">⏱️</span>
-            <span>Carrier Stall Tactics</span>
-          </button>
-          <button class="concierge-pill" data-pain="photos">
-            <span class="pill-icon">📸</span>
-            <span>Photo & Scoping Chaos</span>
-          </button>
-          <button class="concierge-pill" data-pain="capacity">
-            <span class="pill-icon">📈</span>
-            <span>Caseload Capped at 10 Claims</span>
-          </button>
+          <p style="font-size: clamp(1.0625rem, 2vw, 1.25rem); color: var(--hive-text-secondary); line-height: 1.65; max-width: 580px; margin-bottom: 0;">
+            ClaimHive is the AI command center built by working public adjusters—so the paperwork, follow-ups and storm research run themselves while you work the claims that pay.
+          </p>
         </div>
 
-        <!-- Dynamic Output Result Card -->
-        <div id="concierge-relief-result" style="margin-top: 2.5rem; background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-xl); padding: 2.25rem; text-align: left; transition: all 0.3s ease;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
-            <span style="font-family: var(--hive-font-display); font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-700); letter-spacing: 0.05em;">
-              THE CLAIM HIVE SOLUTION
-            </span>
-            <span id="relief-stat" class="font-numeric" style="font-size: 0.875rem; font-weight: 700; color: var(--hive-success); background: var(--hive-success-bg); padding: 0.25rem 0.75rem; border-radius: 999px; border: 1px solid var(--hive-success-border);">
-              0 Deadlines Missed across 14,000+ files
-            </span>
+        <!-- Beta Registration & Countdown Block (Desktop: Bottom Left, Mobile: Order 3) -->
+        <div class="alpha-live-block">
+          <span class="alpha-live-label">PRIVATE ALPHA CLOSING SOON</span>
+          <div class="alpha-live-row">
+            <span class="alpha-live-title">Get your spot early.</span>
+            <a href="#waitlist" class="btn btn-gold btn-alpha-pulse" style="padding: 0.75rem 1.65rem; border-radius: 999px; font-weight: 600;" data-open-modal="beta">
+              Request beta access
+            </a>
           </div>
+          <div class="beta-sub-countdown">
+            <span id="beta-inline-countdown">30d 16h 04m 51s</span> until rollout &bull; Founding rate locked at $80/seat
+          </div>
+        </div>
 
-          <h3 id="relief-title" class="font-display" style="font-size: 1.375rem; color: var(--hive-navy-900); margin-bottom: 0.75rem;">
-            Automated 60-Day Proof of Loss (POL) Vault
-          </h3>
+        <!-- Right Column: Apple-Grade Interactive Hero Hub Stage -->
+        <div class="hero-graphic-side">
+          <div id="hero-hub-interactive" class="hero-hub-stage">
+            <div class="hub-parallax-card">
 
-          <p id="relief-desc" style="font-size: 1rem; color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
-            Never wake up in a panic. Claim Hive indexes all state-specific statutory deadlines upon contract upload and dispatches automated carrier notices 14, 7, and 3 days before any statutory cutoff.
-          </p>
+              <!-- Plane -1: Background Isometric Constellation Grid (Deep Plane: translateZ(-35px)) -->
+              <svg class="hub-3d-plane plane-bg" viewBox="0 0 580 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="constellation-pattern" width="83.14" height="144" patternUnits="userSpaceOnUse">
+                    <path d="M41.57,0 L83.14,24 L83.14,72 L41.57,96 L0,72 L0,24 Z" stroke="#D9A21B" stroke-opacity="0.10" stroke-width="0.8" fill="none"/>
+                    <path d="M41.57,96 L83.14,120 L83.14,168 L41.57,192 L0,168 L0,120 Z" stroke="#D9A21B" stroke-opacity="0.10" stroke-width="0.8" fill="none"/>
+                    <path d="M124.71,72 L166.28,96 L166.28,144 L124.71,168 L83.14,144 L83.14,96 Z" stroke="#D9A21B" stroke-opacity="0.10" stroke-width="0.8" fill="none"/>
+                    <path d="M-41.57,72 L0,96 L0,144 L-41.57,168 L-83.14,144 L-83.14,96 Z" stroke="#D9A21B" stroke-opacity="0.10" stroke-width="0.8" fill="none"/>
+                    <circle cx="41.57" cy="0" r="1.5" fill="#D9A21B" fill-opacity="0.25"/>
+                    <circle cx="83.14" cy="24" r="1.5" fill="#D9A21B" fill-opacity="0.25"/>
+                    <circle cx="83.14" cy="72" r="1.5" fill="#D9A21B" fill-opacity="0.25"/>
+                    <circle cx="41.57" cy="96" r="1.5" fill="#D9A21B" fill-opacity="0.25"/>
+                    <circle cx="0" cy="72" r="1.5" fill="#D9A21B" fill-opacity="0.25"/>
+                    <circle cx="0" cy="24" r="1.5" fill="#D9A21B" fill-opacity="0.25"/>
+                  </pattern>
+                </defs>
+                <rect width="580" height="540" fill="url(#constellation-pattern)"/>
+              </svg>
 
-          <a href="product.html" class="btn btn-sm btn-gold">
-            <span>Explore How Files Move</span>
-            <span class="hive-star-icon">✦</span>
+              <!-- Plane 0: Base Motherboard & Bidirectional Data Highways (Substrate: translateZ(0px)) -->
+              <svg class="hub-3d-plane plane-conduits" viewBox="0 0 580 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="gold-glow-filter" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="8" result="blur"/>
+                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                  </filter>
+                </defs>
+
+                <!-- Full-Matrix Diametrical Synaptic Trunks (Through-Matrix Neural Web - Bidirectional) -->
+                <line x1="290" y1="90" x2="290" y2="450" stroke="#D9A21B" stroke-opacity="0.12" stroke-width="1.2" stroke-dasharray="4 6"/>
+                <line class="pulse-stream-fwd" x1="290" y1="90" x2="290" y2="450" stroke-opacity="0.4" stroke-width="1.2"/>
+                <line class="pulse-stream-rev" x1="290" y1="450" x2="290" y2="90" stroke-opacity="0.4" stroke-width="1.2"/>
+
+                <line x1="134" y1="180" x2="446" y2="360" stroke="#D9A21B" stroke-opacity="0.12" stroke-width="1.2" stroke-dasharray="4 6"/>
+                <line class="pulse-stream-fwd" x1="134" y1="180" x2="446" y2="360" stroke-opacity="0.4" stroke-width="1.2"/>
+                <line class="pulse-stream-rev" x1="446" y1="360" x2="134" y2="180" stroke-opacity="0.4" stroke-width="1.2"/>
+
+                <line x1="134" y1="360" x2="446" y2="180" stroke="#D9A21B" stroke-opacity="0.12" stroke-width="1.2" stroke-dasharray="4 6"/>
+                <line class="pulse-stream-fwd" x1="134" y1="360" x2="446" y2="180" stroke-opacity="0.4" stroke-width="1.2"/>
+                <line class="pulse-stream-rev" x1="446" y1="180" x2="134" y2="360" stroke-opacity="0.4" stroke-width="1.2"/>
+
+                <!-- Outer Orbital Perimeter Ring Track -->
+                <polygon points="290,90 446,180 446,360 290,450 134,360 134,180" stroke="#D9A21B" stroke-opacity="0.22" stroke-width="1.2" stroke-dasharray="5 6" fill="none"/>
+
+                <!-- Inter-Tool Perimeter Highways (Tool-to-Tool Bidirectional Data Flow) -->
+                <!-- 1. CRM <-> Weather -->
+                <line class="conduit-track" x1="345.4" y1="122" x2="390.6" y2="148"/>
+                <line class="pulse-stream-fwd" x1="345.4" y1="122" x2="390.6" y2="148"/>
+                <line class="pulse-stream-rev" x1="390.6" y1="148" x2="345.4" y2="122"/>
+
+                <!-- 2. Weather <-> Chip AI -->
+                <line class="conduit-track" x1="446" y1="244" x2="446" y2="296"/>
+                <line class="pulse-stream-hero" x1="446" y1="244" x2="446" y2="296"/>
+                <line class="pulse-stream-rev" x1="446" y1="296" x2="446" y2="244"/>
+
+                <!-- 3. Chip AI <-> Client Portal -->
+                <line class="conduit-track" x1="390.6" y1="392" x2="345.4" y2="418"/>
+                <line class="pulse-stream-fwd" x1="390.6" y1="392" x2="345.4" y2="418"/>
+                <line class="pulse-stream-rev" x1="345.4" y1="418" x2="390.6" y2="392"/>
+
+                <!-- 4. Client Portal <-> Finance -->
+                <line class="conduit-track" x1="234.6" y1="418" x2="189.4" y2="392"/>
+                <line class="pulse-stream-fwd" x1="234.6" y1="418" x2="189.4" y2="392"/>
+                <line class="pulse-stream-rev" x1="189.4" y1="392" x2="234.6" y2="418"/>
+
+                <!-- 5. Finance <-> Growth -->
+                <line class="conduit-track" x1="134" y1="296" x2="134" y2="244"/>
+                <line class="pulse-stream-fwd" x1="134" y1="296" x2="134" y2="244"/>
+                <line class="pulse-stream-rev" x1="134" y1="244" x2="134" y2="296"/>
+
+                <!-- 6. Growth <-> CRM -->
+                <line class="conduit-track" x1="189.4" y1="148" x2="234.6" y2="122"/>
+                <line class="pulse-stream-fwd" x1="189.4" y1="148" x2="234.6" y2="122"/>
+                <line class="pulse-stream-rev" x1="234.6" y1="122" x2="189.4" y2="148"/>
+
+                <!-- Radial Data Conduits (Core Hub <-> All Modules Bidirectional Pulse) -->
+                <!-- Core <-> CRM -->
+                <line class="conduit-track" x1="290" y1="200" x2="290" y2="154"/>
+                <line class="pulse-stream-fwd" x1="290" y1="200" x2="290" y2="154"/>
+                <line class="pulse-stream-rev" x1="290" y1="154" x2="290" y2="200"/>
+
+                <!-- Core <-> Weather -->
+                <line class="conduit-track" x1="350.6" y1="235" x2="390.6" y2="212"/>
+                <line class="pulse-stream-fwd" x1="350.6" y1="235" x2="390.6" y2="212"/>
+                <line class="pulse-stream-rev" x1="390.6" y1="212" x2="350.6" y2="235"/>
+
+                <!-- Core <-> Chip AI (Hero Stream) -->
+                <line class="conduit-track" x1="350.6" y1="305" x2="390.6" y2="328"/>
+                <line class="pulse-stream-hero" x1="350.6" y1="305" x2="390.6" y2="328"/>
+                <line class="pulse-stream-rev" x1="390.6" y1="328" x2="350.6" y2="305"/>
+
+                <!-- Core <-> Portal -->
+                <line class="conduit-track" x1="290" y1="340" x2="290" y2="386"/>
+                <line class="pulse-stream-fwd" x1="290" y1="340" x2="290" y2="386"/>
+                <line class="pulse-stream-rev" x1="290" y1="386" x2="290" y2="340"/>
+
+                <!-- Core <-> Finance -->
+                <line class="conduit-track" x1="229.4" y1="305" x2="189.4" y2="328"/>
+                <line class="pulse-stream-fwd" x1="229.4" y1="305" x2="189.4" y2="328"/>
+                <line class="pulse-stream-rev" x1="189.4" y1="328" x2="229.4" y2="305"/>
+
+                <!-- Core <-> Growth -->
+                <line class="conduit-track" x1="229.4" y1="235" x2="189.4" y2="212"/>
+                <line class="pulse-stream-fwd" x1="229.4" y1="235" x2="189.4" y2="212"/>
+                <line class="pulse-stream-rev" x1="189.4" y1="212" x2="229.4" y2="235"/>
+
+                <!-- Junction Synaptic Packet Nodes -->
+                <circle cx="368" cy="135" r="2.4" fill="#D9A21B"/>
+                <circle cx="446" cy="270" r="2.8" fill="#D9A21B" filter="url(#gold-glow-filter)"/>
+                <circle cx="368" cy="405" r="2.8" fill="#D9A21B" filter="url(#gold-glow-filter)"/>
+                <circle cx="212" cy="405" r="2.4" fill="#D9A21B"/>
+                <circle cx="134" cy="270" r="2.4" fill="#D9A21B"/>
+                <circle cx="212" cy="135" r="2.4" fill="#D9A21B"/>
+
+                <circle cx="290" cy="200" r="2.8" fill="#D9A21B"/>
+                <circle cx="350.6" cy="235" r="2.8" fill="#D9A21B"/>
+                <circle cx="350.6" cy="305" r="3.6" fill="#D9A21B" filter="url(#gold-glow-filter)"/>
+                <circle cx="290" cy="340" r="2.8" fill="#D9A21B"/>
+                <circle cx="229.4" cy="305" r="2.8" fill="#D9A21B"/>
+                <circle cx="229.4" cy="235" r="2.8" fill="#D9A21B"/>
+
+                <circle cx="290" cy="154" r="2.6" fill="#D9A21B"/>
+                <circle cx="390.6" cy="212" r="2.6" fill="#D9A21B"/>
+                <circle cx="390.6" cy="328" r="3.6" fill="#D9A21B" filter="url(#gold-glow-filter)"/>
+                <circle cx="290" cy="386" r="2.6" fill="#D9A21B"/>
+                <circle cx="189.4" cy="328" r="2.6" fill="#D9A21B"/>
+                <circle cx="189.4" cy="212" r="2.6" fill="#D9A21B"/>
+              </svg>
+
+              <!-- Plane 1: Operational Foundation — Growth & Finance (Elevated: translateZ(26px)) -->
+              <svg class="hub-3d-plane plane-tier1" viewBox="0 0 580 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- TOOL 5 (BOTTOM LEFT): Back Office & Virtual CFO -->
+                <g class="hex-node" id="node-backoffice">
+                  <polygon class="hex-outline" points="134,296 189.4,328 189.4,392 134,424 78.6,392 78.6,328" stroke="#D9A21B" stroke-opacity="0.55" stroke-width="1.4" fill="#FFFFFF" fill-opacity="0.94"/>
+                  <circle cx="134" cy="342" r="16" fill="#FBF8F1" stroke="#D9A21B" stroke-opacity="0.45" stroke-width="1.3"/>
+                  <text x="134" y="348" text-anchor="middle" font-family="'Merriweather', serif" font-size="15" font-weight="700" fill="#A18312">$</text>
+                  <text x="134" y="375" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13.5" font-weight="700" fill="#1A1A1A" letter-spacing="0.04em">FINANCE</text>
+                  <text x="134" y="390" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#718096" letter-spacing="0.05em">VIRTUAL CFO</text>
+                </g>
+
+                <!-- TOOL 6 (TOP LEFT): Growth Hub -->
+                <g class="hex-node" id="node-growth">
+                  <polygon class="hex-outline" points="134,116 189.4,148 189.4,212 134,244 78.6,212 78.6,148" stroke="#D9A21B" stroke-opacity="0.55" stroke-width="1.4" fill="#FFFFFF" fill-opacity="0.94"/>
+                  <circle cx="134" cy="162" r="16" fill="#FBF8F1" stroke="#D9A21B" stroke-opacity="0.45" stroke-width="1.3"/>
+                  <path d="M126.5,167 L132,160 L136,164 L141.5,155" stroke="#A18312" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <text x="134" y="195" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13.5" font-weight="700" fill="#1A1A1A" letter-spacing="0.04em">GROWTH</text>
+                  <text x="134" y="210" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#718096" letter-spacing="0.05em">REVIEWS &amp; BD</text>
+                </g>
+              </svg>
+
+              <!-- Plane 2: Active Workflow Modules — CRM, Weather, Portal (Elevated: translateZ(44px)) -->
+              <svg class="hub-3d-plane plane-tier2" viewBox="0 0 580 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- TOOL 1 (TOP): Claim CRM & Deadlines -->
+                <g class="hex-node" id="node-crm">
+                  <polygon class="hex-outline" points="290,26 345.4,58 345.4,122 290,154 234.6,122 234.6,58" stroke="#D9A21B" stroke-opacity="0.55" stroke-width="1.4" fill="#FFFFFF" fill-opacity="0.94"/>
+                  <circle cx="290" cy="72" r="16" fill="#FBF8F1" stroke="#D9A21B" stroke-opacity="0.45" stroke-width="1.3"/>
+                  <path d="M283,71.5 L288,76.5 L297,67.5" stroke="#A18312" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <text x="290" y="105" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13.5" font-weight="700" fill="#1A1A1A" letter-spacing="0.04em">CRM</text>
+                  <text x="290" y="120" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#718096" letter-spacing="0.05em">PIPELINE</text>
+                </g>
+
+                <!-- TOOL 2 (TOP RIGHT): Weather Intel & Roofs -->
+                <g class="hex-node" id="node-weather">
+                  <polygon class="hex-outline" points="446,116 501.4,148 501.4,212 446,244 390.6,212 390.6,148" stroke="#D9A21B" stroke-opacity="0.55" stroke-width="1.4" fill="#FFFFFF" fill-opacity="0.94"/>
+                  <circle cx="446" cy="162" r="16" fill="#FBF8F1" stroke="#D9A21B" stroke-opacity="0.45" stroke-width="1.3"/>
+                  <path d="M446,153 L453,161 L446,171 L439,161 Z" stroke="#A18312" stroke-width="1.8" fill="none"/>
+                  <circle cx="446" cy="162" r="2.5" fill="#D9A21B"/>
+                  <text x="446" y="195" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13.5" font-weight="700" fill="#1A1A1A" letter-spacing="0.04em">WEATHER</text>
+                  <text x="446" y="210" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#718096" letter-spacing="0.05em">RADAR &amp; ROOFS</text>
+                </g>
+
+                <!-- TOOL 4 (BOTTOM): Client Portal -->
+                <g class="hex-node" id="node-portal">
+                  <polygon class="hex-outline" points="290,386 345.4,418 345.4,482 290,514 234.6,482 234.6,418" stroke="#D9A21B" stroke-opacity="0.55" stroke-width="1.4" fill="#FFFFFF" fill-opacity="0.94"/>
+                  <circle cx="290" cy="432" r="16" fill="#FBF8F1" stroke="#D9A21B" stroke-opacity="0.45" stroke-width="1.3"/>
+                  <circle cx="290" cy="428" r="4.8" stroke="#A18312" stroke-width="1.6" fill="none"/>
+                  <path d="M281,439.5 C281,435.5 285,434 290,434 C295,434 299,435.5 299,439.5" stroke="#A18312" stroke-width="1.6" fill="none"/>
+                  <text x="290" y="465" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13.5" font-weight="700" fill="#1A1A1A" letter-spacing="0.04em">PORTAL</text>
+                  <text x="290" y="480" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#718096" letter-spacing="0.05em">MAGIC LINKS</text>
+                </g>
+              </svg>
+
+              <!-- Plane 3: Core Hub Command Center (Command Elevation: translateZ(62px)) -->
+              <svg class="hub-3d-plane plane-core" viewBox="0 0 580 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="gold-stroke-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ECCE72"/>
+                    <stop offset="50%" stop-color="#D9A21B"/>
+                    <stop offset="100%" stop-color="#A18312"/>
+                  </linearGradient>
+                </defs>
+                <g class="hex-node hex-center">
+                  <polygon class="hex-outline" points="290,200 350.6,235 350.6,305 290,340 229.4,305 229.4,235" stroke="url(#gold-stroke-gradient)" stroke-width="2.4" fill="#FAF8F3" fill-opacity="0.96"/>
+                  <circle cx="290" cy="250" r="23" fill="#FAF2DC" stroke="#D9A21B" stroke-width="1.8"/>
+                  <!-- Center Hive Mark -->
+                  <polygon points="290,240 299,245 299,255 290,260 281,255 281,245" fill="#D9A21B"/>
+                  <text x="290" y="293" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="800" fill="#7D6409" letter-spacing="0.08em">CORE HUB</text>
+                  <text x="290" y="309" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#A18312" letter-spacing="0.07em">CLAIMHIVE</text>
+                </g>
+              </svg>
+
+              <!-- Plane 4: Active Hero Sovereign Plane — Chip AI + 54 Agents (Peak Elevation: translateZ(82px)) -->
+              <svg class="hub-3d-plane plane-chip" viewBox="0 0 580 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="active-cell-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FDF9ED" stop-opacity="0.96"/>
+                    <stop offset="100%" stop-color="#F5E4B3" stop-opacity="0.92"/>
+                  </linearGradient>
+                </defs>
+                <g class="hex-node active-gold" id="node-chip">
+                  <polygon class="hex-fill" points="446,296 501.4,328 501.4,392 446,424 390.6,392 390.6,328" fill="url(#active-cell-gradient)" stroke="#D9A21B" stroke-width="2.6"/>
+                  <circle cx="446" cy="342" r="19" fill="#FAF2DC" stroke="#D9A21B" stroke-width="1.8"/>
+                  <!-- Chip Star Icon -->
+                  <path d="M446,331 L449.2,338.5 L457,342 L449.2,345.5 L446,353 L442.8,345.5 L435,342 L442.8,338.5 Z" fill="#D9A21B"/>
+                  <text x="446" y="375" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="800" fill="#7D6409" letter-spacing="0.05em">CHIP AI</text>
+                  <text x="446" y="391" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#A18312" letter-spacing="0.06em">54 AGENTS</text>
+                </g>
+              </svg>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 24 FEATURES PROOF STRIP -->
+  <section class="features-single-strip">
+    <div class="container container-wide">
+      <div class="features-strip-inner">
+        <div class="features-strip-left">
+          <span class="num-exclusive-24">24</span>
+          <span>exclusive features no other public adjusting platform lists. 56 capabilities in all.</span>
+        </div>
+        <div>
+          <a href="product.html#competitor-matrix" class="strip-compare-link">
+            <span>View comparison chart</span>
+            <span style="font-size: 1rem; line-height: 1;">&rarr;</span>
           </a>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- TOM'S PERSONAL AUTHORITY CALLOUT -->
-  <section class="section-spacious" style="background: #FFFFFF; border-top: 1px solid var(--hive-border-whisper); border-bottom: 1px solid var(--hive-border-whisper);">
-    <div class="container container-narrow">
-      <div class="founder-callout-grid">
-        
-        <div style="text-align: center;">
-          <div style="width: 120px; height: 120px; border-radius: 50%; background: var(--hive-canvas-alt); border: 2px solid var(--hive-gold-500); display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 0.75rem; box-shadow: var(--hive-shadow-card);">
-            ⚖️
+  <!-- THE DARK CONTRAST SECTION: THE PROBLEM & SOLUTION -->
+  <section class="section-dark-caseload">
+    <div class="container container-wide">
+      
+      <!-- Section Header -->
+      <div style="max-width: 780px;">
+        <span style="font-family: var(--hive-font-display); font-size: 0.6875rem; font-weight: 700; color: var(--hive-gold-honey); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.75rem;">
+          THE SAME WEEK. TWICE THE FILES.
+        </span>
+        <h2 class="dark-section-title">
+          Your hours aren't the problem.<br>
+          Where they go is.
+        </h2>
+      </div>
+
+      <!-- Two Side-by-Side Caseload Cards with Visual Time Allocation Bars -->
+      <div class="dark-caseload-grid">
+
+        <!-- Card 1: WITHOUT CLAIM HIVE -->
+        <div class="dark-card">
+          <span class="dark-card-label">WITHOUT CLAIM HIVE</span>
+          <div class="dark-card-number">
+            20 <span class="dark-card-unit">active files</span>
           </div>
-          <span class="badge badge-navy" style="font-size: 0.6875rem; padding: 0.25rem 0.5rem;">25+ YEARS PA</span>
+          <div class="dark-card-sub">50-hour week</div>
+
+          <!-- Time Progress Bar (70% Admin & Busywork, 30% Adjusting) -->
+          <div class="time-bar-wrap">
+            <div class="time-bar">
+              <div class="time-bar-segment-admin" style="width: 72%;"></div>
+              <div class="time-bar-segment-adjusting" style="width: 28%;"></div>
+            </div>
+            <div class="time-bar-labels">
+              <span>Admin and busywork</span>
+              <span>Adjusting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: WITH CLAIM HIVE (Gold Highlight Border) -->
+        <div class="dark-card highlight">
+          <span class="dark-card-label">WITH CLAIM HIVE</span>
+          <div class="dark-card-number">
+            38 <span class="dark-card-unit" style="color: #F8D79F;">active files</span>
+          </div>
+          <div class="dark-card-sub" style="color: #CBD5E1;">Same 50-hour week</div>
+
+          <!-- Time Progress Bar (18% Admin, 82% Adjusting) -->
+          <div class="time-bar-wrap">
+            <div class="time-bar">
+              <div class="time-bar-segment-admin" style="width: 18%;"></div>
+              <div class="time-bar-segment-adjusting" style="width: 82%;"></div>
+            </div>
+            <div class="time-bar-labels">
+              <span>Admin</span>
+              <span style="color: var(--hive-gold-honey); font-weight: 700;">Adjusting</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 4-Column Breakdown of Where Time Returns -->
+      <div class="dark-breakdown-row">
+        <div class="dark-breakdown-col">
+          <h4>Documentation</h4>
+          <p>Photos, notes and estimates filed in the right claim—automatically.</p>
+        </div>
+        <div class="dark-breakdown-col">
+          <h4>Follow-ups</h4>
+          <p>Chip chases carriers, clients and deadlines so nothing slips.</p>
+        </div>
+        <div class="dark-breakdown-col">
+          <h4>Intake</h4>
+          <p>Emails, attachments and checks read and filed to the right claim automatically.</p>
+        </div>
+        <div class="dark-breakdown-col">
+          <h4>Status updates</h4>
+          <p>Clients see progress without calling you to ask.</p>
+        </div>
+      </div>
+
+      <div style="font-size: 0.6875rem; color: #6E798D; font-style: italic;">
+        [Illustrative figures—replace with 60-day field results before launch]
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS: ONE HIVE. EVERY CLAIM. -->
+  <section class="section-spacious" style="background: var(--hive-canvas);">
+    <div class="container container-wide">
+      
+      <div style="margin-bottom: 3.5rem;">
+        <span style="font-family: var(--hive-font-display); font-size: 0.6875rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.5rem;">
+          HOW IT WORKS
+        </span>
+        <h2 style="font-size: clamp(2rem, 4vw, 3rem); color: var(--hive-ink); letter-spacing: -0.02em;">
+          One hive. Every claim.
+        </h2>
+      </div>
+
+      <!-- Three Pillars Grid -->
+      <div class="pillars-grid">
+
+        <!-- Pillar 1 -->
+        <div class="pillar-col">
+          <div class="pillar-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Claim CRM</h3>
+          <p>Every file, deadline and document in one place—built around how public adjusters actually work a loss.</p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="pillar-col">
+          <div class="pillar-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <h3>Leads + Roofs</h3>
+          <p>AI-assisted lead generation and single-click roof measurements—from first knock to first estimate.</p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pillar-col">
+          <div class="pillar-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </div>
+          <h3>Meet Chip</h3>
+          <p>Your AI teammate. Drafts, organizes and follows up—so you spend your day adjusting, not typing.</p>
+        </div>
+
+      </div>
+
+      <!-- Three-Step Rollout Timeline -->
+      <div class="timeline-pills-grid">
+
+        <div class="timeline-pill-item">
+          <div class="timeline-dot-label">
+            <span class="timeline-dot gold"></span>
+            <span>OCTOBER 2026</span>
+          </div>
+          <h4>Private Alpha</h4>
+          <p>Invite-only. Operating inside working firms now to refine agent workflows before wide rollout.</p>
+        </div>
+
+        <div class="timeline-pill-item">
+          <div class="timeline-dot-label">
+            <span class="timeline-dot gold"></span>
+            <span>NOVEMBER 1 – DEC 31</span>
+          </div>
+          <h4>Public Beta</h4>
+          <p>Registration open now. Cohorts onboard in order of sign-up with locked $80 founding rates.</p>
+        </div>
+
+        <div class="timeline-pill-item">
+          <div class="timeline-dot-label">
+            <span class="timeline-dot muted"></span>
+            <span>JANUARY 1, 2027</span>
+          </div>
+          <h4>General Availability (GA)</h4>
+          <p>Full commercial launch. Member firms hit the new year with their caseload capacity doubled.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRICING BANNER CARD -->
+  <section style="padding: 1.5rem 0 4rem;">
+    <div class="container container-wide">
+      <div class="pricing-banner-card">
+        <div class="pricing-banner-left">
+          <span style="font-family: var(--hive-font-display); font-size: 0.6875rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.35rem;">
+            PRICING
+          </span>
+          <div class="pricing-banner-num">
+            $80 <span style="font-size: 1.125rem; font-weight: 500; color: var(--hive-text-secondary); font-family: var(--hive-font-body);">/ seat / month + token usage</span>
+          </div>
+          <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); margin-top: 0.5rem; line-height: 1.5;">
+            Fair for everyone—you pay for what you use. More than 10 users? Let's talk enterprise.
+          </p>
         </div>
 
         <div>
-          <span style="font-family: var(--hive-font-display); font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-700); letter-spacing: 0.05em; text-transform: uppercase;">
-            FROM THE FOUNDER'S DESK
-          </span>
-          <blockquote class="font-editorial" style="font-size: 1.375rem; line-height: 1.6; color: var(--hive-navy-900); margin: 0.5rem 0 1rem; font-style: italic;">
-            "I built Claim Hive because my desk was buried under manila folders, carrier stall letters, and 600 unorganized inspection photos on my iPhone. We didn’t build this to sell corporate hype. We built it so adjusters can breathe again and take on more claims."
-          </blockquote>
-          <div style="font-family: var(--hive-font-display); font-size: 0.9375rem; font-weight: 700; color: var(--hive-navy-900);">
-            Tom — Licensed Public Adjuster (FL, TX, GA, Carolinas)
-          </div>
-          <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); margin-top: 0.25rem;">
-            Co-Founder & Public Adjuster Advocate • <a href="about.html" style="color: var(--hive-gold-600); text-decoration: none; font-weight: 600;">Read Tom's full story →</a>
-          </div>
+          <a href="pricing.html" class="btn btn-outline" style="border-radius: 999px; padding: 0.75rem 2rem; background: #FFFFFF; font-weight: 600; color: var(--hive-ink); border-color: var(--hive-border-strong);">
+            See pricing
+          </a>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- PRODUCT OVERVIEW: THE 5-STAGE PIPELINE -->
-  <section class="section-spacious">
-    <div class="container">
-      <div style="max-width: 760px; margin: 0 auto; text-align: center; margin-bottom: 4rem;">
-        <span class="badge badge-gold">HOW A FILE MOVES</span>
-        <h2 class="font-heading" style="font-size: clamp(2rem, 3.5vw, 2.75rem); color: var(--hive-navy-900); margin: 0.75rem 0 1rem; font-weight: 700;">
-          The Linear Claim Pipeline
-        </h2>
-        <p style="font-size: 1.0625rem; color: var(--hive-text-secondary); line-height: var(--hive-leading-editorial);">
-          From initial policyholder contract to settlement check release. No fragmented software, no lost email attachments, no dropped balls.
-        </p>
+  <!-- FINAL FOMO WAITLIST SECTION -->
+  <section id="waitlist" class="section-spacious" style="padding-top: 2rem; text-align: center;">
+    <div class="container container-reading">
+      
+      <!-- Hexagon Wireframe Icon -->
+      <div style="display: flex; justify-content: center; margin-bottom: 1.25rem;">
+        <svg width="40" height="46" viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="20,2 38,12 38,34 20,44 2,34 2,12" stroke="#D9A21B" stroke-width="1.5" fill="none"/>
+        </svg>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
-        
-        <div class="card-airy" style="background: #FFFFFF; padding: 2rem 1.5rem; text-align: center;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">1️⃣</div>
-          <h3 class="font-display" style="font-size: 1.0625rem; margin-bottom: 0.5rem;">Intake & Docketing</h3>
-          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
-            Contract upload triggers automatic policy limit capture and 60-day statutory POL countdowns.
-          </p>
-        </div>
-
-        <div class="card-airy" style="background: #FFFFFF; padding: 2rem 1.5rem; text-align: center;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">2️⃣</div>
-          <h3 class="font-display" style="font-size: 1.0625rem; margin-bottom: 0.5rem;">Evidence & Scoping</h3>
-          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
-            Direct mobile upload sorts 800+ damage photos by elevation and room in seconds.
-          </p>
-        </div>
-
-        <div class="card-airy" style="background: #FFFFFF; padding: 2rem 1.5rem; text-align: center;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">3️⃣</div>
-          <h3 class="font-display" style="font-size: 1.0625rem; margin-bottom: 0.5rem;">Estimate & Gaps</h3>
-          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
-            Track supplements, contractor reconciliation, and code upgrade justification.
-          </p>
-        </div>
-
-        <div class="card-airy" style="background: #FFFFFF; padding: 2rem 1.5rem; text-align: center;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">4️⃣</div>
-          <h3 class="font-display" style="font-size: 1.0625rem; margin-bottom: 0.5rem;">Letters & Demands</h3>
-          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
-            Automated statutory carrier letters citing state bad-faith timelines + free client portal.
-          </p>
-        </div>
-
-        <div class="card-airy" style="background: #FFFFFF; padding: 2rem 1.5rem; text-align: center;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">5️⃣</div>
-          <h3 class="font-display" style="font-size: 1.0625rem; margin-bottom: 0.5rem;">Next Action Engine</h3>
-          <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.6;">
-            Your daily morning docket: exactly what file must move today to prevent stalls.
-          </p>
-        </div>
-
-      </div>
-
-      <div style="text-align: center; margin-top: 3rem;">
-        <a href="product.html" class="btn btn-lg btn-outline">
-          <span>See The Complete File Walkthrough</span>
-          <span>→</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY ADJUSTERS SWITCH: DISMANTLING BLOAT & ESTABLISHING TRUST -->
-  <section class="section-spacious" style="background: #FFFFFF; border-top: 1px solid var(--hive-border-whisper); border-bottom: 1px solid var(--hive-border-whisper);">
-    <div class="container">
-      <div style="text-align: center; max-width: 760px; margin: 0 auto 3.5rem;">
-        <span class="badge badge-navy">THE ADJUSTER'S DILEMMA</span>
-        <h2 class="font-heading" style="font-size: clamp(1.875rem, 3.5vw, 2.75rem); color: var(--hive-navy-900); margin-top: 0.75rem; font-weight: 700;">
-          Why Experienced Adjusters Are Leaving Legacy Software for Claim Hive
-        </h2>
-        <p style="font-size: 1.0625rem; color: var(--hive-text-secondary); line-height: 1.7; margin-top: 0.5rem;">
-          Most claims software falls into one of two extremes: legacy database dinosaurs that require 3 weeks of training, or bloated AI platforms charging $200+ base tolls while ingesting your confidential client files. We built the quiet, trustworthy operating system adjusters actually asked for.
-        </p>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 2rem;">
-        
-        <!-- PILLAR 1: ANTI-BLOAT -->
-        <div class="card-airy" style="background: var(--hive-canvas); padding: 2.25rem 2rem; border-radius: var(--hive-radius-xl); border: 1px solid var(--hive-border-subtle); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--hive-gold-100); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem;">
-              🪜
-            </div>
-            <span class="badge badge-gold" style="font-size: 0.6875rem;">ZERO 40-TAB MAZES</span>
-            <h3 class="font-display" style="font-size: 1.25rem; color: var(--hive-navy-900); margin: 0.5rem 0 0.75rem;">
-              Built for Roof Climbers, Not Corporate Accountants
-            </h3>
-            <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.65;">
-              Legacy software was designed for back-office billing clerks with 35 sub-tabs, rigid accounting modules, and 3-week onboarding cycles. Claim Hive is built for the field adjuster who climbs roofs and fights carrier stalls. Just the 5 linear stages a file moves through. You’ll master it in 45 minutes.
-            </p>
-          </div>
-          <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--hive-border-whisper); font-size: 0.8125rem; color: var(--hive-gold-800); font-weight: 600;">
-            ✓ 45-minute live onboarding with Tom
-          </div>
-        </div>
-
-        <!-- PILLAR 2: PRIVILEGE & ZERO AI TRAINING -->
-        <div class="card-airy" style="background: var(--hive-canvas); padding: 2.25rem 2rem; border-radius: var(--hive-radius-xl); border: 1px solid var(--hive-border-subtle); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--hive-navy-100); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem;">
-              🛡️
-            </div>
-            <span class="badge badge-navy" style="font-size: 0.6875rem;">WORK-PRODUCT PRIVILEGE</span>
-            <h3 class="font-display" style="font-size: 1.25rem; color: var(--hive-navy-900); margin: 0.5rem 0 0.75rem;">
-              Zero AI Model Training on Your Claim Files
-            </h3>
-            <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.65;">
-              Other AI tools feed your estimates, damage photos, and policyholder negotiations into commercial foundation models without legal shields. If carrier defense counsel subpoenas them, your work-product privilege could be destroyed. Claim Hive operates under an airtight legal covenant: <strong>Zero AI training on customer claim files. Ever.</strong>
-            </p>
-          </div>
-          <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--hive-border-whisper); font-size: 0.8125rem; color: var(--hive-navy-900); font-weight: 600;">
-            ✓ Privileged work-product legal protection
-          </div>
-        </div>
-
-        <!-- PILLAR 3: RADICAL PRICING -->
-        <div class="card-airy" style="background: var(--hive-canvas); padding: 2.25rem 2rem; border-radius: var(--hive-radius-xl); border: 1px solid var(--hive-border-subtle); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--hive-gold-100); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem;">
-              💰
-            </div>
-            <span class="badge badge-gold" style="font-size: 0.6875rem;">NO BASE TOLLS • NO CUTS</span>
-            <h3 class="font-display" style="font-size: 1.25rem; color: var(--hive-navy-900); margin: 0.5rem 0 0.75rem;">
-              Flat $80/Seat — Zero Percentage Cuts
-            </h3>
-            <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.65;">
-              Competitors charge $199 base fees or take cuts of your contingent settlements. We believe your settlement fee belongs 100% to you. We charge a flat, honest $80 per internal seat with founding lock through June 30, 2027. Policyholders and external engineers are always 100% free forever.
-            </p>
-          </div>
-          <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--hive-border-whisper); font-size: 0.8125rem; color: var(--hive-success); font-weight: 600;">
-            ✓ Save $2,500 – $6,000/yr vs competitor pricing
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA BANNER (AIRY, ASSURING) -->
-  <section class="section-spacious" style="background: var(--hive-navy-950); color: #FFFFFF;">
-    <div class="container container-narrow" style="text-align: center;">
-      <span class="badge badge-gold" style="margin-bottom: 1.5rem;">LIMITED ALPHA COHORT</span>
-      <h2 class="font-heading" style="font-size: clamp(2.25rem, 4vw, 3.25rem); color: #FFFFFF; margin-bottom: 1.25rem; font-weight: 700;">
-        Ready to take back your weekends?
+      <!-- Velvet-Rope Urgency Headline -->
+      <h2 style="font-size: clamp(2rem, 4vw, 3.125rem); color: var(--hive-ink); line-height: 1.15; margin-bottom: 0.85rem; letter-spacing: -0.02em;">
+        Beta spots are filling.<br>
+        <span class="font-editorial-italic" style="color: var(--hive-gold-deep); font-weight: 400;">Your competitors are signing up.</span>
       </h2>
-      <p style="color: #CBD5E1; font-size: 1.125rem; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7;">
-        Lock in the founding $80/seat/month rate through June 30, 2027. We onboard new firms in small, hand-guided cohorts directly with Tom.
+
+      <p style="font-size: 1rem; color: var(--hive-text-secondary); max-width: 520px; margin: 0 auto 2.25rem; line-height: 1.6;">
+        Reserve your firm's spot for the November 1 Beta rollout. Invites go out in the order firms join.
       </p>
 
-      <div style="display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap;">
-        <a href="request.html?cohort=alpha" class="btn btn-lg btn-gold">
-          <span>Apply for Alpha Access</span>
-          <span class="hive-star-icon">✦</span>
-        </a>
-        <a href="pricing.html" class="btn btn-lg btn-outline" style="border-color: rgba(255,255,255,0.2); color: #FFFFFF;">
-          <span>Review All Pricing Details</span>
-        </a>
+      <!-- Sleek Focused Waitlist Form -->
+      <div class="velvet-form-card waitlist-box">
+        <form class="waitlist-form" style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="velvet-field-wrap">
+            <label class="velvet-field-label">WORK EMAIL</label>
+            <input type="email" required placeholder="you@yourfirm.com" class="velvet-input" aria-label="Work Email">
+          </div>
+
+          <div class="velvet-field-wrap">
+            <label class="velvet-field-label">FIRM NAME</label>
+            <input type="text" name="firm_name" required placeholder="Your public adjusting firm" class="velvet-input" aria-label="Firm Name">
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width: 100%; padding: 0.875rem; border-radius: var(--hive-radius-sm); font-weight: 700; margin-top: 0.25rem;">
+            Hold my place for Beta
+          </button>
+
+          <div style="font-size: 0.75rem; color: var(--hive-text-muted); margin-top: 0.5rem;">
+            18 firms already in line for Beta. Lock in the founding $80/seat rate before GA on January 1.
+          </div>
+        </form>
       </div>
+
     </div>
   </section>
 
-  <!-- GLOBAL FOOTER -->
-  <footer class="site-footer">
+  <!-- GLOBAL BETA MODAL (ACCESSIBLE FROM HEADER CTA) -->
+  <div id="alpha-modal" class="alpha-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="alpha-modal-content">
+      <button type="button" class="alpha-modal-close-btn" id="alpha-modal-close" aria-label="Close modal">✕</button>
+      <div class="waitlist-box">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: center; margin-bottom: 0.75rem;">
+            <svg width="32" height="36" viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="20,2 38,12 38,34 20,44 2,34 2,12" stroke="#D9A21B" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.5rem; color: var(--hive-ink); margin-bottom: 0.35rem;">
+            Hold your firm's place for Beta.
+          </h3>
+          <p style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.5;">
+            Beta opens November 1. Invites go out in the order firms join before General Availability on January 1.
+          </p>
+        </div>
+        <form class="waitlist-form" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="velvet-field-wrap" style="margin-bottom: 0;">
+            <label class="velvet-field-label">WORK EMAIL</label>
+            <input type="email" required placeholder="you@yourfirm.com" class="velvet-input" aria-label="Work Email">
+          </div>
+          <div class="velvet-field-wrap" style="margin-bottom: 0;">
+            <label class="velvet-field-label">FIRM NAME</label>
+            <input type="text" name="firm_name" required placeholder="Your public adjusting firm" class="velvet-input" aria-label="Firm Name">
+          </div>
+          <button type="submit" class="btn btn-gold" style="width: 100%; border-radius: var(--hive-radius-sm); padding: 0.85rem; font-weight: 700; margin-top: 0.25rem;">
+            Hold my place for Beta
+          </button>
+          <div style="text-align: center; font-size: 0.6875rem; color: var(--hive-text-muted);">
+            18 firms already in line for Beta. Strictly zero public AI model training.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL SITE FOOTER -->
+  <footer class="site-footer" style="margin-top: 3rem;">
     <div class="container container-wide">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="footer-logo-img">
+          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="footer-logo-img">
           <p class="footer-desc">
-            The calm operational backbone built exclusively for licensed USA Public Insurance Adjusters.
+            The AI command center built by working public adjusters.
           </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <a href="index.html" class="footer-nav-link">Home</a>
+          <a href="product.html" class="footer-nav-link">Product</a>
+          <a href="pricing.html" class="footer-nav-link">Pricing</a>
+          <a href="about.html" class="footer-nav-link">About</a>
         </div>
 
         <div class="footer-nav-col">
           <div class="footer-nav-title">Platform</div>
-          <a href="product.html" class="footer-nav-link">Product Lifecycle</a>
-          <a href="pricing.html" class="footer-nav-link">Pricing ($80/Seat)</a>
-          <a href="security.html" class="footer-nav-link">Security & Data Vault</a>
+          <a href="product.html#hub-crm" class="footer-nav-link">Claim CRM</a>
+          <a href="product.html#hub-weather" class="footer-nav-link">Leads + Roofs</a>
+          <a href="product.html#hub-chip" class="footer-nav-link">Meet Chip</a>
+          <a href="product.html#competitor-matrix" class="footer-nav-link">56 Features vs. Industry</a>
         </div>
 
         <div class="footer-nav-col">
-          <div class="footer-nav-title">Company</div>
-          <a href="about.html" class="footer-nav-link">About Tom & Team</a>
-          <a href="request.html" class="footer-nav-link">Request Access</a>
-          <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
-          <a href="terms.html" class="footer-nav-link">Terms of Service</a>
-        </div>
-
-        <div class="footer-nav-col">
-          <div class="footer-nav-title">Direct Assurance</div>
-          <span style="font-size: 0.875rem; color: #CBD5E1;">Tom: (850) 400-HIVE</span>
-          <span style="font-size: 0.8125rem; color: #64748B;">Florida • Texas • Carolinas • Georgia</span>
-          <span style="font-size: 0.8125rem; color: var(--hive-gold-400); margin-top: 0.5rem;">✦ Policyholders Always Free</span>
+          <div class="footer-nav-title">Velvet-Rope Access</div>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">Alpha: In Progress (Invite-Only)</span>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">Beta: November 1, 2026</span>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">GA: January 1, 2027</span>
+          <span style="font-size: 0.8125rem; color: var(--hive-gold-honey); margin-top: 0.5rem;">✦ 24 Exclusive Capabilities</span>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>© 2026 Claim Hive Inc. Built for licensed property adjusters across all 50 states.</div>
-        <div>Confidential & Proprietary • Zero AI Training on Claim Files</div>
+        <div>© 2026 ClaimHive Inc. Built for licensed public adjusters across the United States.</div>
+        <div>Privately Harnessed LLM • Zero Public Model Training Guarantee</div>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="js/site.js"></script>
-  <script src="js/calculator.js"></script>
 </body>
 </html>

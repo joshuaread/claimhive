@@ -12,21 +12,25 @@
      BRAND IDENTITY PALETTE
      ========================================================================== */
 
-  /* Honey Gold Scale (From the Hive Circuit / Honeycomb Mark: #DAA94F) */
+  /* Honey Gold Scale (Prompt: #D9A21B honey, #A18312 deep gold, #F5D81D highlight) */
+  --hive-gold-honey:      #D9A21B; /* Primary Honey Gold Accent */
+  --hive-gold-deep:       #A18312; /* Deep Gold Accent / Hover / Pressed */
+  --hive-gold-highlight:  #F5D81D; /* Bright Gold Highlight (used sparingly) */
+
   --hive-gold-50:   #FDFBF5; /* Whisper warm cream */
   --hive-gold-100:  #FAF2DC; /* Soft warm badge tint */
-  --hive-gold-200:  #F4E2AB;
-  --hive-gold-300:  #ECCE72;
-  --hive-gold-400:  #E3BC4D;
-  --hive-gold-500:  #DAA94F; /* Primary Brand Honey Gold */
-  --hive-gold-600:  #B88530; /* Accessible interactive/hover state (4.6:1 AA) */
-  --hive-gold-700:  #8E631F;
-  --hive-gold-800:  #674415;
-  --hive-gold-900:  #442B0C;
-  --hive-gold-glow: rgba(218, 169, 79, 0.22);
-  --hive-gold-tint: rgba(218, 169, 79, 0.06);
+  --hive-gold-200:  #F7E7B8;
+  --hive-gold-300:  #ECD380;
+  --hive-gold-400:  #F5D81D; /* Highlight Gold */
+  --hive-gold-500:  #D9A21B; /* Primary Honey Gold */
+  --hive-gold-600:  #A18312; /* Deep Gold */
+  --hive-gold-700:  #7D6409;
+  --hive-gold-800:  #5A4705;
+  --hive-gold-900:  #3A2C02;
+  --hive-gold-glow: rgba(217, 162, 27, 0.24);
+  --hive-gold-tint: rgba(217, 162, 27, 0.08);
 
-  /* Midnight Navy Scale (From the Wordmark Sparkle Star: #161B33) */
+  /* Midnight Navy Scale */
   --hive-navy-50:   #F5F7FB;
   --hive-navy-100:  #E5E9F3;
   --hive-navy-200:  #C8D2E4;
@@ -36,29 +40,30 @@
   --hive-navy-600:  #334C72;
   --hive-navy-700:  #243654;
   --hive-navy-800:  #1B273F;
-  --hive-navy-900:  #161B33; /* Primary Midnight Navy - Deep Trust & Legal Gravitas */
-  --hive-navy-950:  #0C0F1D; /* Deepest Alabaster Contrast */
+  --hive-navy-900:  #161B33; /* Midnight Navy */
+  --hive-navy-950:  #0F121F;
 
-  /* Relief Canvas & Expansive Surfaces (Inspired by America.gov / Apple Minimalism) */
-  --hive-canvas:          #FAF9F6; /* Alabaster Oatmeal: Zero glare, low cognitive load */
-  --hive-canvas-alt:      #F4F2EC; /* Gentle tinted surface for pacing transitions */
-  --hive-surface:         #FFFFFF; /* Pure elevated card surface */
-  --hive-surface-soft:    rgba(255, 255, 255, 0.85);
+  /* Relief Canvas & Warm White Surfaces */
+  --hive-canvas:          #FAF9F6; /* Warm White Canvas */
+  --hive-canvas-alt:      #F5F3EC; /* Pacing tint */
+  --hive-surface:         #FFFFFF; /* Elevated white card */
+  --hive-surface-soft:    rgba(255, 255, 255, 0.9);
   --hive-surface-dark:    #161B33;
   --hive-surface-dark-card: #1D233F;
 
-  /* Whispering Borders & Dividers (Extremely light & unobtrusive) */
-  --hive-border-whisper:  rgba(22, 27, 51, 0.05); /* Barely-there containment */
-  --hive-border-subtle:   rgba(22, 27, 51, 0.09); /* Soft card border */
-  --hive-border-default:  #DFD9CE;
-  --hive-border-strong:   #C2B8A6;
-  --hive-border-gold:     rgba(218, 169, 79, 0.35);
+  /* Whispering Borders & Dividers */
+  --hive-border-whisper:  rgba(26, 26, 26, 0.06);
+  --hive-border-subtle:   rgba(26, 26, 26, 0.1);
+  --hive-border-default:  #E5DFD5;
+  --hive-border-strong:   #C7BEAF;
+  --hive-border-gold:     rgba(217, 162, 27, 0.35);
 
   /* Typography / Text Colors */
-  --hive-text-primary:    #121625; /* Midnight Charcoal for effortless reading */
-  --hive-text-secondary:  #4D576B; /* Soft reading grey */
-  --hive-text-muted:      #7C899E; /* Supporting metadata */
-  --hive-text-gold:       #9E6E22; /* Accessible text gold on white */
+  --hive-ink:             #1A1A1A; /* Pure Ink Text */
+  --hive-text-primary:    #1A1A1A; /* Primary Ink #1A1A1A */
+  --hive-text-secondary:  #4A4A4A; /* Soft reading ink */
+  --hive-text-muted:      #767676; /* Supporting metadata */
+  --hive-text-gold:       #A18312; /* Deep Gold */
   --hive-text-inverse:    #FFFFFF;
   --hive-text-inverse-muted: #9BB0D1;
 
