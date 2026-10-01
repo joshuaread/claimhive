@@ -2595,8 +2595,72 @@
 
 /* Visual Time Bar */
 .time-bar-wrap {
-  margin-top: 0.2rem;
-  margin-bottom: 0.75rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.time-bar-callout-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.time-bar-money-pointer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--hive-font-display);
+  font-size: clamp(0.58rem, 2.3vw, 0.6875rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  line-height: 1.2;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.time-bar-money-pointer.today {
+  background: rgba(245, 186, 66, 0.12);
+  border: 1px solid rgba(245, 186, 66, 0.4);
+  color: #F5BA42;
+}
+
+.time-bar-money-pointer.chip {
+  background: rgba(245, 186, 66, 0.2);
+  border: 1px solid rgba(245, 186, 66, 0.55);
+  color: #FDE68A;
+  box-shadow: 0 0 16px rgba(245, 186, 66, 0.25);
+}
+
+.money-pointer-icon {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.money-pointer-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5BA42;
+  animation: arrowBounceDown 1.3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.time-bar-money-pointer.chip .money-pointer-arrow {
+  color: #FDE68A;
+}
+
+@keyframes arrowBounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
 }
 
 .time-bar {
@@ -2621,6 +2685,20 @@
   transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.shift-console-card[data-mode="today"] .time-bar-segment-adjusting {
+  box-shadow: 0 0 10px rgba(245, 186, 66, 0.5);
+  animation: barGoldPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes barGoldPulse {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(245, 186, 66, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(245, 186, 66, 0.75);
+  }
+}
+
 .time-bar-labels {
   display: flex;
   justify-content: space-between;
@@ -2630,6 +2708,16 @@
   margin-top: 0.35rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+.shift-console-card[data-mode="today"] #shift-lbl-adjust {
+  color: #F5BA42;
+  font-weight: 700;
+}
+
+.shift-console-card[data-mode="chip"] #shift-lbl-adjust {
+  color: var(--hive-gold-honey);
+  font-weight: 700;
 }
 
 /* 5-Row Weekly Breakdown Ledger */

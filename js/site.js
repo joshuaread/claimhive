@@ -388,6 +388,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const shiftBarAdjust = document.getElementById('shift-bar-adjust');
   const shiftLblAdmin = document.getElementById('shift-lbl-admin');
   const shiftLblAdjust = document.getElementById('shift-lbl-adjust');
+  const moneyHoursPointer = document.getElementById('money-hours-pointer');
+  const moneyPointerIcon = document.getElementById('money-pointer-icon');
+  const moneyPointerText = document.getElementById('money-pointer-text');
 
   const shiftRow1 = document.getElementById('shift-row-1');
   const shiftRow2 = document.getElementById('shift-row-2');
@@ -493,6 +496,10 @@ document.addEventListener('DOMContentLoaded', () => {
         shiftLblAdjust.textContent = `${adjustHive}h Fee-Earning Adjusting (${adjustHivePct}%)`;
         shiftLblAdjust.style.color = 'var(--hive-gold-honey)';
       }
+
+      if (moneyHoursPointer) moneyHoursPointer.className = 'time-bar-money-pointer chip';
+      if (moneyPointerIcon) moneyPointerIcon.textContent = '✦';
+      if (moneyPointerText) moneyPointerText.textContent = `${adjustHive}h Money-Making Hours (${adjustHivePct}%)`;
 
       // 4 Chore Rows: marked as delegated
       [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
@@ -604,8 +611,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (shiftLblAdmin) shiftLblAdmin.textContent = `${adminHours}h Routine Clerical (${adminPct}%)`;
       if (shiftLblAdjust) {
         shiftLblAdjust.textContent = `${adjustHours}h Adjusting (${adjustPct}%)`;
-        shiftLblAdjust.style.color = '#CBD5E1';
+        shiftLblAdjust.style.color = '#F5BA42';
       }
+
+      if (moneyHoursPointer) moneyHoursPointer.className = 'time-bar-money-pointer today';
+      if (moneyPointerIcon) moneyPointerIcon.textContent = '⚡';
+      if (moneyPointerText) moneyPointerText.textContent = `Only Money-Making Hours (${adjustHours}h)`;
 
       // 4 Chore Rows: today's reality
       [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
