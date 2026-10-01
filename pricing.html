@@ -71,20 +71,23 @@
 
   <!-- CLAUDE CODE NEW LAYOUT START -->
 
-  <section style="max-width: 1180px; margin: 0 auto; padding: 96px 24px 64px">
-    <p style="margin: 0 0 20px; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hive-gold-deep)">Pricing</p>
-    <h1 style="margin: 0; max-width: 900px; font-family: var(--hive-font-display); font-weight: 400; font-size: clamp(48px, 7vw, 92px); line-height: 1; letter-spacing: -0.025em; color: var(--hive-ink);">Fair for everyone.<br><span style="font-style: italic; color: var(--hive-gold-deep)">Pay for what you use.</span></h1>
+  <section class="section-spacious">
+  <div class="container">
+    <div style="margin-bottom: 1.25rem;"><span class="badge badge-gold">✦ Pricing</span></div>
+    <h1 style="margin: 0; max-width: 900px; font-family: var(--hive-font-editorial); font-weight: 400; font-size: clamp(48px, 7vw, 92px); line-height: 1; letter-spacing: -0.025em; color: var(--hive-ink);">Fair for everyone.<br><span style="font-style: italic; color: var(--hive-gold-deep)">Pay for what you use.</span></h1>
     <p style="margin: 32px 0 0; max-width: 560px; font-size: 1.25rem; color: var(--hive-text-secondary)">One simple seat price, plus the AI you actually use. No bloated tiers. No paying for features you never touch.</p>
-  </section>
+    </div>
+</section>
 
-  <section style="max-width: 1180px; margin: 0 auto; padding: 0 24px 96px">
+  <section class="section-spacious">
+  <div class="container">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
 
       <!-- Card 1: Per Seat -->
       <div style="padding: 48px; border-radius: 28px; background: #FFFFFF; border: 1px solid var(--hive-border-subtle); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
         <p style="margin: 0; font-size: 1rem; font-weight: 600; color: var(--hive-ink)">Per seat</p>
         <div style="margin-top: 20px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
-          <span style="font-family: var(--hive-font-display); font-size: 104px; line-height: 1; color: var(--hive-ink)">$80</span>
+          <span style="font-family: var(--hive-font-editorial); font-size: 104px; line-height: 1; color: var(--hive-ink)">$80</span>
           <span style="color: var(--hive-text-secondary); font-weight: 500;">/ seat / month</span>
         </div>
         <p style="margin: 10px 0 32px; font-size: 1.125rem; color: var(--hive-gold-deep); font-weight: 700">+ token usage</p>
@@ -101,21 +104,21 @@
         <p style="margin: 0; font-size: 1rem; font-weight: 600; color: var(--hive-ink)">Estimate your seats</p>
         <div style="margin-top: 28px; display: flex; align-items: center; gap: 20px">
           <button type="button" aria-label="Remove a seat" onclick="updateSeats(-1)" style="min-width: 48px; min-height: 48px; border-radius: 50%; border: 1.5px solid var(--hive-border-strong); background: #FFFFFF; color: var(--hive-ink); font: inherit; font-size: 24px; cursor: pointer; display:flex; align-items:center; justify-content:center; transition: all 0.15s ease;">−</button>
-          <span id="seat-calc-count" style="min-width: 80px; text-align: center; font-family: var(--hive-font-display); font-size: 72px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--hive-ink)">3</span>
+          <span id="seat-calc-count" style="min-width: 80px; text-align: center; font-family: var(--hive-font-editorial); font-size: 72px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--hive-ink)">3</span>
           <button type="button" aria-label="Add a seat" onclick="updateSeats(1)" style="min-width: 48px; min-height: 48px; border-radius: 50%; border: 1.5px solid var(--hive-border-strong); background: #FFFFFF; color: var(--hive-ink); font: inherit; font-size: 24px; cursor: pointer; display:flex; align-items:center; justify-content:center; transition: all 0.15s ease;">+</button>
           <span style="color: var(--hive-text-secondary); font-weight: 500;">seats</span>
         </div>
 
         <div id="seat-calc-standard" style="margin-top: 32px; transition: opacity 0.2s;">
           <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
-            <span id="seat-calc-price" style="font-family: var(--hive-font-display); font-size: 56px; line-height: 1; color: var(--hive-ink)">$240</span>
+            <span id="seat-calc-price" style="font-family: var(--hive-font-editorial); font-size: 56px; line-height: 1; color: var(--hive-ink)">$240</span>
             <span style="color: var(--hive-text-secondary); font-weight: 500;">/ month in seats</span>
           </div>
           <p style="margin: 10px 0 0; color: var(--hive-gold-deep); font-weight: 600">+ token usage, billed by what your team uses</p>
         </div>
 
         <div id="seat-calc-ent" style="margin-top: 32px; display: none;">
-          <p style="margin: 0; font-family: var(--hive-font-display); font-size: 56px; line-height: 1; color: var(--hive-gold-deep)">Let's talk.</p>
+          <p style="margin: 0; font-family: var(--hive-font-editorial); font-size: 56px; line-height: 1; color: var(--hive-gold-deep)">Let's talk.</p>
           <p style="margin: 12px 0 0; color: var(--hive-text-secondary); line-height: 1.5;">More than 10 users qualifies your firm for enterprise pricing — negotiated around your team and your usage.</p>
         </div>
 
@@ -143,18 +146,20 @@
         }
       }
     </script>
-  </section>
+    </div>
+</section>
 
-  <section style="max-width: 1180px; margin: 0 auto; padding: 32px 24px 96px">
-    <p style="margin: 0 0 20px; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hive-gold-deep)">Side by side</p>
-    <h2 style="margin: 0; max-width: 760px; font-family: var(--hive-font-display); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">More platform. A fairer price.</h2>
+  <section class="section-spacious">
+  <div class="container">
+    <div style="margin-bottom: 1.25rem;"><span class="badge badge-gold">✦ Side by side</span></div>
+    <h2 style="margin: 0; max-width: 760px; font-family: var(--hive-font-editorial); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">More platform. A fairer price.</h2>
     <p style="margin: 24px 0 0; max-width: 600px; font-size: 1.1875rem; color: var(--hive-text-secondary)">Other platforms sell AI as an add-on or cap it by plan. With ClaimHive, all 54 AI agents are included — you only pay for what you run.</p>
 
     <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px">
 
       <div style="padding: 32px; border-radius: 24px; border: 1.5px solid var(--hive-gold-deep); background: var(--hive-canvas-alt); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 20px rgba(217, 162, 27, 0.1);">
         <p style="margin: 0; font-weight: 700; color: var(--hive-ink)">ClaimHive</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-gold-deep)">$80</div>
+        <div style="font-family: var(--hive-font-editorial); font-size: 48px; line-height: 1; color: var(--hive-gold-deep)">$80</div>
         <p style="margin: 0; font-size: 0.875rem; color: var(--hive-ink); opacity: 0.8;">per seat / month + token usage</p>
         <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-ink)">
           <p style="margin: 0"><strong>56</strong> features listed</p>
@@ -165,7 +170,7 @@
 
       <div style="padding: 32px; border-radius: 24px; border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
         <p style="margin: 0; font-weight: 600; color: var(--hive-ink)">Claim Titan</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-ink)">$99</div>
+        <div style="font-family: var(--hive-font-editorial); font-size: 48px; line-height: 1; color: var(--hive-ink)">$99</div>
         <p style="margin: 0; font-size: 0.875rem; color: var(--hive-text-muted)">per user / month ($82.50 billed annually)</p>
         <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-text-secondary)">
           <p style="margin: 0">24 features listed</p>
@@ -176,7 +181,7 @@
 
       <div style="padding: 32px; border-radius: 24px; border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
         <p style="margin: 0; font-weight: 600; color: var(--hive-ink)">ClaimWizard</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-ink)">$99</div>
+        <div style="font-family: var(--hive-font-editorial); font-size: 48px; line-height: 1; color: var(--hive-ink)">$99</div>
         <p style="margin: 0; font-size: 0.875rem; color: var(--hive-text-muted)">Solo — one PA, no staff</p>
         <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-text-secondary)">
           <p style="margin: 0">21 features listed</p>
@@ -187,7 +192,7 @@
 
       <div style="padding: 32px; border-radius: 24px; border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
         <p style="margin: 0; font-weight: 600; color: var(--hive-ink)">Brelly</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-ink)">$125</div>
+        <div style="font-family: var(--hive-font-editorial); font-size: 48px; line-height: 1; color: var(--hive-ink)">$125</div>
         <p style="margin: 0; font-size: 0.875rem; color: var(--hive-text-muted)">Solo — 1 seat / month</p>
         <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-text-secondary)">
           <p style="margin: 0">20 features listed</p>
@@ -198,7 +203,7 @@
 
       <div style="padding: 32px; border-radius: 24px; border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
         <p style="margin: 0; font-weight: 600; color: var(--hive-ink)">Drodat</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-text-muted)">—</div>
+        <div style="font-family: var(--hive-font-editorial); font-size: 48px; line-height: 1; color: var(--hive-text-muted)">—</div>
         <p style="margin: 0; font-size: 0.875rem; color: var(--hive-text-muted)">Pricing not published</p>
         <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-text-secondary)">
           <p style="margin: 0">15 features listed</p>
@@ -208,10 +213,12 @@
 
     </div>
     <p style="margin: 32px 0 0; font-size: 0.8125rem; color: var(--hive-text-muted)">Competitor pricing and features as published on vendor websites, September 30, 2026. Subject to change.</p>
-  </section>
+    </div>
+</section>
 
-  <section style="max-width: 860px; margin: 0 auto; padding: 32px 24px 64px">
-    <h2 style="margin: 0; max-width: 760px; font-family: var(--hive-font-display); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">Questions, answered.</h2>
+  <section class="section-spacious">
+  <div class="container container-reading">
+    <h2 style="margin: 0; max-width: 760px; font-family: var(--hive-font-editorial); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">Questions, answered.</h2>
     <div style="margin-top: 40px">
       <div style="padding: 28px 0; border-top: 1px solid var(--hive-border-subtle)">
         <p style="margin: 0; font-size: 1.1875rem; font-weight: 600; color: var(--hive-ink)">What counts as token usage?</p>
@@ -234,16 +241,19 @@
         <p style="margin: 10px 0 0; color: var(--hive-text-secondary); line-height: 1.6;">Firms with more than 10 users can negotiate pricing built around team size and expected usage. Talk to us and we will build it with you.</p>
       </div>
     </div>
-  </section>
+    </div>
+</section>
 
   <!-- FINAL CTA (Replicating Screenshot) -->
-  <section style="max-width: 760px; margin: 0 auto; padding: 120px 24px 140px; text-align: center">
+  <section class="section-spacious" style="text-align: center;">
+  <div class="container container-reading">
     <svg width="40" height="46" viewBox="0 0 30 34" aria-hidden="true"><path d="M15 1.5 L28 9 L28 25 L15 32.5 L2 25 L2 9 Z" fill="none" stroke="var(--hive-gold)" stroke-width="1.5"></path></svg>
-    <h2 style="margin: 24px 0 0; font-family: var(--hive-font-display); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">Beta opens November 1.<br><span style="font-style: italic; color: var(--hive-gold-deep)">Seats are limited.</span></h2>
+    <h2 style="margin: 24px 0 0; font-family: var(--hive-font-editorial); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">Beta opens November 1.<br><span style="font-style: italic; color: var(--hive-gold-deep)">Seats are limited.</span></h2>
     <div style="margin-top: 40px;">
       <a href="index.html#waitlist" class="btn btn-gold" style="display: inline-flex; align-items: center; justify-content: center; min-height: 60px; padding: 0 40px; border-radius: 999px; text-decoration: none; font-size: 1.125rem; font-weight: 700; box-shadow: 0 8px 24px rgba(217, 162, 27, 0.25);" data-open-modal="beta">Hold my place in line</a>
     </div>
-  </section>
+    </div>
+</section>
 
   <!-- CLAUDE CODE NEW LAYOUT END -->
 
