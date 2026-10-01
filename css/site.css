@@ -2593,65 +2593,142 @@
   font-weight: 700;
 }
 
-/* Visual Time Bar */
-.time-bar-wrap {
-  margin-top: 0.35rem;
-  margin-bottom: 0.85rem;
+/* ==========================================================================
+   THE TIME BAR HERO "AHA" CALLOUT (LARGE PROMINENT BANNER)
+   ========================================================================== */
+.time-bar-hero-callout {
+  border-radius: var(--hive-radius-md);
+  padding: 0.85rem 1rem;
+  margin-top: 0.65rem;
+  margin-bottom: 0.45rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
-.time-bar-callout-row {
+.time-bar-hero-callout.today {
+  background: linear-gradient(135deg, rgba(245, 186, 66, 0.1) 0%, rgba(18, 22, 30, 0.95) 100%);
+  border: 1.5px solid rgba(245, 186, 66, 0.45);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(245, 186, 66, 0.1);
+}
+
+.time-bar-hero-callout.chip {
+  background: linear-gradient(135deg, rgba(245, 186, 66, 0.2) 0%, rgba(18, 22, 30, 0.95) 100%);
+  border: 1.5px solid rgba(245, 186, 66, 0.65);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 0 24px rgba(245, 186, 66, 0.2);
+}
+
+.tb-callout-top {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
-.time-bar-money-pointer {
+.tb-callout-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   font-family: var(--hive-font-display);
-  font-size: clamp(0.58rem, 2.3vw, 0.6875rem);
-  font-weight: 700;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.2rem 0.55rem;
+  padding: 0.18rem 0.55rem;
   border-radius: 999px;
   line-height: 1.2;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-  white-space: nowrap;
 }
 
-.time-bar-money-pointer.today {
-  background: rgba(245, 186, 66, 0.12);
-  border: 1px solid rgba(245, 186, 66, 0.4);
+.tb-callout-badge.today {
   color: #F5BA42;
+  background: rgba(245, 186, 66, 0.12);
+  border: 1px solid rgba(245, 186, 66, 0.35);
 }
 
-.time-bar-money-pointer.chip {
-  background: rgba(245, 186, 66, 0.2);
-  border: 1px solid rgba(245, 186, 66, 0.55);
-  color: #FDE68A;
-  box-shadow: 0 0 16px rgba(245, 186, 66, 0.25);
+.tb-callout-badge.chip {
+  color: #0F1218;
+  background: #F5BA42;
+  border: 1px solid #FDE68A;
 }
 
-.money-pointer-icon {
-  font-size: 0.75rem;
+.tb-badge-pulse {
+  font-size: 0.625rem;
   line-height: 1;
 }
 
-.money-pointer-arrow {
+.tb-callout-arrow-indicator {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.35rem;
+  font-family: var(--hive-font-mono);
+  font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
+  font-weight: 800;
+  color: #F5BA42;
+}
+
+.tb-bounce-arrow {
   color: #F5BA42;
   animation: arrowBounceDown 1.3s ease-in-out infinite;
   flex-shrink: 0;
 }
 
-.time-bar-money-pointer.chip .money-pointer-arrow {
+.tb-callout-headline {
+  font-family: var(--hive-font-heading);
+  font-size: clamp(0.875rem, 2.8vw, 1rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.time-bar-hero-callout.today .tb-callout-headline strong {
+  color: #F5BA42;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(245, 186, 66, 0.5);
+}
+
+.time-bar-hero-callout.chip .tb-callout-headline strong {
   color: #FDE68A;
+}
+
+.tb-callout-sub {
+  font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
+  color: #94A3B8;
+  line-height: 1.45;
+  margin-top: 0.3rem;
+}
+
+/* Time Bar & Pointer Track */
+.time-bar-wrap {
+  margin-top: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.time-bar-pointer-track {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.time-bar-down-pointer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--hive-font-display);
+  font-size: clamp(0.58rem, 2vw, 0.625rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #F5BA42;
+}
+
+.time-bar-down-pointer svg {
+  animation: arrowBounceDown 1.3s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 @keyframes arrowBounceDown {
@@ -2659,13 +2736,13 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(3px);
+    transform: translateY(3.5px);
   }
 }
 
 .time-bar {
   display: flex;
-  height: 8px;
+  height: 12px;
   border-radius: 999px;
   overflow: hidden;
   background: #252B38;
@@ -2686,7 +2763,7 @@
 }
 
 .shift-console-card[data-mode="today"] .time-bar-segment-adjusting {
-  box-shadow: 0 0 10px rgba(245, 186, 66, 0.5);
+  box-shadow: 0 0 12px rgba(245, 186, 66, 0.6);
   animation: barGoldPulse 2.5s ease-in-out infinite;
 }
 
@@ -2695,7 +2772,7 @@
     box-shadow: 0 0 6px rgba(245, 186, 66, 0.35);
   }
   50% {
-    box-shadow: 0 0 14px rgba(245, 186, 66, 0.75);
+    box-shadow: 0 0 16px rgba(245, 186, 66, 0.85);
   }
 }
 

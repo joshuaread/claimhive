@@ -388,9 +388,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const shiftBarAdjust = document.getElementById('shift-bar-adjust');
   const shiftLblAdmin = document.getElementById('shift-lbl-admin');
   const shiftLblAdjust = document.getElementById('shift-lbl-adjust');
-  const moneyHoursPointer = document.getElementById('money-hours-pointer');
-  const moneyPointerIcon = document.getElementById('money-pointer-icon');
-  const moneyPointerText = document.getElementById('money-pointer-text');
+
+  const timeBarHeroCallout = document.getElementById('time-bar-hero-callout');
+  const tbCalloutBadge = document.getElementById('tb-callout-badge');
+  const tbBadgePulse = document.getElementById('tb-badge-pulse');
+  const tbBadgeText = document.getElementById('tb-badge-text');
+  const tbIndicatorText = document.getElementById('tb-indicator-text');
+  const tbCalloutHeadline = document.getElementById('tb-callout-headline');
+  const tbCalloutSub = document.getElementById('tb-callout-sub');
+
+  const timeBarDownPointer = document.getElementById('time-bar-down-pointer');
+  const tbPointerLabel = document.getElementById('tb-pointer-label');
 
   const shiftRow1 = document.getElementById('shift-row-1');
   const shiftRow2 = document.getElementById('shift-row-2');
@@ -488,6 +496,19 @@ document.addEventListener('DOMContentLoaded', () => {
         shiftStatusPill.textContent = '✦ Uncapped Growth • 0 Added Payroll';
       }
 
+      // Hero Callout above Time Bar
+      if (timeBarHeroCallout) timeBarHeroCallout.className = 'time-bar-hero-callout chip';
+      if (tbCalloutBadge) tbCalloutBadge.className = 'tb-callout-badge chip';
+      if (tbBadgePulse) tbBadgePulse.textContent = '✦';
+      if (tbBadgeText) tbBadgeText.textContent = 'REVENUE ENGINE UNLEASHED';
+      if (tbIndicatorText) tbIndicatorText.textContent = `${adjustHive}h / wk (${adjustHivePct}%)`;
+      if (tbCalloutHeadline) {
+        tbCalloutHeadline.innerHTML = `Money-making adjusting expands from ${adjustHours}h to <strong>${adjustHive} hours / week</strong>.`;
+      }
+      if (tbCalloutSub) {
+        tbCalloutSub.textContent = `Routine clerical drops to just ${adminHive} hours of AI review. 88% of your week is now spent on high-margin claims.`;
+      }
+
       // Visual Time Bar
       if (shiftBarAdmin) shiftBarAdmin.style.width = `${adminHivePct}%`;
       if (shiftBarAdjust) shiftBarAdjust.style.width = `${adjustHivePct}%`;
@@ -497,9 +518,8 @@ document.addEventListener('DOMContentLoaded', () => {
         shiftLblAdjust.style.color = 'var(--hive-gold-honey)';
       }
 
-      if (moneyHoursPointer) moneyHoursPointer.className = 'time-bar-money-pointer chip';
-      if (moneyPointerIcon) moneyPointerIcon.textContent = '✦';
-      if (moneyPointerText) moneyPointerText.textContent = `${adjustHive}h Money-Making Hours (${adjustHivePct}%)`;
+      if (timeBarDownPointer) timeBarDownPointer.className = 'time-bar-down-pointer chip';
+      if (tbPointerLabel) tbPointerLabel.textContent = 'Fee-Earning Adjusting';
 
       // 4 Chore Rows: marked as delegated
       [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
@@ -605,18 +625,30 @@ document.addEventListener('DOMContentLoaded', () => {
         shiftStatusPill.textContent = '🔴 Capacity Bottlenecked • Overwhelmed';
       }
 
+      // Hero Callout above Time Bar
+      if (timeBarHeroCallout) timeBarHeroCallout.className = 'time-bar-hero-callout today';
+      if (tbCalloutBadge) tbCalloutBadge.className = 'tb-callout-badge today';
+      if (tbBadgePulse) tbBadgePulse.textContent = '●';
+      if (tbBadgeText) tbBadgeText.textContent = "YOUR PA'S ONLY MONEY-MAKING HOURS";
+      if (tbIndicatorText) tbIndicatorText.textContent = `Only ${adjustHours}h / wk`;
+      if (tbCalloutHeadline) {
+        tbCalloutHeadline.innerHTML = `The yellow bar is the <strong>only part of the week</strong> your PA can actually make money.`;
+      }
+      if (tbCalloutSub) {
+        tbCalloutSub.textContent = `72% of the week (${adminHours} hours) is consumed by unpaid administrative chores instead of inspecting damage and closing claims.`;
+      }
+
       // Visual Time Bar
       if (shiftBarAdmin) shiftBarAdmin.style.width = `${adminPct}%`;
       if (shiftBarAdjust) shiftBarAdjust.style.width = `${adjustPct}%`;
-      if (shiftLblAdmin) shiftLblAdmin.textContent = `${adminHours}h Routine Clerical (${adminPct}%)`;
+      if (shiftLblAdmin) shiftLblAdmin.textContent = `${adminHours}h Routine Clerical Drag (${adminPct}%)`;
       if (shiftLblAdjust) {
-        shiftLblAdjust.textContent = `${adjustHours}h Adjusting (${adjustPct}%)`;
+        shiftLblAdjust.textContent = `${adjustHours}h Money-Making Adjusting (${adjustPct}%)`;
         shiftLblAdjust.style.color = '#F5BA42';
       }
 
-      if (moneyHoursPointer) moneyHoursPointer.className = 'time-bar-money-pointer today';
-      if (moneyPointerIcon) moneyPointerIcon.textContent = '⚡';
-      if (moneyPointerText) moneyPointerText.textContent = `Only Money-Making Hours (${adjustHours}h)`;
+      if (timeBarDownPointer) timeBarDownPointer.className = 'time-bar-down-pointer today';
+      if (tbPointerLabel) tbPointerLabel.textContent = 'Fee-Earning Time';
 
       // 4 Chore Rows: today's reality
       [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
