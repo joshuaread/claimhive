@@ -351,10 +351,9 @@
       
       <div class="dark-caseload-console">
 
-        <!-- Left Column: Context, Dial & Key Value Takeaways -->
-        <div class="caseload-console-left">
-          
-          <span style="font-family: var(--hive-font-display); font-size: 0.6875rem; font-weight: 700; color: var(--hive-gold-honey); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.4rem;">
+        <!-- Block 1: Narrative Header & Dial (Top on Mobile, Top Left on Desktop) -->
+        <div class="caseload-header-block">
+          <span class="caseload-eyebrow">
             THE SAME WEEK. TWICE THE FILES.
           </span>
           <h2 class="dark-section-title">
@@ -381,40 +380,10 @@
               <span class="caseload-dial-badge" id="caseload-slider-val">20 Active Files</span>
             </div>
           </div>
-
-          <!-- Key Operational Realities Box -->
-          <div class="caseload-insights-card">
-            <div class="insight-row">
-              <span class="insight-icon">✦</span>
-              <div class="insight-text">
-                <strong>Reclaim 30 hours every week:</strong> Routine clerical drops from 36 hours down to 6 hours of high-leverage review.
-              </div>
-            </div>
-            <div class="insight-row">
-              <span class="insight-icon">✦</span>
-              <div class="insight-text">
-                <strong>+90% caseload capacity:</strong> Safely carry nearly twice the active files before hiring another junior adjuster.
-              </div>
-            </div>
-            <div class="insight-row">
-              <span class="insight-icon">✦</span>
-              <div class="insight-text">
-                <strong>Human in the loop:</strong> Chip drafts statutory demands and organizes photos—you review, add your voice, and send.
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top: 1.25rem;">
-            <a href="index.html#waitlist" class="btn btn-gold" data-open-modal="beta">
-              <span>Request beta access</span>
-              <span class="hive-star-icon">✦</span>
-            </a>
-          </div>
-
         </div>
 
-        <!-- Right Column: Interactive Hour-Shift Console (Plan C) -->
-        <div class="caseload-console-right">
+        <!-- Block 2: Interactive Hour-Shift Console Card (Middle on Mobile, Right Column on Desktop) -->
+        <div class="caseload-shift-card-block">
           <div class="dark-card shift-console-card" id="caseload-shift-card" data-mode="today">
             
             <!-- Card Header: Mode Label, Number, and Status Badge -->
@@ -446,61 +415,61 @@
             </div>
 
             <!-- The 5-Row Weekly Breakdown Ledger -->
-            <div class="shift-breakdown-list" style="margin-top: 0.85rem;">
+            <div class="shift-breakdown-list">
               
               <!-- Chore 1: Carrier Hold -->
               <div class="shift-row chore-row" id="shift-row-1">
-                <div class="shift-row-left">
-                  <span class="shift-row-icon" id="shift-icon-1">⏱️</span>
-                  <div class="shift-row-text">
-                    <div class="shift-row-title" id="shift-title-1">Carrier hold &amp; stall letters</div>
-                    <div class="shift-solution-desc" id="shift-desc-1">Chip tracks statutory deadlines &amp; drafts demand letters directly into your email drafts when desk adjusters stall—you review, add your voice, and send.</div>
+                <div class="shift-row-header">
+                  <div class="shift-row-lead">
+                    <span class="shift-row-icon" id="shift-icon-1">⏱️</span>
+                    <span class="shift-row-title" id="shift-title-1">Carrier hold &amp; stall letters</span>
                   </div>
-                </div>
-                <div class="shift-row-right">
                   <span class="shift-badge warning" id="shift-badge-1">10 hrs / wk</span>
+                </div>
+                <div class="shift-solution-desc" id="shift-desc-1">
+                  Chip tracks statutory deadlines &amp; drafts demand letters directly into your email drafts when desk adjusters stall—you review, add your voice, and send.
                 </div>
               </div>
 
               <!-- Chore 2: Manual Intake -->
               <div class="shift-row chore-row" id="shift-row-2">
-                <div class="shift-row-left">
-                  <span class="shift-row-icon" id="shift-icon-2">⚡</span>
-                  <div class="shift-row-text">
-                    <div class="shift-row-title" id="shift-title-2">Manual intake &amp; PDF retyping</div>
-                    <div class="shift-solution-desc" id="shift-desc-2">Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.</div>
+                <div class="shift-row-header">
+                  <div class="shift-row-lead">
+                    <span class="shift-row-icon" id="shift-icon-2">⚡</span>
+                    <span class="shift-row-title" id="shift-title-2">Manual intake &amp; PDF retyping</span>
                   </div>
-                </div>
-                <div class="shift-row-right">
                   <span class="shift-badge warning" id="shift-badge-2">8 hrs / wk</span>
+                </div>
+                <div class="shift-solution-desc" id="shift-desc-2">
+                  Policy PDFs, estimates, and checks are OCR-parsed and linked without a scanner.
                 </div>
               </div>
 
               <!-- Chore 3: Photo Sorting -->
               <div class="shift-row chore-row" id="shift-row-3">
-                <div class="shift-row-left">
-                  <span class="shift-row-icon" id="shift-icon-3">📷</span>
-                  <div class="shift-row-text">
-                    <div class="shift-row-title" id="shift-title-3">Photo sorting in truck</div>
-                    <div class="shift-solution-desc" id="shift-desc-3">150 ladder photos &amp; test squares file directly into the claim from your phone.</div>
+                <div class="shift-row-header">
+                  <div class="shift-row-lead">
+                    <span class="shift-row-icon" id="shift-icon-3">📷</span>
+                    <span class="shift-row-title" id="shift-title-3">Photo sorting in truck</span>
                   </div>
-                </div>
-                <div class="shift-row-right">
                   <span class="shift-badge warning" id="shift-badge-3">7 hrs / wk</span>
+                </div>
+                <div class="shift-solution-desc" id="shift-desc-3">
+                  150 ladder photos &amp; test squares file directly into the claim from your phone.
                 </div>
               </div>
 
               <!-- Chore 4: Update Calls -->
               <div class="shift-row chore-row" id="shift-row-4">
-                <div class="shift-row-left">
-                  <span class="shift-row-icon" id="shift-icon-4">🛡️</span>
-                  <div class="shift-row-text">
-                    <div class="shift-row-title" id="shift-title-4">"Any update?" calls &amp; texts</div>
-                    <div class="shift-solution-desc" id="shift-desc-4">Clients and contractors track live claim milestones in their own secure visual portal.</div>
+                <div class="shift-row-header">
+                  <div class="shift-row-lead">
+                    <span class="shift-row-icon" id="shift-icon-4">🛡️</span>
+                    <span class="shift-row-title" id="shift-title-4">"Any update?" calls &amp; texts</span>
                   </div>
-                </div>
-                <div class="shift-row-right">
                   <span class="shift-badge warning" id="shift-badge-4">7 hrs / wk</span>
+                </div>
+                <div class="shift-solution-desc" id="shift-desc-4">
+                  Clients and contractors track live claim milestones in their own secure visual portal.
                 </div>
               </div>
 
@@ -509,34 +478,65 @@
 
               <!-- Fee-Earning Adjusting Row (Destination Bucket) -->
               <div class="shift-row adjusting-row" id="shift-row-adjust">
-                <div class="shift-row-left">
-                  <span class="shift-row-icon gold" id="shift-icon-adjust">⚖️</span>
-                  <div class="shift-row-text">
-                    <div class="shift-row-title gold" id="shift-title-adjust">Fee-Earning Adjusting &amp; Negotiating</div>
-                    <div class="shift-adjust-desc" id="shift-desc-adjust">Inspecting, writing scopes, finding gap items, and closing settlements.</div>
+                <div class="shift-row-header">
+                  <div class="shift-row-lead">
+                    <span class="shift-row-icon gold" id="shift-icon-adjust">⚖️</span>
+                    <span class="shift-row-title gold" id="shift-title-adjust">Fee-Earning Adjusting &amp; Negotiating</span>
                   </div>
-                </div>
-                <div class="shift-row-right">
                   <span class="shift-badge adjust" id="shift-val-adjust">14 hrs / wk</span>
+                </div>
+                <div class="shift-adjust-desc" id="shift-desc-adjust">
+                  Inspecting, writing scopes, finding gap items, and closing settlements.
                 </div>
               </div>
 
             </div>
 
-            <!-- Big Action Trigger -->
+            <!-- Big Action Trigger Button -->
             <button type="button" class="btn-shift-action" id="btn-shift-action" aria-label="Delegate administrative busywork to Chip AI Autopilot">
               <span class="btn-shift-sparkle" id="btn-shift-sparkle">✦</span>
               <span id="btn-shift-label">Hand Routine Busywork to Chip (Autopilot)</span>
             </button>
 
             <!-- Bottom Summary Callout -->
-            <div class="dark-summary-callout-pill current" id="shift-summary-pill" style="margin-top: 0.85rem;">
+            <div class="dark-summary-callout-pill current" id="shift-summary-pill" style="margin-top: 0.75rem;">
               <span class="highlight-stat" id="shift-summary-stat">
                 ⚠️ <span id="shift-reclaimed-hours">36</span> Hours Drained by Routine Clerical
               </span>
               <span class="sub-note" id="shift-summary-sub">Capacity Bottlenecked &bull; Illustrative 50h schedule</span>
             </div>
 
+          </div>
+        </div>
+
+        <!-- Block 3: Key Operational Realities Box & CTA Button (Bottom on Mobile, Left Column on Desktop) -->
+        <div class="caseload-insights-block">
+          <div class="caseload-insights-card">
+            <div class="insight-row">
+              <span class="insight-icon">✦</span>
+              <div class="insight-text">
+                <strong>Reclaim 30 hours every week:</strong> Routine clerical drops from 36 hours down to 6 hours of high-leverage review.
+              </div>
+            </div>
+            <div class="insight-row">
+              <span class="insight-icon">✦</span>
+              <div class="insight-text">
+                <strong>+90% caseload capacity:</strong> Safely carry nearly twice the active files before hiring another junior adjuster.
+              </div>
+            </div>
+            <div class="insight-row">
+              <span class="insight-icon">✦</span>
+              <div class="insight-text">
+                <strong>Human in the loop:</strong> Chip drafts statutory demands and organizes photos—you review, add your voice, and send.
+              </div>
+            </div>
+          </div>
+
+          <div class="caseload-cta-wrap">
+            <a href="index.html#waitlist" class="btn btn-gold" data-open-modal="beta" style="display: inline-flex; justify-content: center; align-items: center; width: 100%;">
+              <span>Request beta access</span>
+              <span class="hive-star-icon">✦</span>
+            </a>
           </div>
         </div>
 

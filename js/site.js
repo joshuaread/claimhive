@@ -473,28 +473,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (row) row.classList.add('is-delegated');
       });
 
+      const c1Hrs = Math.round(adminHours * 0.28);
+      const c2Hrs = Math.round(adminHours * 0.22);
+      const c3Hrs = Math.round(adminHours * 0.20);
+      const c4Hrs = Math.round(adminHours * 0.20);
+
       if (shiftTitle1) shiftTitle1.textContent = '✓ Carrier hold autopilot';
       if (shiftBadge1) {
         shiftBadge1.className = 'shift-badge delegated';
-        shiftBadge1.textContent = '+10h Reclaimed';
+        shiftBadge1.textContent = `+${c1Hrs}h Reclaimed`;
       }
 
       if (shiftTitle2) shiftTitle2.textContent = '✓ Zero manual intake (OCR)';
       if (shiftBadge2) {
         shiftBadge2.className = 'shift-badge delegated';
-        shiftBadge2.textContent = '+8h Reclaimed';
+        shiftBadge2.textContent = `+${c2Hrs}h Reclaimed`;
       }
 
       if (shiftTitle3) shiftTitle3.textContent = '✓ Zero photo sorting';
       if (shiftBadge3) {
         shiftBadge3.className = 'shift-badge delegated';
-        shiftBadge3.textContent = '+7h Reclaimed';
+        shiftBadge3.textContent = `+${c3Hrs}h Reclaimed`;
       }
 
       if (shiftTitle4) shiftTitle4.textContent = '✓ No "any update?" calls';
       if (shiftBadge4) {
         shiftBadge4.className = 'shift-badge delegated';
-        shiftBadge4.textContent = '+7h Reclaimed';
+        shiftBadge4.textContent = `+${c4Hrs}h Reclaimed`;
       }
 
       // Adjusting Row
@@ -547,28 +552,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (row) row.classList.remove('is-delegated');
       });
 
+      const c1HrsToday = Math.round(adminHours * 0.28);
+      const c2HrsToday = Math.round(adminHours * 0.22);
+      const c3HrsToday = Math.round(adminHours * 0.20);
+      const c4HrsToday = Math.round(adminHours * 0.20);
+
       if (shiftTitle1) shiftTitle1.textContent = 'Carrier hold & stall letters';
       if (shiftBadge1) {
         shiftBadge1.className = 'shift-badge warning';
-        shiftBadge1.textContent = '10 hrs / wk';
+        shiftBadge1.textContent = `${c1HrsToday} hrs / wk`;
       }
 
       if (shiftTitle2) shiftTitle2.textContent = 'Manual intake & PDF retyping';
       if (shiftBadge2) {
         shiftBadge2.className = 'shift-badge warning';
-        shiftBadge2.textContent = '8 hrs / wk';
+        shiftBadge2.textContent = `${c2HrsToday} hrs / wk`;
       }
 
       if (shiftTitle3) shiftTitle3.textContent = 'Photo sorting in truck';
       if (shiftBadge3) {
         shiftBadge3.className = 'shift-badge warning';
-        shiftBadge3.textContent = '7 hrs / wk';
+        shiftBadge3.textContent = `${c3HrsToday} hrs / wk`;
       }
 
       if (shiftTitle4) shiftTitle4.textContent = '"Any update?" calls & texts';
       if (shiftBadge4) {
         shiftBadge4.className = 'shift-badge warning';
-        shiftBadge4.textContent = '7 hrs / wk';
+        shiftBadge4.textContent = `${c4HrsToday} hrs / wk`;
       }
 
       // Adjusting Row
