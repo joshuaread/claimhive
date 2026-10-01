@@ -160,6 +160,44 @@ document.addEventListener('DOMContentLoaded', () => {
       const firmName = firmInput && firmInput.value.trim() ? firmInput.value.trim() : 'Your Firm';
       const container = form.closest('.waitlist-box') || form.parentElement;
 
+      // Dispatch to Google Sheets
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const nextActionDate = `${tomorrow.getMonth() + 1}/${tomorrow.getDate()}/${tomorrow.getFullYear()}`;
+
+      const payload = {
+        Shop: `${firmName} (${email})`,
+        POC: email,
+        FullName: email,
+        Firm: firmName,
+        Email: email.toLowerCase(),
+        Phone: 'N/A',
+        Owner: 'Unassigned',
+        Stage: 'Named',
+        Seats_hoped: 1,
+        Source: 'Website - Homepage Waitlist',
+        Next_action: 'Tom text',
+        Next_action_date: nextActionDate,
+        Notes: `Waitlist submission from homepage.`,
+        LicenseStates: 'N/A',
+        CurrentStack: 'N/A',
+        OpenFilesNow: 'N/A',
+        Cohort: 'Waitlist',
+        Referral: 'N/A',
+        SubmittedAt: new Date().toISOString()
+      };
+
+      try {
+        fetch('https://script.google.com/macros/s/AKfycbydY_KWnckEh27uF5g5_v_rjwBL6b6DhMXjHlNjY__RzmQ-06UKErkkZBpcl2k69fvRkQ/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          cache: 'no-cache',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.warn('[Claim Hive] Fetch failed', err));
+      } catch(e) {}
+
+
       // Hash email for consistent position number
       let hash = 0;
       for (let i = 0; i < email.length; i++) {
