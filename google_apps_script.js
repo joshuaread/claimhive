@@ -221,38 +221,48 @@ function doGet(e) {
  * Scans the sheet for users who have successfully referred > 4 people and pings Slack.
  */
 function checkChampionReferrals() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName("Seats_200") || ss.getActiveSheet();
   var data = sheet.getDataRange().getValues();
-  if (data.length < 2) return; // No data to check
+  
+  Logger.log("Scanning " + data.length + " rows in sheet: " + sheet.getName());
+  
+  if (data.length < 2) {
+    Logger.log("Not enough data rows.");
+    return;
+  }
 
-  var champions = {}; // Stores { name, email, shop } by Ref Code
-  var referralCounts = {}; // Stores arrays of referred people by Ref Code
+  var champions = {}; 
+  var referralCounts = {}; 
 
-  // 1. Scan all rows to map Champions and Referrals
   for (var i = 1; i < data.length; i++) {
     var row = data[i];
     var shop = row[0] || "Unknown Shop";
     var poc = row[1] || "Unknown Name";
     var email = row[2] || "No Email";
-    var notes = (row[20] || "").toString(); // Col 21 (Notes)
+    
+    // Convert the entire row to a string so we don't depend on it being exactly Column U
+    var rowStr = row.join(" | ");
 
-    // Check if this row GENERATED a code (They are a Champion)
-    var genMatch = notes.match(/Generated Ref Code:\s*(CH-\d+)/i);
+    var genMatch = rowStr.match(/Generated Ref Code:\s*(CH-[A-Z0-9\-]+)/i);
     if (genMatch) {
       var genCode = genMatch[1].toUpperCase();
       champions[genCode] = { name: poc, email: email, shop: shop };
+      Logger.log("Found Champion: " + genCode + " (" + poc + ")");
     }
 
-    // Check if this row WAS REFERRED by a code
-    var refMatch = notes.match(/Referred by:\s*(CH-\d+)/i);
+    var refMatch = rowStr.match(/Referred by:\s*(CH-[A-Z0-9\-]+)/i);
     if (refMatch) {
       var refCode = refMatch[1].toUpperCase();
       if (!referralCounts[refCode]) referralCounts[refCode] = [];
       referralCounts[refCode].push(poc + " (" + shop + ")");
     }
   }
+  
+  for (var c in referralCounts) {
+    Logger.log("Code " + c + " has " + referralCounts[c].length + " referrals.");
+  }
 
-  // 2. Evaluate who hit the threshold (>4) and alert Slack
   var props = PropertiesService.getScriptProperties();
   var alertedStr = props.getProperty('ALERTED_CHAMPIONS') || "[]";
   var alerted = JSON.parse(alertedStr);
@@ -260,15 +270,15 @@ function checkChampionReferrals() {
 
   var webhookUrl = props.getProperty('SLACK_WEBHOOK_URL') || FALLBACK_SLACK_WEBHOOK;
   if (!webhookUrl || webhookUrl.indexOf("https://hooks.slack.com") === -1) {
-    Logger.log("Missing Slack Webhook URL. Cannot send champion alerts.");
+    Logger.log("Webhook URL missing or invalid. Check Script Properties.");
     return;
   }
 
   for (var code in referralCounts) {
-    // Check if they have MORE than 4 referrals (i.e. 5 or more)
     if (referralCounts[code].length > 4) {
-      // Check if we haven't already sent a Slack alert for this champion hitting the milestone
+      Logger.log("Code " + code + " qualifies for alert!");
       if (alerted.indexOf(code) === -1) {
+        Logger.log("Alerting Slack for " + code);
         
         var champInfo = champions[code] || { name: "Unknown (Not in sheet)", email: "N/A", shop: "N/A" };
         var referredList = referralCounts[code].join("\n• ");
@@ -276,28 +286,10 @@ function checkChampionReferrals() {
         var slackPayload = {
           text: "🏆 *New Claim Hive Champion Unlocked!* (" + code + ")",
           blocks: [
-            {
-              type: "header",
-              text: { type: "plain_text", text: "🏆 5+ Referrals Reached!", emoji: true }
-            },
-            {
-              type: "section",
-              text: { 
-                type: "mrkdwn", 
-                text: "*Champion:* " + champInfo.name + "\n*Firm:* " + champInfo.shop + "\n*Email:* " + champInfo.email + "\n*Code:* `" + code + "`" 
-              }
-            },
-            {
-              type: "section",
-              text: { 
-                type: "mrkdwn", 
-                text: "*They successfully referred (" + referralCounts[code].length + "):*\n• " + referredList 
-              }
-            },
-            {
-              type: "context",
-              elements: [{ type: "mrkdwn", text: "Time to send them a mug/hat! 🧢☕" }]
-            }
+            { type: "header", text: { type: "plain_text", text: "🏆 5+ Referrals Reached!", emoji: true } },
+            { type: "section", text: { type: "mrkdwn", text: "*Champion:* " + champInfo.name + "\n*Firm:* " + champInfo.shop + "\n*Email:* " + champInfo.email + "\n*Code:* `" + code + "`" } },
+            { type: "section", text: { type: "mrkdwn", text: "*They successfully referred (" + referralCounts[code].length + "):*\n• " + referredList } },
+            { type: "context", elements: [{ type: "mrkdwn", text: "Time to send them a mug/hat! 🧢☕" }] }
           ]
         };
 
@@ -308,16 +300,17 @@ function checkChampionReferrals() {
           muteHttpExceptions: true
         };
         
-        UrlFetchApp.fetch(webhookUrl, options);
+        var response = UrlFetchApp.fetch(webhookUrl, options);
+        Logger.log("Slack response: " + response.getContentText());
 
-        // Mark as alerted so we don't spam Slack every 24 hours for the same person
         alerted.push(code);
         newlyAlerted = true;
+      } else {
+        Logger.log("Code " + code + " was already alerted previously.");
       }
     }
   }
 
-  // Save the updated list of alerted champions back to Script Properties
   if (newlyAlerted) {
     props.setProperty('ALERTED_CHAMPIONS', JSON.stringify(alerted));
   }
