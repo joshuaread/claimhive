@@ -6,10 +6,10 @@
   <title>Pricing — $80/Seat + Token Usage | ClaimHive</title>
   <meta name="description" content="Simple, honest pricing. $80 per seat per month plus direct token usage. All 54 AI agents included with zero plan caps. Private Alpha in progress. Beta opens November 1, 2026. GA January 1, 2027.">
 
-  <!-- Typography -->
+    <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Core Stylesheets -->
   <link rel="stylesheet" href="css/tokens.css">
@@ -69,63 +69,90 @@
     </div>
   </div>
 
-  <!-- CLAUDE CODE NEW LAYOUT START -->
-
-  <section class="section-spacious">
-  <div class="container">
-    <div style="margin-bottom: 1.25rem;"><span class="badge badge-gold">✦ Pricing</span></div>
-    <h1 style="margin: 0; max-width: 900px; font-family: var(--hive-font-heading); font-weight: 400; font-size: clamp(48px, 7vw, 92px); line-height: 1; letter-spacing: -0.025em; color: var(--hive-ink);">Fair for everyone.<br><span class="font-editorial-italic" style="color: var(--hive-gold-deep); font-weight: 400;">Pay for what you use.</span></h1>
-    <p style="margin: 32px 0 0; max-width: 560px; font-size: 1.25rem; color: var(--hive-text-secondary)">One simple seat price, plus the AI you actually use. No bloated tiers. No paying for features you never touch.</p>
+  <!-- HERO SECTION -->
+  <section class="hero-spacious" style="padding-bottom: clamp(2.5rem, 5vw, 4.5rem); text-align: center;">
+    <div class="container container-narrow">
+      <div style="margin-bottom: 1.25rem;">
+        <span class="badge badge-gold">✦ FAIR &amp; TRANSPARENT</span>
+      </div>
+      <h1 class="page-hero-title" style="font-size: clamp(2.25rem, 4.5vw, 3.75rem); line-height: 1.15; color: var(--hive-ink); margin-bottom: 1.25rem; letter-spacing: -0.025em;">
+        Fair for everyone.<br>
+        <span class="font-editorial-italic" style="color: var(--hive-gold-deep); font-weight: 400;">Pay for what you use.</span>
+      </h1>
+      <p class="page-hero-subtitle" style="font-size: clamp(1.0625rem, 2vw, 1.25rem); color: var(--hive-text-secondary); max-width: 620px; margin: 0 auto 2rem; line-height: 1.65;">
+        One simple seat price, plus direct token usage. No bloated plan tiers, no paying for features you never touch, and zero fee surcharges.
+      </p>
     </div>
-</section>
+  </section>
 
-  <section class="section-spacious">
-  <div class="container">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
+  <!-- TWO PRIMARY CARDS: PER SEAT & ESTIMATOR -->
+  <section class="section-spacious" style="padding-top: 0;">
+    <div class="container container-wide">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
 
-      <!-- Card 1: Per Seat -->
-      <div style="padding: 48px; border-radius: 28px; background: #FFFFFF; border: 1px solid var(--hive-border-subtle); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
-        <p style="margin: 0; font-size: 1rem; font-weight: 600; color: var(--hive-ink)">Per seat</p>
-        <div style="margin-top: 20px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
-          <span style="font-family: var(--hive-font-display); font-size: 104px; line-height: 1; color: var(--hive-ink)">$80</span>
-          <span style="color: var(--hive-text-secondary); font-weight: 500;">/ seat / month</span>
-        </div>
-        <p style="margin: 10px 0 32px; font-size: 1.125rem; color: var(--hive-gold-deep); font-weight: 700">+ token usage</p>
-        <div style="display: flex; flex-direction: column; gap: 14px; color: var(--hive-text-secondary); line-height: 1.5;">
-          <p style="margin: 0"><strong>Every tool:</strong> Claim CRM, Chip and all 54 AI agents, Client Portal, Growth Hub and Back Office.</p>
-          <p style="margin: 0">Light users pay less. Power users pay for the power.</p>
-          <p style="margin: 0">Usage shown clearly — no surprises on the bill.</p>
-        </div>
-        <a href="index.html#waitlist" class="btn btn-navy" style="margin-top: 40px; display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 999px; text-decoration: none; font-weight: 600" data-open-modal="beta">Request beta access</a>
-      </div>
-
-      <!-- Card 2: Estimate Seats -->
-      <div style="padding: 48px; border-radius: 28px; background: var(--hive-canvas-alt); border: 1px solid var(--hive-border-subtle); display: flex; flex-direction: column">
-        <p style="margin: 0; font-size: 1rem; font-weight: 600; color: var(--hive-ink)">Estimate your seats</p>
-        <div style="margin-top: 28px; display: flex; align-items: center; gap: 20px">
-          <button type="button" aria-label="Remove a seat" onclick="updateSeats(-1)" style="min-width: 48px; min-height: 48px; border-radius: 50%; border: 1.5px solid var(--hive-border-strong); background: #FFFFFF; color: var(--hive-ink); font: inherit; font-size: 24px; cursor: pointer; display:flex; align-items:center; justify-content:center; transition: all 0.15s ease;">−</button>
-          <span id="seat-calc-count" style="min-width: 80px; text-align: center; font-family: var(--hive-font-display); font-size: 72px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--hive-ink)">3</span>
-          <button type="button" aria-label="Add a seat" onclick="updateSeats(1)" style="min-width: 48px; min-height: 48px; border-radius: 50%; border: 1.5px solid var(--hive-border-strong); background: #FFFFFF; color: var(--hive-ink); font: inherit; font-size: 24px; cursor: pointer; display:flex; align-items:center; justify-content:center; transition: all 0.15s ease;">+</button>
-          <span style="color: var(--hive-text-secondary); font-weight: 500;">seats</span>
-        </div>
-
-        <div id="seat-calc-standard" style="margin-top: 32px; transition: opacity 0.2s;">
-          <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
-            <span id="seat-calc-price" style="font-family: var(--hive-font-display); font-size: 56px; line-height: 1; color: var(--hive-ink)">$240</span>
-            <span style="color: var(--hive-text-secondary); font-weight: 500;">/ month in seats</span>
+        <!-- Card 1: Per Seat -->
+        <div style="padding: clamp(2.5rem, 5vw, 3.5rem); border-radius: var(--hive-radius-2xl); background: #FFFFFF; border: 1.5px solid var(--hive-border-subtle); box-shadow: var(--hive-shadow-card); display: flex; flex-direction: column;">
+          <span style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-navy-900); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 1rem;">
+            PER SEAT LICENSE
+          </span>
+          <div style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.25rem;">
+            <span style="font-family: var(--hive-font-heading); font-size: clamp(3.5rem, 6vw, 4.75rem); font-weight: 700; color: var(--hive-navy-900); line-height: 1;">$80</span>
+            <span style="font-family: var(--hive-font-body); font-size: 1rem; color: var(--hive-text-secondary);">/ seat / month</span>
           </div>
-          <p style="margin: 10px 0 0; color: var(--hive-gold-deep); font-weight: 600">+ token usage, billed by what your team uses</p>
+          <p style="font-family: var(--hive-font-display); font-size: 1.0625rem; color: var(--hive-gold-deep); font-weight: 700; margin-bottom: 2rem;">
+            + direct token usage
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem;">
+            <div style="display: flex; gap: 0.875rem; align-items: flex-start;"><svg width="18" height="20" viewBox="0 0 30 34" style="flex-shrink: 0; margin-top: 3px" aria-hidden="true"><path d="M15 1.5 L28 9 L28 25 L15 32.5 L2 25 L2 9 Z" fill="var(--hive-gold-honey)"></path></svg><span style="font-family: var(--hive-font-body); font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.55;"><strong>Every tool included:</strong> Claim CRM, Chip and all 54 AI agents, Client Portal, Growth Hub, and Back Office.</span></div>
+            <div style="display: flex; gap: 0.875rem; align-items: flex-start;"><svg width="18" height="20" viewBox="0 0 30 34" style="flex-shrink: 0; margin-top: 3px" aria-hidden="true"><path d="M15 1.5 L28 9 L28 25 L15 32.5 L2 25 L2 9 Z" fill="var(--hive-gold-honey)"></path></svg><span style="font-family: var(--hive-font-body); font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.55;">Light users pay less. Power users pay only for the AI workload they generate.</span></div>
+            <div style="display: flex; gap: 0.875rem; align-items: flex-start;"><svg width="18" height="20" viewBox="0 0 30 34" style="flex-shrink: 0; margin-top: 3px" aria-hidden="true"><path d="M15 1.5 L28 9 L28 25 L15 32.5 L2 25 L2 9 Z" fill="var(--hive-gold-honey)"></path></svg><span style="font-family: var(--hive-font-body); font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.55;">Usage tracked live per seat and per tool—zero hidden surcharges or surprise bills.</span></div>
+          </div>
+          <div style="margin-top: auto;">
+            <a href="index.html#waitlist" class="btn btn-navy btn-lg" style="width: 100%; text-align: center;" data-open-modal="beta">
+              <span>Request beta access</span>
+              <span class="hive-star-icon">✦</span>
+            </a>
+          </div>
         </div>
 
-        <div id="seat-calc-ent" style="margin-top: 32px; display: none;">
-          <p style="margin: 0; font-family: var(--hive-font-display); font-size: 56px; line-height: 1; color: var(--hive-gold-deep)">Let's talk.</p>
-          <p style="margin: 12px 0 0; color: var(--hive-text-secondary); line-height: 1.5;">More than 10 users qualifies your firm for enterprise pricing — negotiated around your team and your usage.</p>
+        <!-- Card 2: Interactive Estimator -->
+        <div style="padding: clamp(2.5rem, 5vw, 3.5rem); border-radius: var(--hive-radius-2xl); background: #FFFFFF; border: 1.5px solid var(--hive-border-subtle); box-shadow: var(--hive-shadow-card); display: flex; flex-direction: column;">
+          <span style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-navy-900); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 1.25rem;">
+            INTERACTIVE ESTIMATOR
+          </span>
+          <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2rem;">
+            <button type="button" aria-label="Remove a seat" onclick="updateSeats(-1)" class="btn btn-outline" style="width: 48px; height: 48px; padding: 0; border-radius: 50%; font-size: 1.5rem; line-height: 1; flex-shrink: 0; border-color: var(--hive-border-strong);">−</button>
+            <span id="seat-calc-count" style="font-family: var(--hive-font-heading); font-size: 3.5rem; font-weight: 700; color: var(--hive-navy-900); min-width: 60px; text-align: center; font-variant-numeric: tabular-nums;">3</span>
+            <button type="button" aria-label="Add a seat" onclick="updateSeats(1)" class="btn btn-outline" style="width: 48px; height: 48px; padding: 0; border-radius: 50%; font-size: 1.5rem; line-height: 1; flex-shrink: 0; border-color: var(--hive-border-strong);">+</button>
+            <span style="font-family: var(--hive-font-display); font-size: 1.0625rem; font-weight: 600; color: var(--hive-text-secondary);">adjuster seats</span>
+          </div>
+
+          <div id="seat-calc-standard">
+            <div style="display: flex; align-items: baseline; gap: 0.75rem;">
+              <span id="seat-calc-price" style="font-family: var(--hive-font-heading); font-size: clamp(2.75rem, 5vw, 3.75rem); font-weight: 700; color: var(--hive-navy-900); line-height: 1;">$240</span>
+              <span style="font-family: var(--hive-font-body); font-size: 1rem; color: var(--hive-text-secondary);">/ month in base seats</span>
+            </div>
+            <p style="font-size: 0.9375rem; color: var(--hive-gold-deep); font-weight: 600; margin-top: 0.5rem;">
+              + token usage, billed by what your team actually runs
+            </p>
+          </div>
+
+          <div id="seat-calc-ent" style="display: none; padding: 1.5rem; background: var(--hive-gold-50); border: 1px solid var(--hive-gold-300); border-radius: var(--hive-radius-lg);">
+            <p style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-navy-900); margin: 0 0 0.5rem;">
+              Let's talk enterprise.
+            </p>
+            <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); margin: 0; line-height: 1.55;">
+              Firms with 11+ adjusters qualify for custom pooled token volume, dedicated data onboarding, and priority support.
+            </p>
+          </div>
+
+          <div style="flex-grow: 1; min-height: 2.5rem;"></div>
+          <a href="about.html" class="btn btn-outline btn-lg" style="width: 100%; text-align: center;">
+            Talk to us about 11+ seats
+          </a>
         </div>
 
-        <div style="flex-grow: 1"></div>
-        <a href="about.html" style="margin-top: 40px; display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 999px; border: 1.5px solid var(--hive-border-strong); color: var(--hive-ink); background: transparent; text-decoration: none; font-weight: 600; transition: all 0.15s ease;" onmouseover="this.style.background='var(--hive-border-whisper)'" onmouseout="this.style.background='transparent'">Talk to us about 11+ seats</a>
       </div>
-
     </div>
     
     <script>
@@ -146,118 +173,136 @@
         }
       }
     </script>
+  </section>
+
+  <!-- SIDE BY SIDE COMPETITOR COMPARISON -->
+  <section class="section-spacious" style="padding-top: 0;">
+    <div class="container container-wide">
+      <div style="text-align: center; max-width: 760px; margin: 0 auto 3.5rem;">
+        <span class="badge badge-gold" style="margin-bottom: 1.25rem;">✦ SIDE BY SIDE PRICING</span>
+        <h2 style="font-family: var(--hive-font-heading); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--hive-navy-900); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem;">
+          More platform. A fairer price.
+        </h2>
+        <p style="font-size: 1.125rem; color: var(--hive-text-secondary); line-height: 1.6; margin: 0;">
+          Other platforms sell AI as a costly add-on or cap it by plan tier. With ClaimHive, all 54 AI agents are included on day one—you only pay for what you run.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem;">
+
+        <!-- ClaimHive Card -->
+        <div style="padding: 2.25rem 1.75rem; border-radius: var(--hive-radius-2xl); border: 2.5px solid var(--hive-gold-honey); background: #FFFFFF; display: flex; flex-direction: column; gap: 0.875rem; box-shadow: var(--hive-shadow-card); position: relative;">
+          <span class="badge badge-gold" style="position: absolute; top: -14px; right: 1.25rem;">MOST COMPLETE</span>
+          <p style="font-family: var(--hive-font-display); font-size: 1.125rem; font-weight: 700; color: var(--hive-navy-900); margin: 0;">ClaimHive</p>
+          <div style="font-family: var(--hive-font-heading); font-size: 3rem; font-weight: 800; line-height: 1; color: var(--hive-navy-900);">$80</div>
+          <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin: 0;">per seat / mo + token usage</p>
+          <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.5;">
+            <p style="margin: 0;"><strong style="color: var(--hive-navy-900);">56</strong> features listed (all 6 hubs)</p>
+            <p style="margin: 0;">All 54 AI agents included</p>
+            <p style="margin: 0;">Zero fee surcharges, month-to-month</p>
+          </div>
+        </div>
+
+        <!-- Claim Titan -->
+        <div style="padding: 2.25rem 1.75rem; border-radius: var(--hive-radius-2xl); border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 0.875rem;">
+          <p style="font-family: var(--hive-font-display); font-size: 1.125rem; font-weight: 600; color: var(--hive-navy-900); margin: 0;">Claim Titan</p>
+          <div style="font-family: var(--hive-font-heading); font-size: 3rem; font-weight: 800; line-height: 1; color: var(--hive-text-muted);">$99</div>
+          <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin: 0;">per user / mo ($82.50 annual)</p>
+          <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.5;">
+            <p style="margin: 0;">24 features listed</p>
+            <p style="margin: 0;">AI add-on from $50 / month</p>
+            <p style="margin: 0;">Only 5 e-signatures / month free</p>
+          </div>
+        </div>
+
+        <!-- ClaimWizard -->
+        <div style="padding: 2.25rem 1.75rem; border-radius: var(--hive-radius-2xl); border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 0.875rem;">
+          <p style="font-family: var(--hive-font-display); font-size: 1.125rem; font-weight: 600; color: var(--hive-navy-900); margin: 0;">ClaimWizard</p>
+          <div style="font-family: var(--hive-font-heading); font-size: 3rem; font-weight: 800; line-height: 1; color: var(--hive-text-muted);">$99</div>
+          <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin: 0;">Solo — 1 PA, no staff</p>
+          <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.5;">
+            <p style="margin: 0;">21 features listed</p>
+            <p style="margin: 0;">Business: $250/mo for 3, +$50 each</p>
+            <p style="margin: 0;">Enterprise by quote at 50+ users</p>
+          </div>
+        </div>
+
+        <!-- Brelly -->
+        <div style="padding: 2.25rem 1.75rem; border-radius: var(--hive-radius-2xl); border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 0.875rem;">
+          <p style="font-family: var(--hive-font-display); font-size: 1.125rem; font-weight: 600; color: var(--hive-navy-900); margin: 0;">Brelly</p>
+          <div style="font-family: var(--hive-font-heading); font-size: 3rem; font-weight: 800; line-height: 1; color: var(--hive-text-muted);">$125</div>
+          <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin: 0;">Solo — 1 seat / month</p>
+          <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.5;">
+            <p style="margin: 0;">20 features listed</p>
+            <p style="margin: 0;">Teams: $600/mo for 2, +$85 each</p>
+            <p style="margin: 0;">Usage capped by plan tiers</p>
+          </div>
+        </div>
+
+        <!-- Drodat -->
+        <div style="padding: 2.25rem 1.75rem; border-radius: var(--hive-radius-2xl); border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 0.875rem;">
+          <p style="font-family: var(--hive-font-display); font-size: 1.125rem; font-weight: 600; color: var(--hive-navy-900); margin: 0;">Drodat</p>
+          <div style="font-family: var(--hive-font-heading); font-size: 3rem; font-weight: 800; line-height: 1; color: var(--hive-text-muted);">—</div>
+          <p style="font-size: 0.8125rem; color: var(--hive-text-muted); margin: 0;">Pricing not published</p>
+          <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem; font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.5;">
+            <p style="margin: 0;">15 features listed</p>
+            <p style="margin: 0;">Free trial offered</p>
+            <p style="margin: 0;">Contact sales for quote</p>
+          </div>
+        </div>
+
+      </div>
+      <p style="margin: 2rem 0 0; font-size: 0.8125rem; color: var(--hive-text-muted); text-align: center;">Competitor pricing and published features based on public website listings as of September 30, 2026. Subject to change by respective vendors.</p>
     </div>
-</section>
+  </section>
 
-  <section class="section-spacious">
-  <div class="container">
-    <div style="margin-bottom: 1.25rem;"><span class="badge badge-gold">✦ Side by side</span></div>
-    <h2 style="margin: 0; max-width: 760px; font-family: var(--hive-font-heading); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">More platform. A fairer price.</h2>
-    <p style="margin: 24px 0 0; max-width: 600px; font-size: 1.1875rem; color: var(--hive-text-secondary)">Other platforms sell AI as an add-on or cap it by plan. With ClaimHive, all 54 AI agents are included — you only pay for what you run.</p>
-
-    <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px">
-
-      <div style="padding: 32px; border-radius: 24px; border: 1.5px solid var(--hive-gold-deep); background: var(--hive-canvas-alt); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 20px rgba(217, 162, 27, 0.1);">
-        <p style="margin: 0; font-weight: 700; color: var(--hive-ink)">ClaimHive</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-gold-deep)">$80</div>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--hive-ink); opacity: 0.8;">per seat / month + token usage</p>
-        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-ink)">
-          <p style="margin: 0"><strong>56</strong> features listed</p>
-          <p style="margin: 0">All 54 AI agents included — pay per use</p>
-          <p style="margin: 0">Enterprise pricing for 11+ users</p>
+  <!-- FAQ SECTION -->
+  <section class="section-spacious" style="padding-top: 0;">
+    <div class="container container-reading">
+      <h2 style="font-family: var(--hive-font-heading); font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--hive-navy-900); margin-bottom: 2rem; letter-spacing: -0.02em;">Questions, answered.</h2>
+      <div>
+        <div style="padding: 2rem 0; border-top: 1px solid var(--hive-border-subtle);">
+          <h3 style="font-family: var(--hive-font-display); font-size: 1.1875rem; font-weight: 700; color: var(--hive-navy-900); margin-bottom: 0.5rem;">What counts as token usage?</h3>
+          <p style="font-family: var(--hive-font-body); font-size: 1rem; color: var(--hive-text-secondary); line-height: 1.65; margin: 0;">Tokens measure the compute work ClaimHive's AI does for your firm—Chip drafting demands, reading carrier policies, parsing checks, and sorting storm photos. Light users use few; power users pay only for the volume they generate. Costs are fractions of a cent per action.</p>
+        </div>
+        <div style="padding: 2rem 0; border-top: 1px solid var(--hive-border-subtle);">
+          <h3 style="font-family: var(--hive-font-display); font-size: 1.1875rem; font-weight: 700; color: var(--hive-navy-900); margin-bottom: 0.5rem;">Will I see my usage clearly?</h3>
+          <p style="font-family: var(--hive-font-body); font-size: 1rem; color: var(--hive-text-secondary); line-height: 1.65; margin: 0;">Yes. Live usage telemetry is visible in your settings by seat and by tool. You can set spend alerts or hard caps per adjuster so there is zero ambiguity.</p>
+        </div>
+        <div style="padding: 2rem 0; border-top: 1px solid var(--hive-border-subtle);">
+          <h3 style="font-family: var(--hive-font-display); font-size: 1.1875rem; font-weight: 700; color: var(--hive-navy-900); margin-bottom: 0.5rem;">What do Beta cohort members pay?</h3>
+          <p style="font-family: var(--hive-font-body); font-size: 1rem; color: var(--hive-text-secondary); line-height: 1.65; margin: 0;">Firms admitted to the November 1 Beta cohort lock in the founding rate of $80/seat per month for life, along with a starting balance of complimentary AI tokens.</p>
+        </div>
+        <div style="padding: 2rem 0; border-top: 1px solid var(--hive-border-subtle);">
+          <h3 style="font-family: var(--hive-font-display); font-size: 1.1875rem; font-weight: 700; color: var(--hive-navy-900); margin-bottom: 0.5rem;">Is there an annual contract?</h3>
+          <p style="font-family: var(--hive-font-body); font-size: 1rem; color: var(--hive-text-secondary); line-height: 1.65; margin: 0;">No. ClaimHive operates on flexible month-to-month billing. If our platform doesn't expand your active caseload within 30 days, you can export your data and cancel anytime.</p>
+        </div>
+        <div style="padding: 2rem 0; border-top: 1px solid var(--hive-border-subtle);">
+          <h3 style="font-family: var(--hive-font-display); font-size: 1.1875rem; font-weight: 700; color: var(--hive-navy-900); margin-bottom: 0.5rem;">How does enterprise pricing work?</h3>
+          <p style="font-family: var(--hive-font-body); font-size: 1rem; color: var(--hive-text-secondary); line-height: 1.65; margin: 0;">Firms with 11+ adjusters receive custom pooled token allowances, dedicated data migration specialists, and custom integrations tailored to your caseload.</p>
         </div>
       </div>
-
-      <div style="padding: 32px; border-radius: 24px; border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
-        <p style="margin: 0; font-weight: 600; color: var(--hive-ink)">Claim Titan</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-ink)">$99</div>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--hive-text-muted)">per user / month ($82.50 billed annually)</p>
-        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-text-secondary)">
-          <p style="margin: 0">24 features listed</p>
-          <p style="margin: 0">AI add-on from $50 / month</p>
-          <p style="margin: 0">5 e-signatures / month free</p>
-        </div>
-      </div>
-
-      <div style="padding: 32px; border-radius: 24px; border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
-        <p style="margin: 0; font-weight: 600; color: var(--hive-ink)">ClaimWizard</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-ink)">$99</div>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--hive-text-muted)">Solo — one PA, no staff</p>
-        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-text-secondary)">
-          <p style="margin: 0">21 features listed</p>
-          <p style="margin: 0">Business from $250 / mo for 3 licenses, +$50 each</p>
-          <p style="margin: 0">Enterprise by quote at 50+ licenses</p>
-        </div>
-      </div>
-
-      <div style="padding: 32px; border-radius: 24px; border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
-        <p style="margin: 0; font-weight: 600; color: var(--hive-ink)">Brelly</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-ink)">$125</div>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--hive-text-muted)">Solo — 1 seat / month</p>
-        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-text-secondary)">
-          <p style="margin: 0">20 features listed</p>
-          <p style="margin: 0">Teams $600 / mo for 2 seats, +$85 each up to 10</p>
-          <p style="margin: 0">Usage capped by plan — 3x on Max tiers</p>
-        </div>
-      </div>
-
-      <div style="padding: 32px; border-radius: 24px; border: 1px solid var(--hive-border-subtle); background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
-        <p style="margin: 0; font-weight: 600; color: var(--hive-ink)">Drodat</p>
-        <div style="font-family: var(--hive-font-display); font-size: 48px; line-height: 1; color: var(--hive-text-muted)">—</div>
-        <p style="margin: 0; font-size: 0.875rem; color: var(--hive-text-muted)">Pricing not published</p>
-        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px; font-size: 0.9375rem; color: var(--hive-text-secondary)">
-          <p style="margin: 0">15 features listed</p>
-          <p style="margin: 0">Free trial offered</p>
-        </div>
-      </div>
-
     </div>
-    <p style="margin: 32px 0 0; font-size: 0.8125rem; color: var(--hive-text-muted)">Competitor pricing and features as published on vendor websites, September 30, 2026. Subject to change.</p>
-    </div>
-</section>
+  </section>
 
-  <section class="section-spacious">
-  <div class="container container-reading">
-    <h2 style="margin: 0; max-width: 760px; font-family: var(--hive-font-heading); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">Questions, answered.</h2>
-    <div style="margin-top: 40px">
-      <div style="padding: 28px 0; border-top: 1px solid var(--hive-border-subtle)">
-        <p style="margin: 0; font-size: 1.1875rem; font-weight: 600; color: var(--hive-ink)">What counts as token usage?</p>
-        <p style="margin: 10px 0 0; color: var(--hive-text-secondary); line-height: 1.6;">Tokens measure the AI work ClaimHive does for you — Chip drafting letters, summarizing documents, researching storms. Light users use few; power users use more. Currently tracking at fractions of a cent per operation.</p>
-      </div>
-      <div style="padding: 28px 0; border-top: 1px solid var(--hive-border-subtle)">
-        <p style="margin: 0; font-size: 1.1875rem; font-weight: 600; color: var(--hive-ink)">Will I see my usage?</p>
-        <p style="margin: 10px 0 0; color: var(--hive-text-secondary); line-height: 1.6;">Yes. Usage is shown by seat and by feature inside ClaimHive, so the bill is never a surprise.</p>
-      </div>
-      <div style="padding: 28px 0; border-top: 1px solid var(--hive-border-subtle)">
-        <p style="margin: 0; font-size: 1.1875rem; font-weight: 600; color: var(--hive-ink)">What do beta testers pay?</p>
-        <p style="margin: 10px 0 0; color: var(--hive-text-secondary); line-height: 1.6;">Founding members locked into the November 1 Beta cohort get a lifetime rate of $80/seat (our planned GA rate is subject to change), and a starting balance of complimentary tokens.</p>
-      </div>
-      <div style="padding: 28px 0; border-top: 1px solid var(--hive-border-subtle)">
-        <p style="margin: 0; font-size: 1.1875rem; font-weight: 600; color: var(--hive-ink)">Is there a long-term contract?</p>
-        <p style="margin: 10px 0 0; color: var(--hive-text-secondary); line-height: 1.6;">No. We operate month-to-month. If ClaimHive isn't saving you time and drastically increasing your caseload capacity, you can export your data and leave at any time.</p>
-      </div>
-      <div style="padding: 28px 0; border-top: 1px solid var(--hive-border-subtle)">
-        <p style="margin: 0; font-size: 1.1875rem; font-weight: 600; color: var(--hive-ink)">How does enterprise pricing work?</p>
-        <p style="margin: 10px 0 0; color: var(--hive-text-secondary); line-height: 1.6;">Firms with more than 10 users can negotiate pricing built around team size and expected usage. Talk to us and we will build it with you.</p>
+  <!-- FINAL SCARCITY CTA -->
+  <section class="section-spacious" style="text-align: center; padding-top: 2rem;">
+    <div class="container container-reading">
+      <svg width="40" height="46" viewBox="0 0 30 34" fill="none" stroke="var(--hive-gold-honey)" stroke-width="2" aria-hidden="true"><path d="M15 2 L28 9.5 L28 24.5 L15 32 L2 24.5 L2 9.5 Z"></path></svg>
+      <h2 style="font-family: var(--hive-font-heading); font-size: clamp(2.25rem, 4.5vw, 3.5rem); font-weight: 700; line-height: 1.15; color: var(--hive-navy-900); margin: 1.25rem 0 0; letter-spacing: -0.02em;">
+        Beta opens November 1.<br>
+        <span class="font-editorial-italic" style="color: var(--hive-gold-deep); font-weight: 400;">Seats are limited.</span>
+      </h2>
+      <div style="margin-top: 2.25rem;">
+        <a href="index.html#waitlist" class="btn btn-lg btn-gold" data-open-modal="beta">
+          <span>Hold my place in line</span>
+          <span class="hive-star-icon">✦</span>
+        </a>
       </div>
     </div>
-    </div>
-</section>
+  </section>
 
-  <!-- FINAL CTA (Replicating Screenshot) -->
-  <section class="section-spacious" style="text-align: center;">
-  <div class="container container-reading">
-    <svg width="40" height="46" viewBox="0 0 30 34" aria-hidden="true"><path d="M15 1.5 L28 9 L28 25 L15 32.5 L2 25 L2 9 Z" fill="none" stroke="var(--hive-gold)" stroke-width="1.5"></path></svg>
-    <h2 style="margin: 24px 0 0; font-family: var(--hive-font-heading); font-weight: 400; font-size: clamp(38px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.02em; color: var(--hive-ink)">Beta opens November 1.<br><span class="font-editorial-italic" style="color: var(--hive-gold-deep); font-weight: 400;">Seats are limited.</span></h2>
-    <div style="margin-top: 40px;">
-      <a href="index.html#waitlist" class="btn btn-gold" style="display: inline-flex; align-items: center; justify-content: center; min-height: 60px; padding: 0 40px; border-radius: 999px; text-decoration: none; font-size: 1.125rem; font-weight: 700; box-shadow: 0 8px 24px rgba(217, 162, 27, 0.25);" data-open-modal="beta">Hold my place in line</a>
-    </div>
-    </div>
-</section>
-
-  <!-- CLAUDE CODE NEW LAYOUT END -->
-
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="container container-wide">
       <div class="footer-top">
         <div class="footer-brand">
