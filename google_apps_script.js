@@ -212,3 +212,113 @@ function sendSlackNotification(data) {
 function doGet(e) {
   return ContentService.createTextOutput("Claim Hive Google Sheets & Slack Webhook is active and ready.");
 }
+
+/**
+ * ============================================================================
+ * CHAMPION REFERRAL AGENT (Scheduled Cron Task)
+ * ============================================================================
+ * Runs automatically (e.g., every 24 hours) via Google Apps Script Time-Driven Triggers.
+ * Scans the sheet for users who have successfully referred > 4 people and pings Slack.
+ */
+function checkChampionReferrals() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  if (data.length < 2) return; // No data to check
+
+  var champions = {}; // Stores { name, email, shop } by Ref Code
+  var referralCounts = {}; // Stores arrays of referred people by Ref Code
+
+  // 1. Scan all rows to map Champions and Referrals
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    var shop = row[0] || "Unknown Shop";
+    var poc = row[1] || "Unknown Name";
+    var email = row[2] || "No Email";
+    var notes = (row[20] || "").toString(); // Col 21 (Notes)
+
+    // Check if this row GENERATED a code (They are a Champion)
+    var genMatch = notes.match(/Generated Ref Code:\s*(CH-\d+)/i);
+    if (genMatch) {
+      var genCode = genMatch[1].toUpperCase();
+      champions[genCode] = { name: poc, email: email, shop: shop };
+    }
+
+    // Check if this row WAS REFERRED by a code
+    var refMatch = notes.match(/Referred by:\s*(CH-\d+)/i);
+    if (refMatch) {
+      var refCode = refMatch[1].toUpperCase();
+      if (!referralCounts[refCode]) referralCounts[refCode] = [];
+      referralCounts[refCode].push(poc + " (" + shop + ")");
+    }
+  }
+
+  // 2. Evaluate who hit the threshold (>4) and alert Slack
+  var props = PropertiesService.getScriptProperties();
+  var alertedStr = props.getProperty('ALERTED_CHAMPIONS') || "[]";
+  var alerted = JSON.parse(alertedStr);
+  var newlyAlerted = false;
+
+  var webhookUrl = props.getProperty('SLACK_WEBHOOK_URL') || FALLBACK_SLACK_WEBHOOK;
+  if (!webhookUrl || webhookUrl.indexOf("https://hooks.slack.com") === -1) {
+    Logger.log("Missing Slack Webhook URL. Cannot send champion alerts.");
+    return;
+  }
+
+  for (var code in referralCounts) {
+    // Check if they have MORE than 4 referrals (i.e. 5 or more)
+    if (referralCounts[code].length > 4) {
+      // Check if we haven't already sent a Slack alert for this champion hitting the milestone
+      if (alerted.indexOf(code) === -1) {
+        
+        var champInfo = champions[code] || { name: "Unknown (Not in sheet)", email: "N/A", shop: "N/A" };
+        var referredList = referralCounts[code].join("\n• ");
+
+        var slackPayload = {
+          text: "🏆 *New Claim Hive Champion Unlocked!* (" + code + ")",
+          blocks: [
+            {
+              type: "header",
+              text: { type: "plain_text", text: "🏆 5+ Referrals Reached!", emoji: true }
+            },
+            {
+              type: "section",
+              text: { 
+                type: "mrkdwn", 
+                text: "*Champion:* " + champInfo.name + "\n*Firm:* " + champInfo.shop + "\n*Email:* " + champInfo.email + "\n*Code:* `" + code + "`" 
+              }
+            },
+            {
+              type: "section",
+              text: { 
+                type: "mrkdwn", 
+                text: "*They successfully referred (" + referralCounts[code].length + "):*\n• " + referredList 
+              }
+            },
+            {
+              type: "context",
+              elements: [{ type: "mrkdwn", text: "Time to send them a mug/hat! 🧢☕" }]
+            }
+          ]
+        };
+
+        var options = {
+          method: "post",
+          contentType: "application/json",
+          payload: JSON.stringify(slackPayload),
+          muteHttpExceptions: true
+        };
+        
+        UrlFetchApp.fetch(webhookUrl, options);
+
+        // Mark as alerted so we don't spam Slack every 24 hours for the same person
+        alerted.push(code);
+        newlyAlerted = true;
+      }
+    }
+  }
+
+  // Save the updated list of alerted champions back to Script Properties
+  if (newlyAlerted) {
+    props.setProperty('ALERTED_CHAMPIONS', JSON.stringify(alerted));
+  }
+}
