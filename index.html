@@ -398,53 +398,29 @@
                 </div>
               </div>
               <div>
-                <span id="shift-status-pill" class="card-tag-pill shift-pill-warning">🔴 Capacity Bottlenecked &bull; Overwhelmed</span>
+                <span id="shift-status-pill" class="card-tag-pill shift-pill-warning">🔴 72% Unpaid Overhead</span>
               </div>
             </div>
 
-            <!-- The Hero Visual Callout for the Time Bar (The Big Aha Callout) -->
-            <div class="time-bar-hero-callout today" id="time-bar-hero-callout">
-              <div class="tb-callout-top">
-                <span class="tb-callout-badge today" id="tb-callout-badge">
-                  <span class="tb-badge-pulse" id="tb-badge-pulse">●</span>
-                  <span id="tb-badge-text">YOUR PA'S ONLY MONEY-MAKING HOURS</span>
-                </span>
-                <div class="tb-callout-arrow-indicator" id="tb-callout-arrow-indicator">
-                  <span class="tb-indicator-text" id="tb-indicator-text">Only 14h / wk</span>
-                  <svg class="tb-bounce-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="3" x2="12" y2="21"></line>
-                    <polyline points="19 14 12 21 5 14"></polyline>
-                  </svg>
+            <!-- High-Signal 50-Hour Telemetry Ratio Meter (Musk First-Principles) -->
+            <div class="telemetry-meter-wrap" id="telemetry-meter-wrap">
+              <div class="telemetry-meter" id="telemetry-meter">
+                <div class="meter-segment admin" id="shift-bar-admin" style="width: 72%;">
+                  <div class="meter-content">
+                    <span class="meter-val" id="meter-val-admin">36h</span>
+                    <span class="meter-lbl" id="meter-lbl-admin">Unpaid Admin ($0)</span>
+                  </div>
+                </div>
+                <div class="meter-segment adjusting" id="shift-bar-adjust" style="width: 28%;">
+                  <div class="meter-content">
+                    <span class="meter-val" id="meter-val-adjust">14h</span>
+                    <span class="meter-lbl" id="meter-lbl-adjust">Revenue ($$$)</span>
+                  </div>
                 </div>
               </div>
-
-              <div class="tb-callout-headline" id="tb-callout-headline">
-                The yellow bar is the <strong>only part of the week</strong> your PA can actually make money.
-              </div>
-
-              <div class="tb-callout-sub" id="tb-callout-sub">
-                72% of the week (36 hours) is consumed by unpaid administrative chores instead of inspecting damage and closing claims.
-              </div>
-            </div>
-
-            <!-- Visual 50-Hour Time Bar with Pointer Leader -->
-            <div class="time-bar-wrap">
-              <div class="time-bar-pointer-track">
-                <div class="time-bar-down-pointer today" id="time-bar-down-pointer">
-                  <span class="tb-pointer-label" id="tb-pointer-label">Fee-Earning Time</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="3" x2="12" y2="21"></line>
-                    <polyline points="19 14 12 21 5 14"></polyline>
-                  </svg>
-                </div>
-              </div>
-              <div class="time-bar">
-                <div class="time-bar-segment-admin" id="shift-bar-admin" style="width: 72%;"></div>
-                <div class="time-bar-segment-adjusting" id="shift-bar-adjust" style="width: 28%;"></div>
-              </div>
-              <div class="time-bar-labels">
-                <span id="shift-lbl-admin">36h Routine Clerical Drag (72%)</span>
-                <span id="shift-lbl-adjust">14h Money-Making Adjusting (28%)</span>
+              <div class="telemetry-status-line today" id="telemetry-status-line">
+                <span class="telemetry-dot" id="telemetry-dot">⚠️</span>
+                <span class="telemetry-msg" id="telemetry-msg"><strong>72% of your week earns $0 in fees.</strong> Your entire income depends on that 14-hour sliver.</span>
               </div>
             </div>
 

@@ -386,19 +386,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const shiftBarAdmin = document.getElementById('shift-bar-admin');
   const shiftBarAdjust = document.getElementById('shift-bar-adjust');
-  const shiftLblAdmin = document.getElementById('shift-lbl-admin');
-  const shiftLblAdjust = document.getElementById('shift-lbl-adjust');
-
-  const timeBarHeroCallout = document.getElementById('time-bar-hero-callout');
-  const tbCalloutBadge = document.getElementById('tb-callout-badge');
-  const tbBadgePulse = document.getElementById('tb-badge-pulse');
-  const tbBadgeText = document.getElementById('tb-badge-text');
-  const tbIndicatorText = document.getElementById('tb-indicator-text');
-  const tbCalloutHeadline = document.getElementById('tb-callout-headline');
-  const tbCalloutSub = document.getElementById('tb-callout-sub');
-
-  const timeBarDownPointer = document.getElementById('time-bar-down-pointer');
-  const tbPointerLabel = document.getElementById('tb-pointer-label');
+  const meterValAdmin = document.getElementById('meter-val-admin');
+  const meterLblAdmin = document.getElementById('meter-lbl-admin');
+  const meterValAdjust = document.getElementById('meter-val-adjust');
+  const meterLblAdjust = document.getElementById('meter-lbl-adjust');
+  const telemetryStatusLine = document.getElementById('telemetry-status-line');
+  const telemetryDot = document.getElementById('telemetry-dot');
+  const telemetryMsg = document.getElementById('telemetry-msg');
 
   const shiftRow1 = document.getElementById('shift-row-1');
   const shiftRow2 = document.getElementById('shift-row-2');
@@ -493,33 +487,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (shiftStatusPill) {
         shiftStatusPill.className = 'card-tag-pill shift-pill-gold';
-        shiftStatusPill.textContent = '✦ Uncapped Growth • 0 Added Payroll';
+        shiftStatusPill.textContent = '✦ 88% Fee-Earning Engine';
       }
 
-      // Hero Callout above Time Bar
-      if (timeBarHeroCallout) timeBarHeroCallout.className = 'time-bar-hero-callout chip';
-      if (tbCalloutBadge) tbCalloutBadge.className = 'tb-callout-badge chip';
-      if (tbBadgePulse) tbBadgePulse.textContent = '✦';
-      if (tbBadgeText) tbBadgeText.textContent = 'REVENUE ENGINE UNLEASHED';
-      if (tbIndicatorText) tbIndicatorText.textContent = `${adjustHive}h / wk (${adjustHivePct}%)`;
-      if (tbCalloutHeadline) {
-        tbCalloutHeadline.innerHTML = `Money-making adjusting expands from ${adjustHours}h to <strong>${adjustHive} hours / week</strong>.`;
-      }
-      if (tbCalloutSub) {
-        tbCalloutSub.textContent = `Routine clerical drops to just ${adminHive} hours of AI review. 88% of your week is now spent on high-margin claims.`;
-      }
-
-      // Visual Time Bar
+      // Telemetry Ratio Meter (Musk First-Principles)
       if (shiftBarAdmin) shiftBarAdmin.style.width = `${adminHivePct}%`;
       if (shiftBarAdjust) shiftBarAdjust.style.width = `${adjustHivePct}%`;
-      if (shiftLblAdmin) shiftLblAdmin.textContent = `${adminHive}h AI Approvals (${adminHivePct}%)`;
-      if (shiftLblAdjust) {
-        shiftLblAdjust.textContent = `${adjustHive}h Fee-Earning Adjusting (${adjustHivePct}%)`;
-        shiftLblAdjust.style.color = 'var(--hive-gold-honey)';
-      }
+      if (meterValAdmin) meterValAdmin.textContent = `${adminHive}h`;
+      if (meterLblAdmin) meterLblAdmin.textContent = 'AI Review';
+      if (meterValAdjust) meterValAdjust.textContent = `${adjustHive}h`;
+      if (meterLblAdjust) meterLblAdjust.textContent = 'Fee Adjusting ($$$)';
 
-      if (timeBarDownPointer) timeBarDownPointer.className = 'time-bar-down-pointer chip';
-      if (tbPointerLabel) tbPointerLabel.textContent = 'Fee-Earning Adjusting';
+      if (telemetryStatusLine) telemetryStatusLine.className = 'telemetry-status-line chip';
+      if (telemetryDot) telemetryDot.textContent = '✦';
+      if (telemetryMsg) {
+        telemetryMsg.innerHTML = `<strong>88% of your week is shifted directly to fee-earning adjusting.</strong> +$${extraFeeRevenue.toLocaleString()}/yr added fee capacity.`;
+      }
 
       // 4 Chore Rows: marked as delegated
       [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {
@@ -622,33 +605,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (shiftStatusPill) {
         shiftStatusPill.className = 'card-tag-pill shift-pill-warning';
-        shiftStatusPill.textContent = '🔴 Capacity Bottlenecked • Overwhelmed';
+        shiftStatusPill.textContent = '🔴 72% Unpaid Overhead';
       }
 
-      // Hero Callout above Time Bar
-      if (timeBarHeroCallout) timeBarHeroCallout.className = 'time-bar-hero-callout today';
-      if (tbCalloutBadge) tbCalloutBadge.className = 'tb-callout-badge today';
-      if (tbBadgePulse) tbBadgePulse.textContent = '●';
-      if (tbBadgeText) tbBadgeText.textContent = "YOUR PA'S ONLY MONEY-MAKING HOURS";
-      if (tbIndicatorText) tbIndicatorText.textContent = `Only ${adjustHours}h / wk`;
-      if (tbCalloutHeadline) {
-        tbCalloutHeadline.innerHTML = `The yellow bar is the <strong>only part of the week</strong> your PA can actually make money.`;
-      }
-      if (tbCalloutSub) {
-        tbCalloutSub.textContent = `72% of the week (${adminHours} hours) is consumed by unpaid administrative chores instead of inspecting damage and closing claims.`;
-      }
-
-      // Visual Time Bar
+      // Telemetry Ratio Meter (Musk First-Principles)
       if (shiftBarAdmin) shiftBarAdmin.style.width = `${adminPct}%`;
       if (shiftBarAdjust) shiftBarAdjust.style.width = `${adjustPct}%`;
-      if (shiftLblAdmin) shiftLblAdmin.textContent = `${adminHours}h Routine Clerical Drag (${adminPct}%)`;
-      if (shiftLblAdjust) {
-        shiftLblAdjust.textContent = `${adjustHours}h Money-Making Adjusting (${adjustPct}%)`;
-        shiftLblAdjust.style.color = '#F5BA42';
-      }
+      if (meterValAdmin) meterValAdmin.textContent = `${adminHours}h`;
+      if (meterLblAdmin) meterLblAdmin.textContent = `Unpaid Admin ($0)`;
+      if (meterValAdjust) meterValAdjust.textContent = `${adjustHours}h`;
+      if (meterLblAdjust) meterLblAdjust.textContent = `Revenue ($$$)`;
 
-      if (timeBarDownPointer) timeBarDownPointer.className = 'time-bar-down-pointer today';
-      if (tbPointerLabel) tbPointerLabel.textContent = 'Fee-Earning Time';
+      if (telemetryStatusLine) telemetryStatusLine.className = 'telemetry-status-line today';
+      if (telemetryDot) telemetryDot.textContent = '⚠️';
+      if (telemetryMsg) {
+        telemetryMsg.innerHTML = `<strong>72% of your week earns $0 in fees.</strong> Your entire income depends on that ${adjustHours}-hour sliver.`;
+      }
 
       // 4 Chore Rows: today's reality
       [shiftRow1, shiftRow2, shiftRow3, shiftRow4].forEach(row => {

@@ -2594,150 +2594,139 @@
 }
 
 /* ==========================================================================
-   THE TIME BAR HERO "AHA" CALLOUT (LARGE PROMINENT BANNER)
+   HIGH-SIGNAL 50-HOUR TELEMETRY RATIO METER (MUSK FIRST-PRINCIPLES)
    ========================================================================== */
-.time-bar-hero-callout {
+.telemetry-meter-wrap {
+  margin-top: 0.75rem;
+  margin-bottom: 0.95rem;
+}
+
+.telemetry-meter {
+  display: flex;
+  height: 52px;
   border-radius: var(--hive-radius-md);
-  padding: 0.85rem 1rem;
-  margin-top: 0.65rem;
-  margin-bottom: 0.45rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  background: #141720;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
   position: relative;
 }
 
-.time-bar-hero-callout.today {
-  background: linear-gradient(135deg, rgba(245, 186, 66, 0.1) 0%, rgba(18, 22, 30, 0.95) 100%);
-  border: 1.5px solid rgba(245, 186, 66, 0.45);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(245, 186, 66, 0.1);
-}
-
-.time-bar-hero-callout.chip {
-  background: linear-gradient(135deg, rgba(245, 186, 66, 0.2) 0%, rgba(18, 22, 30, 0.95) 100%);
-  border: 1.5px solid rgba(245, 186, 66, 0.65);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 0 24px rgba(245, 186, 66, 0.2);
-}
-
-.tb-callout-top {
+.meter-segment {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 0.45rem;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+  min-width: 44px;
 }
 
-.tb-callout-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--hive-font-display);
-  font-size: 0.625rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  padding: 0.18rem 0.55rem;
-  border-radius: 999px;
-  line-height: 1.2;
+.meter-segment.admin {
+  background: linear-gradient(180deg, #252C3B 0%, #1A1F2B 100%);
+  border-right: 1.5px solid rgba(15, 18, 24, 0.7);
 }
 
-.tb-callout-badge.today {
-  color: #F5BA42;
-  background: rgba(245, 186, 66, 0.12);
-  border: 1px solid rgba(245, 186, 66, 0.35);
+.shift-console-card[data-mode="chip"] .meter-segment.admin {
+  background: #181C26;
+  opacity: 0.75;
 }
 
-.tb-callout-badge.chip {
+.meter-segment.adjusting {
+  background: linear-gradient(135deg, #F5BA42 0%, #EEAF28 50%, #D99F16 100%);
   color: #0F1218;
-  background: #F5BA42;
-  border: 1px solid #FDE68A;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
-.tb-badge-pulse {
-  font-size: 0.625rem;
-  line-height: 1;
+.shift-console-card[data-mode="today"] .meter-segment.adjusting {
+  animation: meterGoldPulse 2.5s ease-in-out infinite;
 }
 
-.tb-callout-arrow-indicator {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--hive-font-mono);
-  font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
-  font-weight: 800;
-  color: #F5BA42;
-}
-
-.tb-bounce-arrow {
-  color: #F5BA42;
-  animation: arrowBounceDown 1.3s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-.tb-callout-headline {
-  font-family: var(--hive-font-heading);
-  font-size: clamp(0.875rem, 2.8vw, 1rem);
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-}
-
-.time-bar-hero-callout.today .tb-callout-headline strong {
-  color: #F5BA42;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: rgba(245, 186, 66, 0.5);
-}
-
-.time-bar-hero-callout.chip .tb-callout-headline strong {
-  color: #FDE68A;
-}
-
-.tb-callout-sub {
-  font-size: clamp(0.6875rem, 2.2vw, 0.75rem);
-  color: #94A3B8;
-  line-height: 1.45;
-  margin-top: 0.3rem;
-}
-
-/* Time Bar & Pointer Track */
-.time-bar-wrap {
-  margin-top: 0.25rem;
-  margin-bottom: 0.85rem;
-}
-
-.time-bar-pointer-track {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 0.25rem;
-  padding-right: 0.25rem;
-}
-
-.time-bar-down-pointer {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--hive-font-display);
-  font-size: clamp(0.58rem, 2vw, 0.625rem);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #F5BA42;
-}
-
-.time-bar-down-pointer svg {
-  animation: arrowBounceDown 1.3s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes arrowBounceDown {
+@keyframes meterGoldPulse {
   0%, 100% {
-    transform: translateY(0);
+    filter: brightness(1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 14px rgba(245, 186, 66, 0.35);
   }
   50% {
-    transform: translateY(3.5px);
+    filter: brightness(1.15);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 0 28px rgba(245, 186, 66, 0.75);
   }
+}
+
+.meter-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 0.4rem;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.meter-segment.admin .meter-val {
+  font-family: var(--hive-font-heading);
+  font-size: clamp(1rem, 3.2vw, 1.25rem);
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.meter-segment.admin .meter-lbl {
+  font-family: var(--hive-font-display);
+  font-size: clamp(0.5625rem, 1.8vw, 0.625rem);
+  font-weight: 700;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 1px;
+}
+
+.meter-segment.adjusting .meter-val {
+  font-family: var(--hive-font-heading);
+  font-size: clamp(1rem, 3.2vw, 1.25rem);
+  font-weight: 800;
+  color: #0F1218;
+}
+
+.meter-segment.adjusting .meter-lbl {
+  font-family: var(--hive-font-display);
+  font-size: clamp(0.5625rem, 1.8vw, 0.625rem);
+  font-weight: 800;
+  color: #0F1218;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 1px;
+}
+
+.telemetry-status-line {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  font-size: clamp(0.72rem, 2.3vw, 0.8125rem);
+  line-height: 1.35;
+  transition: all 0.25s ease;
+}
+
+.telemetry-status-line.today {
+  color: #CBD5E1;
+}
+
+.telemetry-status-line.today strong {
+  color: #F87171;
+}
+
+.telemetry-status-line.chip {
+  color: #E2E8F0;
+}
+
+.telemetry-status-line.chip strong {
+  color: #F5BA42;
+}
+
+.telemetry-dot {
+  font-size: 0.85rem;
+  flex-shrink: 0;
 }
 
 .time-bar {
