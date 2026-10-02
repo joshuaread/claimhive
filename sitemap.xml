@@ -2,42 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://claimhive.app/</loc>
+    <lastmod>2026-10-01</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://claimhive.app/product.html</loc>
+    <loc>https://claimhive.app/product</loc>
+    <lastmod>2026-10-01</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://claimhive.app/pricing.html</loc>
+    <loc>https://claimhive.app/pricing</loc>
+    <lastmod>2026-10-01</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://claimhive.app/request.html</loc>
+    <loc>https://claimhive.app/about</loc>
+    <lastmod>2026-10-01</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://claimhive.app/security.html</loc>
+    <loc>https://claimhive.app/request</loc>
+    <lastmod>2026-10-01</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://claimhive.app/security</loc>
+    <lastmod>2026-10-01</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://claimhive.app/about.html</loc>
-    <priority>0.7</priority>
+    <loc>https://claimhive.app/privacy</loc>
+    <lastmod>2026-10-01</lastmod>
+    <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://claimhive.app/privacy.html</loc>
-    <priority>0.5</priority>
-    <changefreq>yearly</changefreq>
-  </url>
-  <url>
-    <loc>https://claimhive.app/terms.html</loc>
-    <priority>0.5</priority>
-    <changefreq>yearly</changefreq>
+    <loc>https://claimhive.app/terms</loc>
+    <lastmod>2026-10-01</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
   </url>
 </urlset>

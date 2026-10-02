@@ -162,97 +162,131 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. Velvet-Rope Waitlist & Position Reveal Mechanics
   const waitlistForms = document.querySelectorAll('.waitlist-form');
   waitlistForms.forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const emailInput = form.querySelector('input[type="email"]');
-      const email = emailInput ? emailInput.value.trim() : 'adjuster@claimfirm.com';
-      const firmInput = form.querySelector('input[name="firm_name"]');
-      const firmName = firmInput && firmInput.value.trim() ? firmInput.value.trim() : 'Your Firm';
-      const container = form.closest('.waitlist-box') || form.parentElement;
-
-      // Dispatch to Google Sheets
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const nextActionDate = `${tomorrow.getMonth() + 1}/${tomorrow.getDate()}/${tomorrow.getFullYear()}`;
-
-      const payload = {
-        Shop: `${firmName} (${email})`,
-        POC: email,
-        FullName: email,
-        Firm: firmName,
-        Email: email.toLowerCase(),
-        Phone: 'N/A',
-        Owner: 'Unassigned',
-        Stage: 'Named',
-        Seats_hoped: 1,
-        Source: 'Website - Homepage Waitlist',
-        Next_action: 'Tom text',
-        Next_action_date: nextActionDate,
-        Notes: `Waitlist submission. Generated Ref Code: ${refCode}`,
-        LicenseStates: 'N/A',
-        CurrentStack: 'N/A',
-        OpenFilesNow: 'N/A',
-        Cohort: 'Waitlist',
-        Referral: localStorage.getItem('claimhive_ref') || 'N/A',
-        SubmittedAt: new Date().toISOString()
-      };
-
       try {
-        fetch('https://script.google.com/macros/s/AKfycbydY_KWnckEh27uF5g5_v_rjwBL6b6DhMXjHlNjY__RzmQ-06UKErkkZBpcl2k69fvRkQ/exec', {
-          method: 'POST',
-          mode: 'no-cors',
-          cache: 'no-cache',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        }).catch(err => console.warn('[Claim Hive] Fetch failed', err));
-      } catch(e) {}
+        const emailInput = form.querySelector('input[type="email"]');
+        const email = emailInput ? emailInput.value.trim().toLowerCase() : '';
+        const firmInput = form.querySelector('input[name="firm_name"]');
+        const firmName = firmInput && firmInput.value.trim() ? firmInput.value.trim() : 'Your Firm';
+        const container = form.closest('.waitlist-box') || form.parentElement;
 
+        if (!email) return;
 
-      // Hash email for consistent position number
-      let hash = 0;
-      for (let i = 0; i < email.length; i++) {
-        hash = (hash << 5) - hash + email.charCodeAt(i);
-        hash |= 0;
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = 'Securing priority spot...';
+        }
+
+        // 1) Derive refCode and hash FIRST before building payload (P0-1 bugfix)
+        let hash = 0;
+        for (let i = 0; i < email.length; i++) {
+          hash = (hash << 5) - hash + email.charCodeAt(i);
+          hash |= 0;
+        }
+        const refCode = 'CH-' + (Math.abs(hash % 9000) + 1000);
+        const refUrl = `https://claimhive.app/?ref=${refCode}`;
+
+        // 2) Build payload with all required sheet columns
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const nextActionDate = `${tomorrow.getMonth() + 1}/${tomorrow.getDate()}/${tomorrow.getFullYear()}`;
+
+        const payload = {
+          Shop: `${firmName} (${email})`,
+          POC: email,
+          FullName: email,
+          Firm: firmName,
+          Email: email,
+          Phone: 'N/A',
+          Owner: 'Unassigned',
+          Stage: 'Named',
+          Seats_hoped: 1,
+          Source: 'Website - Homepage Waitlist',
+          Next_action: 'Beta invitation',
+          Next_action_date: nextActionDate,
+          Notes: `Waitlist submission. Generated Ref Code: ${refCode}`,
+          LicenseStates: 'N/A',
+          CurrentStack: 'N/A',
+          OpenFilesNow: 'N/A',
+          Cohort: 'Beta (Nov 1, 2026)',
+          Referral: localStorage.getItem('claimhive_ref') || 'N/A',
+          SubmittedAt: new Date().toISOString()
+        };
+
+        // 3) Dispatch webhook to Google Apps Script
+        const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbydY_KWnckEh27uF5g5_v_rjwBL6b6DhMXjHlNjY__RzmQ-06UKErkkZBpcl2k69fvRkQ/exec';
+        
+        try {
+          await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          });
+        } catch (fetchErr) {
+          console.warn('[ClaimHive] Webhook dispatched with warning:', fetchErr);
+        }
+
+        // 4) Render honest, high-trust confirmation screen (P0-2 bugfix)
+        container.innerHTML = `
+          <div class="waitlist-revealed animate-fade-in" style="padding: 1.5rem 1rem; text-align: center;">
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--hive-gold-100); border: 1px solid var(--hive-gold-honey); padding: 0.35rem 0.85rem; border-radius: var(--hive-radius-pill); font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem;">
+              <span>✦ Beta Queue Confirmed</span>
+            </div>
+            <div style="font-family: var(--hive-font-heading); font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 700; color: var(--hive-navy-900); line-height: 1.2; margin-bottom: 0.5rem;">
+              You\'re on the list.
+            </div>
+            <div style="font-size: 0.9375rem; font-weight: 600; color: var(--hive-ink); margin-bottom: 0.5rem;">
+              Priority reservation secured for ${escapeHtml(firmName)}.
+            </div>
+            <p style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.55; max-width: 440px; margin: 0 auto 1.25rem;">
+              Beta invites rollout in cohorts starting November 1. We lock in your founding $80/seat lifetime rate and will notify <strong>${escapeHtml(email)}</strong> before credentials go live.
+            </p>
+            <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1rem; max-width: 440px; margin: 0 auto 1.25rem; text-align: left;">
+              <div style="font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; margin-bottom: 0.25rem;">
+                Your Priority Referral Link
+              </div>
+              <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); margin-bottom: 0.5rem;">
+                Share your personal link with another firm owner. We track partner referrals in our founding cohort ledger.
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="text" readonly value="${refUrl}" style="flex: 1; font-family: var(--hive-font-mono); font-size: 0.75rem; padding: 0.45rem 0.65rem; border: 1px solid var(--hive-border-default); border-radius: 6px; background: #FFF; color: var(--hive-ink);" id="ref-link-field">
+                <button type="button" class="btn btn-sm btn-gold" onclick="navigator.clipboard.writeText('${refUrl}'); window.showToast ? window.showToast('Priority referral link copied!') : alert('Copied!');" style="white-space: nowrap; padding: 0.45rem 0.85rem; font-size: 0.8125rem;">
+                  Copy Link
+                </button>
+              </div>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--hive-text-muted);">
+              Have special caseload or integration requirements? Write to <a href="mailto:hello@claimhive.app" style="color: var(--hive-gold-deep); text-decoration: underline;">hello@claimhive.app</a>.
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        console.error('[ClaimHive] Form error:', err);
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Hold my place for Beta';
+        }
+        alert('Something went wrong. Please write directly to hello@claimhive.app.');
       }
-      const position = 19 + Math.abs(hash % 14);
-      const refCode = 'CH-' + Math.abs(hash % 9000 + 1000);
-      const refUrl = `https://claimhive.app/?ref=${refCode}`;
-
-      container.innerHTML = `
-        <div class="waitlist-revealed animate-fade-in" style="padding: 1.5rem 1rem; text-align: center;">
-          <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--hive-gold-100); border: 1px solid var(--hive-gold-honey); padding: 0.35rem 0.85rem; border-radius: var(--hive-radius-pill); font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem;">
-            <span>✦ Priority Invite Queue</span>
-          </div>
-          <div style="font-family: var(--hive-font-heading); font-size: clamp(2.5rem, 5vw, 3.25rem); font-weight: 800; color: var(--hive-navy-900); line-height: 1;">
-            #${position}
-          </div>
-          <div style="font-size: 0.9375rem; font-weight: 600; color: var(--hive-ink); margin: 0.5rem 0 0.25rem;">
-            ${firmName} is #${position} in line.
-          </div>
-          <p style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.5; max-width: 420px; margin: 0 auto 1.25rem;">
-            Beta invites are released in cohorts starting November 1. We verify public adjuster licensing before releasing team credentials.
-          </p>
-          <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 0.875rem; max-width: 440px; margin: 0 auto 1rem; text-align: left;">
-            <div style="font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; margin-bottom: 0.25rem;">
-              Move Up 25 Spots
-            </div>
-            <div style="font-size: 0.8125rem; color: var(--hive-text-secondary); margin-bottom: 0.5rem;">
-              Share your priority link with another firm owner. When they join, your position advances automatically.
-            </div>
-            <div style="display: flex; gap: 0.5rem;">
-              <input type="text" readonly value="${refUrl}" style="flex: 1; font-family: var(--hive-font-mono); font-size: 0.75rem; padding: 0.4rem 0.6rem; border: 1px solid var(--hive-border-default); border-radius: 6px; background: #FFF; color: var(--hive-ink);" id="ref-link-field">
-              <button type="button" class="btn btn-sm btn-gold" onclick="navigator.clipboard.writeText('${refUrl}'); window.showToast('Priority referral link copied');" style="white-space: nowrap; padding: 0.4rem 0.85rem; font-size: 0.8125rem;">
-                Copy
-              </button>
-            </div>
-          </div>
-          <div style="font-size: 0.75rem; color: var(--hive-text-muted);">
-            Confirmation dispatched to <strong>${email}</strong>.
-          </div>
-        </div>
-      `;
     });
   });
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>'"]/g, 
+      tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag)
+    );
+  }
 
   // 6. Interactive Seat Estimator for Pricing Page
   const seatSlider = document.getElementById('seat-slider');
