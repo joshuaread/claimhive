@@ -127,41 +127,85 @@
           </div>
         </div>
 
-        <!-- Card 2: Interactive Estimator -->
+        <!-- Card 2: Interactive Seat & Usage Estimator -->
         <div style="padding: clamp(2.5rem, 5vw, 3.5rem); border-radius: var(--hive-radius-2xl); background: #FFFFFF; border: 1.5px solid var(--hive-border-subtle); box-shadow: var(--hive-shadow-card); display: flex; flex-direction: column;">
-          <span style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-navy-900); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 1.25rem;">
-            INTERACTIVE ESTIMATOR
-          </span>
-          <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2rem;">
-            <button type="button" aria-label="Remove a seat" onclick="updateSeats(-1)" class="btn btn-outline" style="width: 48px; height: 48px; padding: 0; border-radius: 50%; font-size: 1.5rem; line-height: 1; flex-shrink: 0; border-color: var(--hive-border-strong);">−</button>
-            <span id="seat-calc-count" style="font-family: var(--hive-font-heading); font-size: 3.5rem; font-weight: 700; color: var(--hive-navy-900); min-width: 60px; text-align: center; font-variant-numeric: tabular-nums;">3</span>
-            <button type="button" aria-label="Add a seat" onclick="updateSeats(1)" class="btn btn-outline" style="width: 48px; height: 48px; padding: 0; border-radius: 50%; font-size: 1.5rem; line-height: 1; flex-shrink: 0; border-color: var(--hive-border-strong);">+</button>
-            <span style="font-family: var(--hive-font-display); font-size: 1.0625rem; font-weight: 600; color: var(--hive-text-secondary);">adjuster seats</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <span style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-navy-900); text-transform: uppercase; letter-spacing: 0.06em;">
+              TOTAL ESTIMATOR (SEATS + USAGE)
+            </span>
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-deep); background: var(--hive-gold-50); border: 1px solid var(--hive-gold-200); padding: 0.25rem 0.65rem; border-radius: var(--hive-radius-pill);">
+              TRANSPARENT PASS-THROUGH
+            </span>
           </div>
 
-          <div id="seat-calc-standard">
-            <div style="display: flex; align-items: baseline; gap: 0.75rem;">
-              <span id="seat-calc-price" style="font-family: var(--hive-font-heading); font-size: clamp(2.75rem, 5vw, 3.75rem); font-weight: 700; color: var(--hive-navy-900); line-height: 1;">$240</span>
-              <span style="font-family: var(--hive-font-body); font-size: 1rem; color: var(--hive-text-secondary);">/ month in base seats</span>
+          <!-- Step 1: Adjuster Seats -->
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-family: var(--hive-font-display); font-size: 0.875rem; font-weight: 700; color: var(--hive-ink); margin-bottom: 0.5rem;">
+              1. Adjuster Seats
+            </label>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <button type="button" aria-label="Remove a seat" onclick="updateSeats(-1)" class="btn btn-outline" style="width: 42px; height: 42px; padding: 0; border-radius: 50%; font-size: 1.25rem; line-height: 1; flex-shrink: 0; border-color: var(--hive-border-strong);">−</button>
+              <span id="seat-calc-count" style="font-family: var(--hive-font-heading); font-size: 2.75rem; font-weight: 700; color: var(--hive-navy-900); min-width: 50px; text-align: center; font-variant-numeric: tabular-nums;">3</span>
+              <button type="button" aria-label="Add a seat" onclick="updateSeats(1)" class="btn btn-outline" style="width: 42px; height: 42px; padding: 0; border-radius: 50%; font-size: 1.25rem; line-height: 1; flex-shrink: 0; border-color: var(--hive-border-strong);">+</button>
+              <span style="font-family: var(--hive-font-display); font-size: 0.9375rem; font-weight: 600; color: var(--hive-text-secondary);">licensed adjusters ($80/ea)</span>
             </div>
-            <p style="font-size: 0.9375rem; color: var(--hive-gold-deep); font-weight: 600; margin-top: 0.5rem;">
-              + token usage, billed by what your team actually runs
-            </p>
           </div>
 
-          <div id="seat-calc-ent" style="display: none; padding: 1.5rem; background: var(--hive-gold-50); border: 1px solid var(--hive-gold-300); border-radius: var(--hive-radius-lg);">
-            <p style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-navy-900); margin: 0 0 0.5rem;">
+          <!-- Step 2: Caseload Intensity Selector -->
+          <div id="usage-intensity-section" style="margin-bottom: 1.75rem;">
+            <label style="display: block; font-family: var(--hive-font-display); font-size: 0.875rem; font-weight: 700; color: var(--hive-ink); margin-bottom: 0.5rem;">
+              2. Expected AI Caseload Activity
+            </label>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; background: var(--hive-canvas); padding: 0.35rem; border-radius: var(--hive-radius-md); border: 1px solid var(--hive-border-subtle);">
+              <button type="button" class="usage-tier-btn active" data-tier="light" onclick="setUsageTier('light')" style="border: none; background: #FFFFFF; color: var(--hive-navy-900); font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; padding: 0.6rem 0.5rem; border-radius: var(--hive-radius-sm); cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: all 0.15s ease;">
+                Light<br><span style="font-size: 0.7rem; font-weight: 400; color: var(--hive-text-muted);">~$15/seat</span>
+              </button>
+              <button type="button" class="usage-tier-btn" data-tier="moderate" onclick="setUsageTier('moderate')" style="border: none; background: transparent; color: var(--hive-text-secondary); font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 600; padding: 0.6rem 0.5rem; border-radius: var(--hive-radius-sm); cursor: pointer; transition: all 0.15s ease;">
+                Active<br><span style="font-size: 0.7rem; font-weight: 400; color: var(--hive-text-muted);">~$28/seat</span>
+              </button>
+              <button type="button" class="usage-tier-btn" data-tier="heavy" onclick="setUsageTier('heavy')" style="border: none; background: transparent; color: var(--hive-text-secondary); font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 600; padding: 0.6rem 0.5rem; border-radius: var(--hive-radius-sm); cursor: pointer; transition: all 0.15s ease;">
+                High Cat<br><span style="font-size: 0.7rem; font-weight: 400; color: var(--hive-text-muted);">~$45/seat</span>
+              </button>
+            </div>
+            <div id="usage-tier-description" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--hive-text-secondary); line-height: 1.45;">
+              5–10 active claims/month. Standard policy cross-referencing and claim status updates.
+            </div>
+          </div>
+
+          <!-- Total Calculation Display -->
+          <div id="seat-calc-standard" style="background: var(--hive-gold-50); border: 1.5px solid var(--hive-gold-200); border-radius: var(--hive-radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+              ESTIMATED MONTHLY TOTAL
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+              <span id="calc-total-price" style="font-family: var(--hive-font-heading); font-size: clamp(2.25rem, 4vw, 3rem); font-weight: 700; color: var(--hive-navy-900); line-height: 1;">$285</span>
+              <span style="font-family: var(--hive-font-body); font-size: 0.9375rem; color: var(--hive-text-secondary);">/ month total</span>
+            </div>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--hive-gold-300); font-size: 0.8125rem; color: var(--hive-ink); display: flex; justify-content: space-between;">
+              <span>Base Subscription (<span id="calc-breakdown-seats">3 seats × $80</span>):</span>
+              <strong id="calc-breakdown-base" style="color: var(--hive-navy-900);">$240/mo</strong>
+            </div>
+            <div style="margin-top: 0.35rem; font-size: 0.8125rem; color: var(--hive-ink); display: flex; justify-content: space-between;">
+              <span>Estimated Token Compute (<span id="calc-breakdown-usage-desc">3 seats × ~$15</span>):</span>
+              <strong id="calc-breakdown-usage" style="color: var(--hive-gold-deep);">~$45/mo</strong>
+            </div>
+          </div>
+
+          <div id="seat-calc-ent" style="display: none; padding: 1.5rem; background: var(--hive-gold-50); border: 1px solid var(--hive-gold-300); border-radius: var(--hive-radius-lg); margin-bottom: 1.5rem;">
+            <p style="font-family: var(--hive-font-heading); font-size: 1.5rem; font-weight: 700; color: var(--hive-navy-900); margin: 0 0 0.5rem;">
               Let's talk enterprise.
             </p>
-            <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); margin: 0; line-height: 1.55;">
-              Firms with 11+ adjusters qualify for custom pooled token volume, dedicated data onboarding, and priority support.
+            <p style="font-size: 0.875rem; color: var(--hive-text-secondary); margin: 0; line-height: 1.55;">
+              Firms with 11+ adjusters qualify for custom pooled token volume, dedicated onboarding, custom system integrations, and volume discounts.
             </p>
           </div>
 
-          <div style="flex-grow: 1; min-height: 2.5rem;"></div>
-          <a href="request.html?plan=enterprise" class="btn btn-outline btn-lg" style="width: 100%; text-align: center;">
-            Talk to us about 11+ seats
-          </a>
+          <div style="margin-top: auto;">
+            <a id="calc-cta-btn" href="index.html#waitlist" class="btn btn-navy btn-lg" style="width: 100%; text-align: center;" data-open-modal="beta">
+              <span>Request beta access</span>
+              <span class="hive-star-icon">✦</span>
+            </a>
+          </div>
         </div>
 
       </div>
@@ -169,19 +213,71 @@
     
     <script>
       let seatVal = 3;
+      let activeTier = 'light';
+      const tierRates = {
+        light: { cost: 15, desc: '5–10 active claims/month per adjuster. Standard policy reviews, Chip brief drafting, and claim status emails.' },
+        moderate: { cost: 28, desc: '15–25 active claims/month per adjuster. Extensive line-item cross-checking, formal carrier demands, and carrier rebuttal letters.' },
+        heavy: { cost: 45, desc: '30+ claims/month or large storm deployment. High-volume OCR, full file deep synthesis, and round-the-clock Chip execution.' }
+      };
+
       function updateSeats(delta) {
         seatVal += delta;
         if (seatVal < 1) seatVal = 1;
         if (seatVal > 50) seatVal = 50;
         document.getElementById('seat-calc-count').innerText = seatVal;
-        
+        calculateEstimates();
+      }
+
+      function setUsageTier(tier) {
+        activeTier = tier;
+        document.querySelectorAll('.usage-tier-btn').forEach(btn => {
+          if (btn.getAttribute('data-tier') === tier) {
+            btn.style.background = '#FFFFFF';
+            btn.style.color = 'var(--hive-navy-900)';
+            btn.style.fontWeight = '700';
+            btn.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
+          } else {
+            btn.style.background = 'transparent';
+            btn.style.color = 'var(--hive-text-secondary)';
+            btn.style.fontWeight = '600';
+            btn.style.boxShadow = 'none';
+          }
+        });
+        document.getElementById('usage-tier-description').innerText = tierRates[tier].desc;
+        calculateEstimates();
+      }
+
+      function calculateEstimates() {
+        const standardBox = document.getElementById('seat-calc-standard');
+        const entBox = document.getElementById('seat-calc-ent');
+        const usageSection = document.getElementById('usage-intensity-section');
+        const ctaBtn = document.getElementById('calc-cta-btn');
+
         if (seatVal > 10) {
-          document.getElementById('seat-calc-standard').style.display = 'none';
-          document.getElementById('seat-calc-ent').style.display = 'block';
+          standardBox.style.display = 'none';
+          usageSection.style.display = 'none';
+          entBox.style.display = 'block';
+          ctaBtn.innerText = 'Talk to us about 11+ seats';
+          ctaBtn.href = 'request.html?plan=enterprise';
+          ctaBtn.removeAttribute('data-open-modal');
         } else {
-          document.getElementById('seat-calc-standard').style.display = 'block';
-          document.getElementById('seat-calc-ent').style.display = 'none';
-          document.getElementById('seat-calc-price').innerText = '$' + (seatVal * 80);
+          standardBox.style.display = 'block';
+          usageSection.style.display = 'block';
+          entBox.style.display = 'none';
+          ctaBtn.innerHTML = '<span>Request beta access</span> <span class="hive-star-icon">✦</span>';
+          ctaBtn.href = 'index.html#waitlist';
+          ctaBtn.setAttribute('data-open-modal', 'beta');
+
+          const baseCost = seatVal * 80;
+          const usageRate = tierRates[activeTier].cost;
+          const usageCost = seatVal * usageRate;
+          const totalCost = baseCost + usageCost;
+
+          document.getElementById('calc-total-price').innerText = '$' + totalCost;
+          document.getElementById('calc-breakdown-seats').innerText = `${seatVal} ${seatVal === 1 ? 'seat' : 'seats'} × $80`;
+          document.getElementById('calc-breakdown-base').innerText = '$' + baseCost + '/mo';
+          document.getElementById('calc-breakdown-usage-desc').innerText = `${seatVal} ${seatVal === 1 ? 'seat' : 'seats'} × ~$${usageRate}`;
+          document.getElementById('calc-breakdown-usage').innerText = '~$' + usageCost + '/mo';
         }
       }
     </script>
