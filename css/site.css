@@ -1532,6 +1532,12 @@
     border-radius: var(--hive-radius-xl);
   }
 
+  .founder-feature-card {
+    padding: 1.75rem 1.25rem !important;
+    gap: 2rem !important;
+    border-radius: var(--hive-radius-xl) !important;
+  }
+
   /* Code mockups line breaks and mobile text sizing */
   .stage-mockup-window {
     border-radius: var(--hive-radius-md);
