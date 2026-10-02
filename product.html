@@ -427,46 +427,59 @@
   </section>
 
   <!-- INTERACTIVE CAPACITY & REVENUE BREAKTHROUGH CALCULATOR -->
-  <section style="background: var(--hive-navy-950); color: #FFFFFF; padding: clamp(4.5rem, 8vw, 7rem) 0; position: relative; overflow: hidden;">
-    <div style="position: absolute; inset: 0; background-image: var(--hive-pattern-dark); background-size: 56px 96px; opacity: 0.25; pointer-events: none;"></div>
-    
+  <section
+    style="background: var(--hive-navy-950); color: #FFFFFF; padding: clamp(4.5rem, 8vw, 7rem) 0; position: relative; overflow: hidden;">
+    <div
+      style="position: absolute; inset: 0; background-image: var(--hive-pattern-dark); background-size: 56px 96px; opacity: 0.25; pointer-events: none;">
+    </div>
+
     <div class="container container-wide" style="position: relative; z-index: 1;">
       <div style="text-align: center; max-width: 760px; margin: 0 auto 3.5rem;">
-        <span class="badge badge-gold" style="margin-bottom: 1.25rem;">✦ THE CAPACITY BREAKTHROUGH</span>
-        <h2 style="font-family: var(--hive-font-heading); font-size: clamp(2.25rem, 4.5vw, 3.5rem); font-weight: 700; line-height: 1.15; color: #FFFFFF; margin: 0 0 1rem; letter-spacing: -0.02em;">
+        <h2
+          style="font-family: var(--hive-font-heading); font-size: clamp(2.25rem, 4.5vw, 3.5rem); font-weight: 700; line-height: 1.15; color: #FFFFFF; margin: 0 0 1rem; letter-spacing: -0.02em;">
           Nearly double your caseload.<br>
-          <span class="font-editorial-italic" style="color: var(--hive-gold-honey); font-weight: 400;">More fees. Less administrative stress.</span>
+          <span class="font-editorial-italic" style="color: var(--hive-gold-honey); font-weight: 400;">With less
+            administrative stress.</span>
         </h2>
         <p style="font-size: 1.0625rem; color: #CBD5E1; line-height: 1.65; margin: 0;">
-          By stripping out 60% of repetitive documentation, carrier follow-ups, and photo sorting, ClaimHive unlocks latent claim capacity you never knew your firm had.
+          By stripping out 60% of repetitive documentation, carrier follow-ups, and photo sorting, ClaimHive unlocks
+          latent claim capacity you never knew your firm had.
         </p>
       </div>
 
       <!-- Two-Column Interactive Widget -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(2rem, 4vw, 3.5rem); align-items: stretch; max-width: 1140px; margin: 0 auto;">
-        
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(2rem, 4vw, 3.5rem); align-items: stretch; max-width: 1140px; margin: 0 auto;">
+
         <!-- Controls Column -->
-        <div style="background: rgba(22, 27, 51, 0.75); backdrop-filter: blur(16px); border: 1.5px solid rgba(217, 162, 27, 0.28); border-radius: var(--hive-radius-2xl); padding: clamp(2rem, 4vw, 3rem); box-shadow: var(--hive-shadow-navy); display: flex; flex-direction: column; justify-content: space-between;">
+        <div
+          style="background: rgba(22, 27, 51, 0.75); backdrop-filter: blur(16px); border: 1.5px solid rgba(217, 162, 27, 0.28); border-radius: var(--hive-radius-2xl); padding: clamp(2rem, 4vw, 3rem); box-shadow: var(--hive-shadow-navy); display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-              <span style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-honey); text-transform: uppercase; letter-spacing: 0.06em;">
-                YOUR CURRENT FIRM BENCHMARKS
+              <span
+                style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-honey); text-transform: uppercase; letter-spacing: 0.06em;">
+                A TYPICAL WORKLOAD
               </span>
               <span style="font-size: 0.75rem; color: #94A9CF;">Live Simulator</span>
             </div>
 
             <!-- Slider 1: Current Monthly Caseload -->
             <div style="margin-bottom: 2rem;">
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem;">
-                <label for="prod-calc-claims" style="font-family: var(--hive-font-display); font-size: 0.9375rem; font-weight: 600; color: #FFFFFF;">
+              <div
+                style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem;">
+                <label for="prod-calc-claims"
+                  style="font-family: var(--hive-font-display); font-size: 0.9375rem; font-weight: 600; color: #FFFFFF;">
                   Active Claims / Month
                 </label>
-                <span id="prod-display-claims" style="font-family: var(--hive-font-mono); font-size: 1.0625rem; font-weight: 700; color: var(--hive-gold-honey); background: rgba(217, 162, 27, 0.12); padding: 0.25rem 0.75rem; border-radius: var(--hive-radius-pill); border: 1px solid rgba(217, 162, 27, 0.3);">
+                <span id="prod-display-claims"
+                  style="font-family: var(--hive-font-mono); font-size: 1.0625rem; font-weight: 700; color: var(--hive-gold-honey); background: rgba(217, 162, 27, 0.12); padding: 0.25rem 0.75rem; border-radius: var(--hive-radius-pill); border: 1px solid rgba(217, 162, 27, 0.3);">
                   20 claims
                 </span>
               </div>
-              <input type="range" id="prod-calc-claims" min="4" max="50" value="20" step="1" style="width: 100%; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.18); outline: none; -webkit-appearance: none; cursor: pointer; accent-color: var(--hive-gold-honey);">
-              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94A9CF; margin-top: 0.4rem;">
+              <input type="range" id="prod-calc-claims" min="4" max="50" value="20" step="1"
+                style="width: 100%; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.18); outline: none; -webkit-appearance: none; cursor: pointer; accent-color: var(--hive-gold-honey);">
+              <div
+                style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94A9CF; margin-top: 0.4rem;">
                 <span>4 solo files</span>
                 <span>20 benchmark</span>
                 <span>50+ firm files</span>
@@ -475,16 +488,21 @@
 
             <!-- Slider 2: Average Settlement -->
             <div style="margin-bottom: 2rem;">
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem;">
-                <label for="prod-calc-settlement" style="font-family: var(--hive-font-display); font-size: 0.9375rem; font-weight: 600; color: #FFFFFF;">
+              <div
+                style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem;">
+                <label for="prod-calc-settlement"
+                  style="font-family: var(--hive-font-display); font-size: 0.9375rem; font-weight: 600; color: #FFFFFF;">
                   Avg Settlement Value
                 </label>
-                <span id="prod-display-settlement" style="font-family: var(--hive-font-mono); font-size: 1.0625rem; font-weight: 700; color: var(--hive-gold-honey); background: rgba(217, 162, 27, 0.12); padding: 0.25rem 0.75rem; border-radius: var(--hive-radius-pill); border: 1px solid rgba(217, 162, 27, 0.3);">
+                <span id="prod-display-settlement"
+                  style="font-family: var(--hive-font-mono); font-size: 1.0625rem; font-weight: 700; color: var(--hive-gold-honey); background: rgba(217, 162, 27, 0.12); padding: 0.25rem 0.75rem; border-radius: var(--hive-radius-pill); border: 1px solid rgba(217, 162, 27, 0.3);">
                   $85,000
                 </span>
               </div>
-              <input type="range" id="prod-calc-settlement" min="25000" max="300000" value="85000" step="5000" style="width: 100%; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.18); outline: none; -webkit-appearance: none; cursor: pointer; accent-color: var(--hive-gold-honey);">
-              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94A9CF; margin-top: 0.4rem;">
+              <input type="range" id="prod-calc-settlement" min="25000" max="300000" value="85000" step="5000"
+                style="width: 100%; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.18); outline: none; -webkit-appearance: none; cursor: pointer; accent-color: var(--hive-gold-honey);">
+              <div
+                style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94A9CF; margin-top: 0.4rem;">
                 <span>$25k residential</span>
                 <span>$85k mid-loss</span>
                 <span>$300k+ commercial</span>
@@ -493,16 +511,21 @@
 
             <!-- Slider 3: Contingency Fee % -->
             <div style="margin-bottom: 1.5rem;">
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem;">
-                <label for="prod-calc-fee" style="font-family: var(--hive-font-display); font-size: 0.9375rem; font-weight: 600; color: #FFFFFF;">
+              <div
+                style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem;">
+                <label for="prod-calc-fee"
+                  style="font-family: var(--hive-font-display); font-size: 0.9375rem; font-weight: 600; color: #FFFFFF;">
                   Contingency Fee %
                 </label>
-                <span id="prod-display-fee" style="font-family: var(--hive-font-mono); font-size: 1.0625rem; font-weight: 700; color: var(--hive-gold-honey); background: rgba(217, 162, 27, 0.12); padding: 0.25rem 0.75rem; border-radius: var(--hive-radius-pill); border: 1px solid rgba(217, 162, 27, 0.3);">
+                <span id="prod-display-fee"
+                  style="font-family: var(--hive-font-mono); font-size: 1.0625rem; font-weight: 700; color: var(--hive-gold-honey); background: rgba(217, 162, 27, 0.12); padding: 0.25rem 0.75rem; border-radius: var(--hive-radius-pill); border: 1px solid rgba(217, 162, 27, 0.3);">
                   10% fee
                 </span>
               </div>
-              <input type="range" id="prod-calc-fee" min="8" max="20" value="10" step="0.5" style="width: 100%; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.18); outline: none; -webkit-appearance: none; cursor: pointer; accent-color: var(--hive-gold-honey);">
-              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94A9CF; margin-top: 0.4rem;">
+              <input type="range" id="prod-calc-fee" min="8" max="20" value="10" step="0.5"
+                style="width: 100%; height: 8px; border-radius: 999px; background: rgba(255,255,255,0.18); outline: none; -webkit-appearance: none; cursor: pointer; accent-color: var(--hive-gold-honey);">
+              <div
+                style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #94A9CF; margin-top: 0.4rem;">
                 <span>8% min</span>
                 <span>10% USA standard</span>
                 <span>20% max statutory</span>
@@ -510,36 +533,47 @@
             </div>
           </div>
 
-          <div style="margin-top: 1rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8125rem; color: #94A9CF; display: flex; align-items: center; gap: 0.65rem;">
-            <svg width="18" height="16" viewBox="0 0 34 30" style="flex-shrink: 0;" aria-hidden="true"><path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z" fill="var(--hive-gold-honey)"></path></svg>
+          <div
+            style="margin-top: 1rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8125rem; color: #94A9CF; display: flex; align-items: center; gap: 0.65rem;">
+            <svg width="18" height="16" viewBox="0 0 34 30" style="flex-shrink: 0;" aria-hidden="true">
+              <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z" fill="var(--hive-gold-honey)"></path>
+            </svg>
             <span>Based on 9.6 admin hours saved per active claim file.</span>
           </div>
         </div>
 
         <!-- Dynamic Output Column -->
-        <div style="background: #FFFFFF; border-radius: var(--hive-radius-2xl); border: 2.5px solid var(--hive-gold-honey); padding: clamp(2rem, 4vw, 3rem); box-shadow: 0 20px 50px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: space-between; color: var(--hive-ink);">
-          
+        <div
+          style="background: #FFFFFF; border-radius: var(--hive-radius-2xl); border: 2.5px solid var(--hive-gold-honey); padding: clamp(2rem, 4vw, 3rem); box-shadow: 0 20px 50px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: space-between; color: var(--hive-ink);">
+
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-              <span style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.06em;">
+              <span
+                style="font-family: var(--hive-font-display); font-size: 0.8125rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; letter-spacing: 0.06em;">
                 PROJECTED CAPACITY EXPANSION
               </span>
-              <span id="prod-pct-badge" style="font-family: var(--hive-font-display); font-size: 0.75rem; font-weight: 700; background: var(--hive-gold-100); color: var(--hive-navy-900); padding: 0.3rem 0.65rem; border-radius: var(--hive-radius-pill); border: 1px solid var(--hive-gold-honey);">
+              <span id="prod-pct-badge"
+                style="font-family: var(--hive-font-display); font-size: 0.75rem; font-weight: 700; background: var(--hive-gold-100); color: var(--hive-navy-900); padding: 0.3rem 0.65rem; border-radius: var(--hive-radius-pill); border: 1px solid var(--hive-gold-honey);">
                 +90% Caseload Scale
               </span>
             </div>
 
             <!-- The Big Caseload Shift Counter (20 -> 38) -->
-            <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-xl); padding: 1.5rem; text-align: center; margin-bottom: 2rem;">
-              <div style="font-size: 0.75rem; font-weight: 700; color: var(--hive-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+            <div
+              style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-xl); padding: 1.5rem; text-align: center; margin-bottom: 2rem;">
+              <div
+                style="font-size: 0.75rem; font-weight: 700; color: var(--hive-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
                 Monthly Active Claims Handled
               </div>
               <div style="display: flex; align-items: baseline; justify-content: center; gap: 1.25rem;">
-                <span id="prod-stat-before" style="font-family: var(--hive-font-heading); font-size: clamp(3.25rem, 6vw, 4.5rem); font-weight: 700; line-height: 1; color: var(--hive-text-muted); font-variant-numeric: tabular-nums;">
+                <span id="prod-stat-before"
+                  style="font-family: var(--hive-font-heading); font-size: clamp(3.25rem, 6vw, 4.5rem); font-weight: 700; line-height: 1; color: var(--hive-text-muted); font-variant-numeric: tabular-nums;">
                   20
                 </span>
-                <span style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--hive-gold-deep); font-weight: 700;">→</span>
-                <span id="prod-stat-after" style="font-family: var(--hive-font-heading); font-size: clamp(3.25rem, 6vw, 4.5rem); font-weight: 700; line-height: 1; color: var(--hive-navy-900); font-variant-numeric: tabular-nums;">
+                <span
+                  style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); color: var(--hive-gold-deep); font-weight: 700;">→</span>
+                <span id="prod-stat-after"
+                  style="font-family: var(--hive-font-heading); font-size: clamp(3.25rem, 6vw, 4.5rem); font-weight: 700; line-height: 1; color: var(--hive-navy-900); font-variant-numeric: tabular-nums;">
                   38
                 </span>
               </div>
@@ -550,11 +584,14 @@
 
             <!-- Two Relief Metric Tiles -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
-              <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.25rem;">
-                <div style="font-size: 0.75rem; color: var(--hive-text-secondary); font-weight: 600; text-transform: uppercase;">
+              <div
+                style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.25rem;">
+                <div
+                  style="font-size: 0.75rem; color: var(--hive-text-secondary); font-weight: 600; text-transform: uppercase;">
                   Admin Hours Reclaimed
                 </div>
-                <div id="prod-hours-saved" style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-navy-900); margin: 0.25rem 0;">
+                <div id="prod-hours-saved"
+                  style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-navy-900); margin: 0.25rem 0;">
                   192 hrs/mo
                 </div>
                 <div style="font-size: 0.75rem; color: var(--hive-success); font-weight: 600;">
@@ -562,11 +599,14 @@
                 </div>
               </div>
 
-              <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.25rem;">
-                <div style="font-size: 0.75rem; color: var(--hive-text-secondary); font-weight: 600; text-transform: uppercase;">
+              <div
+                style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-lg); padding: 1.25rem;">
+                <div
+                  style="font-size: 0.75rem; color: var(--hive-text-secondary); font-weight: 600; text-transform: uppercase;">
                   Extra Annual Fees
                 </div>
-                <div id="prod-extra-fees" style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-gold-deep); margin: 0.25rem 0;">
+                <div id="prod-extra-fees"
+                  style="font-family: var(--hive-font-heading); font-size: 1.75rem; font-weight: 700; color: var(--hive-gold-deep); margin: 0.25rem 0;">
                   +$1.84M
                 </div>
                 <div style="font-size: 0.75rem; color: var(--hive-text-muted);">
@@ -577,7 +617,8 @@
           </div>
 
           <div>
-            <a href="index.html#waitlist" class="btn btn-gold btn-lg" style="width: 100%; text-align: center;" data-open-modal="beta">
+            <a href="index.html#waitlist" class="btn btn-gold btn-lg" style="width: 100%; text-align: center;"
+              data-open-modal="beta">
               <span>Lock in Beta Access for Your Caseload</span>
               <span class="hive-star-icon">✦</span>
             </a>
@@ -590,7 +631,7 @@
 
     <!-- Live Calculator Logic -->
     <script>
-      (function() {
+      (function () {
         const claimsSlider = document.getElementById('prod-calc-claims');
         const settlementSlider = document.getElementById('prod-calc-settlement');
         const feeSlider = document.getElementById('prod-calc-fee');
