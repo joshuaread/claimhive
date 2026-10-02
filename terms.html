@@ -56,17 +56,16 @@
         </a>
 
         <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="product.html" class="nav-link">Product</a></li>
           <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-          <li><a href="security.html" class="nav-link">Security & Trust</a></li>
           <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="security.html" class="nav-link">Security &amp; Trust</a></li>
         </ul>
 
         <div class="nav-actions">
-          <a href="request.html?view=login" class="nav-link hide-mobile" style="font-weight: 600; margin-right: 0.5rem;">Log in</a>
-          <a href="request.html" class="btn btn-sm btn-outline">Join January List</a>
-          <a href="request.html?cohort=beta" class="btn btn-sm btn-gold">
-            <span>Request Beta</span>
+          <a href="index.html#waitlist" class="btn btn-sm btn-gold" data-open-modal="beta">
+            <span>Request beta access</span>
             <span class="hive-star-icon">✦</span>
           </a>
           <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
@@ -77,13 +76,15 @@
 
   <!-- MOBILE MENU DRAWER -->
   <div class="mobile-menu-drawer">
-    <a href="product.html" class="nav-link" style="font-size: 1.25rem;">Product Lifecycle</a>
-    <a href="pricing.html" class="nav-link" style="font-size: 1.25rem;">Pricing ($80/Seat)</a>
-    <a href="security.html" class="nav-link" style="font-size: 1.25rem;">Security & Data Vault</a>
-    <a href="about.html" class="nav-link" style="font-size: 1.25rem;">About Tom & The Team</a>
-    <a href="request.html?view=login" class="nav-link" style="font-size: 1.25rem; font-weight: 700; color: var(--hive-gold-600);">Log In</a>
-    <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
-      <a href="request.html" class="btn btn-lg btn-gold">Request Access</a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="product.html" class="nav-link">Product (Six Hubs)</a>
+    <a href="pricing.html" class="nav-link">Pricing ($80 + Usage)</a>
+    <a href="about.html" class="nav-link">About Us</a>
+    <a href="security.html" class="nav-link">Security &amp; Trust</a>
+    <div style="margin-top: 1.5rem;">
+      <a href="index.html#waitlist" class="btn btn-lg btn-gold" style="width: 100%; text-align: center;" data-open-modal="beta">
+        Request beta access ✦
+      </a>
     </div>
   </div>
 
@@ -221,8 +222,8 @@
             </p>
             <div style="background: var(--hive-canvas-alt); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1.25rem; margin-top: 1.5rem; font-size: 0.9375rem; color: var(--hive-navy-900); line-height: 1.7;">
               <strong>Questions regarding these terms?</strong><br>
-              Reach out directly to Tom or our legal operations team:<br>
-              Email: <a href="mailto:legal@claimhive.app" style="color: var(--hive-gold-700); font-weight: 600;">legal@claimhive.app</a> • Phone: <a href="tel:+18504004483" style="color: var(--hive-gold-700); font-weight: 600;">(850) 400-4483</a>
+              Reach out directly to our operations and legal team:<br>
+              Email: <a href="mailto:legal@claimhive.app" style="color: var(--hive-gold-deep); font-weight: 600;">legal@claimhive.app</a> • General: <a href="mailto:hello@claimhive.app" style="color: var(--hive-gold-deep); font-weight: 600;">hello@claimhive.app</a>
             </div>
           </article>
 
@@ -231,43 +232,45 @@
     </div>
   </section>
 
-  <!-- GLOBAL FOOTER -->
+  <!-- GLOBAL FOOTER (STANDARDIZED ACROSS ALL PAGES) -->
   <footer class="site-footer">
     <div class="container container-wide">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="assets/claim-hive-horizontal.svg" alt="Claim Hive" class="footer-logo-img">
+          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="footer-logo-img">
           <p class="footer-desc">
-            The calm operational backbone built exclusively for licensed USA Public Insurance Adjusters.
+            The AI-powered command center built inside a working public adjusting firm.
           </p>
         </div>
 
         <div class="footer-nav-col">
-          <div class="footer-nav-title">Platform</div>
-          <a href="product.html" class="footer-nav-link">Product Lifecycle</a>
-          <a href="pricing.html" class="footer-nav-link">Pricing ($80/Seat)</a>
-          <a href="security.html" class="footer-nav-link">Security & Data Vault</a>
+          <div class="footer-nav-title">Navigation</div>
+          <a href="index.html" class="footer-nav-link">Home</a>
+          <a href="product.html" class="footer-nav-link">Product</a>
+          <a href="pricing.html" class="footer-nav-link">Pricing</a>
+          <a href="about.html" class="footer-nav-link">About Us</a>
         </div>
 
         <div class="footer-nav-col">
-          <div class="footer-nav-title">Company</div>
-          <a href="about.html" class="footer-nav-link">About Tom & Team</a>
-          <a href="request.html" class="footer-nav-link">Request Access</a>
+          <div class="footer-nav-title">Trust &amp; Legal</div>
+          <a href="security.html" class="footer-nav-link">Security &amp; Trust</a>
           <a href="privacy.html" class="footer-nav-link">Privacy Policy</a>
           <a href="terms.html" class="footer-nav-link">Terms of Service</a>
+          <a href="mailto:hello@claimhive.app" class="footer-nav-link">hello@claimhive.app</a>
         </div>
 
         <div class="footer-nav-col">
-          <div class="footer-nav-title">Direct Assurance</div>
-          <span style="font-size: 0.875rem; color: #CBD5E1;">Tom: (850) 400-HIVE</span>
-          <span style="font-size: 0.8125rem; color: #64748B;">Florida • Texas • Carolinas • Georgia</span>
-          <span style="font-size: 0.8125rem; color: var(--hive-gold-400); margin-top: 0.5rem;">✦ Policyholders Always Free</span>
+          <div class="footer-nav-title">Velvet-Rope Access</div>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">Alpha: In Progress (Invite-Only)</span>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">Beta: November 1, 2026</span>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">GA: January 1, 2027</span>
+          <span style="font-size: 0.8125rem; color: var(--hive-gold-honey); margin-top: 0.5rem;">✦ 24 Exclusive Capabilities</span>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <div>© 2026 Claim Hive Inc. Built for licensed property adjusters across all 50 states.</div>
-        <div>Confidential & Proprietary • Zero AI Training on Claim Files</div>
+        <div>© 2026 ClaimHive Inc. Built for licensed public adjusters across the United States.</div>
+        <div>Private Harnessed LLM • Zero Public Model Training Guarantee</div>
       </div>
     </div>
   </footer>
