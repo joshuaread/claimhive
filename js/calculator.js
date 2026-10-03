@@ -1,5 +1,5 @@
 /**
- * Claim Hive Design System - Interactive Utilities
+ * ClaimHive Design System - Interactive Utilities
  * Updated with America.gov-style interactive concierge & unhurried calculator
  */
 
@@ -14,25 +14,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const painPointData = {
     'deadlines': {
       title: 'Automated 60-Day Proof of Loss (POL) Vault',
-      desc: 'Never wake up in a panic. Claim Hive indexes all state-specific statutory deadlines upon contract upload and dispatches automated carrier notices 14, 7, and 3 days before any statutory cutoff.',
+      desc: 'Never wake up in a panic. ClaimHive indexes all state-specific statutory deadlines upon contract upload and dispatches automated carrier notices 14, 7, and 3 days before any statutory cutoff.',
       stat: '0 Deadlines Missed across 14,000+ files',
       tag: 'COMPLIANCE & PEACE OF MIND'
     },
     'stalls': {
       title: 'Statutory Carrier Stall Tracker & Demand Escalation',
-      desc: 'Eliminate hours on hold with desk adjusters. When an insurer fails to acknowledge supplements or schedule inspections within state response windows (e.g. Florida 14-day rule), Claim Hive drafts certified bad-faith escalation notices automatically.',
+      desc: 'Eliminate hours on hold with desk adjusters. When an insurer fails to acknowledge supplements or schedule inspections within state response windows (e.g. Florida 14-day rule), ClaimHive drafts certified bad-faith escalation notices automatically.',
       stat: 'Average 18 Days Cut from Settlement Timeline',
       tag: 'LEVERAGE & VELOCITY'
     },
     'photos': {
       title: 'Intelligent Damage Photo Indexing & ESX Integration',
-      desc: 'Stop spending Sunday nights renaming 600 inspection photos. Upload your site walkthrough, and Claim Hive groups photos by room, tag, and damage severity, exported directly into Xactimate or Symbility lines.',
+      desc: 'Stop spending Sunday nights renaming 600 inspection photos. Upload your site walkthrough, and ClaimHive groups photos by room, tag, and damage severity, exported directly into Xactimate or Symbility lines.',
       stat: '5.5 Hours Saved per Inspection Scope',
       tag: 'ADMINISTRATIVE FREEDOM'
     },
     'capacity': {
       title: 'Doubled Caseload Capacity Without Extra Payroll',
-      desc: 'The average independent public adjuster is capped at 8-12 concurrent files before quality collapses. By stripping out 60% of administrative busywork, Claim Hive lets you handle 25-35 claims with calm confidence.',
+      desc: 'The average independent public adjuster is capped at 8-12 concurrent files before quality collapses. By stripping out 60% of administrative busywork, ClaimHive lets you handle 25-35 claims with calm confidence.',
       stat: '+65% Additional Fee Revenue Unlocked',
       tag: 'UNCAPPED SCALE'
     }

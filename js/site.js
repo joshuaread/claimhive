@@ -159,6 +159,28 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   initCountdowns();
 
+  // 4b. Live "seats requested" counter (reads the Sheet's "Seats hoped for" cell)
+  (function initSeatCounter() {
+    const counters = document.querySelectorAll('[data-seat-counter]');
+    if (!counters.length) return;
+    const SEATS_URL = 'https://script.google.com/macros/s/AKfycbydY_KWnckEh27uF5g5_v_rjwBL6b6DhMXjHlNjY__RzmQ-06UKErkkZBpcl2k69fvRkQ/exec?action=seats';
+    const TIMEOUT_MS = 6000;
+    const hideAll = () => counters.forEach(el => { el.hidden = true; });
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timer = setTimeout(() => { if (controller) controller.abort(); hideAll(); }, TIMEOUT_MS);
+    fetch(SEATS_URL, { method: 'GET', cache: 'no-store', credentials: 'omit', signal: controller ? controller.signal : undefined })
+      .then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+      .then(data => {
+        clearTimeout(timer);
+        const seats = data && Number(data.seats);
+        if (!Number.isFinite(seats) || seats <= 0) throw new Error('No valid seat count');
+        const n = Math.round(seats);
+        const label = `${n.toLocaleString('en-US')} ${n === 1 ? 'seat' : 'seats'} requested so far.`;
+        counters.forEach(el => { el.textContent = label; el.hidden = false; });
+      })
+      .catch(err => { clearTimeout(timer); hideAll(); console.warn('[ClaimHive] Seat counter unavailable:', err); });
+  })();
+
   // 5. Velvet-Rope Waitlist & Position Reveal Mechanics
   const waitlistForms = document.querySelectorAll('.waitlist-form');
   waitlistForms.forEach(form => {
@@ -243,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
               Priority reservation secured for ${escapeHtml(firmName)}.
             </div>
             <p style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.55; max-width: 440px; margin: 0 auto 1.25rem;">
-              Beta invites rollout in cohorts starting November 1. We lock in your founding $80/seat lifetime rate and will notify <strong>${escapeHtml(email)}</strong> before credentials go live.
+              Beta invites rollout in cohorts starting November 1. We lock in your founding $80/seat rate through June 30, 2027 and will notify <strong>${escapeHtml(email)}</strong> before credentials go live.
             </p>
             <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1rem; max-width: 440px; margin: 0 auto 1.25rem; text-align: left;">
               <div style="font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; margin-bottom: 0.25rem;">

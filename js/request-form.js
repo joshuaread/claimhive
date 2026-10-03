@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Extract form values
-    const fullName = (document.getElementById('fullName')?.value || '').trim() || 'Claim Hive Member';
+    const fullName = (document.getElementById('fullName')?.value || '').trim() || 'ClaimHive Member';
     const firmName = (document.getElementById('firmName')?.value || '').trim() || 'Independent';
     const workEmail = (document.getElementById('workEmail')?.value || '').trim();
     const phone = (document.getElementById('phone')?.value || '').trim();
@@ -239,11 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const routingNote = document.getElementById('success-routing-note');
       if (routingNote) {
-        if (data.Owner === 'Tom') {
-          routingNote.textContent = 'Tom was notified of your submission and will text you directly by tomorrow morning.';
-        } else {
-          routingNote.textContent = 'Our onboarding team will review your firm profile and follow up within 24 hours.';
-        }
+        routingNote.textContent = 'Our onboarding team will review your firm profile and follow up within 24 hours.';
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

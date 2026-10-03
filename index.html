@@ -28,7 +28,10 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/site.css">
 
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <script src="js/analytics.js" defer></script>
   <script src="js/site.js" defer></script>
 </head>
@@ -103,7 +106,7 @@
             </a>
           </div>
           <div class="beta-sub-countdown">
-            <span id="beta-inline-countdown">30d 16h 04m 51s</span> until rollout &bull; Founding rate locked at $80/seat
+            <span id="beta-inline-countdown">30d 16h 04m 51s</span> until rollout &bull; Founding rate locked at $80/seat through June 30, 2027
           </div>
         </div>
 
@@ -603,7 +606,7 @@
             <span>NOVEMBER 1 – DEC 31</span>
           </div>
           <h4>Public Beta</h4>
-          <p>Registration open now. Cohorts onboard in order of sign-up with locked $80 founding rates.</p>
+          <p>Registration open now. Cohorts onboard in order of sign-up with $80 founding rates locked through June 30, 2027.</p>
         </div>
 
         <div class="timeline-pill-item">
@@ -684,7 +687,7 @@
           </button>
 
           <div style="font-size: 0.75rem; color: var(--hive-text-muted); margin-top: 0.5rem;">
-            18 firms already in line for Beta. Lock in the founding $80/seat rate before GA on January 1.
+            <span data-seat-counter hidden></span> Lock in the founding $80/seat rate before GA on January 1.
           </div>
         </form>
       </div>
@@ -723,7 +726,7 @@
             Hold my place for Beta
           </button>
           <div style="text-align: center; font-size: 0.6875rem; color: var(--hive-text-muted);">
-            18 firms already in line for Beta. Strictly zero public AI model training.
+            <span data-seat-counter hidden></span> Strictly zero public AI model training.
           </div>
         </form>
       </div>
