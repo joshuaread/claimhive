@@ -160,10 +160,10 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.innerHTML = '<span>Securing your spot...</span>';
     }
 
-    // Route Owner and Source according to Tom connection
-    const mentionedTom = /tom/i.test(referral) || /tom/i.test(firmName);
-    const owner = mentionedTom ? 'Tom' : 'Unassigned';
-    const source = mentionedTom ? 'Tom book' : (cohort.includes('Alpha') ? 'Website - Alpha' : 'Website - Waitlist');
+    // Route Owner and Source according to Josh connection
+    const mentionedJosh = /\bjosh\b/i.test(referral) || /\bjosh\b/i.test(firmName);
+    const owner = mentionedJosh ? 'Josh' : 'Unassigned';
+    const source = mentionedJosh ? 'Josh book' : (cohort.includes('Alpha') ? 'Website - Alpha' : 'Website - Waitlist');
 
     // Build tomorrow's date string formatted as M/D/YYYY
     const tomorrow = new Date();
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Stage: 'Named',
       Seats_hoped: seatsNeeded,
       Source: source,
-      Next_action: 'Tom text',
+      Next_action: 'Josh text',
       Next_action_date: nextActionDate,
       Notes: notes,
       LicenseStates: licenseStates,

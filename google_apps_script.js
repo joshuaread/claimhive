@@ -55,7 +55,7 @@ function doPost(e) {
     // Col 2:  POC (Point of Contact / Name)
     // Col 3:  Email
     // Col 4:  Phone
-    // Col 5:  Owner (Tom)
+    // Col 5:  Owner (Josh)
     // Col 6:  Stage (Named)
     // Col 7:  Seats_hoped
     // Col 8:  Seats_reserved
@@ -77,7 +77,7 @@ function doPost(e) {
       data.POC || data.FullName || "",                                                   // POC
       data.Email || "",                                                                  // Email
       data.Phone || "",                                                                  // Phone
-      data.Owner || "Tom",                                                               // Owner
+      data.Owner || "Josh",                                                               // Owner
       data.Stage || "Named",                                                             // Stage
       data.Seats_hoped || 1,                                                             // Seats_hoped
       "",                                                                                // Seats_reserved
@@ -90,7 +90,7 @@ function doPost(e) {
       "",                                                                                // Clinic_count
       "",                                                                                // Invoice_sent
       "",                                                                                // Intros_given
-      data.Next_action || "Tom text",                                                    // Next_action
+      data.Next_action || "Josh text",                                                    // Next_action
       nextActionDate,                                                                    // Next_action_date
       "",                                                                                // Do_not_pitch
       notes                                                                              // Notes
@@ -164,7 +164,7 @@ function sendSlackNotification(data) {
   var seats = data.Seats_hoped || "1";
   var files = data.OpenFilesNow || "Not specified";
   var stack = data.CurrentStack || "Not specified";
-  var referral = data.Referral ? ("\n• *Referral / Know Tom:* " + data.Referral) : "";
+  var referral = data.Referral ? ("\n• *Referral / Know Josh:* " + data.Referral) : "";
 
   var slackPayload = {
     text: "🐝 *New Inbound Lead on Claim Hive:* " + shop + " (" + seats + " seats)",
@@ -192,7 +192,7 @@ function sendSlackNotification(data) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: "• *Next Action:* Tom text tomorrow\n• *Owner:* " + (data.Owner || "Tom") + referral
+          text: "• *Next Action:* Josh text tomorrow\n• *Owner:* " + (data.Owner || "Josh") + referral
         }
       }
     ]

@@ -10,11 +10,11 @@ All pages follow the unhurried, spacious aesthetic of modern civic platforms (e.
 
 | Page | File | Purpose & Highlights |
 | :--- | :--- | :--- |
-| **Home** | [`index.html`](file:///Users/josh/Projects/ClaimHive/Website/index.html) | Value prop, radical **$80/seat** pricing above the fold, 4 adjuster bottlenecks concierge, Tom's quote, 5-stage preview, Alpha & January CTAs. |
+| **Home** | [`index.html`](file:///Users/josh/Projects/ClaimHive/Website/index.html) | Value prop, radical **$80/seat** pricing above the fold, 4 adjuster bottlenecks concierge, Josh Read's quote, 5-stage preview, Alpha & January CTAs. |
 | **Product** | [`product.html`](file:///Users/josh/Projects/ClaimHive/Website/product.html) | Honest UI walkthrough of the 5 linear claim stages: Intake & Docketing, Evidence & Scoping, Estimate & Gaps, Letters & Demands, and the Next Action Engine. |
 | **Pricing** | [`pricing.html`](file:///Users/josh/Projects/ClaimHive/Website/pricing.html) | **$80/seat/month flat**. Policyholders & external engineers 100% free forever. Founding rate locked through June 30, 2027. Zero per-claim fees, no cuts of fee settlements, comparison table & FAQ. |
 | **Security & Trust** | [`security.html`](file:///Users/josh/Projects/ClaimHive/Website/security.html) | Institutional confidentiality: US-based SOC-2 vault, AES-256 KMS encryption, **Zero AI Training on Customer Claim Files**, 1-click full data export, and direct founder escalation. |
-| **About Us** | [`about.html`](file:///Users/josh/Projects/ClaimHive/Website/about.html) | Tom's personal letter (25+ years licensed Public Adjuster across FL, TX, GA, Carolinas), catastrophe track record, and profiles for Tom, Tim, Jon, and Josh. |
+| **About Us** | [`about.html`](file:///Users/josh/Projects/ClaimHive/Website/about.html) | Josh Read's founder letter, catastrophe track record, and profiles for Tim, Jon, and Josh. |
 | **Request Access** | [`request.html`](file:///Users/josh/Projects/ClaimHive/Website/request.html) | Frictionless intake application for Founding Cohorts (Alpha Q4 2026 vs. January 2027) wired to `Seats_200` Google Sheet schema, spam honeypot trap, and instant confirmation screen. |
 | **Privacy Policy** | [`privacy.html`](file:///Users/josh/Projects/ClaimHive/Website/privacy.html) | Plain-English privacy covenants, explicit work-product privilege protection, zero commercialization of claim data, and DoD-grade data sanitization. |
 | **Terms of Service** | [`terms.html`](file:///Users/josh/Projects/ClaimHive/Website/terms.html) | Fair B2B SaaS agreement: month-to-month flexibility, $80 founding price guarantee, 100% adjuster data ownership, 99.9% catastrophe SLA, and 30-day money-back guarantee. |
@@ -44,11 +44,11 @@ Form Submission
    │      - Shop: "{FullName} — {FirmName}"
    │      - Email: work email (lowercase)
    │      - Phone: formatted phone string
-   │      - Owner: "Tom" (if Tom mentioned) else "Unassigned"
+   │      - Owner: "Josh" (if Josh mentioned) else "Unassigned"
    │      - Stage: "Named"
    │      - Seats_hoped: integer count
-   │      - Source: "Tom book" (if Tom mentioned) else "Waitlist"
-   │      - Next_action: "Tom text"
+   │      - Source: "Josh book" (if Josh mentioned) else "Waitlist"
+   │      - Next_action: "Josh text"
    │      - Next_action_date: tomorrow
    ├── 3. Webhook dispatch (Zapier / Make / Apps Script) or local audit storage
    └── 4. Immediate confirmation UI displaying personalized routing note
@@ -81,4 +81,4 @@ python3 -m http.server 3000
 2. **Policyholders Always 100% Free**: Unlimited client portal access so insureds stay informed without calling you 10 times a week.
 3. **Founding Lock Through June 30, 2027**: Zero price hikes for our first 200 founding firms.
 4. **Zero AI Training on Claim Files**: Your estimates, photos, and legal strategies remain privileged work product.
-5. **Direct Line to Tom**: 25+ years of licensed field experience backing your team. Call or text **(850) 400-HIVE**.
+5. **Direct Line to Josh Read**: Call or text **(850) 400-HIVE**.
