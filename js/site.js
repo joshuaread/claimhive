@@ -150,7 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const betaInlineEl = document.getElementById('beta-inline-countdown');
       if (betaInlineEl) {
-        betaInlineEl.textContent = `${bDays}d ${bHours}h ${bMinutes}m ${bSeconds}s`;
+        // Zero-padded, no seconds: fixed width, changes once a minute
+        const pad = (n) => String(n).padStart(2, '0');
+        betaInlineEl.textContent = `${pad(bDays)}d ${pad(bHours)}h ${pad(bMinutes)}m`;
       }
     }
 

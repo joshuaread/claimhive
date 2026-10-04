@@ -2155,6 +2155,37 @@
   font-size: 0.75rem;
   color: var(--hive-text-muted);
   font-family: var(--hive-font-mono);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.5em;
+  row-gap: 0.15rem;
+}
+
+.beta-sub-timer,
+.beta-sub-deadline {
+  white-space: nowrap;
+}
+
+#beta-inline-countdown {
+  display: inline-block;
+  min-width: 11ch;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Narrow screens: the deadline goes to its own line instead of jumping */
+@media (max-width: 640px) {
+  .beta-sub-sep {
+    display: none;
+  }
+  .beta-sub-deadline {
+    flex-basis: 100%;
+    white-space: normal;
+  }
+  .beta-sub-deadline .nowrap {
+    white-space: nowrap;
+  }
 }
 
 /* ==========================================================================
