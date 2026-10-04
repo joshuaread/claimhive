@@ -79,6 +79,6 @@ python3 -m http.server 3000
 
 1. **Flat $80/Seat/Month**: No tiers, no percentage of your settlement fees, and no per-claim toll booths.
 2. **Policyholders Always 100% Free**: Unlimited client portal access so insureds stay informed without calling you 10 times a week.
-3. **Founding Lock Through June 30, 2027**: Zero price hikes for our first 200 founding firms.
+3. **Founding Lock Through June 30, 2027**: Firms that join before January 31, 2027 keep $80/seat through June 30, 2027.
 4. **Zero AI Training on Claim Files**: Your estimates, photos, and legal strategies remain privileged work product.
 5. **Direct Line to Josh Read**: Call or text **(850) 400-HIVE**.
