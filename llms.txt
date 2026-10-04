@@ -17,7 +17,7 @@ Claim Hive is a modern, cloud-based practice management, document automation, an
 
 ## Transparent Pricing Model
 - **$80 per seat / month flat**: Simple, transparent pricing with no surprises.
-- **Founding Rate Lock**: Guaranteed rate lock through June 30, 2027 for early cohorts.
+- **Founding Rate Lock**: $80/seat rate locked through June 30, 2027 for firms that join before January 31, 2027.
 - **Zero Base Platform Fees**: No monthly platform tolls, no broker account surcharges, and no carrier fee splits.
 - **Free Policyholder Access**: Zero cost for client accounts or guest access.
 - **Unlimited File Storage**: High-resolution photos, Xactimate/Symbility PDF imports, engineers' reports, and video walk-throughs included.
