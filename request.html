@@ -48,7 +48,7 @@
     <span class="hide-mobile">FOUNDING ACCESS LIMITED TO 200 FIRMS &nbsp;•&nbsp;</span>
     <span>$80/SEAT + USAGE • ZERO PER-CLAIM SURCHARGES</span>
     &nbsp;•&nbsp;
-    <span class="highlight">✦ ONBOARDING SCHEDULED WITHIN 24 HOURS</span>
+    <span class="highlight">✦ WE REPLY WITHIN 24 HOURS • BETA ONBOARDING STARTS NOVEMBER 1</span>
   </div>
 
   <!-- STICKY SITE HEADER -->
@@ -104,7 +104,7 @@
         <span style="color: var(--hive-gold-600); font-weight: 400; font-style: italic;">Join before January 31, 2027 to lock $80/seat through June 30, 2027.</span>
       </h1>
       <p class="page-hero-subtitle">
-        We onboard adjusters in small, hand-guided cohorts to ensure your open claims are properly imported and your state statutory deadlines are mapped.
+        We onboard firms in small groups and guide each setup. We import your open claims and set up the statutory deadlines for your states.
       </p>
     </div>
   </section>
@@ -120,10 +120,10 @@
         <div id="login-portal-notice" style="display: none; background: var(--hive-gold-50); border: 1.5px solid var(--hive-gold-400); border-radius: var(--hive-radius-md); padding: 1.25rem; margin-bottom: 2rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
             <span class="badge badge-gold" style="font-size: 0.75rem;">ALPHA ACCESS</span>
-            <strong style="color: var(--hive-navy-950); font-size: 0.95rem;">Looking to Log In to Your ClaimHive Workspace?</strong>
+            <strong style="color: var(--hive-navy-950); font-size: 0.95rem;">Already in the alpha?</strong>
           </div>
           <p style="font-size: 0.875rem; color: var(--hive-navy-900); line-height: 1.5; margin: 0;">
-            During Phase 0 Alpha, member firm workspaces are provisioned directly with custom team URLs. If your firm has received credentials from Josh, use your firm's direct login link. If you need credentials or want to onboard an active file, complete the request form below.
+            Each alpha firm has its own login link. If Josh sent you a login, use your firm's link to sign in. If you need a login, complete the form below.
           </p>
         </div>
         
@@ -132,7 +132,7 @@
             Public Adjuster Intake Application
           </h2>
           <p style="font-size: 0.875rem; color: var(--hive-text-secondary);">
-            Fields marked with an asterisk (<span style="color: var(--hive-danger);">*</span>) are required. All information is confidential and will never be shared.
+            Complete the fields that have an asterisk (<span style="color: var(--hive-danger);">*</span>). We keep your answers confidential and never sell them. Our <a href="privacy.html#analytics">Privacy Policy</a> lists the analytics tools on this site.
           </p>
         </div>
 
@@ -193,25 +193,25 @@
             <div class="field-group">
               <label for="workEmail" class="field-label">Work Email <span class="req">*</span></label>
               <input type="email" id="workEmail" class="field-input" placeholder="marcus@vanceclaims.com" required>
-              <span class="field-hint">We'll send your cohort docket invitation here.</span>
+              <span class="field-hint">We send your beta invitation to this address.</span>
             </div>
 
             <div class="field-group">
               <label for="phone" class="field-label">Direct Cell Phone <span class="req">*</span></label>
               <input type="tel" id="phone" class="field-input" placeholder="(555) 000-0000" required>
-              <span class="field-hint">Used to coordinate your setup call.</span>
+              <span class="field-hint">We use this number to schedule your setup call.</span>
             </div>
 
             <div class="field-group">
               <label for="licenseStates" class="field-label">Primary Licensed State(s) <span class="req">*</span></label>
               <input type="text" id="licenseStates" class="field-input" placeholder="e.g. Florida, Texas, Louisiana" required>
-              <span class="field-hint">Ensures your state statutory timelines (POL, bad-faith) are configured.</span>
+              <span class="field-hint">We use this to set up your state deadlines (proof of loss, bad faith).</span>
             </div>
 
             <div class="field-group">
               <label for="seatsNeeded" class="field-label">Number of Staff Seats Needed <span class="req">*</span></label>
               <input type="number" id="seatsNeeded" class="field-input" min="1" max="50" value="1" required>
-              <span class="field-hint">Only internal staff. Insured clients are always 100% free.</span>
+              <span class="field-hint">Count only your internal team. Your clients do not need seats.</span>
             </div>
 
             <div class="field-group">
@@ -226,12 +226,12 @@
             </div>
 
             <div class="field-group">
-              <label for="openFiles" class="field-label">Active Claims Managed Annually</label>
+              <label for="openFiles" class="field-label">Open Claims Right Now (per firm)</label>
               <select id="openFiles" class="field-select">
-                <option value="1 - 10 active claims">1 – 10 active claims (Solo Practitioner)</option>
-                <option value="11 - 25 active claims" selected>11 – 25 active claims (Boutique Practice)</option>
-                <option value="26 - 60 active claims">26 – 60 active claims (Growing Firm)</option>
-                <option value="60+ claims / Storm deployment">60+ claims (High-volume Catastrophe Team)</option>
+                <option value="1 - 10 active claims">1 – 10 open claims (Solo Practitioner)</option>
+                <option value="11 - 25 active claims" selected>11 – 25 open claims (Boutique Practice)</option>
+                <option value="26 - 60 active claims">26 – 60 open claims (Growing Firm)</option>
+                <option value="60+ claims / Storm deployment">61 or more open claims (High-volume Catastrophe Team)</option>
               </select>
             </div>
 
@@ -267,7 +267,7 @@
 
         <span class="badge badge-gold" style="margin-bottom: 1rem;">APPLICATION RECEIVED</span>
         <h2 class="font-heading" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--hive-navy-900); margin-bottom: 0.75rem;">
-          You're on the docket, <span id="success-user-name">Adjuster</span>.
+          You're on the list, <span id="success-user-name">Adjuster</span>.
         </h2>
 
         <p id="success-routing-note" style="font-size: 1.0625rem; color: var(--hive-text-secondary); max-width: 540px; margin: 0 auto 2rem; line-height: 1.7;">
@@ -283,7 +283,7 @@
             <li><strong>Rate Locked:</strong> $80 / seat / month (locked through June 30, 2027 for firms that join before January 31, 2027)</li>
             <li><strong>Insured Clients:</strong> Always 100% free with unlimited portal access</li>
             <li><strong>Privacy Guarantee:</strong> Zero AI training on your customer claim files</li>
-            <li><strong>Pipeline Status:</strong> Logged into founding cohort priority queue</li>
+            <li><strong>Status:</strong> You are in the queue for the beta.</li>
           </ul>
         </div>
 
