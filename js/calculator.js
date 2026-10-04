@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: 'ADMINISTRATIVE FREEDOM'
     },
     'capacity': {
-      title: 'Doubled Caseload Capacity Without Extra Payroll',
-      desc: 'The average independent public adjuster is capped at 8-12 concurrent files before quality collapses. By stripping out 60% of administrative busywork, ClaimHive lets you handle 25-35 claims with calm confidence.',
-      stat: '+65% Additional Fee Revenue Unlocked',
+      title: 'Placeholder: caseload feature title',
+      desc: 'Placeholder description. Use this card to show how a feature title, a short description, and a stat pill look together.',
+      stat: 'Placeholder stat',
       tag: 'UNCAPPED SCALE'
     }
   };
