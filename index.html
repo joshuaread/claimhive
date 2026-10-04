@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ClaimHive — Nearly double your caseload. Not your hours.</title>
-  <meta name="description" content="Nearly double your caseload. Not your hours. ClaimHive is the AI command center built by working public adjusters. Alpha invite-only is live.">
+  <title>ClaimHive — From 20 to 38 claims a month, in our own firm</title>
+  <meta name="description" content="ClaimHive is the AI command center built inside a working public adjusting firm. In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. One firm's result. Results vary. Beta opens November 1, 2026.">
 
   <link rel="canonical" href="https://claimhive.app/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ClaimHive">
   <meta property="og:url" content="https://claimhive.app/">
   <meta property="og:title" content="ClaimHive — AI Claims Software for Public Adjusters">
-  <meta property="og:description" content="Nearly double your caseload, not your hours. Built by working public adjusters. Private Alpha live. Beta opens November 1, 2026.">
+  <meta property="og:description" content="The AI command center built inside a working public adjusting firm. In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. One firm's result. Results vary. Beta opens November 1, 2026.">
   <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ClaimHiveApp">
   <meta name="twitter:title" content="ClaimHive — AI Claims Software for Public Adjusters">
-  <meta name="twitter:description" content="Nearly double your caseload, not your hours. Built by working public adjusters.">
+  <meta name="twitter:description" content="The AI command center built inside a working public adjusting firm. In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. One firm's result. Results vary.">
   <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
 
   <!-- Typography -->
@@ -88,12 +88,15 @@
           </span>
 
           <h1 class="page-hero-title" style="font-size: clamp(2.5rem, 5.5vw, 4.25rem); line-height: 1.1; color: var(--hive-ink); margin-bottom: 1.25rem; letter-spacing: -0.025em;">
-            Nearly double your caseload.<br>
-            <span class="font-editorial-italic" style="color: var(--hive-gold-deep); font-weight: 400;">Not your hours.</span>
+            From 20 claims a month to 38.<br>
+            <span class="font-editorial-italic" style="color: var(--hive-gold-deep); font-weight: 400;">In our own firm.</span>
           </h1>
 
           <p style="font-size: clamp(1.0625rem, 2vw, 1.25rem); color: var(--hive-text-secondary); line-height: 1.65; max-width: 580px; margin-bottom: 0;">
             ClaimHive is the AI command center built by working public adjusters—so the paperwork, follow-ups and storm research run themselves while you work the claims that pay.
+          </p>
+          <p class="one-firm-claim" style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.55; max-width: 580px; margin: 1rem 0 0; padding-left: 0.85rem; border-left: 3px solid var(--hive-gold-honey);">
+            In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. <strong class="one-firm-label" style="color: var(--hive-ink); font-weight: 600; white-space: nowrap;">One firm's result. Results vary.</strong>
           </p>
         </div>
 
@@ -370,7 +373,7 @@
         <!-- Block 1: Narrative Header & Dial (Top on Mobile, Top Left on Desktop) -->
         <div class="caseload-header-block">
           <span class="caseload-eyebrow">
-            THE SAME WEEK. TWICE THE FILES.
+            ONE FIRM'S RESULT
           </span>
           <h2 class="dark-section-title">
             Your hours aren't the problem.<br>
@@ -382,145 +385,38 @@
 
         <!-- Block 2: Interactive Hour-Shift Console Card (Middle on Mobile, Right Column on Desktop) -->
         <div class="caseload-shift-card-block">
-          <div class="dark-card shift-console-card" id="caseload-shift-card" data-mode="today">
-            
-            <!-- Card Header: Conversational Sentence -->
-            <div class="shift-card-head conversational-header">
-              <div class="conversational-layout" id="shift-card-statement">
-                <div class="conv-line conv-line-1" id="statement-prefix">A typical 50-hour workweek handling</div>
-                <div class="conv-line conv-line-2">
-                  <span class="caseload-btn-wrapper">
-                    <button type="button" class="caseload-pop-btn" id="shift-caseload-num" aria-haspopup="true">
-                      <span id="caseload-btn-val">20</span>
-                      <svg class="dropdown-icon" id="caseload-dropdown-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </button>
-                    
-                    <div class="caseload-dial-popup" id="caseload-dial-popup">
-                      <div class="caseload-dial-popup-inner">
-                        <div class="caseload-dial-header">
-                          <span class="caseload-dial-label">Adjust Active Caseload</span>
-                          <button type="button" class="popup-close-btn" id="caseload-popup-close">&times;</button>
-                        </div>
-                        <div class="caseload-slider-track-wrap">
-                          <input type="range" id="caseload-slider-input" class="caseload-slider-input" min="10" max="45" value="20" aria-label="Adjust active caseload slider">
-                          <span class="caseload-dial-badge" id="caseload-slider-val">20 Active Files</span>
-                        </div>
-                        <div class="caseload-presets-group">
-                          <button type="button" class="caseload-preset-btn" data-cases="15">15</button>
-                          <button type="button" class="caseload-preset-btn active" data-cases="20">20 (Avg)</button>
-                          <button type="button" class="caseload-preset-btn" data-cases="30">30</button>
-                          <button type="button" class="caseload-preset-btn" data-cases="40">40</button>
-                        </div>
-                      </div>
-                    </div>
-                  </span>
-                  <span class="conv-highlight" id="statement-mid">active claims</span>
-                </div>
-                
+          <div class="dark-card shift-console-card one-firm-card" data-mode="chip">
+            <span class="dark-card-label">In our own firm</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 0.5rem 0 1rem;">
+              <div>
+                <div class="dark-card-number">20 &rarr; 38</div>
+                <div class="dark-card-sub" style="color: #CBD5E1;">claims a month per adjuster, on average</div>
+              </div>
+              <div>
+                <div class="dark-card-number">~$106,000</div>
+                <div class="dark-card-sub" style="color: #CBD5E1;">more in fees per adjuster, each month</div>
               </div>
             </div>
+            <p style="font-size: 0.9375rem; color: #E2E8F0; line-height: 1.6; margin: 0 0 0.5rem;">In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month.</p>
+            <p class="one-firm-label" style="font-size: 0.8125rem; color: var(--hive-gold-honey); font-weight: 600; margin: 0 0 1.25rem;">One firm's result. Results vary.</p>
 
-            <!-- High-Signal 50-Hour Telemetry Ratio Meter (Musk First-Principles) -->
-            <div class="telemetry-meter-wrap" id="telemetry-meter-wrap">
-              <div class="telemetry-meter" id="telemetry-meter">
-                <div class="meter-segment admin" id="shift-bar-admin" style="width: 72%;">
-                  <div class="meter-content">
-                    <span class="meter-val" id="meter-val-admin">36h</span>
-                    <span class="meter-lbl" id="meter-lbl-admin">Unpaid Admin ($0)</span>
-                  </div>
-                </div>
-                <div class="meter-segment adjusting" id="shift-bar-adjust" style="width: 28%;">
-                  <div class="meter-content">
-                    <span class="meter-val" id="meter-val-adjust">14h</span>
-                    <span class="meter-lbl" id="meter-lbl-adjust">Revenue ($$$)</span>
-                  </div>
-                </div>
-              </div>
-              </div>
-
-            <!-- The 5-Row Weekly Breakdown Ledger -->
-            <div class="shift-breakdown-list">
-              
-              <!-- Chore 1: Carrier Hold -->
-              <div class="shift-row chore-row" id="shift-row-1">
-                <!-- The Prominent Hero Aha Callout Banner -->
-                <div class="shift-aha-callout today" id="shift-aha-callout">
-                  <div class="aha-lead-badge today" id="aha-lead-badge">
-                    <span class="aha-badge-icon" id="aha-badge-icon">⚠️</span>
-                    <span class="aha-badge-text" id="aha-badge-text">CAPACITY BOTTLENECK</span>
-                  </div>
-                  <div class="aha-statement" id="aha-statement">
-                    You only have <strong>14 hours / week</strong> to actually generate revenue.
-                  </div>
-                  <div class="aha-subtext" id="aha-subtext">
-                    72% of your week is consumed by unpaid administrative drag instead of inspecting damage and closing claim settlements.
-                  </div>
-                  <div class="aha-metric-strip" id="aha-metric-strip" style="display: none;">
-                    <div class="aha-mini-metric fee-metric">
-                      <span class="aha-mini-val" id="aha-metric-val-1">+$108,000/yr</span>
-                      <span class="aha-mini-lbl">Est. Fee Capacity</span>
-                    </div>
-                    <div class="aha-mini-metric">
-                      <span class="aha-mini-val" id="aha-metric-val-2">3x</span>
-                      <span class="aha-mini-lbl">Fee Hours</span>
-                    </div>
-                    <div class="aha-mini-metric">
-                      <span class="aha-mini-val" id="aha-metric-val-3">$0</span>
-                      <span class="aha-mini-lbl">Added Staff Payroll</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Big Action Trigger Button (Shown in Today Mode) -->
-            <button type="button" class="btn-shift-action" id="btn-shift-action" aria-label="Delegate administrative busywork to Chip AI Autopilot">
-              <span class="btn-shift-sparkle" id="btn-shift-sparkle">✦</span>
-              <span id="btn-shift-label">Hand Routine Busywork to Chip (See The Shift)</span>
-            </button>
-
-            <!-- Climax CTA Box (Active in Chip Mode) -->
-            <div class="shift-climax-cta-box" id="shift-climax-cta-box" style="display: none;">
+            <div class="shift-climax-cta-box">
               <a href="#beta" class="btn-card-beta-cta" data-open-modal="beta" id="btn-climax-beta">
-                <span>Request Beta Access — Double File Capacity</span>
+                <span>Request beta access</span>
                 <span class="climax-arrow">→</span>
               </a>
               <div class="climax-micro-assurance">
-                <span>Limited private beta cohort</span>
-                <span class="climax-dot">•</span>
-                <span>Zero staff overhead</span>
+                <span>Beta opens November 1</span>
                 <span class="climax-dot">•</span>
                 <span>Works alongside Xactimate &amp; Symbility</span>
               </div>
-              <div class="shift-toggle-back-wrap">
-                <button type="button" class="btn-toggle-back" id="btn-toggle-back">
-                  <span>↺ Compare with Today's Reality</span>
-                </button>
-              </div>
             </div>
-
-            <!-- Bottom Summary Callout -->
-            
-
           </div>
         </div>
 
         <!-- Block 3: Key Operational Realities Box & CTA Button (Bottom on Mobile, Left Column on Desktop) -->
         <div class="caseload-insights-block">
           <div class="caseload-insights-card">
-            <div class="insight-row">
-              <span class="insight-icon">✦</span>
-              <div class="insight-text">
-                <strong>Reclaim 30 hours every week:</strong> Routine clerical drops from 36 hours down to 6 hours of high-leverage review.
-              </div>
-            </div>
-            <div class="insight-row">
-              <span class="insight-icon">✦</span>
-              <div class="insight-text">
-                <strong>+90% caseload capacity:</strong> Safely carry nearly twice the active files before hiring another junior adjuster.
-              </div>
-            </div>
             <div class="insight-row">
               <span class="insight-icon">✦</span>
               <div class="insight-text">
@@ -616,7 +512,7 @@
             <span>JANUARY 1, 2027</span>
           </div>
           <h4>General Availability (GA)</h4>
-          <p>Full commercial launch. Member firms hit the new year with their caseload capacity doubled.</p>
+          <p>Full commercial launch on January 1, 2027.</p>
         </div>
 
       </div>

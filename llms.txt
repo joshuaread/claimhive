@@ -5,7 +5,7 @@ Claim Hive is a modern, cloud-based practice management, document automation, an
 
 ## What Claim Hive Is
 - **The Core Adjuster Workflow**: Manages the linear claim lifecycle across 5 stages: Intake, Initial Evidence & Policy Review, Scope & Estimate Organization, Carrier Bad-Faith Letter Generation & Demand Tracking, and Settlement Reconciliation.
-- **Radical Administrative Relief**: Automates repetitive carrier follow-ups, statutory deadline reminders, document indexing, and status updates, eliminating 60% of administrative busywork.
+- **Radical Administrative Relief**: Automates repetitive carrier follow-ups, statutory deadline reminders, document indexing, and status updates. In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. One firm's result. Results vary.
 - **Policyholder Transparency**: Provides secure, real-time read-only claim trackers for property owners via magic links, drastically reducing incoming phone calls and text interruptions during active claim cycles.
 - **Zero AI Model Training Guarantee**: Court-tested, legally binding architectural covenants ensure that client claim documents, policy transcripts, estimates, and work-product are strictly isolated and NEVER ingested into shared public or private foundation models.
 - **Rapid Time-to-Value**: 45-minute learning curve with linear file momentum instead of 30+ nested database tabs.
