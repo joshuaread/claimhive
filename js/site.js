@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = form.querySelector('button[type="submit"]');
         if (btn) {
           btn.disabled = false;
-          btn.textContent = 'Hold my place for Beta';
+          btn.textContent = 'Request beta access';
         }
         alert('Something went wrong. Please write directly to hello@claimhive.app.');
       }
