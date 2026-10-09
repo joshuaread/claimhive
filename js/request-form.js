@@ -108,7 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const janCard = Array.from(cohortCards).find(c => c.textContent.includes('January'));
     if (janCard) selectCohort(janCard);
   } else if (cohortParam === 'alpha') {
-    const alphaCard = Array.from(cohortCards).find(c => c.textContent.includes('Alpha'));
+    const alphaCard = Array.from(cohortCards).find(c => {
+      const radio = c.querySelector('input[type="radio"]');
+      return c.textContent.includes('Alpha') || (radio && radio.value.includes('Alpha'));
+    });
     if (alphaCard) selectCohort(alphaCard);
   }
 

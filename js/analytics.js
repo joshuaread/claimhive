@@ -6,6 +6,8 @@
  * - pricing_view: Fired upon viewing the Pricing page / breakdown
  * - request_alpha: Fired when an adjuster submits for the Immediate Alpha cohort
  * - join_january: Fired when an adjuster submits for the January general access cohort
+ * - cta_click: Fired when an element with a data-cta-location attribute is clicked.
+ *              Params: location (the attribute value, e.g. pricing_hero, pricing_faq)
  */
 
 (function () {
@@ -71,6 +73,16 @@
 
     console.log('[Claim Hive Event Tracked]', eventName, params);
   };
+
+  // CTA click tracking: any element with data-cta-location fires cta_click
+  document.addEventListener('click', function (e) {
+    var target = e.target && e.target.closest ? e.target.closest('[data-cta-location]') : null;
+    if (!target) return;
+    window.trackClaimHiveEvent('cta_click', {
+      location: target.getAttribute('data-cta-location'),
+      transport_type: 'beacon'
+    });
+  });
 
   // Auto-detect Pricing View
   document.addEventListener('DOMContentLoaded', function () {
