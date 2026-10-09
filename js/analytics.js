@@ -4,8 +4,8 @@
  *
  * Events Tracked:
  * - pricing_view: Fired upon viewing the Pricing page / breakdown
- * - request_alpha: Fired when an adjuster submits for the Immediate Alpha cohort
- * - join_january: Fired when an adjuster submits for the January general access cohort
+ * - request_beta: Fired when an adjuster submits the request form for the Beta cohort
+ * - join_january: Fired when an adjuster submits the request form for the General Availability (Jan 1, 2027) cohort
  * - cta_click: Fired when an element with a data-cta-location attribute is clicked.
  *              Params: location (the attribute value, e.g. pricing_hero, pricing_faq)
  */

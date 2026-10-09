@@ -101,18 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // URL Parameter pre-selection (?cohort=january or ?cohort=alpha)
+  // URL Parameter pre-selection (?cohort=beta, ?cohort=ga, or ?cohort=january).
+  // Unknown or missing values leave the default (Beta) selected.
   const urlParams = new URLSearchParams(window.location.search);
-  const cohortParam = urlParams.get('cohort');
-  if (cohortParam === 'january') {
-    const janCard = Array.from(cohortCards).find(c => c.textContent.includes('January'));
-    if (janCard) selectCohort(janCard);
-  } else if (cohortParam === 'alpha') {
-    const alphaCard = Array.from(cohortCards).find(c => {
-      const radio = c.querySelector('input[type="radio"]');
-      return c.textContent.includes('Alpha') || (radio && radio.value.includes('Alpha'));
-    });
-    if (alphaCard) selectCohort(alphaCard);
+  const cohortKey = { beta: 'beta', ga: 'ga', january: 'ga' }[(urlParams.get('cohort') || '').toLowerCase()];
+  if (cohortKey) {
+    const card = Array.from(cohortCards).find(c => c.querySelector(`input[data-cohort="${cohortKey}"]`));
+    selectCohort(card);
   }
 
   // If redirected from "Log in" button (?view=login)
@@ -151,7 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentStack = document.getElementById('currentStack')?.value || 'Not Specified';
     const openFiles = document.getElementById('openFiles')?.value || 'Not Specified';
     const cohortRadio = document.querySelector('input[name="cohort"]:checked');
-    const cohort = cohortRadio ? cohortRadio.value : 'Immediate Alpha (Q4 2026)';
+    const cohort = cohortRadio ? cohortRadio.value : 'Beta Cohort (Nov 1, 2026)';
+    const submittedCohortKey = cohortRadio && cohortRadio.dataset.cohort === 'ga' ? 'ga' : 'beta';
     let referral = (document.getElementById('referral')?.value || '').trim();
     if (!referral) { try { referral = localStorage.getItem('claimhive_ref') || ''; } catch(e) {} }
 
@@ -166,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Route Owner and Source according to Josh connection
     const mentionedJosh = /\bjosh\b/i.test(referral) || /\bjosh\b/i.test(firmName);
     const owner = mentionedJosh ? 'Josh' : 'Unassigned';
-    const source = mentionedJosh ? 'Josh book' : (cohort.includes('Alpha') ? 'Website - Alpha' : 'Website - Waitlist');
+    const source = mentionedJosh ? 'Josh book' : 'Website - Waitlist';
 
     // Build tomorrow's date string formatted as M/D/YYYY
     const tomorrow = new Date();
@@ -213,9 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('claim_hive_seats_200', JSON.stringify(localSubmissions));
     } catch (e) {}
 
-    // Trigger Analytics Event (GA4 & Clarity: request_alpha vs join_january)
+    // Trigger Analytics Event (GA4 & Clarity: request_beta vs join_january)
     if (typeof window.trackClaimHiveEvent === 'function') {
-      const eventName = cohort.includes('Alpha') ? 'request_alpha' : 'join_january';
+      const eventName = submittedCohortKey === 'ga' ? 'join_january' : 'request_beta';
       window.trackClaimHiveEvent(eventName, {
         firm_name: firmName,
         seats_hoped: seatsNeeded,
