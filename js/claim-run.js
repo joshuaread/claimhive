@@ -106,7 +106,7 @@ var VIZ=[['A','Intake: documents filed'],['A','Red flags: none'],['H','License +
 var VMAP=[[0],[1],[2],[3,4],[5],[6],[7,8]];
 var stEl=document.getElementById('chxSteps'),dots=document.getElementById('chxDots'),viz=document.getElementById('chxViz'),trav=document.getElementById('chxTravel');
 trav.style.setProperty('--n',STEPS.length);
-viz.innerHTML='<div class="chx-cardh"><b style="color:#aab6d3;font-size:12px;letter-spacing:.08em">SYN-1042 · EXAMPLE CLAIM</b></div>'+VIZ.map(function(v){return '<div class="chx-vrow'+(v[2]?' hu':'')+'"><span>'+(v[0]==='PA'?'Your PA':N[v[0]])+'</span><span>'+v[1]+'</span></div>'}).join('');
+viz.innerHTML=''+VIZ.map(function(v){return '<div class="chx-vrow'+(v[2]?' hu':'')+'"><span>'+(v[0]==='PA'?'Your PA':N[v[0]])+'</span><span>'+v[1]+'</span></div>'}).join('');
 stEl.innerHTML=STEPS.map(function(s){return '<div class="chx-step"><div class="k">'+s[0]+'</div><h3>'+s[1]+'</h3><p>'+s[2]+'</p></div>'}).join('');
 dots.innerHTML=STEPS.map(function(){return '<i></i>'}).join('');
 var steps=stEl.children,dd=dots.children,rows=viz.querySelectorAll('.chx-vrow');
