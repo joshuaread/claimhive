@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/claim-run.css">
 
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -35,6 +36,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <script src="js/analytics.js" defer></script>
   <script src="js/site.js" defer></script>
+  <script src="js/claim-run.js" defer></script>
 </head>
 <body class="bg-serene">
 
@@ -364,72 +366,59 @@
     </div>
   </section>
 
-  <!-- THE DARK CONTRAST SECTION: THE PROBLEM & SOLUTION -->
-  <section class="section-dark-caseload">
-    <div class="container container-wide">
-      
-      <div class="dark-caseload-console">
-
-        <!-- Block 1: Narrative Header & Dial (Top on Mobile, Top Left on Desktop) -->
-        <div class="caseload-header-block">
-          <span class="caseload-eyebrow">
-            ONE FIRM'S RESULT
-          </span>
-          <h2 class="dark-section-title">
-            Your hours aren't the problem.<br>
-            Where they go is.
-          </h2>
-          
-
-                  </div>
-
-        <!-- Block 2: Interactive Hour-Shift Console Card (Middle on Mobile, Right Column on Desktop) -->
-        <div class="caseload-shift-card-block">
-          <div class="dark-card shift-console-card one-firm-card" data-mode="chip">
-            <span class="dark-card-label">In our own firm</span>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 0.5rem 0 1rem;">
-              <div>
-                <div class="dark-card-number">20 &rarr; 38</div>
-                <div class="dark-card-sub" style="color: #CBD5E1;">claims a month per adjuster, on average</div>
-              </div>
-              <div>
-                <div class="dark-card-number">~$106,000</div>
-                <div class="dark-card-sub" style="color: #CBD5E1;">more in fees per adjuster, each month</div>
-              </div>
-            </div>
-            <p style="font-size: 0.9375rem; color: #E2E8F0; line-height: 1.6; margin: 0 0 0.5rem;">In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month.</p>
-            <p class="one-firm-label" style="font-size: 0.8125rem; color: var(--hive-gold-honey); font-weight: 600; margin: 0 0 1.25rem;">One firm's result. Results vary.</p>
-
-            <div class="shift-climax-cta-box">
-              <a href="#beta" class="btn-card-beta-cta" data-open-modal="beta" id="btn-climax-beta">
-                <span>Request beta access</span>
-                <span class="climax-arrow">→</span>
-              </a>
-              <div class="climax-micro-assurance">
-                <span>Beta opens November 1</span>
-                <span class="climax-dot">•</span>
-                <span>Works alongside Xactimate &amp; Symbility</span>
-              </div>
-            </div>
-          </div>
+  <!-- CLAIM RUN: AGENTS WORKING ONE EXAMPLE CLAIM (hero v7 board, dark) -->
+  <section class="chs" id="chs" aria-label="ClaimHive agents working one example claim">
+    <div class="container container-wide chs-wrap">
+      <div class="chs-head">
+        <div>
+          <div class="chs-top"><span class="chs-eyebrow">For public adjusting firms</span><span class="chs-badge">Example claim · SYN-1042</span></div>
+          <h2 class="chs-h1">Your whole claim team, working at once.<em>Nothing leaves without your yes.</em></h2>
+          <p class="chs-sub">One claim comes in. Specialist agents read the policy, check the weather, screen for red flags, draft the paperwork and build the proof of loss, in parallel. Then it lands on your desk, ready to approve.</p>
         </div>
-
-        <!-- Block 3: Key Operational Realities Box & CTA Button (Bottom on Mobile, Left Column on Desktop) -->
-        <div class="caseload-insights-block">
-          <div class="caseload-insights-card">
-            <div class="insight-row">
-              <span class="insight-icon">✦</span>
-              <div class="insight-text">
-                <strong>Human in the loop:</strong> Chip drafts statutory demands and organizes photos—you review, add your voice, and send.
-              </div>
-            </div>
-          </div>
-
-          </div>
-
+        <div class="chs-foot">
+          <button type="button" class="chs-btn gold" id="chxWatch">▶&nbsp; Watch the full run</button>
+          <button type="button" class="chs-btn out" id="chxReplay">Replay</button>
+        </div>
       </div>
-
+      <div class="chs-main">
+        <div class="chs-board">
+          <div class="chs-prog"><b id="chsProg"></b></div>
+          <div class="chs-stagebox" id="chsBox"><div class="chs-stage" id="chsStage"><svg class="chs-svg" id="chsSvg" viewBox="0 0 1000 620"></svg></div></div>
+          <div class="chs-pay" id="chsPay"><div class="chs-pc">
+            <div class="chs-ring">✓</div>
+            <div class="chs-pt" id="chsPt">Claim package ready.<em>Approved by the PA.</em></div>
+            <div class="chs-ps" id="chsPs">Built by the agents. Nothing went to the carrier until a person said yes.</div>
+            <div class="chs-pk"><span>PA Agreement</span><span>Letter of Representation</span><span>Proof of loss</span><span>Carrier reply</span><span>Check route</span></div>
+          </div></div>
+        </div>
+        <aside class="chs-side">
+          <div class="chs-panel chs-split" aria-label="Who did the work on this example claim">
+            <div class="chs-row"><span class="chs-mark chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 L14.6 9.4 L21 12 L14.6 14.6 L12 21 L9.4 14.6 L3 12 L9.4 9.4 Z" fill="#D9A21B"/></svg></span>
+              <div class="chs-rt"><span class="chs-who">Chip <em>· AI agents</em></span><span class="chs-what"><b class="chs-n1" id="chsCount">0</b> decisions handled</span></div></div>
+            <div class="chs-row"><span class="chs-mark pa" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20c0-4 3.4-6 7.5-6s7.5 2 7.5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><i>✓</i></span>
+              <div class="chs-rt"><span class="chs-who">Your PA <em>· human</em></span><span class="chs-what"><b class="chs-n2" id="chsApp">0</b> approvals given</span></div></div>
+            <p class="chs-take"><span id="chsT1">0</span> done for you. <span id="chsT2">0</span> taps from you.<small>On this example claim</small></p>
+          </div>
+          <div class="chs-panel"><div class="chs-lab">Agents working</div><div class="chs-dots" id="chsDots"></div><div class="chs-hu" style="font-size:18px"><span id="chsWork">0</span><small>right now · <span id="chsDone">0</span> finished</small></div></div>
+          <div class="chs-panel"><div class="chs-lab">Agent log <span class="chs-live">LIVE</span></div><ol class="chs-log" id="chsLog"></ol></div>
+        </aside>
+      </div>
     </div>
+  </section>
+  <div class="chs-modal" id="chxModal" role="dialog" aria-modal="true" aria-label="Full run video"><button type="button" class="chs-x" id="chxClose" aria-label="Close">×</button><video id="chxVid" data-src="assets/video/swarm-v2-16x9.mp4" controls playsinline preload="none"></video></div>
+
+  <!-- ONE CLAIM, STAGE BY STAGE (hero v7 stepped stage) -->
+  <section class="chx chx-stage" id="chx">
+    <div class="chx-wrap chx-intro chx-rv">
+      <span class="chx-tag" style="color:#9a6a00;border-color:#9a6a00">Example claim · SYN-1042</span>
+      <h2 class="chx-h2" style="margin-top:16px">One claim, stage by stage.</h2>
+      <p class="chx-lead">Each agent does its part, then hands off. Anything that goes to the carrier waits for your approval.</p>
+    </div>
+    <div class="chx-travel" id="chxTravel"><div class="chx-stick"><div class="chx-wrap chx-pin">
+      <div><div class="chx-steps" id="chxSteps"></div><div class="chx-dots" id="chxDots"></div></div>
+      <div class="chx-viz" id="chxViz"></div>
+    </div></div></div>
+    <div class="chx-end">Preview build. Agent names and decision types are taken from the CRM agent code. Example values are fictional.</div>
   </section>
 
   <!-- HOW IT WORKS: ONE HIVE. EVERY CLAIM. -->
