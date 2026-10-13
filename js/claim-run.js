@@ -93,19 +93,20 @@ var root=document.getElementById('chx');
 var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* stepped section */
 var STEPS=[
- ['Agent A · Intake','The claim is sorted and filed.','Each document gets a type (<code>policy</code>, <code>dec_page</code>, <code>photo</code>) and is filed once. Date of loss, peril, policy number and mortgagee are read with the quote kept as evidence. Missing items become a list of gaps.'],
- ['Agent A · Intake','Red flags are checked first.','Flood, EUO, litigation, another PA, a cited exclusion and other flags send the intake to the firm owner before anyone engages. A weather check is recorded, marked indicative only.'],
- ['Agent H · Legal & Licensing','License and bond are on file.','Licenses, bonds and CE are tracked as found, missing or needs review, with expiry alerts.'],
- ['Agent B · Representation','Paperwork drafted, then approved.','Fee review, signature tracking, carrier contact and a delivery check. The signature package and representation email are drafts until the PA approves.'],
- ['Agent C · POL & Claim Package','The proof of loss is built and checked.','Totals come from the estimate and the deductible from the dec page, computed in code. Checks run for things like <code>insured_matches_policy</code> and <code>totals_match_estimate</code>. Statute dates stay unverified until a person confirms them.'],
- ['Agent D · Carrier Response','Carrier replies are read and compared.','Letters are classified, estimates compared and follow-ups planned. Money, legal and low-confidence items go to a person. Replies wait at the approval gate.'],
- ['Agents F & G · Checks, Invoicing','Checks routed, invoices tracked.','A check is matched to its claim and routed: iink, lender endorsement, endorse and invoice, call the policyholder, or void and reissue. Invoicing tracks what is due and drafts reminders for review.']
+ ['Intake','The claim is sorted and filed.','Each document gets a type (<code>policy</code>, <code>dec_page</code>, <code>photo</code>) and is filed once. Date of loss, peril, policy number and mortgagee are read with the quote kept as evidence. Missing items become a list of gaps.'],
+ ['Intake','Red flags are checked first.','Flood, EUO, litigation, another PA, a cited exclusion and other flags send the intake to the firm owner before anyone engages. A weather check is recorded, marked indicative only.'],
+ ['Legal & Licensing','License and bond are on file.','Licenses, bonds and CE are tracked as found, missing or needs review, with expiry alerts.'],
+ ['Representation','Paperwork drafted, then approved.','Fee review, signature tracking, carrier contact and a delivery check. The signature package and representation email are drafts until the PA approves.'],
+ ['Proof of Loss & Claim Package','The proof of loss is built and checked.','Totals come from the estimate and the deductible from the dec page, computed in code. Checks run for things like <code>insured_matches_policy</code> and <code>totals_match_estimate</code>. Statute dates stay unverified until a person confirms them.'],
+ ['Carrier Response','Carrier replies are read and compared.','Letters are classified, estimates compared and follow-ups planned. Money, legal and low-confidence items go to a person. Replies wait at the approval gate.'],
+ ['Checks & Invoicing','Checks routed, invoices tracked.','A check is matched to its claim and routed: iink, lender endorsement, endorse and invoice, call the policyholder, or void and reissue. Invoicing tracks what is due and drafts reminders for review.']
 ];
+var N={A:'Intake',H:'Legal & Licensing',B:'Representation',C:'Proof of Loss',D:'Carrier Response',F:'Checks',G:'Invoicing'};
 var VIZ=[['A','Intake: documents filed'],['A','Red flags: none'],['H','License + bond: found'],['B','Signature package drafted'],['PA','PA approved and sent','hu'],['C','POL checks: pass'],['D','Reply drafted · waits for PA'],['F','Check routed'],['G','Invoice tracked']];
 var VMAP=[[0],[1],[2],[3,4],[5],[6],[7,8]];
 var stEl=document.getElementById('chxSteps'),dots=document.getElementById('chxDots'),viz=document.getElementById('chxViz'),trav=document.getElementById('chxTravel');
 trav.style.setProperty('--n',STEPS.length);
-viz.innerHTML='<div class="chx-cardh"><b style="color:#aab6d3;font-size:12px;letter-spacing:.08em">SYN-1042 · EXAMPLE CLAIM</b></div>'+VIZ.map(function(v){return '<div class="chx-vrow'+(v[2]?' hu':'')+'"><span>'+(v[0]==='PA'?'Human':'Agent '+v[0])+'</span><span>'+v[1]+'</span></div>'}).join('');
+viz.innerHTML='<div class="chx-cardh"><b style="color:#aab6d3;font-size:12px;letter-spacing:.08em">SYN-1042 · EXAMPLE CLAIM</b></div>'+VIZ.map(function(v){return '<div class="chx-vrow'+(v[2]?' hu':'')+'"><span>'+(v[0]==='PA'?'Your PA':N[v[0]])+'</span><span>'+v[1]+'</span></div>'}).join('');
 stEl.innerHTML=STEPS.map(function(s){return '<div class="chx-step"><div class="k">'+s[0]+'</div><h3>'+s[1]+'</h3><p>'+s[2]+'</p></div>'}).join('');
 dots.innerHTML=STEPS.map(function(){return '<i></i>'}).join('');
 var steps=stEl.children,dd=dots.children,rows=viz.querySelectorAll('.chx-vrow');
