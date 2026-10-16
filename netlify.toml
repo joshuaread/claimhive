@@ -90,6 +90,11 @@
   to = "/terms.html"
   status = 200
 
+[[redirects]]
+  from = "/tools/claim-deadline-calculator"
+  to = "/tools/claim-deadline-calculator.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

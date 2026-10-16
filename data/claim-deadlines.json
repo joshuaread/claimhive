@@ -1,0 +1,576 @@
+{
+  "meta": {
+    "version": "v1",
+    "last_statute_pull": "2026-10-12",
+    "next_quarterly_pull": "2027-01-12",
+    "next_annual_verification": "2027-10-12",
+    "verification_note": "Statutes are pulled quarterly and verified yearly by a licensed firm owner."
+  },
+  "coming_soon": [
+    { "code": "OK", "name": "Oklahoma" },
+    { "code": "NC", "name": "North Carolina" },
+    { "code": "MO", "name": "Missouri" },
+    { "code": "CO", "name": "Colorado" }
+  ],
+  "states": [
+    {
+      "code": "FL",
+      "name": "Florida",
+      "rules": [
+        {
+          "id": "fl-notice-claim",
+          "name": "Notice of claim or reopened claim",
+          "rule_text": "A claim or reopened claim must be noticed to the insurer within 1 year after the date of loss.",
+          "citation": {
+            "label": "Fla. Stat. §627.70132(2)",
+            "url": "https://www.flsenate.gov/Laws/Statutes/2026/627.70132"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "years",
+          "amount": 1,
+          "trigger": "date_of_loss",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "fl-notice-supplemental",
+          "name": "Notice of supplemental claim",
+          "rule_text": "A supplemental claim must be noticed to the insurer within 18 months after the date of loss.",
+          "citation": {
+            "label": "Fla. Stat. §627.70132(2)",
+            "url": "https://www.flsenate.gov/Laws/Statutes/2026/627.70132"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "months",
+          "amount": 18,
+          "trigger": "date_of_loss",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "fl-acknowledge",
+          "name": "Acknowledge a communication",
+          "rule_text": "The insurer must acknowledge a communication about the claim within 7 calendar days after receiving it.",
+          "citation": {
+            "label": "Fla. Stat. §627.70131(1)(a)",
+            "url": "https://www.flsenate.gov/Laws/Statutes/2026/627.70131"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 7,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "fl-pay-or-deny",
+          "name": "Pay or deny",
+          "rule_text": "The insurer must pay or deny an initial, reopened, or supplemental claim within 60 days after notice of the claim.",
+          "citation": {
+            "label": "Fla. Stat. §627.70131(7)(a)",
+            "url": "https://www.flsenate.gov/Laws/Statutes/2026/627.70131"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 60,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "fl-suit",
+          "name": "Suit limitation",
+          "rule_text": "An action for breach of a property insurance contract must be brought within 5 years from the date of loss.",
+          "citation": {
+            "label": "Fla. Stat. §95.11(2)(e)",
+            "url": "https://www.flsenate.gov/Laws/Statutes/2026/95.11"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "years",
+          "amount": 5,
+          "trigger": "date_of_loss",
+          "is_suit_limitation": true,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        }
+      ]
+    },
+    {
+      "code": "TX",
+      "name": "Texas",
+      "rules": [
+        {
+          "id": "tx-acknowledge",
+          "name": "Acknowledge, begin investigation, request items",
+          "rule_text": "Not later than the 15th day after receiving notice of a claim, the insurer must acknowledge receipt, commence investigation, and request all items the insurer reasonably believes will be required. Surplus lines insurers have 30 business days.",
+          "citation": {
+            "label": "Tex. Ins. Code §542.055",
+            "url": "https://tcss.legis.texas.gov/resources/IN/htm/IN.542.htm"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 15,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true,
+          "notes": [
+            "Surplus lines: 30 business days after notice of claim."
+          ]
+        },
+        {
+          "id": "tx-accept-reject",
+          "name": "Accept or reject",
+          "rule_text": "The insurer must notify the claimant in writing of acceptance or rejection not later than the 15th business day after receiving all items requested. If arson is suspected, the period is 30 days and may be extended to 45 days.",
+          "citation": {
+            "label": "Tex. Ins. Code §542.056",
+            "url": "https://tcss.legis.texas.gov/resources/IN/htm/IN.542.htm"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "business",
+          "unit": "days",
+          "amount": 15,
+          "trigger": "proof_of_loss",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true,
+          "notes": [
+            "If arson is suspected: 30 days, with a possible extension to 45 days."
+          ]
+        },
+        {
+          "id": "tx-pay",
+          "name": "Pay after acceptance",
+          "rule_text": "If the insurer notifies the claimant that it will pay the claim or part of the claim, it must pay not later than the 5th business day after the date of that notice. Surplus lines insurers have 20 business days.",
+          "citation": {
+            "label": "Tex. Ins. Code §542.057",
+            "url": "https://tcss.legis.texas.gov/resources/IN/htm/IN.542.htm"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "business",
+          "unit": "days",
+          "amount": 5,
+          "trigger": "later_event",
+          "later_event_label": "notice of acceptance",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": false,
+          "notes": [
+            "Surplus lines: 20 business days after notice of acceptance."
+          ]
+        },
+        {
+          "id": "tx-suit-floor",
+          "name": "Suit-limitation floor",
+          "rule_text": "A contract stipulation that requires a claimant to sue on the contract within a period of less than 2 years is void. The actual suit period comes from the policy and when the claim accrues. This is a floor, not a filing date.",
+          "citation": {
+            "label": "Tex. Civ. Prac. & Rem. Code §16.070",
+            "url": "https://tcss.legis.texas.gov/resources/CP/htm/CP.16.htm"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "years",
+          "amount": 2,
+          "trigger": "date_of_loss",
+          "is_suit_limitation": true,
+          "is_floor_only": true,
+          "computes_filing_date": false
+        }
+      ]
+    },
+    {
+      "code": "LA",
+      "name": "Louisiana",
+      "rules": [
+        {
+          "id": "la-start-adjustment",
+          "name": "Start loss adjustment",
+          "rule_text": "The insurer must initiate loss adjustment of a property damage claim within 14 days after notification of loss. In a catastrophe, that period is 30 days.",
+          "citation": {
+            "label": "La. R.S. 22:1892(A)(3)",
+            "url": "https://legis.la.gov/legis/Law.aspx?d=509041"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 14,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true,
+          "notes": [
+            "In a catastrophe: 30 days after notification of loss."
+          ]
+        },
+        {
+          "id": "la-pol-form-send",
+          "name": "Send proof-of-loss form",
+          "rule_text": "If the insurer requires a proof-of-loss statement, it must send the form to the insured within 10 business days of receiving the claim.",
+          "citation": {
+            "label": "La. R.S. 22:1892.3(C)–(D)",
+            "url": "https://www.legis.la.gov/legis/Law.aspx?d=1430994"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "business",
+          "unit": "days",
+          "amount": 10,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "la-pol-form-complete",
+          "name": "Say whether the proof of loss is complete",
+          "rule_text": "Within 10 business days of receiving the proof-of-loss statement, the insurer must tell the insured whether the statement is complete.",
+          "citation": {
+            "label": "La. R.S. 22:1892.3(C)–(D)",
+            "url": "https://www.legis.la.gov/legis/Law.aspx?d=1430994"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "business",
+          "unit": "days",
+          "amount": 10,
+          "trigger": "proof_of_loss",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "la-pay",
+          "name": "Pay after satisfactory proof of loss",
+          "rule_text": "The insurer must pay the amount of any claim due any insured within 30 days after receipt of satisfactory proofs of loss.",
+          "citation": {
+            "label": "La. R.S. 22:1892(A)(1)",
+            "url": "https://legis.la.gov/legis/Law.aspx?d=509041"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 30,
+          "trigger": "proof_of_loss",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "la-suit-floor",
+          "name": "Suit-limitation floor",
+          "rule_text": "A first-party property policy may not limit the period for filing a claim to less than 24 months from the inception of the loss. This is a floor. Check the policy for the actual period.",
+          "citation": {
+            "label": "La. R.S. 22:868(B)",
+            "url": "https://legis.la.gov/legis/Law.aspx?d=507749"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "months",
+          "amount": 24,
+          "trigger": "date_of_loss",
+          "is_suit_limitation": true,
+          "is_floor_only": true,
+          "computes_filing_date": false
+        }
+      ]
+    },
+    {
+      "code": "GA",
+      "name": "Georgia",
+      "rules": [
+        {
+          "id": "ga-acknowledge",
+          "name": "Acknowledge the claim",
+          "rule_text": "The insurer must acknowledge notice of a claim within 15 days.",
+          "citation": {
+            "label": "Ga. Comp. R. & Regs. 120-2-52-.03(1)",
+            "url": "https://rules.sos.ga.gov/gac/120-2-52-.03"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 15,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "ga-pol-forms",
+          "name": "Send proof-of-loss forms",
+          "rule_text": "The insurer must furnish proof-of-loss forms to the insured within 15 days of notice of the claim.",
+          "citation": {
+            "label": "Ga. Comp. R. & Regs. 120-2-52-.03(2)",
+            "url": "https://rules.sos.ga.gov/gac/120-2-52-.03"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 15,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "ga-affirm-deny",
+          "name": "Affirm or deny after proof of loss",
+          "rule_text": "For fire and extended coverage, the insurer must affirm or deny coverage within 60 days after receiving a completed proof of loss.",
+          "citation": {
+            "label": "Ga. Comp. R. & Regs. 120-2-52-.03(3)",
+            "url": "https://rules.sos.ga.gov/gac/120-2-52-.03"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 60,
+          "trigger": "proof_of_loss",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "ga-investigate-no-pol",
+          "name": "Investigate when no proof of loss is required",
+          "rule_text": "If no proof of loss is required, the insurer has 30 days to investigate the claim.",
+          "citation": {
+            "label": "Ga. Comp. R. & Regs. 120-2-52-.03(3)",
+            "url": "https://rules.sos.ga.gov/gac/120-2-52-.03"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 30,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true,
+          "notes": [
+            "This 30-day investigation window applies when no proof of loss is required."
+          ]
+        },
+        {
+          "id": "ga-pay",
+          "name": "Pay after coverage is confirmed",
+          "rule_text": "The insurer must pay within 10 days after coverage is confirmed and the amount is undisputed.",
+          "citation": {
+            "label": "Ga. Comp. R. & Regs. 120-2-52-.03(4)",
+            "url": "https://rules.sos.ga.gov/gac/120-2-52-.03"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 10,
+          "trigger": "later_event",
+          "later_event_label": "coverage confirmation with an undisputed amount",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": false
+        }
+      ]
+    },
+    {
+      "code": "IL",
+      "name": "Illinois",
+      "rules": [
+        {
+          "id": "il-acknowledge",
+          "name": "Acknowledge with reasonable promptness",
+          "rule_text": "An insurer must acknowledge a communication about a claim with reasonable promptness, which is no more than 15 working days after receiving the communication. Illinois defines “days” as calendar days, and this acknowledgment window is stated in working days. This tool counts working days as U.S. business days.",
+          "citation": {
+            "label": "50 Ill. Adm. Code 919.40",
+            "url": "https://www.ilga.gov/commission/jcar/admincode/050/050009190000400R.html"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "business",
+          "unit": "days",
+          "amount": 15,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "il-pay",
+          "name": "Offer payment of an undisputed amount",
+          "rule_text": "The insurer must offer payment of any undisputed amount within 30 days after affirming liability. There is no fixed day count for the affirm-or-deny decision itself; that must be done in a reasonable time.",
+          "citation": {
+            "label": "50 Ill. Adm. Code 919.50(a)",
+            "url": "https://www.ilga.gov/commission/jcar/admincode/050/050009190000500R.html"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 30,
+          "trigger": "later_event",
+          "later_event_label": "affirmation of liability",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": false
+        },
+        {
+          "id": "il-suit-tolling",
+          "name": "Suit-limitation tolling",
+          "rule_text": "The policy’s suit-limitation period is paused from the day proof of loss is filed until the claim is denied. The length of the suit period itself comes from the policy.",
+          "citation": {
+            "label": "215 ILCS 5/143.1",
+            "url": "https://ilga.gov/documents/legislation/ilcs/documents/021500050K143.1.htm"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": null,
+          "amount": null,
+          "trigger": "informational",
+          "is_suit_limitation": true,
+          "is_floor_only": false,
+          "computes_filing_date": false,
+          "tolling_starts_on": "proof_of_loss"
+        }
+      ]
+    },
+    {
+      "code": "SC",
+      "name": "South Carolina",
+      "rules": [
+        {
+          "id": "sc-pol-forms",
+          "name": "Furnish proof-of-loss forms",
+          "rule_text": "The insurer must furnish proof-of-loss forms within 20 days after receiving notice of the claim. If it does not, the insured is treated as having complied with any proof-of-loss requirement.",
+          "citation": {
+            "label": "S.C. Code §38-59-10",
+            "url": "https://www.scstatehouse.gov/code/t38c059.php"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 20,
+          "trigger": "notice_of_claim",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        },
+        {
+          "id": "sc-refusal-after-demand",
+          "name": "Refusal to pay after demand",
+          "rule_text": "If an insurer refuses to pay a claim within 90 days after a demand, that refusal can trigger an attorney-fee award. This is an attorney-fee trigger, not a payment deadline.",
+          "citation": {
+            "label": "S.C. Code §38-59-40",
+            "url": "https://www.scstatehouse.gov/code/t38c059.php"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "days",
+          "amount": 90,
+          "trigger": "later_event",
+          "later_event_label": "written demand",
+          "is_suit_limitation": false,
+          "is_floor_only": false,
+          "computes_filing_date": false,
+          "notes": [
+            "Attorney-fee trigger, not a statutory payment due date."
+          ]
+        },
+        {
+          "id": "sc-contract-sol",
+          "name": "Contract statute of limitations",
+          "rule_text": "The general contract statute of limitations is 3 years. Whether a property policy may shorten that period has not been verified for this tool.",
+          "citation": {
+            "label": "S.C. Code §15-3-530(1)",
+            "url": "https://www.scstatehouse.gov/code/t15c003.php"
+          },
+          "verified": true,
+          "verified_by": "licensed firm owner",
+          "verified_on": "2026-10-12",
+          "next_review": "2027-01-12",
+          "day_type": "calendar",
+          "unit": "years",
+          "amount": 3,
+          "trigger": "date_of_loss",
+          "is_suit_limitation": true,
+          "is_floor_only": false,
+          "computes_filing_date": true
+        }
+      ]
+    }
+  ]
+}

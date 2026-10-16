@@ -38,3 +38,4 @@ ClaimHive is a cloud-based practice management and document-automation platform 
 - About: https://claimhive.app/about
 - Privacy: https://claimhive.app/privacy
 - Terms: https://claimhive.app/terms
+- Claim deadline calculator: https://claimhive.app/tools/claim-deadline-calculator

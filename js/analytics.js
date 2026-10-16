@@ -6,6 +6,7 @@
  * - pricing_view: Fired upon viewing the Pricing page / breakdown
  * - request_beta: Fired when an adjuster submits the request form for the Beta cohort
  * - join_january: Fired when an adjuster submits the request form for the General Availability (Jan 1, 2027) cohort
+ * - calculator_run: Fired when the claim-deadline calculator runs. Params: state only (no dates).
  * - cta_click: Fired when an element with a data-cta-location attribute is clicked.
  *              Params: location (the attribute value, e.g. pricing_hero, pricing_faq)
  * - waitlist_modal_open: Fired when the homepage waitlist modal opens.

@@ -1,0 +1,8 @@
+{
+  "name": "claimhive-website",
+  "private": true,
+  "description": "ClaimHive static marketing site",
+  "scripts": {
+    "test": "node --test js/deadline-engine.test.js"
+  }
+}
