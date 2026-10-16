@@ -8,6 +8,10 @@
  * - join_january: Fired when an adjuster submits the request form for the General Availability (Jan 1, 2027) cohort
  * - cta_click: Fired when an element with a data-cta-location attribute is clicked.
  *              Params: location (the attribute value, e.g. pricing_hero, pricing_faq)
+ * - waitlist_modal_open: Fired when the homepage waitlist modal opens.
+ *              Params: location only. No email, name, or other personal data.
+ * - waitlist_submit: Fired when a waitlist form is submitted (modal or inline).
+ *              Params: source (modal|inline) only. No email, name, or other personal data.
  */
 
 (function () {
@@ -47,8 +51,8 @@
 
   /**
    * Unified event dispatch function
-   * @param {string} eventName 
-   * @param {Object} params 
+   * @param {string} eventName
+   * @param {Object} params
    */
   window.trackClaimHiveEvent = function (eventName, params) {
     params = params || {};
@@ -72,6 +76,20 @@
     }
 
     console.log('[Claim Hive Event Tracked]', eventName, params);
+  };
+
+  window.trackWaitlistModalOpen = function (location) {
+    window.trackClaimHiveEvent('waitlist_modal_open', {
+      location: location || 'homepage_modal',
+      transport_type: 'beacon'
+    });
+  };
+
+  window.trackWaitlistSubmit = function (source) {
+    window.trackClaimHiveEvent('waitlist_submit', {
+      source: source === 'modal' ? 'modal' : 'inline',
+      transport_type: 'beacon'
+    });
   };
 
   // CTA click tracking: any element with data-cta-location fires cta_click
