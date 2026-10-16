@@ -197,6 +197,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!email) return;
 
+        if (typeof window.trackWaitlistSubmit === 'function') {
+          const isModal = !!(form.closest('#alpha-modal'));
+          window.trackWaitlistSubmit(isModal ? 'modal' : 'inline');
+        }
+
         const btn = form.querySelector('button[type="submit"]');
         if (btn) {
           btn.disabled = true;
@@ -334,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (enterpriseNotice) enterpriseNotice.style.display = 'none';
       if (seatCtaBtn) {
         seatCtaBtn.innerHTML = `<span>Request beta access</span> <span class="hive-star-icon">✦</span>`;
-        seatCtaBtn.setAttribute('href', '#waitlist');
+        seatCtaBtn.setAttribute('href', 'request.html?cohort=beta');
       }
     } else {
       if (seatPriceDisplay) seatPriceDisplay.textContent = "Custom";
@@ -365,35 +370,32 @@ document.addEventListener('DOMContentLoaded', () => {
   function openAlphaModal() {
     if (alphaModal) {
       alphaModal.classList.add('open');
+      alphaModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      if (typeof window.trackWaitlistModalOpen === 'function') {
+        window.trackWaitlistModalOpen('homepage_modal');
+      }
+      const emailField = alphaModal.querySelector('input[type="email"]');
+      if (emailField) emailField.focus();
     }
   }
 
   function closeAlphaModal() {
     if (alphaModal) {
       alphaModal.classList.remove('open');
+      alphaModal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
   }
 
   alphaModalTriggers.forEach(btn => {
     btn.addEventListener('click', (e) => {
-      // If there's an in-page waitlist anchor and user is on index, smooth scroll, else open modal
-      const targetHash = btn.getAttribute('href');
-      if (targetHash === '#waitlist') {
-        const waitlistEl = document.getElementById('waitlist');
-        if (waitlistEl) {
-          e.preventDefault();
-          waitlistEl.scrollIntoView({ behavior: 'smooth' });
-          const emailField = waitlistEl.querySelector('input[type="email"]');
-          if (emailField) emailField.focus();
-          return;
-        }
-      }
       if (alphaModal) {
         e.preventDefault();
         openAlphaModal();
+        return;
       }
+      // Other pages have no modal: let the link go to request.html?cohort=beta
     });
   });
 

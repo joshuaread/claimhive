@@ -1,39 +1,40 @@
-# Claim Hive
-> The Calm Operating System Built Exclusively for Licensed USA Public Adjusters.
+# ClaimHive
+> AI command center and CRM for licensed United States public adjusting firms.
 
-Claim Hive is a modern, cloud-based practice management, document automation, and operational backbone designed exclusively for licensed United States Public Adjusters (PAs) and independent public adjusting firms.
+ClaimHive is a cloud-based practice management and document-automation platform built inside a working public adjusting firm. It is for licensed U.S. public adjusters, from solo practitioners to boutique firms, and their staff.
 
-## What Claim Hive Is
-- **The Core Adjuster Workflow**: Manages the linear claim lifecycle across 5 stages: Intake, Initial Evidence & Policy Review, Scope & Estimate Organization, Carrier Bad-Faith Letter Generation & Demand Tracking, and Settlement Reconciliation.
-- **Radical Administrative Relief**: Automates repetitive carrier follow-ups, statutory deadline reminders, document indexing, and status updates. In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. One firm's result. Results vary.
-- **Policyholder Transparency**: Provides secure, real-time read-only claim trackers for property owners via magic links, drastically reducing incoming phone calls and text interruptions during active claim cycles.
-- **Zero AI Model Training Guarantee**: Court-tested, legally binding architectural covenants ensure that client claim documents, policy transcripts, estimates, and work-product are strictly isolated and NEVER ingested into shared public or private foundation models.
-- **Rapid Time-to-Value**: 45-minute learning curve with linear file momentum instead of 30+ nested database tabs.
+## What ClaimHive Is
+- An AI command center and CRM for public adjusting firms.
+- Built to manage the claim lifecycle: intake, evidence and policy review, scope and estimate organization, demand tracking, and settlement reconciliation.
+- Chip drafts paperwork and follow-ups for a licensed adjuster to review.
+- A read-only client portal for property owners represented by a licensed public adjuster.
+- Customer claim files are not used to train public AI models.
 
 ## Who It Is For
-- **Licensed USA Public Adjusters (PAs)**: Solo practitioners and boutique firms handling commercial, industrial, and high-value residential property loss claims.
-- **Adjuster Support Staff**: In-house estimators, document managers, file coordinators, and client concierges.
-- **Claimants / Insureds**: Homeowners and business owners represented by licensed PAs (accessed free of charge via dedicated secure view-only portals).
+- Licensed USA public adjusters and independent public adjusting firms.
+- Adjuster support staff: estimators, document managers, file coordinators, and client concierges.
+- Policyholders represented by a licensed PA, via a view-only portal.
 
-## Transparent Pricing Model
-- **$80 per seat / month flat**: Simple, transparent pricing with no surprises.
-- **Founding Rate Lock**: $80/seat rate locked through June 30, 2027 for firms that join before January 31, 2027.
-- **Zero Base Platform Fees**: No monthly platform tolls, no broker account surcharges, and no carrier fee splits.
-- **Free Policyholder Access**: Zero cost for client accounts or guest access.
-- **Unlimited File Storage**: High-resolution photos, Xactimate/Symbility PDF imports, engineers' reports, and video walk-throughs included.
-- **No Long-Term Contracts**: Month-to-month billing with instant data export (CSV, ZIP) at any time.
+## Pricing
+- $80 per seat per month plus direct token usage (compute ClaimHive's AI does for the firm).
+- Founding rate of $80/seat per month locked through June 30, 2027 for firms that join before January 31, 2027.
+- Beta opens November 1, 2026. General availability January 1, 2027.
+- Month-to-month billing. Firms can cancel and export their data.
+- No per-claim surcharge and no cut of settlement fees.
+- Policyholder / guest portal access is included.
 
-## What Claim Hive Is NOT
-- **NOT a Generic Sales CRM**: We do not build sales funnels, marketing email drip campaigns, or real estate prospecting tools.
-- **NOT an Estimating Engine**: Claim Hive does not calculate line-item construction pricing; it organizes, reconciles, and tracks Xactimate and Symbility estimates.
-- **NOT an Insurance Carrier Tool**: Claim Hive is built exclusively for policyholder advocates (Public Adjusters) and is never accessible to carrier desk adjusters or insurance defense counsel.
-- **NOT an Unverified AI Chatbot Wrapper**: We do not dump raw claim files into open prompt interfaces. All automated document drafts, statutory deadline calculations, and letters are grounded in state insurance codes and require licensed adjuster review.
+## What ClaimHive Is NOT
+- NOT a generic sales CRM, marketing funnel, or real-estate prospecting tool.
+- NOT an estimating engine: it organizes, reconciles, and tracks Xactimate and Symbility estimates; it does not calculate line-item construction pricing.
+- NOT a carrier or insurance-defense tool. It is built for policyholder advocates (public adjusters).
+- NOT an unverified chatbot wrapper. Automated drafts and deadline calculations require licensed adjuster review.
 
-## Key Links & Resources
-- Main Website: https://claimhive.app
-- Product Lifecycle: https://claimhive.app/product.html
-- Transparent Pricing: https://claimhive.app/pricing.html
-- Security & Trust: https://claimhive.app/security.html
-- About Us: https://claimhive.app/about.html
-- Request Access: https://claimhive.app/request.html
-- Direct Founder Onboarding: Facilitated directly by founder Josh Read and the ClaimHive team.
+## Key Links
+- Website: https://claimhive.app
+- Product: https://claimhive.app/product
+- Pricing: https://claimhive.app/pricing
+- Request beta access: https://claimhive.app/request
+- Security: https://claimhive.app/security
+- About: https://claimhive.app/about
+- Privacy: https://claimhive.app/privacy
+- Terms: https://claimhive.app/terms

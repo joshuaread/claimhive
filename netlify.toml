@@ -1,6 +1,44 @@
 [build]
   publish = "."
 
+# Do not publish local-only ops files or unused heavy assets.
+# force=true so these win over files that still exist in the publish directory.
+[[redirects]]
+  from = "/server.py"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/google_apps_script.js"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tailwind.config.js"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/design-system.html"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/design-system"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/assets/hero-adjuster-truck.jpg"
+  to = "/index.html"
+  status = 404
+  force = true
+
 # Protect internal company OS documents from public web browsing
 [[redirects]]
   from = "/company_os/*"

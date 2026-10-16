@@ -3,32 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ClaimHive — From 20 to 38 claims a month, in our own firm</title>
-  <meta name="description" content="ClaimHive is the AI command center built inside a working public adjusting firm. In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. One firm's result. Results vary. Beta opens November 1, 2026.">
+  <title>ClaimHive — AI Command Center for Public Adjusters</title>
+  <meta name="description" content="AI command center and CRM for public adjusting firms, built inside a working PA firm. Beta opens November 1, 2026 at $80/seat/month plus token usage.">
 
   <link rel="canonical" href="https://claimhive.app/">
+  <meta name="twitter:url" content="https://claimhive.app/">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ClaimHive">
   <meta property="og:url" content="https://claimhive.app/">
-  <meta property="og:title" content="ClaimHive — AI Claims Software for Public Adjusters">
-  <meta property="og:description" content="The AI command center built inside a working public adjusting firm. In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. One firm's result. Results vary. Beta opens November 1, 2026.">
+  <meta property="og:title" content="ClaimHive — AI Command Center for Public Adjusters">
+  <meta property="og:description" content="AI command center and CRM for public adjusting firms, built inside a working PA firm. Beta opens November 1, 2026 at $80/seat/month plus token usage.">
   <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@ClaimHiveApp">
-  <meta name="twitter:title" content="ClaimHive — AI Claims Software for Public Adjusters">
-  <meta name="twitter:description" content="The AI command center built inside a working public adjusting firm. In our own firm, adjusters went from an average of 20 to 38 claims a month, about $106,000 more in fees each per month. One firm's result. Results vary.">
+  <meta name="twitter:title" content="ClaimHive — AI Command Center for Public Adjusters">
+  <meta name="twitter:description" content="AI command center and CRM for public adjusting firms, built inside a working PA firm. Beta opens November 1, 2026 at $80/seat/month plus token usage.">
   <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
 
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript>
 
   <!-- Core Stylesheets -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/site.css">
-  <link rel="stylesheet" href="css/claim-run.css">
+  <link rel="stylesheet" href="css/claim-run.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/claim-run.css"></noscript>
 
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -37,6 +42,62 @@
   <script src="js/analytics.js" defer></script>
   <script src="js/site.js" defer></script>
   <script src="js/claim-run.js" defer></script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://claimhive.app/#organization",
+      "name": "ClaimHive",
+      "url": "https://claimhive.app",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://claimhive.app/assets/claim-hive-logo.png"
+      },
+      "email": "hello@claimhive.app",
+      "description": "ClaimHive is an AI command center and CRM for licensed U.S. public adjusting firms. Beta opens November 1, 2026.",
+      "sameAs": [
+        "https://www.linkedin.com/company/claimhive/",
+        "https://x.com/ClaimHiveApp",
+        "https://www.youtube.com/@ClaimHive"
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://claimhive.app/#software",
+      "name": "ClaimHive",
+      "url": "https://claimhive.app",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "ClaimHive is the AI command center and CRM built inside a working public adjusting firm. Beta opens November 1, 2026. Founding price is $80 per seat per month plus direct token usage, locked through June 30, 2027 for firms that join before January 31, 2027.",
+      "offers": {
+        "@type": "Offer",
+        "price": "80",
+        "priceCurrency": "USD",
+        "description": "$80 per seat per month plus direct token usage"
+      },
+      "publisher": {
+        "@id": "https://claimhive.app/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://claimhive.app/#webpage",
+      "url": "https://claimhive.app/",
+      "name": "ClaimHive \u2014 AI Command Center for Public Adjusters",
+      "description": "AI command center and CRM for public adjusting firms, built inside a working PA firm. Beta opens November 1, 2026 at $80/seat/month plus token usage.",
+      "isPartOf": {
+        "@id": "https://claimhive.app/#organization"
+      },
+      "about": {
+        "@id": "https://claimhive.app/#software"
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body class="bg-serene">
 
@@ -45,7 +106,7 @@
     <div class="container container-wide">
       <nav class="nav-bar" style="height: 72px;">
         <a href="index.html" class="brand-logo-link" aria-label="ClaimHive Home">
-          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="brand-logo-img" style="height: 32px;">
+          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="brand-logo-img" style="height: 32px;" width="130" height="32">
         </a>
 
         <ul class="nav-links">
@@ -56,7 +117,7 @@
         </ul>
 
         <div class="nav-actions">
-          <a href="#waitlist" class="btn btn-sm btn-navy" style="background: #1A1A1A; color: #FFFFFF; border-radius: 999px; padding: 0.5rem 1.15rem; font-size: 0.8125rem; font-weight: 600;" data-open-modal="beta">
+          <a href="request.html?cohort=beta" class="btn btn-sm btn-navy" style="background: #1A1A1A; color: #FFFFFF; border-radius: 999px; padding: 0.5rem 1.15rem; font-size: 0.8125rem; font-weight: 600;" data-open-modal="beta" data-cta-location="nav">
             Request beta access
           </a>
           <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
@@ -72,7 +133,7 @@
     <a href="pricing.html" class="nav-link">Pricing</a>
     <a href="about.html" class="nav-link">About</a>
     <div style="margin-top: 1.5rem;">
-      <a href="#waitlist" class="btn btn-lg btn-gold" style="width: 100%; text-align: center;" data-open-modal="beta">
+      <a href="request.html?cohort=beta" class="btn btn-lg btn-gold" style="width: 100%; text-align: center;" data-open-modal="beta" data-cta-location="mobile_nav">
         Request beta access
       </a>
     </div>
@@ -107,7 +168,7 @@
           <span class="alpha-live-label">BETA OPENS NOVEMBER 1</span>
           <div class="alpha-live-row">
             <span class="alpha-live-title">Get your spot early.</span>
-            <a href="#waitlist" class="btn btn-gold btn-alpha-pulse" style="padding: 0.75rem 1.65rem; border-radius: 999px; font-weight: 600;" data-open-modal="beta">
+            <a href="request.html?cohort=beta" class="btn btn-gold btn-alpha-pulse" style="padding: 0.75rem 1.65rem; border-radius: 999px; font-weight: 600;" data-cta-location="hero">
               Request beta access
             </a>
           </div>
@@ -624,7 +685,7 @@
     <div class="container container-wide">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="footer-logo-img">
+          <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" class="footer-logo-img" width="155" height="38" loading="lazy" decoding="async">
           <p class="footer-desc">
             The AI command center built inside a working public adjusting firm.
           </p>

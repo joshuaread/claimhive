@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /server.py
+Disallow: /google_apps_script.js
+Disallow: /design-system.html
+Disallow: /tailwind.config.js
 
 Sitemap: https://claimhive.app/sitemap.xml
