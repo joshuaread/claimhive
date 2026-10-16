@@ -304,9 +304,10 @@
         label: rule.citation.label,
         url: rule.citation.url
       },
-      verified: true,
-      verifiedBy: rule.verified_by,
-      verifiedOn: rule.verified_on,
+      verified: rule.verified === true,
+      verifiedBy: rule.verified_by || null,
+      verifiedOn: rule.verified_on || null,
+      sourceChecked: rule.source_checked || null,
       nextReview: rule.next_review,
       dayType: rule.day_type,
       periodLabel: periodLabel(rule),
@@ -466,7 +467,7 @@
     var rules = state.rules || [];
     for (var i = 0; i < rules.length; i++) {
       var rule = rules[i];
-      if (rule.verified !== true) continue;
+      if (!rule.source_checked) continue;
       results.push(evaluateRule(rule, input));
     }
 

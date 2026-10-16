@@ -100,22 +100,25 @@ test('calendarDaysBetween and laterDate pick the more lenient date', () => {
   assert.equal(iso(engine.laterDate(d('2028-01-01'), d('2027-01-01'))), '2028-01-01');
 });
 
-test('JSON contains only verified rules and required provenance fields', () => {
-  const required = ['citation', 'verified_by', 'verified_on', 'next_review', 'verified'];
+test('JSON contains only source-checked cited rules; owner verification is pending', () => {
   let count = 0;
   for (const state of data.states) {
     for (const rule of state.rules) {
       count += 1;
-      assert.equal(rule.verified, true, rule.id + ' must be verified');
-      for (const field of required) {
-        assert.ok(rule[field], rule.id + ' missing ' + field);
-      }
+      assert.equal(rule.verified, false, rule.id + ' must not claim owner verification');
+      assert.equal(rule.verified_by, null, rule.id + ' verified_by');
+      assert.equal(rule.verified_on, null, rule.id + ' verified_on');
+      assert.equal(rule.source_checked, '2026-10-12', rule.id + ' source_checked');
+      assert.ok(rule.citation, rule.id + ' missing citation');
       assert.ok(rule.citation.label);
       assert.ok(/^https:\/\//.test(rule.citation.url), rule.id + ' citation url');
-      assert.equal(rule.verified_by, 'licensed firm owner');
     }
   }
   assert.equal(count, 25);
+  assert.equal(
+    data.meta.source_note,
+    'Rules are cited to official sources. Professional review is pending. Not legal advice.'
+  );
   assert.deepEqual(data.coming_soon.map((s) => s.code), ['OK', 'NC', 'MO', 'CO']);
   assert.deepEqual(data.states.map((s) => s.code), ['FL', 'TX', 'LA', 'GA', 'IL', 'SC']);
 });
@@ -148,7 +151,8 @@ test('Florida dated clocks from a known date of loss', () => {
   assert.equal(byId['fl-suit'].dueDate, '2030-04-16');
   assert.equal(byId['fl-notice-supplemental'].daysRemaining, 0);
   assert.ok(byId['fl-acknowledge'].daysRemaining < 0);
-  assert.equal(result.results.every((r) => r.verified), true);
+  assert.equal(result.results.every((r) => r.verified), false);
+  assert.equal(result.results.every((r) => r.sourceChecked === '2026-10-12'), true);
 });
 
 test('Texas accept-or-reject needs a proof-of-loss date', () => {
@@ -233,7 +237,7 @@ test('policy override selects the later date as the one that favors the policyho
   assert.equal(floorVsShortPolicy.policyComparison.favorsPolicyholder.source, 'statute');
 });
 
-test('Illinois working days are counted as business days; unverified suit length is absent', () => {
+test('Illinois working days are counted as business days; uncited suit length is absent', () => {
   const result = engine.calculateDeadlines(data, {
     state: 'IL',
     dateOfLoss: '2026-01-02',
@@ -284,15 +288,27 @@ test('Georgia 60-day affirm/deny waits for proof of loss; 30-day investigation u
   assert.equal(withPol.results.find((r) => r.id === 'ga-affirm-deny').dueDate, '2026-08-19');
 });
 
-test('unverified rules never appear even if injected into the dataset', () => {
+test('source-checked cited rules still display when owner verification is pending', () => {
+  const result = engine.calculateDeadlines(data, {
+    state: 'FL',
+    dateOfLoss: '2025-04-16',
+    asOf: '2026-10-16'
+  });
+  assert.equal(result.ok, true);
+  assert.ok(result.results.length >= 5);
+  assert.equal(result.results.every((r) => r.verified === false), true);
+  assert.equal(result.results.every((r) => !!r.sourceChecked), true);
+});
+
+test('rows without a source-checked citation never appear even if injected', () => {
   const poisoned = JSON.parse(JSON.stringify(data));
   poisoned.states[0].rules.push({
     id: 'fl-fake',
-    name: 'Unverified trap',
+    name: 'Unverified-source trap',
     rule_text: 'should never show',
     citation: { label: 'none', url: 'https://example.com' },
-    verified: false,
-    verified_by: 'licensed firm owner',
+    verified: true,
+    verified_by: 'injected-trap',
     verified_on: '2026-10-12',
     next_review: '2027-01-12',
     day_type: 'calendar',

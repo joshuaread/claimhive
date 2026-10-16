@@ -1,5 +1,5 @@
 /**
- * Claim deadline calculator page — loads verified rules and renders results.
+ * Claim deadline calculator page — loads source-checked, cited rules and renders results.
  * GA4: calculator_run with state only. Dates are never sent to analytics.
  */
 (function () {
@@ -98,8 +98,9 @@
           '" target="_blank" rel="noopener noreferrer">' +
           escapeHtml(result.citation.label) + '</a></p>' +
         '<p class="field-hint">Counted from the ' + escapeHtml(result.triggerLabel) +
-          '. Verified ' + escapeHtml(result.verifiedOn) +
-          '. Next review ' + escapeHtml(result.nextReview) + '.</p>' +
+          '. Source checked ' + escapeHtml(result.sourceChecked) +
+          (result.nextReview ? '. Next source check ' + escapeHtml(result.nextReview) : '') +
+          '.</p>' +
         notes +
       '</article>'
     );
@@ -121,7 +122,7 @@
           '<p class="field-hint" style="margin:0.35rem 0 0">' + escapeHtml(comparison.statute.label) + '</p>' +
         '</div>'
       : '<div class="calc-lenient-box"><div class="label">Statute deadline</div>' +
-          '<p class="calc-empty-date" style="margin:0">No verified suit-limitation date for this state.</p></div>';
+          '<p class="calc-empty-date" style="margin:0">No cited suit-limitation date for this state.</p></div>';
 
     var policyFavored = favoredSource === 'policy' || favoredSource === 'same';
 
@@ -176,13 +177,14 @@
     var rows = [];
     data.states.forEach(function (state) {
       state.rules.forEach(function (rule) {
+        if (!rule.source_checked) return;
         rows.push(
           '<tr>' +
             '<td>' + escapeHtml(state.code) + '</td>' +
             '<td>' + escapeHtml(rule.name) + '</td>' +
             '<td><a href="' + escapeHtml(rule.citation.url) + '" target="_blank" rel="noopener noreferrer">' +
               escapeHtml(rule.citation.label) + '</a></td>' +
-            '<td>' + escapeHtml(rule.verified_on) + '</td>' +
+            '<td>' + escapeHtml(rule.source_checked) + '</td>' +
             '<td>' + escapeHtml(rule.next_review) + '</td>' +
           '</tr>'
         );
@@ -222,7 +224,7 @@
 
     if (result.comingSoon) {
       $('calc-coming-soon-text').textContent =
-        result.state.name + ' is coming soon. Verified rules for this state are not shown yet.';
+        result.state.name + ' is coming soon. Cited rules for this state are not in v1 yet.';
       $('calc-coming-soon').hidden = false;
       $('calc-coming-soon').scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
@@ -260,11 +262,11 @@
         populateStates(json);
         renderSources(json);
         var note = $('calc-verification-note');
-        if (note && json.meta && json.meta.verification_note) {
-          note.textContent = json.meta.verification_note +
+        if (note && json.meta && json.meta.source_note) {
+          note.textContent = json.meta.source_note +
             ' Last statute pull: ' + json.meta.last_statute_pull +
             '. Next quarterly pull: ' + json.meta.next_quarterly_pull +
-            '. Next yearly verification: ' + json.meta.next_annual_verification + '.';
+            '. Statutes will be pulled quarterly.';
         }
       })
       .catch(function () {
