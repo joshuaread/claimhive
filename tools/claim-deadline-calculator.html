@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claim Deadline Calculator for Property Claims — ClaimHive</title>
+  <meta name="description"
+    content="Free claim deadline calculator for public adjusters. Cited statutory clocks for Florida, Texas, Louisiana, Georgia, Illinois, and South Carolina. Rules are cited to official sources. Professional review is pending. Not legal advice.">
+  <meta name="robots" content="index,follow">
+
+  <link rel="canonical" href="https://claimhive.app/tools/claim-deadline-calculator">
+  <meta name="twitter:url" content="https://claimhive.app/tools/claim-deadline-calculator">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ClaimHive">
+  <meta property="og:url" content="https://claimhive.app/tools/claim-deadline-calculator">
+  <meta property="og:title" content="Claim Deadline Calculator for Property Claims — ClaimHive">
+  <meta property="og:description"
+    content="Free claim deadline calculator for public adjusters. Cited statutory clocks for Florida, Texas, Louisiana, Georgia, Illinois, and South Carolina. Rules are cited to official sources. Professional review is pending. Not legal advice.">
+  <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ClaimHiveApp">
+  <meta name="twitter:title" content="Claim Deadline Calculator for Property Claims — ClaimHive">
+  <meta name="twitter:description"
+    content="Free claim deadline calculator for public adjusters. Cited statutory clocks for Florida, Texas, Louisiana, Georgia, Illinois, and South Carolina. Rules are cited to official sources. Professional review is pending. Not legal advice.">
+  <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"></noscript>
+
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="stylesheet" href="../css/deadline-calculator.css">
+
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/claim-hive-icon.svg">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+  <script src="../js/analytics.js" defer></script>
+  <script src="../js/site.js" defer></script>
+  <script src="../js/deadline-engine.js" defer></script>
+  <script src="../js/deadline-calculator-page.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Claim Deadline Calculator for Property Claims",
+    "url": "https://claimhive.app/tools/claim-deadline-calculator",
+    "description": "Free calculator that dates state claim-handling rules for public adjusters, with official citations. Professional review is pending. Not legal advice.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "ClaimHive",
+      "url": "https://claimhive.app/"
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Licensed public adjusters"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this legal advice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This calculator gives general information about state claim-handling rules cited to official sources. Professional review is pending. It is not legal advice and does not create an attorney-client relationship. Confirm every deadline with a licensed attorney or your public adjuster before relying on it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which states are included?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "v1 dates source-checked, cited rules for Florida, Texas, Louisiana, Georgia, Illinois, and South Carolina. Oklahoma, North Carolina, Missouri, and Colorado appear as coming soon. Rows without a source-checked official citation are never shown. Professional review is pending. Not legal advice."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you count days?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The start date never counts. Calendar days add whole civil days. Business days and Illinois working days skip Saturdays, Sundays, and the 11 U.S. federal holidays on their observed dates (Saturday holidays observed Friday, Sunday holidays observed Monday)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my policy has a different deadline?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enter the policy deadline in the optional override. The calculator shows both the policy date and the cited statute date, and marks the later date as the deadline that favors the policyholder. Policy language, catastrophe orders, extensions, and court decisions can still change the result."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often are the statutes checked?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The statute text was read on official legislature or agency sites. Statutes will be pulled quarterly. Professional review is pending. Not legal advice. Each rule lists the source-checked date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is there no date on some rows?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Some clocks start at proof of loss or at a later event such as notice of acceptance or a written demand. If that date is not on this form, the rule and citation still appear, without a computed date. Rows without a source-checked official citation are omitted entirely."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-serene">
+
+  <div class="top-assurance-bar">
+    <span class="hide-mobile">FREE TOOL FOR PUBLIC ADJUSTERS &nbsp;•&nbsp;</span>
+    <span>CITED TO OFFICIAL SOURCES &nbsp;•&nbsp; PROFESSIONAL REVIEW PENDING &nbsp;•&nbsp; NOT LEGAL ADVICE</span>
+    &nbsp;•&nbsp;
+    <span class="highlight">✦ FL · TX · LA · GA · IL · SC</span>
+  </div>
+
+  <header class="site-header">
+    <div class="container container-wide">
+      <nav class="nav-bar">
+        <a href="../index.html" class="brand-logo-link" aria-label="ClaimHive Home">
+          <img src="../assets/claim-hive-horizontal.svg" alt="ClaimHive" class="brand-logo-img">
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../product.html" class="nav-link">Product</a></li>
+          <li><a href="../pricing.html" class="nav-link">Pricing</a></li>
+          <li><a href="claim-deadline-calculator.html" class="nav-link active">Free tools</a></li>
+          <li><a href="../about.html" class="nav-link">About Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="../request.html?cohort=beta" class="btn btn-sm btn-gold" data-cta-location="calc_nav">
+            <span>Request beta access</span>
+            <span class="hive-star-icon">✦</span>
+          </a>
+          <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu-drawer">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="../product.html" class="nav-link">Product (Six Hubs)</a>
+    <a href="../pricing.html" class="nav-link">Pricing ($80 + Usage)</a>
+    <a href="claim-deadline-calculator.html" class="nav-link active">Free tools</a>
+    <a href="../about.html" class="nav-link">About Us</a>
+    <div style="margin-top: 1.5rem;">
+      <a href="../request.html?cohort=beta" class="btn btn-lg btn-gold" style="width: 100%; text-align: center;"
+        data-cta-location="calc_mobile_nav">
+        Request beta access ✦
+      </a>
+    </div>
+  </div>
+
+  <main class="calc-page">
+    <section class="page-hero">
+      <div class="container container-narrow">
+        <span class="badge badge-gold" style="margin-bottom: 1.25rem;">
+          <span class="hive-star-gold">✦</span> FREE TOOL · OFFICIAL CITATIONS
+        </span>
+        <h1 class="page-hero-title">
+          Claim Deadline Calculator for Property Claims
+        </h1>
+        <p class="page-hero-subtitle">
+          By state, with the statute cited. Enter the date of loss. Add a proof-of-loss date when you have one.
+          Rules are cited to official sources. Professional review is pending. Not legal advice.
+        </p>
+      </div>
+    </section>
+
+    <section style="padding: 0 0 2rem;">
+      <div class="container">
+        <div class="form-shell-card calc-form-card">
+          <form id="deadline-form" novalidate>
+            <div class="form-field-grid">
+              <div class="field-group">
+                <label for="calc-state" class="field-label">State <span class="req">*</span></label>
+                <select id="calc-state" class="field-select" required>
+                  <option value="">Select a state</option>
+                </select>
+                <p class="field-hint">Oklahoma, North Carolina, Missouri, and Colorado are listed as coming soon.</p>
+              </div>
+
+              <div class="field-group">
+                <label for="calc-date-of-loss" class="field-label">Date of loss <span class="req">*</span></label>
+                <input type="date" id="calc-date-of-loss" class="field-input" required>
+                <p class="field-hint">Notice-of-claim clocks are counted from this date.</p>
+              </div>
+
+              <div class="field-group">
+                <label for="calc-proof-of-loss" class="field-label">Proof-of-loss date <span
+                    style="font-weight:500;color:var(--hive-text-muted);text-transform:none;letter-spacing:0;">(optional)</span></label>
+                <input type="date" id="calc-proof-of-loss" class="field-input">
+                <p class="field-hint">Used when the statute starts at satisfactory proof of loss or all requested items.</p>
+              </div>
+
+              <div class="field-group">
+                <label for="calc-policy-deadline" class="field-label">Policy deadline override <span
+                    style="font-weight:500;color:var(--hive-text-muted);text-transform:none;letter-spacing:0;">(optional)</span></label>
+                <input type="date" id="calc-policy-deadline" class="field-input">
+                <p class="field-hint">Your policy’s suit or claim deadline. The later of this date and the statute is marked as favoring the policyholder.</p>
+              </div>
+            </div>
+
+            <div class="field-group" style="margin-top: 1.75rem;">
+              <button type="submit" class="btn btn-gold" data-cta-location="calc_submit">
+                Calculate deadlines
+              </button>
+            </div>
+            <p id="calc-error" class="calc-form-error" hidden role="alert"></p>
+          </form>
+        </div>
+
+        <div id="calc-coming-soon" class="calc-coming-soon" hidden>
+          <span class="badge badge-gold">Coming soon</span>
+          <h2 style="margin-top:0.75rem">This state is not in v1 yet</h2>
+          <p id="calc-coming-soon-text"></p>
+        </div>
+
+        <div id="calc-results" class="calc-results" hidden aria-live="polite">
+          <h2 id="calc-results-heading" class="font-heading" style="font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1.25rem;">
+            Deadlines
+          </h2>
+          <div id="calc-results-body"></div>
+        </div>
+
+        <p id="calc-verification-note" class="calc-note-strip">
+          Rules are cited to official sources. Professional review is pending. Not legal advice.
+        </p>
+
+        <aside class="calc-disclaimer" role="note">
+          <strong>This is not legal advice.</strong>
+          This calculator gives general information about state claim-handling rules cited to official sources. Professional review is pending. It is not legal advice and does not create an attorney-client relationship. Your policy, catastrophe orders, extensions, and court decisions can change these dates. Confirm every deadline with a licensed attorney or your public adjuster before relying on it. Rows without a source-checked official citation are never shown.
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-spacious" style="padding-top: 2.5rem;">
+      <div class="container">
+        <div class="calc-how">
+          <h2>How we count days</h2>
+          <p>
+            The start date never counts. Calendar days add whole civil days and are labeled on each row.
+            Business days — and Illinois “working days” — skip Saturday, Sunday, and the 11 U.S. federal holidays in
+            5 U.S.C. 6103, using the observed date when a holiday falls on a weekend (Saturday holidays observed Friday,
+            Sunday holidays observed Monday).
+          </p>
+          <p style="margin-top: 0.75rem;">
+            Notice-based carrier clocks use the date of loss you enter. If notice was given later, use that later date
+            as the date of loss to match the carrier’s clock. Proof-of-loss clocks stay blank until you enter a
+            proof-of-loss date. A statutory floor (Texas and Louisiana suit periods) is shown for comparison and is not
+            a filing date.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-bottom: var(--hive-space-16);">
+      <div class="container">
+        <div class="calc-sources">
+          <h2>Sources</h2>
+          <p style="color: var(--hive-text-secondary); margin-bottom: 1rem;">
+            Official legislature or agency pages only. Last statute pull 12 October 2026.
+          </p>
+          <div style="overflow-x: auto;">
+            <table class="calc-sources-table">
+              <thead>
+                <tr>
+                  <th>State</th>
+                  <th>Rule</th>
+                  <th>Citation</th>
+                  <th>Source checked</th>
+                  <th>Next source check</th>
+                </tr>
+              </thead>
+              <tbody id="calc-sources-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-spacious" style="padding-top: 0;" id="faq">
+      <div class="container">
+        <div class="calc-faq">
+          <h2>Questions, answered.</h2>
+          <div class="calc-faq-item">
+            <h3>Is this legal advice?</h3>
+            <p>No. This calculator gives general information about state claim-handling rules cited to official sources. Professional review is pending. It is not legal advice and does not create an attorney-client relationship. Confirm every deadline with a licensed attorney or your public adjuster before relying on it.</p>
+          </div>
+          <div class="calc-faq-item">
+            <h3>Which states are included?</h3>
+            <p>v1 dates source-checked, cited rules for Florida, Texas, Louisiana, Georgia, Illinois, and South Carolina. Oklahoma, North Carolina, Missouri, and Colorado appear as coming soon. Rows without a source-checked official citation are never shown. Professional review is pending. Not legal advice.</p>
+          </div>
+          <div class="calc-faq-item">
+            <h3>How do you count days?</h3>
+            <p>The start date never counts. Calendar days add whole civil days. Business days and Illinois working days skip Saturdays, Sundays, and the 11 U.S. federal holidays on their observed dates (Saturday holidays observed Friday, Sunday holidays observed Monday).</p>
+          </div>
+          <div class="calc-faq-item">
+            <h3>What if my policy has a different deadline?</h3>
+            <p>Enter the policy deadline in the optional override. The calculator shows both the policy date and the cited statute date, and marks the later date as the deadline that favors the policyholder. Policy language, catastrophe orders, extensions, and court decisions can still change the result.</p>
+          </div>
+          <div class="calc-faq-item">
+            <h3>How often are the statutes checked?</h3>
+            <p>The statute text was read on official legislature or agency sites. Statutes will be pulled quarterly. Professional review is pending. Not legal advice. Each rule lists the source-checked date.</p>
+          </div>
+          <div class="calc-faq-item">
+            <h3>Why is there no date on some rows?</h3>
+            <p>Some clocks start at proof of loss or at a later event such as notice of acceptance or a written demand. If that date is not on this form, the rule and citation still appear, without a computed date. Rows without a source-checked official citation are omitted entirely.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc-cta">
+      <div class="container container-reading">
+        <svg width="46" height="40" viewBox="0 0 34 30" fill="none" stroke="var(--hive-gold-honey)" stroke-width="2"
+          aria-hidden="true">
+          <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
+        </svg>
+        <h2 class="font-heading" style="font-size: clamp(1.75rem, 4vw, 2.75rem); margin-top: 1rem;">
+          ClaimHive tracks these on every claim.
+        </h2>
+        <p>
+          ClaimHive tracks these on every claim, so no deadline gets missed in a busy storm season.
+        </p>
+        <a href="../request.html?cohort=beta" class="btn btn-lg btn-gold" data-cta-location="calc_beta_cta">
+          <span>Request beta access</span>
+          <span class="hive-star-icon">✦</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" style="margin-top: 3rem;">
+    <div class="container container-wide">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="../assets/claim-hive-horizontal.svg" alt="ClaimHive" class="footer-logo-img">
+          <p class="footer-desc">
+            The AI command center built inside a working public adjusting firm.
+          </p>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/company/claimhive/" class="footer-social-link" aria-label="ClaimHive on LinkedIn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="https://x.com/ClaimHiveApp" class="footer-social-link" aria-label="ClaimHive on X" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@ClaimHive" class="footer-social-link" aria-label="ClaimHive on YouTube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@claimhive" class="footer-social-link" aria-label="ClaimHive on TikTok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Navigation</div>
+          <a href="../index.html" class="footer-nav-link">Home</a>
+          <a href="../product.html" class="footer-nav-link">Product</a>
+          <a href="../pricing.html" class="footer-nav-link">Pricing</a>
+          <a href="../about.html" class="footer-nav-link">About Us</a>
+          <a href="claim-deadline-calculator.html" class="footer-nav-link">Deadline calculator</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Trust &amp; Legal</div>
+          <a href="../security.html" class="footer-nav-link">Security &amp; Trust</a>
+          <a href="../privacy.html" class="footer-nav-link">Privacy Policy</a>
+          <a href="../terms.html" class="footer-nav-link">Terms of Service</a>
+          <a href="mailto:hello@claimhive.app" class="footer-nav-link">hello@claimhive.app</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">Release dates</div>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">Alpha: In Progress (Invite-Only)</span>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">Beta: November 1, 2026</span>
+          <span style="font-size: 0.8125rem; color: #CBD5E1;">GA: January 1, 2027</span>
+          <span style="font-size: 0.8125rem; color: var(--hive-gold-honey); margin-top: 0.5rem;">✦ 24 Exclusive Capabilities</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 ClaimHive Inc. Built for licensed public adjusters across the United States.</div>
+        <div>Privately Harnessed LLM • Zero Public Model Training Guarantee</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

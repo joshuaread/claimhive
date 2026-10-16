@@ -1,0 +1,285 @@
+/**
+ * Claim deadline calculator — page-specific layout on top of HiveCore tokens.
+ */
+
+.calc-page {
+  padding-bottom: var(--hive-section-y);
+}
+
+.calc-form-card {
+  max-width: 860px;
+}
+
+.calc-results {
+  max-width: 860px;
+  margin: 2.5rem auto 0;
+}
+
+.calc-results[hidden],
+.calc-coming-soon[hidden],
+.calc-form-error[hidden] {
+  display: none;
+}
+
+.calc-form-error {
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--hive-radius-md);
+  background: var(--hive-danger-bg);
+  border: 1px solid var(--hive-danger-border);
+  color: var(--hive-danger);
+  font-size: var(--hive-text-sm);
+}
+
+.calc-coming-soon {
+  margin-top: 2rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: var(--hive-radius-xl);
+  border: 1px solid var(--hive-gold-300);
+  background: var(--hive-gold-50);
+}
+
+.calc-coming-soon h2 {
+  font-size: var(--hive-text-2xl);
+  margin-bottom: 0.5rem;
+}
+
+.calc-coming-soon p {
+  color: var(--hive-text-secondary);
+  margin: 0;
+}
+
+.calc-lenient {
+  margin-bottom: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  border-radius: var(--hive-radius-xl);
+  border: 1px solid var(--hive-success-border);
+  background: var(--hive-success-bg);
+}
+
+.calc-lenient h2 {
+  font-size: var(--hive-text-xl);
+  margin-bottom: 0.35rem;
+}
+
+.calc-lenient .calc-lenient-date {
+  font-family: var(--hive-font-mono);
+  font-size: var(--hive-text-lg);
+  font-weight: var(--hive-weight-semibold);
+  color: var(--hive-navy-900);
+  margin: 0.5rem 0;
+}
+
+.calc-lenient .calc-lenient-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .calc-lenient .calc-lenient-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calc-lenient-box {
+  background: #fff;
+  border: 1px solid var(--hive-border-subtle);
+  border-radius: var(--hive-radius-md);
+  padding: 1rem;
+}
+
+.calc-lenient-box.is-favored {
+  border-color: var(--hive-success);
+  box-shadow: 0 0 0 1px var(--hive-success);
+}
+
+.calc-lenient-box .label {
+  font-family: var(--hive-font-display);
+  font-size: var(--hive-text-xs);
+  font-weight: var(--hive-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--hive-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.calc-deadline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.calc-deadline-card {
+  background: var(--hive-surface);
+  border: 1px solid var(--hive-border-subtle);
+  border-radius: var(--hive-radius-xl);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  box-shadow: var(--hive-shadow-soft);
+}
+
+.calc-deadline-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.calc-deadline-head h3 {
+  font-size: var(--hive-text-lg);
+  font-weight: var(--hive-weight-bold);
+}
+
+.calc-deadline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.calc-due-date {
+  font-family: var(--hive-font-mono);
+  font-size: var(--hive-text-base);
+  font-weight: var(--hive-weight-semibold);
+  color: var(--hive-navy-900);
+  margin: 0.15rem 0 0.5rem;
+}
+
+.calc-rule-text {
+  color: var(--hive-text-secondary);
+  font-size: var(--hive-text-sm);
+  line-height: var(--hive-leading-normal);
+  margin-bottom: 0.75rem;
+}
+
+.calc-cite {
+  font-size: var(--hive-text-sm);
+}
+
+.calc-cite a {
+  color: var(--hive-info);
+  font-weight: var(--hive-weight-semibold);
+  text-decoration: none;
+}
+
+.calc-cite a:hover,
+.calc-cite a:focus-visible {
+  text-decoration: underline;
+}
+
+.calc-notes {
+  margin: 0.75rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--hive-text-muted);
+  font-size: var(--hive-text-sm);
+}
+
+.calc-empty-date {
+  color: var(--hive-text-muted);
+  font-size: var(--hive-text-sm);
+  font-style: italic;
+}
+
+.calc-note-strip {
+  max-width: 860px;
+  margin: 2rem auto 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--hive-gold-500);
+  background: var(--hive-gold-50);
+  border-radius: 0 var(--hive-radius-md) var(--hive-radius-md) 0;
+  color: var(--hive-text-secondary);
+  font-size: var(--hive-text-sm);
+}
+
+.calc-disclaimer {
+  max-width: 860px;
+  margin: 2rem auto 0;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--hive-border-default);
+  border-radius: var(--hive-radius-lg);
+  background: #fff;
+  color: var(--hive-text-secondary);
+  font-size: var(--hive-text-sm);
+  line-height: var(--hive-leading-normal);
+}
+
+.calc-disclaimer strong {
+  color: var(--hive-navy-900);
+}
+
+.calc-how,
+.calc-sources,
+.calc-faq,
+.calc-cta {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calc-how h2,
+.calc-sources h2,
+.calc-faq h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+.calc-how p,
+.calc-faq p {
+  color: var(--hive-text-secondary);
+}
+
+.calc-sources-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--hive-text-sm);
+  background: #fff;
+  border-radius: var(--hive-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--hive-border-subtle);
+}
+
+.calc-sources-table th,
+.calc-sources-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--hive-border-whisper);
+}
+
+.calc-sources-table th {
+  background: var(--hive-canvas-alt);
+  font-family: var(--hive-font-display);
+  font-size: var(--hive-text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--hive-navy-900);
+}
+
+.calc-sources-table a {
+  color: var(--hive-info);
+}
+
+.calc-faq-item {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--hive-border-subtle);
+}
+
+.calc-faq-item h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.calc-cta {
+  text-align: center;
+  margin-top: var(--hive-space-16);
+}
+
+.calc-cta p {
+  color: var(--hive-text-secondary);
+  margin: 1rem auto 1.5rem;
+  max-width: 36rem;
+}
