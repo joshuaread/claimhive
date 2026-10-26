@@ -40,7 +40,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/claim-hive-icon.svg">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <script src="js/analytics.js" defer></script>
-  <script src="js/site.js" defer></script>
+  <script src="js/site.js?v=2026-10-26" defer></script>
   <script src="js/claim-run.js" defer></script>
 
   <script type="application/ld+json">
@@ -621,12 +621,12 @@
         <form class="waitlist-form" style="display: flex; flex-direction: column; gap: 0.85rem;">
           <div class="velvet-field-wrap">
             <label class="velvet-field-label">WORK EMAIL</label>
-            <input type="email" required placeholder="you@yourfirm.com" class="velvet-input" aria-label="Work Email">
+            <input type="email" required maxlength="254" pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}" placeholder="you@yourfirm.com" class="velvet-input" aria-label="Work Email">
           </div>
 
           <div class="velvet-field-wrap">
             <label class="velvet-field-label">FIRM NAME</label>
-            <input type="text" name="firm_name" required placeholder="Your public adjusting firm" class="velvet-input" aria-label="Firm Name">
+            <input type="text" name="firm_name" required maxlength="200" placeholder="Your public adjusting firm" class="velvet-input" aria-label="Firm Name">
           </div>
 
           <button type="submit" class="btn btn-gold" style="width: 100%; padding: 0.875rem; border-radius: var(--hive-radius-sm); font-weight: 700; margin-top: 0.25rem;">
@@ -663,11 +663,11 @@
         <form class="waitlist-form" style="display: flex; flex-direction: column; gap: 0.75rem;">
           <div class="velvet-field-wrap" style="margin-bottom: 0;">
             <label class="velvet-field-label">WORK EMAIL</label>
-            <input type="email" required placeholder="you@yourfirm.com" class="velvet-input" aria-label="Work Email">
+            <input type="email" required maxlength="254" pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}" placeholder="you@yourfirm.com" class="velvet-input" aria-label="Work Email">
           </div>
           <div class="velvet-field-wrap" style="margin-bottom: 0;">
             <label class="velvet-field-label">FIRM NAME</label>
-            <input type="text" name="firm_name" required placeholder="Your public adjusting firm" class="velvet-input" aria-label="Firm Name">
+            <input type="text" name="firm_name" required maxlength="200" placeholder="Your public adjusting firm" class="velvet-input" aria-label="Firm Name">
           </div>
           <button type="submit" class="btn btn-gold" style="width: 100%; border-radius: var(--hive-radius-sm); padding: 0.85rem; font-weight: 700; margin-top: 0.25rem;">
             Request beta access

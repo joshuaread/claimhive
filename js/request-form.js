@@ -5,6 +5,9 @@
 
 const LIVE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbydY_KWnckEh27uF5g5_v_rjwBL6b6DhMXjHlNjY__RzmQ-06UKErkkZBpcl2k69fvRkQ/exec';
 
+// Shared email format. Keep byte-identical with google_apps_script.js and js/site.js.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 // Submission lock & deduplication cache
 let isSubmitting = false;
 let lastSubmittedSignature = '';
@@ -150,6 +153,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const submittedCohortKey = cohortRadio && cohortRadio.dataset.cohort === 'ga' ? 'ga' : 'beta';
     let referral = (document.getElementById('referral')?.value || '').trim();
     if (!referral) { try { referral = localStorage.getItem('claimhive_ref') || ''; } catch(e) {} }
+    // Referral may come from localStorage / ?ref= — cap its length.
+    referral = referral.slice(0, 200);
+
+    // Validate email before locking the button.
+    if (!EMAIL_RE.test(workEmail)) {
+      const emailInput = document.getElementById('workEmail');
+      if (emailInput) {
+        emailInput.reportValidity();
+        emailInput.focus();
+      }
+      return;
+    }
 
     // Lock submission button immediately
     isSubmitting = true;
@@ -199,7 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
       OpenFilesNow: openFiles,
       Cohort: cohort,
       Referral: referral,
-      SubmittedAt: new Date().toISOString()
+      SubmittedAt: new Date().toISOString(),
+      FormType: 'request',
+      hp_website_url: (honeypot && honeypot.value) || ''
     };
 
     // Save to local backup for offline resilience
