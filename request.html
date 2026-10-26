@@ -241,29 +241,29 @@
             
             <div class="field-group">
               <label for="fullName" class="field-label">Full Name <span class="req">*</span></label>
-              <input type="text" id="fullName" class="field-input" placeholder="e.g. Marcus Vance" required>
+              <input type="text" id="fullName" class="field-input" placeholder="e.g. Marcus Vance" maxlength="200" required>
             </div>
 
             <div class="field-group">
               <label for="firmName" class="field-label">Firm or Company Name <span class="req">*</span></label>
-              <input type="text" id="firmName" class="field-input" placeholder="e.g. Vance Public Adjusting LLC" required>
+              <input type="text" id="firmName" class="field-input" placeholder="e.g. Vance Public Adjusting LLC" maxlength="200" required>
             </div>
 
             <div class="field-group">
               <label for="workEmail" class="field-label">Work Email <span class="req">*</span></label>
-              <input type="email" id="workEmail" class="field-input" placeholder="marcus@vanceclaims.com" required>
+              <input type="email" id="workEmail" class="field-input" placeholder="marcus@vanceclaims.com" maxlength="254" required>
               <span class="field-hint">We send your beta invitation to this address.</span>
             </div>
 
             <div class="field-group">
               <label for="phone" class="field-label">Direct Cell Phone <span class="req">*</span></label>
-              <input type="tel" id="phone" class="field-input" placeholder="(555) 000-0000" required>
+              <input type="tel" id="phone" class="field-input" placeholder="(555) 000-0000" maxlength="40" required>
               <span class="field-hint">We use this number to schedule your setup call.</span>
             </div>
 
             <div class="field-group">
               <label for="licenseStates" class="field-label">Primary Licensed State(s) <span class="req">*</span></label>
-              <input type="text" id="licenseStates" class="field-input" placeholder="e.g. Florida, Texas, Louisiana" required>
+              <input type="text" id="licenseStates" class="field-input" placeholder="e.g. Florida, Texas, Louisiana" maxlength="200" required>
               <span class="field-hint">We use this to set up your state deadlines (proof of loss, bad faith).</span>
             </div>
 
@@ -296,7 +296,7 @@
 
             <div class="field-group full-width">
               <label for="referral" class="field-label">How did you hear about ClaimHive / Who referred you?</label>
-              <input type="text" id="referral" class="field-input" placeholder="e.g. AAPIA conference, LinkedIn, a fellow adjuster...">
+              <input type="text" id="referral" class="field-input" placeholder="e.g. AAPIA conference, LinkedIn, a fellow adjuster..." maxlength="200">
               <span class="field-hint">Optional. Tells us how you found ClaimHive.</span>
             </div>
 
@@ -419,7 +419,7 @@
 
   <!-- SCRIPTS -->
   <script src="js/site.js" defer></script>
-  <script src="js/request-form.js?v=5.0" defer></script>
+  <script src="js/request-form.js?v=5.1" defer></script>
   <script>
     // URL parameter pre-selection for cohort (?cohort=beta vs ?cohort=ga)
     document.addEventListener('DOMContentLoaded', () => {

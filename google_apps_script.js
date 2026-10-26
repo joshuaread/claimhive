@@ -2,7 +2,7 @@
  * Claim Hive — Google Apps Script for Seats_200 Form Integration
  *
  * HOW TO ATTACH THIS TO YOUR GOOGLE SHEET IN 60 SECONDS:
- * 1. Open your Google Sheet: https://docs.google.com/spreadsheets/d/1Womd_Ss-9TqrMpHyviZNj1kuZm08Z-LmxjQtj2i7pAw/edit
+ * 1. Open the ClaimHive lead Google Sheet (owner account)
  * 2. In the top menu, click Extensions > Apps Script
  * 3. Delete any default code in Code.gs, and paste this entire file
  * 4. Click the blue "Deploy" button (top right) > "New deployment"
@@ -11,15 +11,90 @@
  * 7. Set "Execute as": "Me" (your Google account)
  * 8. Set "Who has access": "Anyone"  <-- CRITICAL so the website form can post to it
  * 9. Click "Deploy", authorize access when prompted, and COPY the Web App URL (starts with https://script.google.com/macros/s/...)
- * 10. Paste that URL into Website/js/request-form.js under CLAIM_HIVE_WEBHOOK_URL
+ * 10. Paste that URL into js/request-form.js under LIVE_WEBHOOK_URL (and js/site.js WEBHOOK_URL / SEATS_URL)
+ *
+ * NOTE: When updating the code later, use Deploy > Manage deployments > edit (pencil icon) >
+ * Version: New version, so the Web App URL stays the same. Keep Execute as: Me and
+ * Who has access: Anyone.
  */
+
+// Generic responses — never leak internal details to the caller.
+function jsonResponse_(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Spreadsheet formula-injection guard: neutralize string cells that could be
+// interpreted as a formula by prefixing an apostrophe. Numbers are untouched.
+function safeCell_(value) {
+  if (typeof value === "string" && value.length > 0) {
+    var first = value.charAt(0);
+    if (first === "=" || first === "+" || first === "-" || first === "@") {
+      return "'" + value;
+    }
+  }
+  return value;
+}
+
+// Per-field maximum string lengths (String(value).length).
+var FIELD_LIMITS_ = { Notes: 2000, Shop: 500, Email: 254 };
+var DEFAULT_FIELD_LIMIT_ = 200;
+
+// Returns null when the payload is valid, otherwise an error string for logging.
+function validatePayload_(data, rawLength) {
+  if (rawLength > 10000) {
+    return "Payload too large: " + rawLength + " chars";
+  }
+  if (!data || typeof data !== "object") {
+    return "Payload is not an object";
+  }
+
+  var keys = [];
+  for (var k in data) {
+    if (Object.prototype.hasOwnProperty.call(data, k)) {
+      keys.push(k);
+    }
+  }
+  if (keys.length > 40) {
+    return "Too many keys: " + keys.length;
+  }
+
+  // Per-field size limits on string values.
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    var value = data[key];
+    if (value === null || value === undefined) continue;
+    var len = String(value).length;
+    var limit = FIELD_LIMITS_.hasOwnProperty(key) ? FIELD_LIMITS_[key] : DEFAULT_FIELD_LIMIT_;
+    if (len > limit) {
+      return "Field '" + key + "' over limit (" + len + " > " + limit + ")";
+    }
+  }
+
+  // Email required, trimmed, and well-formed.
+  var email = (data.Email || "").toString().trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    return "Missing or invalid email";
+  }
+
+  // Name required: at least one of FullName / POC non-empty after trim.
+  var fullName = (data.FullName || "").toString().trim();
+  var poc = (data.POC || "").toString().trim();
+  if (!fullName && !poc) {
+    return "Missing name (FullName/POC)";
+  }
+
+  return null;
+}
 
 function doPost(e) {
   try {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     // Target the first sheet or the one matching "Seats" / active
     var sheet = ss.getSheets()[0];
-    
+
+    var rawLength = (e.postData && e.postData.contents) ? e.postData.contents.length : 0;
+
     var data = {};
     if (e.postData && e.postData.contents) {
       try {
@@ -29,6 +104,25 @@ function doPost(e) {
       }
     } else if (e.parameter) {
       data = e.parameter;
+    }
+
+    // Coerce to a plain object.
+    if (!data || typeof data !== "object") {
+      Logger.log("Rejected submission: parsed payload is not an object");
+      return jsonResponse_({ status: "error", message: "Invalid submission." });
+    }
+
+    // Honeypot: if the hidden trap field is filled, pretend success and write nothing.
+    var honeypot = (data.hp_website_url || "").toString().trim();
+    if (honeypot !== "") {
+      return jsonResponse_({ status: "success" });
+    }
+
+    // Validate the payload; all failures share one generic message.
+    var validationError = validatePayload_(data, rawLength);
+    if (validationError) {
+      Logger.log("Rejected submission: " + validationError);
+      return jsonResponse_({ status: "error", message: "Invalid submission." });
     }
 
     // Format tomorrow's date as M/D/YYYY
@@ -73,16 +167,16 @@ function doPost(e) {
     // Col 20: Do_not_pitch
     // Col 21: Notes
     var row = [
-      data.Shop || data.Firm || (data.FullName + " — " + (data.Firm || "Independent")), // Shop
-      data.POC || data.FullName || "",                                                   // POC
-      data.Email || "",                                                                  // Email
-      data.Phone || "",                                                                  // Phone
-      data.Owner || "Josh",                                                               // Owner
-      data.Stage || "Named",                                                             // Stage
-      data.Seats_hoped || 1,                                                             // Seats_hoped
+      safeCell_(data.Shop || data.Firm || (data.FullName + " — " + (data.Firm || "Independent"))), // Shop
+      safeCell_(data.POC || data.FullName || ""),                                        // POC
+      safeCell_(data.Email || ""),                                                       // Email
+      safeCell_(data.Phone || ""),                                                       // Phone
+      safeCell_(data.Owner || "Josh"),                                                   // Owner
+      safeCell_(data.Stage || "Named"),                                                  // Stage
+      safeCell_(data.Seats_hoped || 1),                                                  // Seats_hoped
       "",                                                                                // Seats_reserved
       "",                                                                                // Seats_billed
-      data.Source || "Website - " + (data.Cohort || "Alpha"),                            // Source
+      safeCell_(data.Source || "Website - " + (data.Cohort || "Alpha")),                 // Source
       "",                                                                                // Login_sent
       "",                                                                                // Slack_in
       "",                                                                                // First_file_in
@@ -90,10 +184,10 @@ function doPost(e) {
       "",                                                                                // Clinic_count
       "",                                                                                // Invoice_sent
       "",                                                                                // Intros_given
-      data.Next_action || "Josh text",                                                    // Next_action
-      nextActionDate,                                                                    // Next_action_date
+      safeCell_(data.Next_action || "Josh text"),                                        // Next_action
+      safeCell_(nextActionDate),                                                         // Next_action_date
       "",                                                                                // Do_not_pitch
-      notes                                                                              // Notes
+      safeCell_(notes)                                                                   // Notes
     ];
 
     // DEDUPLICATION: Prevent identical entries from being added within recent rows
@@ -108,12 +202,11 @@ function doPost(e) {
         var existingPoc = (recentValues[r][1] || "").toString().toLowerCase().trim();
         var existingEmail = (recentValues[r][2] || "").toString().toLowerCase().trim();
         if (candidateEmail && existingEmail === candidateEmail) {
-          return ContentService.createTextOutput(JSON.stringify({ result: "skipped_duplicate", reason: "Email already submitted in recent rows" }))
-            .setMimeType(ContentService.MimeType.JSON);
+          // Don't reveal that this email already exists — report success, write nothing.
+          return jsonResponse_({ status: "success" });
         }
         if (candidatePoc && existingPoc === candidatePoc && !candidateEmail) {
-          return ContentService.createTextOutput(JSON.stringify({ result: "skipped_duplicate", reason: "POC already submitted in recent rows" }))
-            .setMimeType(ContentService.MimeType.JSON);
+          return jsonResponse_({ status: "success" });
         }
       }
     }
@@ -127,12 +220,11 @@ function doPost(e) {
       Logger.log("Slack notification failed: " + slackErr.toString());
     }
 
-    return ContentService.createTextOutput(JSON.stringify({ result: "success", rowAdded: row }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return jsonResponse_({ status: "success" });
 
   } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ result: "error", message: err.toString() }))
-      .setMimeType(ContentService.MimeType.JSON);
+    Logger.log("doPost failed: " + err.toString());
+    return jsonResponse_({ status: "error", message: "Submission failed." });
   }
 }
 

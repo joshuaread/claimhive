@@ -15,7 +15,8 @@ import os
 from datetime import datetime
 
 PORT = 3000
-WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbydY_KWnckEh27uF5g5_v_rjwBL6b6DhMXjHlNjY__RzmQ-06UKErkkZBpcl2k69fvRkQ/exec"
+WEBHOOK_URL = os.environ.get("CLAIMHIVE_WEBHOOK_URL", "")
+SHEET_ID = os.environ.get("CLAIMHIVE_SHEET_ID", "")
 LOG_FILE = "Seats_200_submissions.log"
 
 class ClaimHiveHandler(http.server.SimpleHTTPRequestHandler):
@@ -82,6 +83,16 @@ class ClaimHiveHandler(http.server.SimpleHTTPRequestHandler):
             self.send_error(404, "Endpoint not found")
 
 def run(port=PORT):
+    # Both relay credentials are required — no fallback.
+    missing = []
+    if not WEBHOOK_URL:
+        missing.append("CLAIMHIVE_WEBHOOK_URL")
+    if not SHEET_ID:
+        missing.append("CLAIMHIVE_SHEET_ID")
+    if missing:
+        print(f"[Claim Hive] Missing required environment variable(s): {', '.join(missing)}", file=sys.stderr)
+        sys.exit(1)
+
     # Try port, if busy try port+1
     current_port = port
     while True:
@@ -91,7 +102,7 @@ def run(port=PORT):
                 print(f"\n🐝 ===========================================")
                 print(f"🐝 Claim Hive Local Server Running!")
                 print(f"🐝 URL: http://localhost:{current_port}/request.html?cohort=alpha")
-                print(f"🐝 Google Sheet: https://docs.google.com/spreadsheets/d/1Womd_Ss-9TqrMpHyviZNj1kuZm08Z-LmxjQtj2i7pAw/edit")
+                print(f"🐝 Google Sheet: https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit")
                 print(f"🐝 ===========================================\n")
                 httpd.serve_forever()
         except OSError:
