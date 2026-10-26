@@ -1,3 +1,7 @@
+// Shared email format. Keep byte-identical with google_apps_script.js and js/request-form.js.
+// Named SITE_EMAIL_RE: request.html loads site.js and request-form.js as classic scripts, so a
+// second top-level `const EMAIL_RE` would be a redeclaration SyntaxError.
+const SITE_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -192,10 +196,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailInput = form.querySelector('input[type="email"]');
         const email = emailInput ? emailInput.value.trim().toLowerCase() : '';
         const firmInput = form.querySelector('input[name="firm_name"]');
-        const firmName = firmInput && firmInput.value.trim() ? firmInput.value.trim() : 'Your Firm';
+        const firmName = (firmInput && firmInput.value.trim() ? firmInput.value.trim() : 'Your Firm').slice(0, 200);
         const container = form.closest('.waitlist-box') || form.parentElement;
 
-        if (!email) return;
+        if (!SITE_EMAIL_RE.test(email)) {
+          if (emailInput) {
+            emailInput.reportValidity();
+            emailInput.focus();
+          }
+          return;
+        }
 
         if (typeof window.trackWaitlistSubmit === 'function') {
           const isModal = !!(form.closest('#alpha-modal'));
@@ -240,8 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
           CurrentStack: 'N/A',
           OpenFilesNow: 'N/A',
           Cohort: 'Beta (Nov 1, 2026)',
-          Referral: localStorage.getItem('claimhive_ref') || 'N/A',
-          SubmittedAt: new Date().toISOString()
+          Referral: (localStorage.getItem('claimhive_ref') || 'N/A').slice(0, 200),
+          SubmittedAt: new Date().toISOString(),
+          FormType: 'waitlist'
         };
 
         // 3) Dispatch webhook to Google Apps Script

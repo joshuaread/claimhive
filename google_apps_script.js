@@ -13,9 +13,10 @@
  * 9. Click "Deploy", authorize access when prompted, and COPY the Web App URL (starts with https://script.google.com/macros/s/...)
  * 10. Paste that URL into js/request-form.js under LIVE_WEBHOOK_URL (and js/site.js WEBHOOK_URL / SEATS_URL)
  *
- * NOTE: When updating the code later, use Deploy > Manage deployments > edit (pencil icon) >
- * Version: New version, so the Web App URL stays the same. Keep Execute as: Me and
- * Who has access: Anyone.
+ * NOTE: When updating the code later, ALWAYS use Deploy > Manage deployments > edit (pencil
+ * icon) > Version: New version on the EXISTING deployment, so the Web App URL stays the same.
+ * Never choose "New deployment" — that mints a different URL and silently breaks the live forms.
+ * Keep Execute as: Me and Who has access: Anyone.
  */
 
 // Generic responses — never leak internal details to the caller.
@@ -29,19 +30,49 @@ function jsonResponse_(obj) {
 function safeCell_(value) {
   if (typeof value === "string" && value.length > 0) {
     var first = value.charAt(0);
-    if (first === "=" || first === "+" || first === "-" || first === "@") {
+    if (first === "=" || first === "+" || first === "-" || first === "@" ||
+        first === "\t" || first === "\r") {
       return "'" + value;
     }
   }
   return value;
 }
 
+// Neutralize user-derived text before interpolating it into a Slack payload: strip
+// Slack control sequences (<!here>, <@U…>, <#C…>) then escape &, <, > per Slack's rules.
+function slackEscape_(s) {
+  return String(s)
+    .replace(/<[!@#][^>]*>/g, "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+// Plain-text variant for plain_text fields (e.g. the header block), where Slack does not
+// parse markup: strip control sequences and angle brackets, and cap to Slack's header limit.
+function slackPlain_(s, maxLen) {
+  var out = String(s).replace(/<[!@#][^>]*>/g, "").replace(/[<>]/g, "");
+  return (maxLen && out.length > maxLen) ? out.slice(0, maxLen - 1) + "…" : out;
+}
+
+// Shared email format. Keep byte-identical with js/request-form.js and js/site.js.
+var EMAIL_RE_ = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+// The only keys accepted from a POST. Anything else is dropped silently (not an error)
+// before per-field validation. Staff/pipeline columns are NEVER taken from the client.
+var ALLOWED_FIELDS_ = [
+  "Shop", "POC", "FullName", "Firm", "Email", "Phone", "Seats_hoped", "Notes",
+  "LicenseStates", "CurrentStack", "OpenFilesNow", "Cohort", "Referral",
+  "SubmittedAt", "hp_website_url", "FormType"
+];
+
 // Per-field maximum string lengths (String(value).length).
-var FIELD_LIMITS_ = { Notes: 2000, Shop: 500, Email: 254 };
+var FIELD_LIMITS_ = { Notes: 2000, Shop: 500, Email: 254, FullName: 254, POC: 254 };
 var DEFAULT_FIELD_LIMIT_ = 200;
 
-// Returns null when the payload is valid, otherwise an error string for logging.
-function validatePayload_(data, rawLength) {
+// Raw-payload caps applied BEFORE unknown keys are dropped. Returns null when OK,
+// otherwise an error string for logging.
+function checkRawCaps_(data, rawLength) {
   if (rawLength > 10000) {
     return "Payload too large: " + rawLength + " chars";
   }
@@ -59,10 +90,29 @@ function validatePayload_(data, rawLength) {
     return "Too many keys: " + keys.length;
   }
 
+  return null;
+}
+
+// Keep only allowlisted keys; everything else is dropped silently.
+function pickAllowed_(data) {
+  var clean = {};
+  for (var i = 0; i < ALLOWED_FIELDS_.length; i++) {
+    var key = ALLOWED_FIELDS_[i];
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
+      clean[key] = data[key];
+    }
+  }
+  return clean;
+}
+
+// Per-field validation on the cleaned payload. Returns null when valid, otherwise
+// an error string for logging.
+function validatePayload_(clean) {
   // Per-field size limits on string values.
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    var value = data[key];
+  for (var i = 0; i < ALLOWED_FIELDS_.length; i++) {
+    var key = ALLOWED_FIELDS_[i];
+    if (!Object.prototype.hasOwnProperty.call(clean, key)) continue;
+    var value = clean[key];
     if (value === null || value === undefined) continue;
     var len = String(value).length;
     var limit = FIELD_LIMITS_.hasOwnProperty(key) ? FIELD_LIMITS_[key] : DEFAULT_FIELD_LIMIT_;
@@ -72,14 +122,14 @@ function validatePayload_(data, rawLength) {
   }
 
   // Email required, trimmed, and well-formed.
-  var email = (data.Email || "").toString().trim();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+  var email = (clean.Email || "").toString().trim();
+  if (!email || !EMAIL_RE_.test(email)) {
     return "Missing or invalid email";
   }
 
   // Name required: at least one of FullName / POC non-empty after trim.
-  var fullName = (data.FullName || "").toString().trim();
-  var poc = (data.POC || "").toString().trim();
+  var fullName = (clean.FullName || "").toString().trim();
+  var poc = (clean.POC || "").toString().trim();
   if (!fullName && !poc) {
     return "Missing name (FullName/POC)";
   }
@@ -112,35 +162,67 @@ function doPost(e) {
       return jsonResponse_({ status: "error", message: "Invalid submission." });
     }
 
+    // Raw-payload caps applied BEFORE dropping unknown keys.
+    var rawError = checkRawCaps_(data, rawLength);
+    if (rawError) {
+      Logger.log("Rejected submission: " + rawError);
+      return jsonResponse_({ status: "error", message: "Invalid submission." });
+    }
+
     // Honeypot: if the hidden trap field is filled, pretend success and write nothing.
     var honeypot = (data.hp_website_url || "").toString().trim();
     if (honeypot !== "") {
       return jsonResponse_({ status: "success" });
     }
 
+    // Drop everything outside the allowlist, then validate/use only `clean`.
+    var clean = pickAllowed_(data);
+
     // Validate the payload; all failures share one generic message.
-    var validationError = validatePayload_(data, rawLength);
+    var validationError = validatePayload_(clean);
     if (validationError) {
       Logger.log("Rejected submission: " + validationError);
       return jsonResponse_({ status: "error", message: "Invalid submission." });
     }
 
-    // Format tomorrow's date as M/D/YYYY
+    // Format tomorrow's date as M/D/YYYY (Next_action_date is staff-controlled).
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     var formattedDate = (tomorrow.getMonth() + 1) + "/" + tomorrow.getDate() + "/" + tomorrow.getFullYear();
-    var nextActionDate = data.Next_action_date || formattedDate;
 
-    // Compose rich notes column from intake questions
-    var notes = data.Notes || "";
+    // Form type: honor an explicit value, otherwise infer from the waitlist sentinels.
+    var formType = (clean.FormType === "waitlist" || clean.FormType === "request")
+      ? clean.FormType
+      : ((clean.Phone === "N/A" && clean.LicenseStates === "N/A") ? "waitlist" : "request");
+
+    // Staff/pipeline columns are set server-side, never taken from the client.
+    var mentionsJosh = /\bjosh\b/i.test(clean.Referral || "") || /\bjosh\b/i.test(clean.Firm || "");
+    var owner, source, nextAction;
+    if (formType === "waitlist") {
+      owner = "Unassigned";
+      source = "Website - Homepage Waitlist";
+      nextAction = "Beta invitation";
+    } else {
+      owner = mentionsJosh ? "Josh" : "Unassigned";
+      source = mentionsJosh ? "Josh book" : "Website - Waitlist";
+      nextAction = "Josh text";
+    }
+
+    // Seats_hoped stays public: integer 1..1000 or fall back to 1.
+    var seatsParsed = Math.floor(Number(clean.Seats_hoped));
+    var seats = (seatsParsed >= 1 && seatsParsed <= 1000) ? seatsParsed : 1; // NaN fails both checks -> 1
+    clean.Seats_hoped = seats; // Slack uses the clamped value too
+
+    // Compose rich notes column from intake questions (Notes stays public).
+    var notes = clean.Notes || "";
     if (!notes) {
       var noteParts = [];
-      if (data.Cohort) noteParts.push("Cohort: " + data.Cohort);
-      if (data.LicenseStates) noteParts.push("States: " + data.LicenseStates);
-      if (data.CurrentStack) noteParts.push("Stack: " + data.CurrentStack);
-      if (data.OpenFilesNow) noteParts.push("Active Files: " + data.OpenFilesNow);
-      if (data.Referral) noteParts.push("Referred by: " + data.Referral);
-      if (data.SubmittedAt) noteParts.push("Submitted: " + data.SubmittedAt);
+      if (clean.Cohort) noteParts.push("Cohort: " + clean.Cohort);
+      if (clean.LicenseStates) noteParts.push("States: " + clean.LicenseStates);
+      if (clean.CurrentStack) noteParts.push("Stack: " + clean.CurrentStack);
+      if (clean.OpenFilesNow) noteParts.push("Active Files: " + clean.OpenFilesNow);
+      if (clean.Referral) noteParts.push("Referred by: " + clean.Referral);
+      if (clean.SubmittedAt) noteParts.push("Submitted: " + clean.SubmittedAt);
       notes = noteParts.join(" | ");
     }
 
@@ -167,16 +249,16 @@ function doPost(e) {
     // Col 20: Do_not_pitch
     // Col 21: Notes
     var row = [
-      safeCell_(data.Shop || data.Firm || (data.FullName + " — " + (data.Firm || "Independent"))), // Shop
-      safeCell_(data.POC || data.FullName || ""),                                        // POC
-      safeCell_(data.Email || ""),                                                       // Email
-      safeCell_(data.Phone || ""),                                                       // Phone
-      safeCell_(data.Owner || "Josh"),                                                   // Owner
-      safeCell_(data.Stage || "Named"),                                                  // Stage
-      safeCell_(data.Seats_hoped || 1),                                                  // Seats_hoped
+      safeCell_(clean.Shop || clean.Firm || ((clean.FullName || "") + " — " + (clean.Firm || "Independent"))), // Shop
+      safeCell_(clean.POC || clean.FullName || ""),                                      // POC
+      safeCell_(clean.Email || ""),                                                      // Email
+      safeCell_(clean.Phone || ""),                                                      // Phone
+      safeCell_(owner),                                                                  // Owner
+      "Named",                                                                           // Stage
+      safeCell_(seats),                                                                  // Seats_hoped
       "",                                                                                // Seats_reserved
       "",                                                                                // Seats_billed
-      safeCell_(data.Source || "Website - " + (data.Cohort || "Alpha")),                 // Source
+      safeCell_(source),                                                                 // Source
       "",                                                                                // Login_sent
       "",                                                                                // Slack_in
       "",                                                                                // First_file_in
@@ -184,40 +266,58 @@ function doPost(e) {
       "",                                                                                // Clinic_count
       "",                                                                                // Invoice_sent
       "",                                                                                // Intros_given
-      safeCell_(data.Next_action || "Josh text"),                                        // Next_action
-      safeCell_(nextActionDate),                                                         // Next_action_date
+      safeCell_(nextAction),                                                             // Next_action
+      safeCell_(formattedDate),                                                          // Next_action_date
       "",                                                                                // Do_not_pitch
       safeCell_(notes)                                                                   // Notes
     ];
 
-    // DEDUPLICATION: Prevent identical entries from being added within recent rows
-    var lastRow = sheet.getLastRow();
-    if (lastRow > 1) {
-      var checkCount = Math.min(10, lastRow - 1);
-      var recentValues = sheet.getRange(lastRow - checkCount + 1, 1, checkCount, 4).getValues(); // Shop, POC, Email, Phone
-      var candidateEmail = (data.Email || "").toString().toLowerCase().trim();
-      var candidatePoc = (data.POC || data.FullName || "").toString().toLowerCase().trim();
-
-      for (var r = 0; r < recentValues.length; r++) {
-        var existingPoc = (recentValues[r][1] || "").toString().toLowerCase().trim();
-        var existingEmail = (recentValues[r][2] || "").toString().toLowerCase().trim();
-        if (candidateEmail && existingEmail === candidateEmail) {
-          // Don't reveal that this email already exists — report success, write nothing.
-          return jsonResponse_({ status: "success" });
-        }
-        if (candidatePoc && existingPoc === candidatePoc && !candidateEmail) {
-          return jsonResponse_({ status: "success" });
-        }
-      }
+    // Serialize the dedupe-check + append so concurrent posts can't race.
+    var lock = LockService.getScriptLock();
+    try {
+      lock.waitLock(10000);
+    } catch (lockErr) {
+      Logger.log("Could not obtain script lock: " + lockErr.toString());
+      return jsonResponse_({ status: "error", message: "Submission failed." });
     }
 
-    sheet.appendRow(row);
-
-    // SLACK INCOMING WEBHOOK NOTIFICATION TO #inbound
+    var appended = false;
     try {
-      sendSlackNotification(data);
-    } catch (slackErr) {
-      Logger.log("Slack notification failed: " + slackErr.toString());
+      // DEDUPLICATION: Prevent identical entries from being added within recent rows
+      var lastRow = sheet.getLastRow();
+      if (lastRow > 1) {
+        var checkCount = Math.min(10, lastRow - 1);
+        var recentValues = sheet.getRange(lastRow - checkCount + 1, 1, checkCount, 4).getValues(); // Shop, POC, Email, Phone
+        var candidateEmail = (clean.Email || "").toString().toLowerCase().trim();
+        var candidatePoc = (clean.POC || clean.FullName || "").toString().toLowerCase().trim();
+
+        for (var r = 0; r < recentValues.length; r++) {
+          var existingPoc = (recentValues[r][1] || "").toString().toLowerCase().trim();
+          var existingEmail = (recentValues[r][2] || "").toString().toLowerCase().trim();
+          if (candidateEmail && existingEmail === candidateEmail) {
+            // Don't reveal that this email already exists — report success, write nothing.
+            return jsonResponse_({ status: "success" });
+          }
+          if (candidatePoc && existingPoc === candidatePoc && !candidateEmail) {
+            return jsonResponse_({ status: "success" });
+          }
+        }
+      }
+
+      sheet.appendRow(row);
+      appended = true;
+    } finally {
+      lock.releaseLock();
+    }
+
+    // SLACK INCOMING WEBHOOK NOTIFICATION TO #inbound — after the lock is released,
+    // and only when a row was actually appended.
+    if (appended) {
+      try {
+        sendSlackNotification(clean, owner, nextAction);
+      } catch (slackErr) {
+        Logger.log("Slack notification failed: " + slackErr.toString());
+      }
     }
 
     return jsonResponse_({ status: "success" });
@@ -240,23 +340,23 @@ function doPost(e) {
  */
 var FALLBACK_SLACK_WEBHOOK = ""; // Paste webhook URL here if not using Script Properties
 
-function sendSlackNotification(data) {
+function sendSlackNotification(data, owner, nextAction) {
   var webhookUrl = PropertiesService.getScriptProperties().getProperty('SLACK_WEBHOOK_URL') || FALLBACK_SLACK_WEBHOOK;
-  
+
   if (!webhookUrl || webhookUrl.indexOf("https://hooks.slack.com") === -1) {
     Logger.log("Slack Webhook URL not set. Skipping Slack ping.");
     return;
   }
 
-  var shop = data.Shop || data.Firm || (data.FullName + " — " + (data.Firm || "Independent"));
-  var poc = data.POC || data.FullName || "Adjuster";
-  var email = data.Email || "No email";
-  var phone = data.Phone || "No phone";
-  var cohort = data.Cohort || "Immediate Alpha (Q4 2026)";
-  var seats = data.Seats_hoped || "1";
-  var files = data.OpenFilesNow || "Not specified";
-  var stack = data.CurrentStack || "Not specified";
-  var referral = data.Referral ? ("\n• *Referral / Know Josh:* " + data.Referral) : "";
+  var shop = slackEscape_(data.Shop || data.Firm || (data.FullName + " — " + (data.Firm || "Independent")));
+  var poc = slackEscape_(data.POC || data.FullName || "Adjuster");
+  var email = slackEscape_(data.Email || "No email");
+  var phone = slackEscape_(data.Phone || "No phone");
+  var cohort = slackEscape_(data.Cohort || "Immediate Alpha (Q4 2026)");
+  var seats = slackEscape_(data.Seats_hoped || "1");
+  var files = slackEscape_(data.OpenFilesNow || "Not specified");
+  var stack = slackEscape_(data.CurrentStack || "Not specified");
+  var referral = data.Referral ? ("\n• *Referral / Know Josh:* " + slackEscape_(data.Referral)) : "";
 
   var slackPayload = {
     text: "🐝 *New Inbound Lead on Claim Hive:* " + shop + " (" + seats + " seats)",
@@ -265,7 +365,7 @@ function sendSlackNotification(data) {
         type: "header",
         text: {
           type: "plain_text",
-          text: "🐝 New Claim Hive Lead: " + poc + " (" + shop + ")",
+          text: slackPlain_("🐝 New Claim Hive Lead: " + (data.POC || data.FullName || "Adjuster") + " (" + (data.Shop || data.Firm || "Independent") + ")", 150),
           emoji: true
         }
       },
@@ -284,7 +384,7 @@ function sendSlackNotification(data) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: "• *Next Action:* Josh text tomorrow\n• *Owner:* " + (data.Owner || "Josh") + referral
+          text: "• *Next Action:* " + slackEscape_(nextAction) + "\n• *Owner:* " + slackEscape_(owner) + referral
         }
       }
     ]
@@ -376,11 +476,11 @@ function checkChampionReferrals() {
         var referredList = referralCounts[code].join("\n• ");
 
         var slackPayload = {
-          text: "🏆 *New Claim Hive Champion Unlocked!* (" + code + ")",
+          text: "🏆 *New Claim Hive Champion Unlocked!* (" + slackEscape_(code) + ")",
           blocks: [
             { type: "header", text: { type: "plain_text", text: "🏆 5+ Referrals Reached!", emoji: true } },
-            { type: "section", text: { type: "mrkdwn", text: "*Champion:* " + champInfo.name + "\n*Firm:* " + champInfo.shop + "\n*Email:* " + champInfo.email + "\n*Code:* `" + code + "`" } },
-            { type: "section", text: { type: "mrkdwn", text: "*They successfully referred (" + referralCounts[code].length + "):*\n• " + referredList } },
+            { type: "section", text: { type: "mrkdwn", text: "*Champion:* " + slackEscape_(champInfo.name) + "\n*Firm:* " + slackEscape_(champInfo.shop) + "\n*Email:* " + slackEscape_(champInfo.email) + "\n*Code:* `" + slackEscape_(code) + "`" } },
+            { type: "section", text: { type: "mrkdwn", text: "*They successfully referred (" + referralCounts[code].length + "):*\n• " + slackEscape_(referredList) } },
             { type: "context", elements: [{ type: "mrkdwn", text: "Time to send them a mug/hat! 🧢☕" }] }
           ]
         };

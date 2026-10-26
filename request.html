@@ -251,7 +251,7 @@
 
             <div class="field-group">
               <label for="workEmail" class="field-label">Work Email <span class="req">*</span></label>
-              <input type="email" id="workEmail" class="field-input" placeholder="marcus@vanceclaims.com" maxlength="254" required>
+              <input type="email" id="workEmail" class="field-input" placeholder="marcus@vanceclaims.com" maxlength="254" pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}" required>
               <span class="field-hint">We send your beta invitation to this address.</span>
             </div>
 
@@ -418,8 +418,8 @@
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="js/site.js" defer></script>
-  <script src="js/request-form.js?v=5.1" defer></script>
+  <script src="js/site.js?v=2026-10-26" defer></script>
+  <script src="js/request-form.js?v=5.2" defer></script>
   <script>
     // URL parameter pre-selection for cohort (?cohort=beta vs ?cohort=ga)
     document.addEventListener('DOMContentLoaded', () => {
