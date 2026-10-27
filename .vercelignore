@@ -1,4 +1,5 @@
 # Kept in the repo, not deployed
+/tests/
 /design-system.html
 /js/calculator.js
 /server.py
