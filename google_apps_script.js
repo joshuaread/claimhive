@@ -400,8 +400,98 @@ function sendSlackNotification(data, owner, nextAction) {
   UrlFetchApp.fetch(webhookUrl, options);
 }
 
-// Browser GET check
+// Identify synthetic/test rows that must never count toward the public seat total.
+// row is a sheet row array: index 0 Shop, 1 POC, 2 Email, 6 Seats_hoped.
+function isTestRow_(row) {
+  var shop = String(row[0] == null ? "" : row[0]);
+  var poc = String(row[1] == null ? "" : row[1]);
+
+  // Whole-word "TEST" in UPPERCASE (case-sensitive, so "Testa"/lowercase "test" are safe).
+  if (/\bTEST\b/.test(shop) || /\bTEST\b/.test(poc)) return true;
+  // "DELETE ME" marker, case-insensitive.
+  if (/delete me/i.test(shop) || /delete me/i.test(poc)) return true;
+
+  var email = String(row[2] == null ? "" : row[2]).toLowerCase().trim();
+  var at = email.indexOf("@");
+  if (at > 0) {
+    var local = email.slice(0, at);
+    var domain = email.slice(at + 1);
+    // Local part like test-, test+, test. or test_ (e.g. test-beta-20261027@…).
+    if (/^test[-+._]/.test(local)) return true;
+    // Reserved test domains.
+    if (domain === "example.com" || domain === "example.org" || domain === "example.net") return true;
+    if (/\.(test|example|invalid|localhost)$/.test(domain)) return true;
+  }
+  return false;
+}
+
+// Sum column G (index 6, "Seats_hoped") over REAL rows only. `values` is a 2D
+// array of data rows (header excluded). Per row: count only finite values >= 1,
+// floored, and capped at 1000; skip TEST rows via isTestRow_.
+function countSeatsHoped_(values) {
+  var total = 0;
+  for (var i = 0; i < values.length; i++) {
+    var row = values[i];
+    if (isTestRow_(row)) continue;
+    var seats = Number(row[6]);
+    if (!isFinite(seats) || seats < 1) continue;
+    seats = Math.floor(seats);
+    if (seats > 1000) seats = 1000;
+    total += seats;
+  }
+  return total;
+}
+
+// Browser GET check.
+// ?action=seats -> {"seats":N}: N is the summed Seats_hoped across real (non-test)
+// rows, cached 5 minutes. Errors return {"error":"unavailable"} and never leak row
+// data. Any other GET returns the plain-text health check (unchanged).
 function doGet(e) {
+  if (e && e.parameter && e.parameter.action === "seats") {
+    try {
+      var CACHE_KEY = "claimhive_seats_v1";
+
+      var cache = null;
+      try {
+        cache = CacheService.getScriptCache();
+      } catch (cacheErr) {
+        cache = null; // compute without cache
+      }
+
+      if (cache) {
+        var cached = null;
+        try {
+          cached = cache.get(CACHE_KEY);
+        } catch (getErr) {
+          cached = null;
+        }
+        if (cached !== null && cached !== undefined) {
+          return jsonResponse_({ seats: Number(cached) });
+        }
+      }
+
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+      var lastRow = sheet.getLastRow();
+      var n = 0;
+      if (lastRow >= 2) {
+        n = countSeatsHoped_(sheet.getRange(2, 1, lastRow - 1, 7).getValues());
+      }
+
+      if (cache) {
+        try {
+          cache.put(CACHE_KEY, String(n), 300);
+        } catch (putErr) {
+          // caching is best-effort; a put failure must not break the response
+        }
+      }
+
+      return jsonResponse_({ seats: n });
+    } catch (err) {
+      Logger.log("doGet seats failed: " + err.toString());
+      return jsonResponse_({ error: "unavailable" });
+    }
+  }
+
   return ContentService.createTextOutput("Claim Hive Google Sheets & Slack Webhook is active and ready.");
 }
 
