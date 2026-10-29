@@ -17,7 +17,7 @@ ClaimHive is a cloud-based practice management and document-automation platform 
 
 ## Pricing
 - $80 per seat per month plus direct token usage (compute ClaimHive's AI does for the firm).
-- Founding rate of $80/seat per month locked through June 30, 2027 for firms that join before January 31, 2027.
+- Founding rate of $80/seat per month locked for as long as the firm stays subscribed for firms that join before January 31, 2027.
 - Beta opens November 1, 2026. General availability January 1, 2027.
 - Month-to-month billing. Firms can cancel and export their data.
 - No per-claim surcharge and no cut of settlement fees.
