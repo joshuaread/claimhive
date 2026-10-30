@@ -12,7 +12,7 @@ All pages follow the unhurried, spacious aesthetic of modern civic platforms (e.
 | :--- | :--- | :--- |
 | **Home** | [`index.html`](file:///Users/josh/Projects/ClaimHive/Website/index.html) | Value prop, radical **$80/seat** pricing above the fold, 4 adjuster bottlenecks concierge, Josh Read's quote, 5-stage preview, Alpha & January CTAs. |
 | **Product** | [`product.html`](file:///Users/josh/Projects/ClaimHive/Website/product.html) | Honest UI walkthrough of the 5 linear claim stages: Intake & Docketing, Evidence & Scoping, Estimate & Gaps, Letters & Demands, and the Next Action Engine. |
-| **Pricing** | [`pricing.html`](file:///Users/josh/Projects/ClaimHive/Website/pricing.html) | **$80/seat/month flat**. Policyholders & external engineers 100% free forever. Founding rate locked through June 30, 2027. Zero per-claim fees, no cuts of fee settlements, comparison table & FAQ. |
+| **Pricing** | [`pricing.html`](file:///Users/josh/Projects/ClaimHive/Website/pricing.html) | **$80/seat/month flat**. Policyholders & external engineers 100% free forever. Founding rate locked for as long as the firm stays subscribed. Zero per-claim fees, no cuts of fee settlements, comparison table & FAQ. |
 | **Security & Trust** | [`security.html`](file:///Users/josh/Projects/ClaimHive/Website/security.html) | Institutional confidentiality: US-based SOC-2 vault, AES-256 KMS encryption, **Zero AI Training on Customer Claim Files**, 1-click full data export, and direct founder escalation. |
 | **About Us** | [`about.html`](file:///Users/josh/Projects/ClaimHive/Website/about.html) | Josh Read's founder letter, catastrophe track record, and profiles for Tim, Jon, and Josh. |
 | **Request Access** | [`request.html`](file:///Users/josh/Projects/ClaimHive/Website/request.html) | Frictionless intake application for Founding Cohorts (Alpha Q4 2026 vs. January 2027) wired to `Seats_200` Google Sheet schema, spam honeypot trap, and instant confirmation screen. |
@@ -79,6 +79,6 @@ python3 -m http.server 3000
 
 1. **Flat $80/Seat/Month**: No tiers, no percentage of your settlement fees, and no per-claim toll booths.
 2. **Policyholders Always 100% Free**: Unlimited client portal access so insureds stay informed without calling you 10 times a week.
-3. **Founding Lock Through June 30, 2027**: Firms that join before January 31, 2027 keep $80/seat through June 30, 2027.
+3. **Founding Lock While Subscribed**: Firms that join before January 31, 2027 keep $80/seat for as long as they stay subscribed.
 4. **Zero AI Training on Claim Files**: Your estimates, photos, and legal strategies remain privileged work product.
 5. **Direct Line to Josh Read**: Call or text **(850) 400-HIVE**.

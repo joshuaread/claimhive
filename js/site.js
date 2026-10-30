@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
               Priority reservation secured for ${escapeHtml(firmName)}.
             </div>
             <p style="font-size: 0.8125rem; color: var(--hive-text-secondary); line-height: 1.55; max-width: 440px; margin: 0 auto 1.25rem;">
-              Beta invites rollout in cohorts starting November 1. We lock in your founding $80/seat rate through June 30, 2027 and will notify <strong>${escapeHtml(email)}</strong> before credentials go live.
+              Beta invites rollout in cohorts starting November 1. We lock in your founding $80/seat rate for as long as you stay subscribed and will notify <strong>${escapeHtml(email)}</strong> before credentials go live.
             </p>
             <div style="background: var(--hive-canvas); border: 1px solid var(--hive-border-subtle); border-radius: var(--hive-radius-md); padding: 1rem; max-width: 440px; margin: 0 auto 1.25rem; text-align: left;">
               <div style="font-size: 0.75rem; font-weight: 700; color: var(--hive-gold-deep); text-transform: uppercase; margin-bottom: 0.25rem;">
