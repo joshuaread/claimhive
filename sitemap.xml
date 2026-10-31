@@ -48,4 +48,10 @@
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://claimhive.app/tools/claim-deadline-calculator</loc>
+    <lastmod>2026-10-16</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
