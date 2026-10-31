@@ -230,7 +230,7 @@
               <strong>Privileged Work Product Clause:</strong> ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI models or models shared across firms.
             </div>
             <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">
-              Some features (for example, sorting email, drafting replies, and reading documents) send content, including email content, to Fireworks AI through our LiteLLM proxy so the model can return a result. Fireworks processes the content under its own terms; we do not make a retention guarantee on its behalf.
+              Some features (for example, sorting email, drafting replies, and reading documents) send content, including email content, to Fireworks AI through our LiteLLM proxy so the model can return a result. Fireworks processes the content under its own terms; we do not make a retention guarantee on its behalf. AI requests and responses may be logged for debugging by our observability provider, Langfuse.
             </p>
           </article>
 
@@ -249,6 +249,7 @@
               <li><strong>SMS & Calls:</strong> Twilio, for policyholder and adjuster text messages and calls.</li>
               <li><strong>Email:</strong> Google (Gmail API), when you connect a Gmail account.</li>
               <li><strong>AI Models:</strong> Fireworks AI, reached through our LiteLLM proxy (see Section 4).</li>
+              <li><strong>AI Observability:</strong> Langfuse, which may log AI requests and responses for debugging.</li>
               <li><strong>Error Monitoring:</strong> Sentry, which receives application error reports.</li>
             </ul>
             <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">
@@ -346,7 +347,7 @@
               <li>keep the connected mailbox in sync so new claim email appears in ClaimHive.</li>
             </ul>
             <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">
-              To match and sort email and to prepare drafts, ClaimHive sends parts of a message (sender, recipients, subject, date, up to the first 3,000 characters of the body, and attachment names) to Fireworks AI through our LiteLLM proxy. Fireworks processes the content under its own terms; we do not make a retention guarantee on its behalf. We do not use Gmail data to train generalized AI models. We do not use Gmail data for advertising.
+              To match and sort email and to prepare drafts, ClaimHive sends parts of a message (sender, recipients, subject, date, up to the first 3,000 characters of the body, and attachment names) to Fireworks AI through our LiteLLM proxy. Fireworks processes the content under its own terms; we do not make a retention guarantee on its behalf. AI requests and responses may be logged for debugging by our observability provider, Langfuse. We do not use Gmail data to train generalized AI models. We do not use Gmail data for advertising.
             </p>
 
             <h3 class="font-heading" style="font-size: 1.125rem; color: var(--hive-navy-900); margin-top: 1.5rem; margin-bottom: 0.75rem;">
