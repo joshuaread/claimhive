@@ -8,7 +8,7 @@ ClaimHive is a cloud-based practice management and document-automation platform 
 - Built to manage the claim lifecycle: intake, evidence and policy review, scope and estimate organization, demand tracking, and settlement reconciliation.
 - Chip drafts paperwork and follow-ups for a licensed adjuster to review.
 - A read-only client portal for property owners represented by a licensed public adjuster.
-- Customer claim files are not used to train public AI models.
+- Customer claim files are not used to train public AI models or models shared across firms.
 
 ## Who It Is For
 - Licensed USA public adjusters and independent public adjusting firms.
