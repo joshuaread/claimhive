@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy | ClaimHive</title>
-  <meta name="description" content="Plain-English privacy policy for ClaimHive. Zero AI training on claim files, work-product privilege protection, and 1-click data export.">
+  <meta name="description" content="Plain-English privacy policy for ClaimHive. No public AI model training on claim files, work-product privilege protection, and 1-click data export.">
   <link rel="canonical" href="https://claimhive.app/privacy">
   <meta property="og:site_name" content="ClaimHive">
   
@@ -28,7 +28,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://claimhive.app/privacy">
   <meta property="og:title" content="Privacy Policy | ClaimHive">
-  <meta property="og:description" content="Plain-English privacy policy for ClaimHive. Zero AI training on claim files, work-product privilege protection, and 1-click data export.">
+  <meta property="og:description" content="Plain-English privacy policy for ClaimHive. No public AI model training on claim files, work-product privilege protection, and 1-click data export.">
   <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -38,7 +38,7 @@
   <meta name="twitter:site" content="@ClaimHiveApp">
   <meta name="twitter:url" content="https://claimhive.app/privacy">
   <meta name="twitter:title" content="Privacy Policy | ClaimHive">
-  <meta name="twitter:description" content="Plain-English privacy policy for ClaimHive. Zero AI training on claim files, work-product privilege protection, and 1-click data export.">
+  <meta name="twitter:description" content="Plain-English privacy policy for ClaimHive. No public AI model training on claim files, work-product privilege protection, and 1-click data export.">
   <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
 
   <!-- Unified Analytics -->
@@ -70,7 +70,7 @@
       "@id": "https://claimhive.app/privacy#webpage",
       "url": "https://claimhive.app/privacy",
       "name": "Privacy Policy | ClaimHive",
-      "description": "Plain-English privacy policy for ClaimHive. Zero AI training on claim files, work-product privilege protection, and 1-click data export.",
+      "description": "Plain-English privacy policy for ClaimHive. No public AI model training on claim files, work-product privilege protection, and 1-click data export.",
       "isPartOf": {
         "@id": "https://claimhive.app/#organization"
       }
@@ -86,7 +86,7 @@
     <span class="hide-mobile">PLAIN ENGLISH • NO LEGALESE TRAPS &nbsp;•&nbsp;</span>
     <span>ZERO SALE OF ADJUSTER OR CLIENT DATA</span>
     &nbsp;•&nbsp;
-    <span class="highlight">✦ ZERO AI MODEL TRAINING ON CLAIM FILES</span>
+    <span class="highlight">✦ NO PUBLIC AI MODEL TRAINING ON CLAIM FILES</span>
   </div>
 
   <!-- STICKY SITE HEADER -->
@@ -140,7 +140,7 @@
         Privacy Policy
       </h1>
       <p class="page-hero-subtitle">
-        Last updated: October 3, 2026 • Effective immediately for all ClaimHive accounts.
+        Last updated: October 31, 2026 • Effective immediately for all ClaimHive accounts.
       </p>
     </div>
   </section>
@@ -159,12 +159,13 @@
             <a href="#summary" class="legal-nav-link active">1. Executive Summary</a>
             <a href="#collection" class="legal-nav-link">2. Data We Collect</a>
             <a href="#usage" class="legal-nav-link">3. How We Use Data</a>
-            <a href="#ai-governance" class="legal-nav-link">4. Zero AI Training</a>
+            <a href="#ai-governance" class="legal-nav-link">4. AI Processing</a>
             <a href="#sharing" class="legal-nav-link">5. Data Sharing & Third Parties</a>
             <a href="#analytics" class="legal-nav-link">6. Analytics & Cookies</a>
             <a href="#sovereignty" class="legal-nav-link">7. Ownership & 1-Click Export</a>
             <a href="#compliance" class="legal-nav-link">8. State Insurance Compliance</a>
             <a href="#contact" class="legal-nav-link">9. Contact & Escalation</a>
+            <a href="#google-user-data" class="legal-nav-link">10. Google User Data</a>
           </nav>
         </aside>
 
@@ -223,13 +224,13 @@
           <!-- SECTION 4 -->
           <article id="ai-governance" class="legal-article-section">
             <h2 class="font-heading" style="font-size: 1.625rem; color: var(--hive-navy-900); margin-bottom: 1rem;">
-              4. Zero AI Model Training Guarantee
+              4. AI Processing & Model Training
             </h2>
             <div class="legal-callout-box">
-              <strong>Privileged Work Product Clause:</strong> ClaimHive formally covenants that customer claim documents, estimates, photos, and messages will NOT be used to train, retrain, fine-tune, or calibrate public or proprietary commercial artificial intelligence foundation models.
+              <strong>Privileged Work Product Clause:</strong> ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI models or models shared across firms.
             </div>
             <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">
-              When document extraction features are triggered (e.g., reading coverage limits from a declarations page), processing occurs through isolated inference pipelines covered by strict enterprise zero-data-retention (ZDR) agreements. Once extraction finishes, the temporary memory buffer is destroyed. Your claim data never leaks across tenant boundaries.
+              Some features (for example, sorting email, drafting replies, and reading documents) send content, including email content, to our AI provider, <mark>[PENDING: AI provider name]</mark>, through our AI proxy so the model can return a result. Those providers process the content under their own terms; we do not make a retention guarantee on their behalf. Whether and how long prompts and outputs are logged: <mark>[PENDING: AI logging and provider retention terms]</mark>.
             </p>
           </article>
 
@@ -239,12 +240,16 @@
               5. Data Sharing & Third-Party Infrastructure
             </h2>
             <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-bottom: 1rem;">
-              We work solely with vetted, US-based enterprise infrastructure providers bound by contractual non-disclosure:
+              We use the following service providers to run ClaimHive:
             </p>
             <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; color: var(--hive-text-secondary); line-height: 1.7;">
-              <li><strong>Hosting & Storage:</strong> Amazon Web Services (AWS, US regions). Customer data is encrypted at rest using AES-256 and in transit using TLS.</li>
+              <li><strong>File Storage & Authentication:</strong> Firebase Authentication (for sign-in). Uploaded files and filed attachments are stored with <mark>[PENDING: storage provider]</mark>.</li>
+              <li><strong>Database & Application Hosting:</strong> Cloud infrastructure providers. Data is encrypted in transit using TLS; Google OAuth tokens are encrypted with AES-256-GCM.</li>
               <li><strong>Billing Gateway:</strong> Stripe Inc. for encrypted payment transactions.</li>
-              <li><strong>Transactional Communications:</strong> Encrypted SMS/Email gateways strictly for dispatching policyholder claim status alerts and adjuster notifications.</li>
+              <li><strong>SMS & Calls:</strong> Twilio, for policyholder and adjuster text messages and calls.</li>
+              <li><strong>Email:</strong> Google (Gmail API), when you connect a Gmail account.</li>
+              <li><strong>AI Models:</strong> <mark>[PENDING: AI provider name]</mark>, reached through our AI proxy (see Section 4).</li>
+              <li><strong>Error Monitoring:</strong> Sentry, which receives application error reports.</li>
             </ul>
             <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">
               <strong>Subpoenas & Legal Process:</strong> In the event that ClaimHive receives a court order, administrative subpoena, or regulatory demand requesting customer files, we will promptly notify your firm administrator unless prohibited by applicable law, enabling you to assert appropriate work-product privileges or file protective motions.
@@ -304,6 +309,93 @@
             </div>
           </article>
 
+          <!-- SECTION 10 -->
+          <article id="google-user-data" class="legal-article-section">
+            <h2 class="font-heading" style="font-size: 1.625rem; color: var(--hive-navy-900); margin-bottom: 1rem;">
+              10. Google User Data
+            </h2>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+              This section explains what ClaimHive does with information it gets from Google when you sign in with Google or connect a Gmail account. It adds to the rest of this policy. Where they differ, this section controls for Google user data.
+            </p>
+
+            <h3 class="font-heading" style="font-size: 1.125rem; color: var(--hive-navy-900); margin-top: 1.5rem; margin-bottom: 0.75rem;">
+              What we access
+            </h3>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; color: var(--hive-text-secondary); line-height: 1.7;">
+              <li><strong>Google sign-in.</strong> When you sign in with Google, we ask for your basic profile: your name, email address and profile picture (scopes <code>openid</code>, <code>userinfo.email</code>, <code>userinfo.profile</code>). We use this only to create and sign in to your ClaimHive account.</li>
+              <li><strong>Gmail (optional).</strong> If you choose to connect a Gmail account, we ask for the following scopes:
+                <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
+                  <li><code>gmail.readonly</code> — reads your email messages, threads, attachments, and send-as settings. ClaimHive uses it to show your email inside ClaimHive, match messages to claims and leads, and file attachments into claim documents.</li>
+                  <li><code>gmail.compose</code> — creates, updates, deletes, and sends drafts. ClaimHive uses it to prepare reply drafts for you to review.</li>
+                  <li><code>gmail.send</code> — sends email on your behalf. ClaimHive uses it to send the emails and replies you choose to send.</li>
+                  <li><code>gmail.modify</code> <mark>[PENDING: confirm gmail.modify scope ships]</mark> — reads and changes labels and message state (for example, mark as read) so ClaimHive stays in sync with your mailbox.</li>
+                  <li><code>userinfo.email</code> — accesses the email address of the connected account. ClaimHive uses it to identify which mailbox is connected.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3 class="font-heading" style="font-size: 1.125rem; color: var(--hive-navy-900); margin-top: 1.5rem; margin-bottom: 0.75rem;">
+              How we use it
+            </h3>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+              We use Gmail data only to provide the email features you see in ClaimHive:
+            </p>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; color: var(--hive-text-secondary); line-height: 1.7;">
+              <li>show your email inside ClaimHive and open threads and attachments;</li>
+              <li>match an email to a claim or a lead, add the sender as a contact, and file attachments into the claim's documents;</li>
+              <li>prepare reply drafts for you to review, and send the emails and replies you choose to send;</li>
+              <li>keep the connected mailbox in sync so new claim email appears in ClaimHive.</li>
+            </ul>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">
+              To match and sort email and to prepare drafts, ClaimHive sends parts of a message (sender, recipients, subject, date, up to the first 3,000 characters of the body, and attachment names) to our AI provider, <mark>[PENDING: AI provider name]</mark>, through our AI proxy. Whether and how long prompts and outputs are logged: <mark>[PENDING: AI logging and provider retention terms]</mark>. We do not use Gmail data to train generalized AI models. We do not use Gmail data for advertising.
+            </p>
+
+            <h3 class="font-heading" style="font-size: 1.125rem; color: var(--hive-navy-900); margin-top: 1.5rem; margin-bottom: 0.75rem;">
+              What we store
+            </h3>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; color: var(--hive-text-secondary); line-height: 1.7;">
+              <li>Your Google access and refresh tokens, encrypted with AES-256-GCM.</li>
+              <li>Tokens are not written to audit logs <mark>[PENDING: remove tokens from audit log]</mark>.</li>
+              <li>For email ClaimHive processes: the Gmail message and thread IDs, sender, recipients, subject, date, a short snippet of the body, the matched claim or lead, and the result of the AI sorting.</li>
+              <li>Email you link to a claim is saved in the claim's communication history, including the message text. Attachments you file to a claim are saved as claim documents.</li>
+              <li>Drafts you create in ClaimHive and their Gmail draft IDs.</li>
+              <li>Uploaded files and filed attachments are stored with <mark>[PENDING: storage provider]</mark>.</li>
+            </ul>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">
+              We keep Google user data for <mark>[PENDING: retention period]</mark>. You can ask us to delete your data at any time by emailing <a href="mailto:privacy@claimhive.app" style="color: var(--hive-gold-deep); font-weight: 600;">privacy@claimhive.app</a>.
+            </p>
+
+            <h3 class="font-heading" style="font-size: 1.125rem; color: var(--hive-navy-900); margin-top: 1.5rem; margin-bottom: 0.75rem;">
+              Who we share it with
+            </h3>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+              We do not sell Google user data. We do not share it with advertisers, data brokers or information resellers, and we do not use it to decide credit or lending. Google user data is shared only:
+            </p>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; color: var(--hive-text-secondary); line-height: 1.7;">
+              <li>within your firm's ClaimHive workspace, with the users who have access to the claim, lead or shared mailbox;</li>
+              <li>with the service providers listed in Section 5 (file storage, hosting, and the AI proxy and AI model subprocessors), only to provide the features you use;</li>
+              <li>when the law requires it, to protect security, or as part of a merger or sale of the business with your prior consent.</li>
+            </ul>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">
+              ClaimHive staff cannot read the content of customers' email. <mark>[PENDING: Engineer to confirm that no admin or superadmin path in the code can reach email content]</mark>
+            </p>
+
+            <h3 class="font-heading" style="font-size: 1.125rem; color: var(--hive-navy-900); margin-top: 1.5rem; margin-bottom: 0.75rem;">
+              Disconnecting and deleting
+            </h3>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; color: var(--hive-text-secondary); line-height: 1.7;">
+              <li>When you disconnect a Gmail account, ClaimHive revokes its access token at Google <mark>[PENDING: token revocation on disconnect]</mark> and deletes email data obtained from that account <mark>[PENDING: data deletion on disconnect — confirm scope of deletion]</mark>.</li>
+              <li>You can also remove ClaimHive's access at any time from your Google Account at <a href="https://myaccount.google.com/permissions" style="color: var(--hive-gold-deep); font-weight: 600;">https://myaccount.google.com/permissions</a>.</li>
+            </ul>
+
+            <h3 class="font-heading" style="font-size: 1.125rem; color: var(--hive-navy-900); margin-top: 1.5rem; margin-bottom: 0.75rem;">
+              Limited Use
+            </h3>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">The use of information received from Google Workspace scopes will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" style="color: var(--hive-gold-deep); font-weight: 600;">Google User Data Policy</a>, including the Limited Use requirements.</p>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">Learn more in Google's <a href="https://developers.google.com/workspace/workspace-api-user-data-developer-policy" style="color: var(--hive-gold-deep); font-weight: 600;">Google Workspace API User Data and Developer Policy</a>.</p>
+            <p style="color: var(--hive-text-secondary); line-height: 1.8; margin-top: 1rem;">See the <a href="https://developers.google.com/terms/api-services-user-data-policy" style="color: var(--hive-gold-deep); font-weight: 600;">Google API Services User Data Policy</a>.</p>
+          </article>
+
         </main>
       </div>
     </div>
@@ -361,7 +453,7 @@
 
       <div class="footer-bottom">
         <div>© 2026 ClaimHive Inc. Built for licensed public adjusters across the United States.</div>
-        <div>Private Harnessed LLM • Zero Public Model Training Guarantee</div>
+        <div>Private Harnessed LLM • No Public Model Training</div>
       </div>
     </div>
   </footer>
