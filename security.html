@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Security & Data Trust | ClaimHive</title>
-  <meta name="description" content="Encryption in transit, no public AI model training on claim files, and 1-click full data export [PENDING: Engineer confirm].">
+  <meta name="description" content="Encryption in transit, encrypted Google OAuth tokens, and no public AI model training on claim files.">
   <link rel="canonical" href="https://claimhive.app/security">
   <meta property="og:site_name" content="ClaimHive">
   
@@ -28,7 +28,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://claimhive.app/security">
   <meta property="og:title" content="Security &amp; Data Trust | ClaimHive">
-  <meta property="og:description" content="Encryption in transit, no public AI model training on claim files, and 1-click full data export [PENDING: Engineer confirm].">
+  <meta property="og:description" content="Encryption in transit, encrypted Google OAuth tokens, and no public AI model training on claim files.">
   <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -38,7 +38,7 @@
   <meta name="twitter:site" content="@ClaimHiveApp">
   <meta name="twitter:url" content="https://claimhive.app/security">
   <meta name="twitter:title" content="Security &amp; Data Trust | ClaimHive">
-  <meta name="twitter:description" content="Encryption in transit, no public AI model training on claim files, and 1-click full data export [PENDING: Engineer confirm].">
+  <meta name="twitter:description" content="Encryption in transit, encrypted Google OAuth tokens, and no public AI model training on claim files.">
   <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
 
   <!-- Unified Analytics -->
@@ -88,7 +88,7 @@
       "@id": "https://claimhive.app/security#webpage",
       "url": "https://claimhive.app/security",
       "name": "Security & Data Trust | ClaimHive",
-      "description": "Encryption in transit, no public AI model training on claim files, and 1-click full data export [PENDING: Engineer confirm].",
+      "description": "Encryption in transit, encrypted Google OAuth tokens, and no public AI model training on claim files.",
       "isPartOf": {
         "@id": "https://claimhive.app/#organization"
       },
@@ -182,7 +182,7 @@
           <svg width="14" height="12" viewBox="0 0 34 30" fill="none" stroke="var(--hive-gold-honey)" stroke-width="3" aria-hidden="true">
             <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
           </svg>
-          <strong style="color: var(--hive-navy-900);">1-Click</strong> Full Caseload Export <mark>[PENDING: Engineer confirm]</mark>
+          <strong style="color: var(--hive-navy-900);">Encrypted</strong> Google OAuth Tokens
         </span>
         <span style="display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;">
           <svg width="14" height="12" viewBox="0 0 34 30" fill="none" stroke="var(--hive-gold-honey)" stroke-width="3" aria-hidden="true">
@@ -252,7 +252,7 @@
               </h3>
             </div>
             <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.65; margin: 0;">
-              When our system parses a policy limits dec sheet, carrier denial letter, or contractor invoice, it is sent through our AI proxy to <mark>[PENDING: AI provider name]</mark>. Those providers process the content under their own terms; we do not make a retention guarantee on their behalf (<mark>[PENDING: AI logging and provider retention terms]</mark>). We do not sell or license your data.
+              When our system parses a policy limits dec sheet, carrier denial letter, or contractor invoice, it is sent through our LiteLLM proxy to Fireworks AI. Fireworks processes the content under its own terms; we do not make a retention guarantee on its behalf. We do not sell or license your data.
             </p>
           </div>
 
@@ -274,7 +274,7 @@
         <!-- 4-Pillar Covenant Strip -->
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--hive-border-subtle); font-size: 0.8125rem; color: var(--hive-text-muted);">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--hive-success); font-weight: 700;">✓</span> Each firm's data is kept separate <mark>[PENDING: Engineer confirm]</mark>
+            <span style="color: var(--hive-success); font-weight: 700;">✓</span> Encryption in Transit (TLS)
           </div>
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <span style="color: var(--hive-success); font-weight: 700;">✓</span> No Public Model Training
@@ -310,7 +310,7 @@
             </div>
             
             <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
-              Claim records are hosted with cloud infrastructure providers (<mark>[PENDING: database hosting provider and region]</mark>). Uploaded files, inspection photographs, and attachments are stored with <mark>[PENDING: storage provider]</mark>. Data is encrypted in transit via TLS.
+              Uploaded files, inspection photographs, and attachments are stored with Firebase Storage or local server storage. Sign-in uses Firebase Authentication. Data is encrypted in transit via TLS.
             </p>
 
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem; color: var(--hive-text-secondary);">
@@ -318,19 +318,13 @@
                 <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
                   <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
                 </svg>
-                <span><strong style="color: var(--hive-navy-900);">Encryption at Rest:</strong> <mark>[PENDING: encryption at rest details]</mark>. Google OAuth tokens are encrypted with AES-256-GCM.</span>
+                <span><strong style="color: var(--hive-navy-900);">Encrypted OAuth Tokens:</strong> Google OAuth tokens are encrypted with AES-256-GCM.</span>
               </li>
               <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
                 <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
                   <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
                 </svg>
                 <span><strong style="color: var(--hive-navy-900);">TLS in Transit:</strong> Data is encrypted in transit between your device and ClaimHive.</span>
-              </li>
-              <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
-                <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
-                  <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
-                </svg>
-                <span><strong style="color: var(--hive-navy-900);">Backups:</strong> <mark>[PENDING: backup and disaster recovery details]</mark>.</span>
               </li>
             </ul>
           </div>
@@ -351,13 +345,13 @@
               <div>
                 <span class="badge badge-navy" style="font-size: 0.6875rem;">TENET 03</span>
                 <h3 style="font-family: var(--hive-font-display); font-size: 1.25rem; font-weight: 700; color: var(--hive-navy-900); margin: 0.25rem 0 0;">
-                  1-Click Full Data Export <mark>[PENDING: Engineer confirm]</mark>
+                  You Own Your Data
                 </h3>
               </div>
             </div>
             
             <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
-              We never hold your files hostage. At any moment, an administrator can generate a complete export of your entire firm's caseload with a single click. <mark>[PENDING: Engineer confirm]</mark>
+              We never hold your files hostage. Your firm owns its data. To request a copy of your firm's data, contact <a href="mailto:privacy@claimhive.app" style="color: var(--hive-gold-deep); font-weight: 600;">privacy@claimhive.app</a>.
             </p>
 
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem; color: var(--hive-text-secondary);">
@@ -365,13 +359,13 @@
                 <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
                   <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
                 </svg>
-                <span><strong style="color: var(--hive-navy-900);">Standard Open Formats:</strong> Original high-res JPEG/PNG photos, standard PDF files, and clean Excel/CSV chronologies.</span>
+                <span><strong style="color: var(--hive-navy-900);">Request a Copy:</strong> To request a copy of your firm's data, contact privacy@claimhive.app.</span>
               </li>
               <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
                 <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
                   <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
                 </svg>
-                <span><strong style="color: var(--hive-navy-900);">Instant ZIP Generation:</strong> No 30-day "support ticket wait times" or extortionate export fees. <mark>[PENDING: Engineer confirm]</mark></span>
+                <span><strong style="color: var(--hive-navy-900);">No Proprietary Lock-In:</strong> Your data belongs to your firm, not to ClaimHive.</span>
               </li>
               <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
                 <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
@@ -384,7 +378,7 @@
 
           <div style="margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--hive-border-subtle); font-size: 0.8125rem; color: var(--hive-text-muted); display: flex; align-items: center; justify-content: space-between;">
             <span>Zero proprietary lock-in</span>
-            <span style="font-weight: 600; color: var(--hive-gold-deep);">100% Caseload Portability</span>
+            <span style="font-weight: 600; color: var(--hive-gold-deep);">You own your data</span>
           </div>
         </div>
 
@@ -401,13 +395,13 @@
               <div>
                 <span class="badge badge-navy" style="font-size: 0.6875rem;">TENET 04</span>
                 <h3 style="font-family: var(--hive-font-display); font-size: 1.25rem; font-weight: 700; color: var(--hive-navy-900); margin: 0.25rem 0 0;">
-                  Each Firm's Data Is Kept Separate <mark>[PENDING: Engineer confirm]</mark>
+                  Firm Data Separation
                 </h3>
               </div>
             </div>
             
             <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
-              Each firm's data is kept separate <mark>[PENDING: Engineer confirm]</mark>, so an adjuster at Firm A cannot access files from Firm B.
+              Each firm's data is separated at the database level for firm users, so an adjuster at Firm A cannot access files from Firm B.
             </p>
 
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem; color: var(--hive-text-secondary);">
@@ -415,26 +409,26 @@
                 <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
                   <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
                 </svg>
-                <span><strong style="color: var(--hive-navy-900);">Granular Staff Roles:</strong> Limit access between senior PAs, field apprentices, estimators, and admin staff. <mark>[PENDING: Engineer confirm]</mark></span>
+                <span><strong style="color: var(--hive-navy-900);">Database-Level Separation:</strong> Each firm's data is separated at the database level for firm users.</span>
               </li>
               <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
                 <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
                   <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
                 </svg>
-                <span><strong style="color: var(--hive-navy-900);">Expiring Guest Tokens:</strong> Outside structural engineers and forensic CPAs only access specific approved line items. <mark>[PENDING: Engineer confirm]</mark></span>
+                <span><strong style="color: var(--hive-navy-900);">Encryption in Transit:</strong> Data is encrypted in transit between your device and ClaimHive via TLS.</span>
               </li>
               <li style="display: flex; align-items: flex-start; gap: 0.65rem;">
                 <svg width="14" height="12" viewBox="0 0 34 30" fill="var(--hive-gold-honey)" style="flex-shrink: 0; margin-top: 3px;" aria-hidden="true">
                   <path d="M9.5 2 L24.5 2 L32 15 L24.5 28 L9.5 28 L2 15 Z"></path>
                 </svg>
-                <span><strong style="color: var(--hive-navy-900);">Immutable Audit Logs:</strong> Every access timestamp is recorded to prove chain-of-custody in appraisal or court. <mark>[PENDING: Engineer confirm]</mark></span>
+                <span><strong style="color: var(--hive-navy-900);">Tamper-Evident Audit Logs:</strong> Access timestamps and document actions are recorded for security and compliance.</span>
               </li>
             </ul>
           </div>
 
           <div style="margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--hive-border-subtle); font-size: 0.8125rem; color: var(--hive-text-muted); display: flex; align-items: center; justify-content: space-between;">
-            <span>Role-based access control (RBAC) <mark>[PENDING: Engineer confirm]</mark></span>
-            <span style="font-weight: 600; color: var(--hive-gold-deep);">Cryptographic Boundaries <mark>[PENDING: Engineer confirm]</mark></span>
+            <span>Database-level separation</span>
+            <span style="font-weight: 600; color: var(--hive-gold-deep);">Encrypted OAuth tokens</span>
           </div>
         </div>
 
@@ -544,7 +538,7 @@
                 Isolated Vault
               </div>
               <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.55; margin: 0;">
-                Stored per firm with <mark>[PENDING: storage provider]</mark>.
+                Stored per firm with Firebase Storage or local server storage.
               </p>
             </div>
             <div style="margin-top: 1.25rem; font-family: var(--hive-font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--hive-navy-900); background: #FFFFFF; padding: 0.35rem 0.5rem; border-radius: var(--hive-radius-sm); border: 1px solid var(--hive-border-subtle);">
@@ -592,11 +586,11 @@
                 Controlled Access
               </div>
               <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.55; margin: 0;">
-                Read-only client portal links &amp; statutory demand packages to carriers. <mark>[PENDING: Engineer confirm]</mark>
+                Claim records and documents are available within your firm's workspace to the users who have access.
               </p>
             </div>
             <div style="margin-top: 1.25rem; font-family: var(--hive-font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--hive-navy-900); background: #FFFFFF; padding: 0.35rem 0.5rem; border-radius: var(--hive-radius-sm); border: 1px solid var(--hive-border-subtle);">
-              Scoped Tokenized Links
+              Firm-Level Access
             </div>
           </div>
 
