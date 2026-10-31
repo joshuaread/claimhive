@@ -8,7 +8,7 @@ ClaimHive is a cloud-based practice management and document-automation platform 
 - Built to manage the claim lifecycle: intake, evidence and policy review, scope and estimate organization, demand tracking, and settlement reconciliation.
 - Chip drafts paperwork and follow-ups for a licensed adjuster to review.
 - A read-only client portal for property owners represented by a licensed public adjuster.
-- Customer claim files are not used to train public AI models.
+- Customer claim files are not used to train public AI models or models shared across firms.
 
 ## Who It Is For
 - Licensed USA public adjusters and independent public adjusting firms.
@@ -19,7 +19,7 @@ ClaimHive is a cloud-based practice management and document-automation platform 
 - $80 per seat per month plus direct token usage (compute ClaimHive's AI does for the firm).
 - Founding rate of $80/seat per month locked for as long as the firm stays subscribed for firms that join before January 31, 2027.
 - Beta opens November 1, 2026. General availability January 1, 2027.
-- Month-to-month billing. Firms can cancel and export their data.
+- Month-to-month billing. Firms can cancel at any time.
 - No per-claim surcharge and no cut of settlement fees.
 - Policyholder / guest portal access is included.
 
