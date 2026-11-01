@@ -43,6 +43,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://claimhive.app/hail-map</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.6</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
     <loc>https://claimhive.app/terms</loc>
     <lastmod>2026-10-16</lastmod>
     <priority>0.6</priority>
