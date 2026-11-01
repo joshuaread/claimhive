@@ -54,4 +54,16 @@
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://claimhive.app/blog</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.6</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://claimhive.app/blog/public-adjuster-record-keeping</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
