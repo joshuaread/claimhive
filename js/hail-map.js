@@ -117,14 +117,14 @@
           });
           if (countEl) {
             countEl.textContent = 'Showing ' + count + ' hail report' + (count === 1 ? '' : 's') +
-              (sel === 'all' ? ' from the past 7 days.' : '.');
+              (sel === 'all' ? ' in this 7-day snapshot.' : '.');
           }
         }
 
         var total = days.reduce(function (a, day) { return a + day.reports.length; }, 0);
         if (!data || total === 0) {
           if (statusEl) {
-            statusEl.textContent = 'No hail reports are available for the past 7 days, ' +
+            statusEl.textContent = 'No hail reports are available in this snapshot, ' +
               'or the data could not be loaded right now. Please check back later.';
           }
           if (countEl) countEl.textContent = '';
