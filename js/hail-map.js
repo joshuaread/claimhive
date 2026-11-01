@@ -1,5 +1,5 @@
 /* ClaimHive — Free U.S. Hail Map
- * Client-side rendering of a periodically built snapshot of NOAA Storm
+ * Client-side rendering of a dated snapshot of NOAA Storm
  * Prediction Center (SPC) preliminary hail reports. The snapshot is produced
  * server-side by scripts/build-hail-snapshot.py and served from the same origin
  * as data/hail-reports.json (the browser cannot reliably fetch the SPC CSVs
@@ -133,7 +133,7 @@
 
         if (statusEl) {
           statusEl.textContent = generated
-            ? 'Snapshot updated ' + generated + ' UTC'
+            ? 'Snapshot taken ' + generated.replace('T', ' ').replace(/:\d\dZ$/, '') + ' UTC'
             : '';
         }
         render('all');
