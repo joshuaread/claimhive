@@ -252,7 +252,7 @@
               </h3>
             </div>
             <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.65; margin: 0;">
-              When our system parses a policy limits dec sheet, carrier denial letter, or contractor invoice, it is sent through our LiteLLM proxy to Fireworks AI. Fireworks processes the content under its own terms; we do not make a retention guarantee on its behalf. AI requests and responses may be logged for debugging by our observability provider, Langfuse. We do not sell or license your data.
+              When our system parses a policy limits dec sheet, carrier denial letter, or contractor invoice, it is sent through our LiteLLM proxy to Fireworks AI. Fireworks processes the content under its own terms; we do not make a retention guarantee on its behalf. We use Langfuse to monitor AI requests. By default it records technical details only (the model used, token counts and timing), not the content of requests or responses. If content logging is turned on, emails, phone numbers, claim and policy numbers and similar personal details are filtered out first. We do not sell or license your data.
             </p>
           </div>
 
@@ -310,7 +310,7 @@
             </div>
             
             <p style="font-size: 0.9375rem; color: var(--hive-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
-              Uploaded files, inspection photographs, and attachments are stored with Firebase Storage or local server storage. Sign-in uses Firebase Authentication. Data is encrypted in transit via TLS.
+              Uploaded files, inspection photographs, and attachments are stored in Google Firebase Cloud Storage or in S3-compatible object storage (Railway Object Storage). Sign-in uses Firebase Authentication. Data is encrypted in transit via TLS.
             </p>
 
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem; color: var(--hive-text-secondary);">
@@ -538,7 +538,7 @@
                 Isolated Vault
               </div>
               <p style="font-size: 0.875rem; color: var(--hive-text-secondary); line-height: 1.55; margin: 0;">
-                Stored per firm with Firebase Storage or local server storage.
+                Stored per firm in Google Firebase Cloud Storage or in S3-compatible object storage (Railway Object Storage).
               </p>
             </div>
             <div style="margin-top: 1.25rem; font-family: var(--hive-font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--hive-navy-900); background: #FFFFFF; padding: 0.35rem 0.5rem; border-radius: var(--hive-radius-sm); border: 1px solid var(--hive-border-subtle);">
