@@ -10,11 +10,11 @@ All pages follow the unhurried, spacious aesthetic of modern civic platforms (e.
 
 | Page | File | Purpose & Highlights |
 | :--- | :--- | :--- |
-| **Home** | [`index.html`](file:///Users/josh/Projects/ClaimHive/Website/index.html) | Value prop, radical **$80/seat** pricing above the fold, 4 adjuster bottlenecks concierge, Josh Read's quote, 5-stage preview, Alpha & January CTAs. |
+| **Home** | [`index.html`](file:///Users/josh/Projects/ClaimHive/Website/index.html) | Value prop, radical **$80/seat** pricing above the fold, 4 adjuster bottlenecks concierge, Josh Read's quote, 5-stage preview, Beta is open CTAs. |
 | **Product** | [`product.html`](file:///Users/josh/Projects/ClaimHive/Website/product.html) | Honest UI walkthrough of the 5 linear claim stages: Intake & Docketing, Evidence & Scoping, Estimate & Gaps, Letters & Demands, and the Next Action Engine. |
 | **Pricing** | [`pricing.html`](file:///Users/josh/Projects/ClaimHive/Website/pricing.html) | **$80/seat/month flat**. Policyholders & external engineers 100% free forever. Founding rate locked for as long as the firm stays subscribed. Zero per-claim fees, no cuts of fee settlements, comparison table & FAQ. |
 | **Security & Trust** | [`security.html`](file:///Users/josh/Projects/ClaimHive/Website/security.html) | Institutional confidentiality: US-based SOC-2 vault, AES-256 KMS encryption, **Zero AI Training on Customer Claim Files**, 1-click full data export, and direct founder escalation. |
-| **About Us** | [`about.html`](file:///Users/josh/Projects/ClaimHive/Website/about.html) | Josh Read's founder letter, catastrophe track record, and profiles for Tim, Jon, and Josh. |
+| **About Us** | [`about.html`](file:///Users/josh/Projects/ClaimHive/Website/about.html) | Josh Read's founder letter, catastrophe track record, and a founder profile for Josh Read (the only named founder). |
 | **Request Access** | [`request.html`](file:///Users/josh/Projects/ClaimHive/Website/request.html) | Frictionless intake application for Founding Cohorts (Alpha Q4 2026 vs. January 2027) wired to `Seats_200` Google Sheet schema, spam honeypot trap, and instant confirmation screen. |
 | **Privacy Policy** | [`privacy.html`](file:///Users/josh/Projects/ClaimHive/Website/privacy.html) | Plain-English privacy covenants, explicit work-product privilege protection, zero commercialization of claim data, and DoD-grade data sanitization. |
 | **Terms of Service** | [`terms.html`](file:///Users/josh/Projects/ClaimHive/Website/terms.html) | Fair B2B SaaS agreement: month-to-month flexibility, $80 founding price guarantee, 100% adjuster data ownership, 99.9% catastrophe SLA, and 30-day money-back guarantee. |
