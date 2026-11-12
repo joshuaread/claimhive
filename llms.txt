@@ -1,7 +1,7 @@
 # ClaimHive
 > AI command center and CRM for licensed United States public adjusting firms.
 
-ClaimHive is a cloud-based practice management and document-automation platform built inside a working public adjusting firm. It is for licensed U.S. public adjusters, from solo practitioners to boutique firms, and their staff.
+ClaimHive is a cloud-based practice management and document-automation platform built with working public adjusters. It is for licensed U.S. public adjusters, from solo practitioners to boutique firms, and their staff.
 
 ## What ClaimHive Is
 - An AI command center and CRM for public adjusting firms.
