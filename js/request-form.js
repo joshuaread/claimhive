@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const routingNote = document.getElementById('success-routing-note');
       if (routingNote) {
-        routingNote.textContent = 'Our onboarding team will review your firm profile and follow up within 24 hours.';
+        routingNote.textContent = 'We review every request by hand.';
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
