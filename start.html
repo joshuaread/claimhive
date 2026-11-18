@@ -7,9 +7,9 @@
   <meta name="description" content="For public adjusters: ClaimHive drafts replies to your claim emails, and nothing goes out until you approve it. One place for each claim.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://claimhive.app/start">
-  <meta name="theme-color" content="#161B33">
+  <meta name="theme-color" content="#0F121F">
 
-  <!-- Motion gate: runs before first paint so reveal states never flash. No JS or reduced motion = static, fully assembled page. -->
+  <!-- Motion gate: runs before first paint. No JS or reduced motion = static, fully assembled page. -->
   <script>
     (function (d) {
       var c = d.documentElement.classList;
@@ -18,16 +18,16 @@
     })(document);
   </script>
 
-  <!-- Fonts: same families as the main site, trimmed to the weights this page uses -->
+  <!-- Fonts: Plus Jakarta Sans (display) + Inter (body) only -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Merriweather:wght@700;900&family=Newsreader:ital,opsz,wght@1,6..72,400&family=Plus+Jakarta+Sans:wght@600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Merriweather:wght@700;900&family=Newsreader:ital,opsz,wght@1,6..72,400&family=Plus+Jakarta+Sans:wght@600;700&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
 
-  <!-- Stylesheets: tokens + base components; no site.css (start.css carries the few rules this page needs) -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/start.css">
+  <link rel="stylesheet" href="css/start-mock.css">
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -60,11 +60,26 @@
 <body class="start-page">
   <a class="st-skip" href="#main">Skip to content</a>
 
-  <!-- Stripped chrome: logo + Start free, no nav links -->
+  <!-- Icon sprite for the product illustrations (stroke icons, currentColor) -->
+  <svg class="st-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-claims" viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H9l2 2h7.5A2.5 2.5 0 0 1 21 9.5v7a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7.5A2.5 2.5 0 0 0 5 5.5v13A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V8zM14 3v5h5M9 13h6M9 16.5h4"/></symbol>
+    <symbol id="i-tasks" viewBox="0 0 24 24"><path d="M9 11.5l2.5 2.5L20 5.5M20 12v6.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3H15"/></symbol>
+    <symbol id="i-leads" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4.5 20.5a7.5 7.5 0 0 1 15 0"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.5 11h11v9h-11zM9 11V8a3 3 0 0 1 6 0v3"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4.5 6.5L12 12l7.5-5.5"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M4.5 6h15v14h-15zM4.5 10h15M8.5 3.5v4M15.5 3.5v4"/></symbol>
+    <symbol id="i-img" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 16l4.5-4.5 4 4 3-3L20 17M15.5 9.5h.01"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 7.5V12l3 2M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  </svg>
+
+  <!-- Slim header: logo + persistent Start free. Transparent on the hero, navy blur once scrolled. -->
   <header class="st-header">
     <div class="st-header__inner">
-      <span class="st-header__logo">
-        <img src="assets/claim-hive-horizontal.svg" alt="ClaimHive" width="130" height="32">
+      <span class="st-logo">
+        <img src="assets/claim-hive-icon.svg" alt="" width="30" height="27">
+        <span class="st-logo__word">ClaimHive</span>
       </span>
       <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-sm st-btn" data-cta-location="ads_start_free_header">Start free</a>
     </div>
@@ -72,258 +87,323 @@
 
   <main id="main">
 
-    <!-- 1. HERO -->
-    <section class="st-hero" aria-labelledby="hero-title">
-      <div class="st-wrap st-hero__grid">
-        <div class="st-hero__copy">
-          <h1 id="hero-title" class="st-hero__title">Work the claims that pay.</h1>
-          <p class="st-hero__sub">For public adjusters: ClaimHive drafts replies to your claim emails, and nothing goes out until you approve it.</p>
-          <div class="st-hero__actions">
-            <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_hero">Start free</a>
-          </div>
-          <p class="st-offer">
-            <span class="st-offer__big">Free until January&nbsp;1,&nbsp;2027.</span>
-            <span class="st-offer__lead">Then $80/seat/month plus token usage.</span>
-            <span class="st-offer__card">A $1 authorization checks your card and is voided right away. You won't be charged until January&nbsp;1,&nbsp;2027.</span>
-          </p>
-          <a href="request.html" class="st-textlink st-hero__alt" data-cta-location="ads_request_beta_hero">Request beta access</a>
+    <!-- 1. HERO (dark): the product is the object -->
+    <section class="st-hero st-dark" data-scene="hero" aria-labelledby="hero-title">
+      <div class="st-wrap st-hero__copy">
+        <h1 id="hero-title" class="st-hero__title"><span class="st-line">Work the claims</span> <span class="st-line">that pay.</span></h1>
+        <p class="st-hero__sub">For public adjusters: ClaimHive drafts replies to your claim emails, and nothing goes out until you approve it.</p>
+        <div class="st-actions">
+          <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_hero">Start free</a>
+          <a href="request.html" class="st-textlink" data-cta-location="ads_request_beta_hero">Request beta access</a>
         </div>
+        <div class="st-hero__offer">
+          <p class="st-hero__free">Free until January&nbsp;1,&nbsp;2027.</p>
+          <p>Then $80/seat/month plus token usage.</p>
+          <p>A $1 authorization checks your card and is voided right away. You won't be charged until January&nbsp;1,&nbsp;2027.</p>
+        </div>
+      </div>
 
-        <!-- Product frame (HTML/CSS; replace with a real screenshot of a claim with a pending draft reply) -->
-        <figure class="st-hero__media">
-          <div class="st-frame" role="img" aria-label="Illustration of a ClaimHive claim record with a drafted email reply waiting for the adjuster's approval.">
-            <div class="st-frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ops.claimhive.app/claims</span></div>
-            <div class="st-frame__body st-app" aria-hidden="true">
-              <div class="st-app__head">
-                <div>
-                  <div class="st-app__kicker">Claim</div>
-                  <div class="st-app__title">Wind damage, roof and interior</div>
-                </div>
-                <span class="st-pill st-pill--open">Open</span>
-              </div>
-              <div class="st-app__tabs"><span class="is-on">Timeline</span><span>Documents</span><span>Tasks</span><span>Deadlines</span></div>
-              <div class="st-draft">
-                <div class="st-draft__meta"><span class="st-dot"></span>Carrier adjuster <span class="st-muted">· Re: Reinspection</span></div>
-                <div class="st-draft__label">Draft reply</div>
-                <div class="st-draft__lines"><b></b><b></b><b class="is-short"></b></div>
-                <div class="st-draft__foot">
-                  <span class="st-pill st-pill--wait">Waiting for your approval</span>
-                  <span class="st-fakebtn">Approve</span>
+      <figure class="st-wrap st-hero__media">
+        <div class="st-tilt" data-p>
+          <div class="pw pw--hero" aria-hidden="true">
+            <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
+            <div class="pw__app pw__app--rail">
+              <div class="pw__side">
+                <div class="pw__brand"><img src="assets/claim-hive-icon.svg" alt="" width="22" height="20"><span>ClaimHive</span></div>
+                <div class="pw__nav">
+                  <div class="is-on"><svg><use href="#i-claims"/></svg><span>Claims</span></div>
+                  <div><svg><use href="#i-doc"/></svg><span>Documents</span></div>
+                  <div><svg><use href="#i-tasks"/></svg><span>Tasks</span></div>
+                  <div><svg><use href="#i-leads"/></svg><span>Leads</span></div>
                 </div>
               </div>
-              <div class="st-row st-row--deadline"><span>Proof of loss</span><span class="st-mono">Due Dec 12</span><span class="st-pill st-pill--ok">You confirmed</span></div>
+              <div class="pw__main">
+                <div class="pw__top">
+                  <div class="pw__title">Sample claim <span class="pw-pill">Open</span></div>
+                  <div class="pw__meta"><span>SAMPLE-0001</span><span>Sample Policyholder</span><span>Sample Carrier</span></div>
+                </div>
+                <div class="pw__tabs"><span>Overview</span><span class="is-on">Timeline</span><span class="pw-tab-x2">Documents</span><span class="pw-tab-x">Tasks</span><span class="pw-tab-x">Deadlines</span></div>
+                <div class="pw-msg">
+                  <div class="pw-msg__head"><span class="pw-av">SC</span><div><b>Sample Carrier adjuster</b><span>Re: Sample claim, reinspection</span></div><time>9:14 AM</time></div>
+                  <p>Hello, we would like to reinspect the roof and the interior. Please send two times next week that work for the policyholder.</p>
+                </div>
+                <div class="pw-draft">
+                  <div class="pw-draft__head"><span class="pw-draft__label"><svg><use href="#i-mail"/></svg>Draft reply</span><span class="pw-pill pw-pill--draft">Draft, not sent</span></div>
+                  <p>Thanks for the note. Sample Policyholder can meet you Tuesday or Thursday morning next week. Tell me which works and I will be on site. The updated photo set is on the claim file.</p>
+                  <div class="pw-draft__foot"><span class="pw-hint">Nothing goes out until you approve it.</span><span class="pw-btn">Edit</span><span class="pw-btn pw-btn--gold pw-ring">Approve</span></div>
+                </div>
+                <div class="pw-feed">
+                  <div class="pw-feed__h">Earlier on this claim</div>
+                  <div class="pw-row"><span class="pw-dot"></span>Photos added (sample)<time>Mon</time></div>
+                  <div class="pw-row"><span class="pw-dot"></span>Carrier letter (sample).pdf filed<time>Nov 26</time></div>
+                  <div class="pw-row"><span class="pw-dot"></span>Claim opened<time>Nov 20</time></div>
+                </div>
+              </div>
+              <div class="pw__rail">
+                <div class="pw-card">
+                  <div class="pw-card__h">Claim details</div>
+                  <dl class="pw-kv"><dt>Policyholder</dt><dd>Sample Policyholder</dd><dt>Carrier</dt><dd>Sample Carrier</dd><dt>Claim ref.</dt><dd>SAMPLE-0001</dd><dt>Loss</dt><dd>Wind, roof (sample)</dd></dl>
+                </div>
+                <div class="pw-card">
+                  <div class="pw-card__h">Next deadline</div>
+                  <div class="pw-row"><svg><use href="#i-cal"/></svg>Proof of loss<span class="pw-date">Dec 12</span></div>
+                  <div class="pw-hint">You confirm this date for your state.</div>
+                </div>
+              </div>
             </div>
           </div>
-          <figcaption class="st-caption">Illustration of a claim record.</figcaption>
-        </figure>
-      </div>
+        </div>
+        <p class="st-sr">Illustration of ClaimHive with sample data: a claim's timeline shows an email from a sample carrier adjuster and a drafted reply marked Draft, not sent, with an Approve button.</p>
+        <figcaption class="st-caption">Illustration with sample data.</figcaption>
+      </figure>
     </section>
 
-    <!-- 2. THE SHIFT + scroll-driven assembly (messy file -> one ClaimHive record, F3) -->
-    <section class="st-shift" id="shift" aria-labelledby="shift-title">
+    <!-- 2. THE SHIFT (light): scattered pieces fly into one claim file -->
+    <section class="st-shift st-light" data-scene="shift" aria-labelledby="shift-title">
       <div class="st-shift__stage">
         <div class="st-wrap st-shift__inner">
           <h2 id="shift-title" class="st-shift__lines">
-            <span class="st-shift__a">Today a claim lives in your inbox, a folder and a sticky note.</span>
-            <span class="st-shift__b">ClaimHive puts it in one place.</span>
+            <span class="st-shift__a" data-p>Today a claim lives in your inbox, a folder and a sticky note<span class="st-dot">.</span></span>
+            <span class="st-shift__b" data-p>ClaimHive puts it in one place<span class="st-dot">.</span></span>
           </h2>
 
-          <div class="st-board" role="img" aria-label="Loose emails, documents and sticky-note deadlines come together into one ClaimHive claim record with documents, tasks, deadlines and a timeline.">
-            <div class="st-board__record" aria-hidden="true">
-              <div class="st-board__bar"><i></i><i></i><i></i><span>Claim record</span></div>
+          <div class="st-board">
+            <div class="st-board__file" aria-hidden="true" data-p>
+              <div class="pw__bar st-board__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
+              <div class="st-board__head"><span class="pw__title">Sample claim <span class="pw-pill">Open</span></span><span class="pw__meta">SAMPLE-0001</span></div>
               <div class="st-board__grid">
-                <div class="st-panel st-panel--docs"><div class="st-panel__h">Documents</div>
-                  <div class="st-piece" style="--mx:-6;--my:-22;--mr:-9;--d:0">
-                    <div class="st-piece__raw st-raw st-raw--file"><span class="st-raw__ico">PDF</span>policy_scan_FINAL_v2.pdf</div>
-                    <div class="st-piece__clean st-li"><span class="st-li__ico">PDF</span>Policy declarations</div>
+                <div class="st-panel"><div class="st-panel__h"><svg><use href="#i-doc"/></svg>Documents</div>
+                  <div class="st-piece" data-p style="--mx:-44;--my:-12;--mr:-7;--d:0">
+                    <div class="st-raw st-raw--pdf"><b>PDF</b>policy_scan_FINAL_v2.pdf</div>
+                    <div class="st-clean pw-row"><svg><use href="#i-doc"/></svg>Policy declarations (sample).pdf</div>
                   </div>
-                  <div class="st-piece" style="--mx:14;--my:-16;--mr:7;--d:.08">
-                    <div class="st-piece__raw st-raw st-raw--mail"><span class="st-raw__from">Fwd: Fwd: photos</span><span class="st-raw__sub">see attached roof pics</span></div>
-                    <div class="st-piece__clean st-li"><span class="st-li__ico">IMG</span>Roof photos</div>
-                  </div>
-                </div>
-                <div class="st-panel st-panel--tasks"><div class="st-panel__h">Tasks</div>
-                  <div class="st-piece" style="--mx:12;--my:-24;--mr:-5;--d:.16">
-                    <div class="st-piece__raw st-raw st-raw--note">call policyholder back!!</div>
-                    <div class="st-piece__clean st-li"><span class="st-check"></span>Call the policyholder</div>
-                  </div>
-                  <div class="st-piece" style="--mx:-18;--my:-8;--mr:6;--d:.24">
-                    <div class="st-piece__raw st-raw st-raw--sheet"><span>B14</span>schedule reinspect?</div>
-                    <div class="st-piece__clean st-li"><span class="st-check"></span>Schedule reinspection</div>
+                  <div class="st-piece" data-p style="--mx:-40;--my:3;--mr:5;--d:.08">
+                    <div class="st-raw st-raw--mail"><b>Fwd: Fwd: photos</b><span>see attached, roof and interior</span></div>
+                    <div class="st-clean pw-row"><svg><use href="#i-img"/></svg>Photos (sample)</div>
                   </div>
                 </div>
-                <div class="st-panel st-panel--dates"><div class="st-panel__h">Deadlines</div>
-                  <div class="st-piece" style="--mx:22;--my:14;--mr:8;--d:.12">
-                    <div class="st-piece__raw st-raw st-raw--note st-raw--note2">POL due ??</div>
-                    <div class="st-piece__clean st-li"><span class="st-li__date">Dec 12</span>Proof of loss</div>
+                <div class="st-panel"><div class="st-panel__h"><svg><use href="#i-tasks"/></svg>Tasks</div>
+                  <div class="st-piece" data-p style="--mx:42;--my:-12;--mr:4;--d:.04">
+                    <div class="st-raw st-raw--sheet"><i>B14</i><span>schedule reinspect?</span><span>sample claim</span></div>
+                    <div class="st-clean pw-row"><span class="pw-box"></span>Schedule reinspection</div>
+                  </div>
+                  <div class="st-piece" data-p style="--mx:38;--my:4;--mr:-6;--d:.12">
+                    <div class="st-raw st-raw--note">call policyholder back!</div>
+                    <div class="st-clean pw-row"><span class="pw-box"></span>Call Sample Policyholder</div>
                   </div>
                 </div>
-                <div class="st-panel st-panel--time"><div class="st-panel__h">Timeline</div>
-                  <div class="st-piece" style="--mx:-14;--my:18;--mr:-7;--d:.2">
-                    <div class="st-piece__raw st-raw st-raw--mail"><span class="st-raw__from">RE: RE: claim update</span><span class="st-raw__sub">carrier adjuster</span></div>
-                    <div class="st-piece__clean st-li"><span class="st-dot"></span>Carrier email, reply drafted</div>
+                <div class="st-panel"><div class="st-panel__h"><svg><use href="#i-cal"/></svg>Deadlines</div>
+                  <div class="st-piece" data-p style="--mx:-38;--my:12;--mr:7;--d:.16">
+                    <div class="st-raw st-raw--note st-raw--note2">Proof of loss due Dec 12??</div>
+                    <div class="st-clean pw-row">Proof of loss<span class="pw-date">Dec 12</span></div>
+                  </div>
+                </div>
+                <div class="st-panel"><div class="st-panel__h"><svg><use href="#i-clock"/></svg>Timeline</div>
+                  <div class="st-piece" data-p style="--mx:40;--my:12;--mr:-5;--d:.2">
+                    <div class="st-raw st-raw--mail"><b>RE: RE: RE: Sample claim</b><span>Sample Carrier adjuster</span></div>
+                    <div class="st-clean pw-row"><span class="pw-dot"></span>Carrier email, reply drafted</div>
                   </div>
                 </div>
               </div>
             </div>
+            <p class="st-sr">Illustration: a loose email thread, a PDF, a sticky note with a proof of loss date and a spreadsheet row come together into one ClaimHive claim file with documents, tasks, deadlines and a timeline.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 3. THREE SHOWCASE CHAPTERS -->
-    <section class="st-chapters" aria-label="What ClaimHive does">
+    <!-- 3. THE THREE ACTS (dark): one pinned stage, three views of the same window -->
+    <section class="st-acts st-dark" data-scene="acts" aria-label="What ClaimHive does">
+      <div class="st-acts__stage">
 
-      <article class="st-chapter" aria-labelledby="ch1-title">
-        <div class="st-wrap st-chapter__grid">
-          <div class="st-chapter__copy reveal">
-            <p class="st-eyebrow">Email replies</p>
-            <h2 id="ch1-title" class="st-chapter__title">You approve every reply first.</h2>
-            <p class="st-chapter__text">ClaimHive reads the claim emails in your connected Gmail and drafts the reply, and nothing goes out until you approve it.</p>
+        <article class="st-act st-act--1 st-wrap" aria-labelledby="act1-title">
+          <div class="st-act__copy" data-p>
+            <h2 id="act1-title" class="st-act__title">You approve every reply first<span class="st-dot">.</span></h2>
+            <p class="st-act__text">ClaimHive reads the claim emails in your connected Gmail and drafts the reply, and nothing goes out until you approve it.</p>
           </div>
-          <figure class="st-chapter__media reveal">
-            <div class="st-frame st-frame--lg" role="img" aria-label="Illustration of a carrier email with a ClaimHive draft reply waiting for approval.">
-              <div class="st-frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ops.claimhive.app</span></div>
-              <div class="st-frame__body st-app" aria-hidden="true">
-                <div class="st-mail">
-                  <div class="st-mail__in">
-                    <div class="st-draft__meta"><span class="st-dot st-dot--navy"></span>Carrier adjuster <span class="st-muted">· Re: Proof of loss</span></div>
-                    <div class="st-draft__lines"><b></b><b class="is-short"></b></div>
+          <div class="st-act__media">
+            <div class="pw pw--act" aria-hidden="true">
+              <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
+              <div class="pw__app">
+                <div class="pw__side">
+                  <div class="pw__brand"><img src="assets/claim-hive-icon.svg" alt="" width="22" height="20" loading="lazy"><span>ClaimHive</span></div>
+                  <div class="pw__nav">
+                    <div class="is-on"><svg><use href="#i-claims"/></svg><span>Claims</span></div>
+                    <div><svg><use href="#i-doc"/></svg><span>Documents</span></div>
+                    <div><svg><use href="#i-tasks"/></svg><span>Tasks</span></div>
+                    <div><svg><use href="#i-leads"/></svg><span>Leads</span></div>
                   </div>
-                  <div class="st-mail__arrow">Draft reply</div>
-                  <div class="st-draft st-draft--flat">
-                    <div class="st-draft__lines"><b></b><b></b><b></b><b class="is-short"></b></div>
-                    <div class="st-draft__foot">
-                      <span class="st-pill st-pill--wait">Not sent</span>
-                      <span class="st-fakebtn">Approve</span>
+                </div>
+                <div class="pw__main">
+                  <div class="pw__top">
+                    <div class="pw__title">Sample claim <span class="pw-pill">Open</span></div>
+                    <div class="pw__meta"><span>SAMPLE-0001</span><span>Sample Policyholder</span><span>Sample Carrier</span></div>
+                  </div>
+                  <div class="pw__tabs"><span>Overview</span><span class="is-on">Timeline</span><span class="pw-tab-x2">Documents</span><span class="pw-tab-x">Tasks</span><span class="pw-tab-x">Deadlines</span></div>
+                  <div class="pw-msg">
+                    <div class="pw-msg__head"><span class="pw-av">SC</span><div><b>Sample Carrier adjuster</b><span>Re: Sample claim, reinspection</span></div><time>9:14 AM</time></div>
+                    <p>Hello, we would like to reinspect the roof and the interior. Please send two times next week that work for the policyholder.</p>
+                  </div>
+                  <div class="pw-draft">
+                    <div class="pw-draft__head"><span class="pw-draft__label"><svg><use href="#i-mail"/></svg>Draft reply</span><span class="pw-pill pw-pill--draft">Draft, not sent</span></div>
+                    <p>Thanks for the note. Sample Policyholder can meet you Tuesday or Thursday morning next week. Tell me which works and I will be on site. The updated photo set is on the claim file.</p>
+                    <div class="pw-draft__foot"><span class="pw-hint">Nothing goes out until you approve it.</span><span class="pw-btn">Edit</span><span class="pw-btn pw-btn--gold pw-ring pw-press">Approve</span></div>
+                  </div>
+                  <div class="pw-feed">
+                    <div class="pw-feed__h">Earlier on this claim</div>
+                    <div class="pw-row"><span class="pw-dot"></span>Photos added (sample)<time>Mon</time></div>
+                    <div class="pw-row"><span class="pw-dot"></span>Carrier letter (sample).pdf filed<time>Nov 26</time></div>
+                    <div class="pw-row"><span class="pw-dot"></span>Claim opened<time>Nov 20</time></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="st-sr">Illustration with sample data: a carrier email and a drafted reply marked Draft, not sent, waiting for you to approve it.</p>
+          </div>
+        </article>
+
+        <article class="st-act st-act--2 st-wrap" aria-labelledby="act2-title">
+          <div class="st-act__copy" data-p>
+            <h2 id="act2-title" class="st-act__title">Every claim in one place<span class="st-dot">.</span></h2>
+            <p class="st-act__text">Open a claim and its documents, tasks, deadlines and timeline are all there together.</p>
+          </div>
+          <div class="st-act__media" data-p>
+            <div class="pw pw--act" aria-hidden="true">
+              <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
+              <div class="pw__app">
+                <div class="pw__side">
+                  <div class="pw__brand"><img src="assets/claim-hive-icon.svg" alt="" width="22" height="20" loading="lazy"><span>ClaimHive</span></div>
+                  <div class="pw__nav">
+                    <div class="is-on"><svg><use href="#i-claims"/></svg><span>Claims</span></div>
+                    <div><svg><use href="#i-doc"/></svg><span>Documents</span></div>
+                    <div><svg><use href="#i-tasks"/></svg><span>Tasks</span></div>
+                    <div><svg><use href="#i-leads"/></svg><span>Leads</span></div>
+                  </div>
+                </div>
+                <div class="pw__main">
+                  <div class="pw__top">
+                    <div class="pw__title">Sample claim <span class="pw-pill">Open</span></div>
+                    <div class="pw__meta"><span>SAMPLE-0001</span><span>Sample Policyholder</span><span>Sample Carrier</span></div>
+                  </div>
+                  <div class="pw__tabs"><span class="is-on">Overview</span><span>Timeline</span><span class="pw-tab-x2">Documents</span><span class="pw-tab-x">Tasks</span><span class="pw-tab-x">Deadlines</span></div>
+                  <div class="pw-quad">
+                    <div class="pw-panel"><div class="pw-panel__h"><svg><use href="#i-doc"/></svg>Documents</div>
+                      <div class="pw-row"><svg><use href="#i-doc"/></svg>Policy declarations (sample).pdf</div>
+                      <div class="pw-row"><svg><use href="#i-img"/></svg>Photos (sample)</div>
+                      <div class="pw-row"><svg><use href="#i-doc"/></svg>Carrier letter (sample).pdf</div>
+                      <div class="pw-row"><svg><use href="#i-doc"/></svg>Reinspection notice (sample).pdf</div>
+                    </div>
+                    <div class="pw-panel"><div class="pw-panel__h"><svg><use href="#i-tasks"/></svg>Tasks</div>
+                      <div class="pw-row is-done"><span class="pw-box"><svg><use href="#i-check"/></svg></span>Call Sample Policyholder</div>
+                      <div class="pw-row"><span class="pw-box"></span>Schedule reinspection</div>
+                      <div class="pw-row"><span class="pw-box"></span>Send photo set to carrier</div>
+                      <div class="pw-row"><span class="pw-box"></span>Confirm proof of loss date</div>
+                    </div>
+                    <div class="pw-panel"><div class="pw-panel__h"><svg><use href="#i-cal"/></svg>Deadlines</div>
+                      <div class="pw-row">Proof of loss<span class="pw-date">Dec 12</span></div>
+                      <div class="pw-row">Reinspection<span class="pw-date">Dec 3</span></div>
+                      <div class="pw-row">Follow-up to carrier<span class="pw-date">Dec 5</span></div>
+                    </div>
+                    <div class="pw-panel"><div class="pw-panel__h"><svg><use href="#i-clock"/></svg>Timeline</div>
+                      <div class="pw-row"><span class="pw-dot"></span>Carrier email received<time>9:14 AM</time></div>
+                      <div class="pw-row"><span class="pw-dot pw-dot--gold"></span>Reply drafted, not sent<time>9:15 AM</time></div>
+                      <div class="pw-row"><span class="pw-dot"></span>Photos added<time>Mon</time></div>
+                      <div class="pw-row"><span class="pw-dot"></span>Claim opened<time>Nov 20</time></div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </figure>
-        </div>
-      </article>
-
-      <article class="st-chapter" aria-labelledby="ch2-title">
-        <div class="st-wrap st-chapter__grid">
-          <div class="st-chapter__copy reveal">
-            <p class="st-eyebrow">Claim record</p>
-            <h2 id="ch2-title" class="st-chapter__title">Every claim in one place.</h2>
-            <p class="st-chapter__text">Open a claim and its documents, tasks, deadlines and timeline are all there together.</p>
+            <p class="st-sr">Illustration with sample data: one claim file with documents, tasks, deadlines and a timeline together.</p>
           </div>
-          <figure class="st-chapter__media reveal">
-            <div class="st-frame st-frame--lg" role="img" aria-label="Illustration of a ClaimHive claim record with documents, tasks, deadlines and timeline sections.">
-              <div class="st-frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ops.claimhive.app/claims</span></div>
-              <div class="st-frame__body st-app" aria-hidden="true">
-                <div class="st-app__head">
-                  <div>
-                    <div class="st-app__kicker">Claim</div>
-                    <div class="st-app__title">Water damage, kitchen</div>
+        </article>
+
+        <article class="st-act st-act--3 st-wrap" aria-labelledby="act3-title">
+          <div class="st-act__copy" data-p>
+            <h2 id="act3-title" class="st-act__title">Proof of loss dates, tracked<span class="st-dot">.</span></h2>
+            <p class="st-act__text">ClaimHive tracks state deadlines, including proof of loss, and you confirm the dates for your states.</p>
+          </div>
+          <div class="st-act__media" data-p>
+            <div class="pw pw--act" aria-hidden="true">
+              <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
+              <div class="pw__app">
+                <div class="pw__side">
+                  <div class="pw__brand"><img src="assets/claim-hive-icon.svg" alt="" width="22" height="20" loading="lazy"><span>ClaimHive</span></div>
+                  <div class="pw__nav">
+                    <div class="is-on"><svg><use href="#i-claims"/></svg><span>Claims</span></div>
+                    <div><svg><use href="#i-doc"/></svg><span>Documents</span></div>
+                    <div><svg><use href="#i-tasks"/></svg><span>Tasks</span></div>
+                    <div><svg><use href="#i-leads"/></svg><span>Leads</span></div>
                   </div>
-                  <span class="st-pill st-pill--open">Open</span>
                 </div>
-                <div class="st-quad">
-                  <div class="st-quad__c"><div class="st-panel__h">Documents</div><div class="st-li"><span class="st-li__ico">PDF</span>Policy declarations</div><div class="st-li"><span class="st-li__ico">IMG</span>Kitchen photos</div></div>
-                  <div class="st-quad__c"><div class="st-panel__h">Tasks</div><div class="st-li"><span class="st-check"></span>Call the policyholder</div><div class="st-li"><span class="st-check is-done"></span>Upload photos</div></div>
-                  <div class="st-quad__c"><div class="st-panel__h">Deadlines</div><div class="st-li"><span class="st-li__date">Dec 12</span>Proof of loss</div></div>
-                  <div class="st-quad__c"><div class="st-panel__h">Timeline</div><div class="st-li"><span class="st-dot"></span>Carrier email</div><div class="st-li"><span class="st-dot st-dot--navy"></span>Inspection</div></div>
+                <div class="pw__main">
+                  <div class="pw__top">
+                    <div class="pw__title">Sample claim <span class="pw-pill">Open</span></div>
+                    <div class="pw__meta"><span>SAMPLE-0001</span><span>Sample Policyholder</span><span>Sample Carrier</span></div>
+                  </div>
+                  <div class="pw__tabs"><span>Overview</span><span class="pw-tab-x2">Timeline</span><span class="pw-tab-x">Documents</span><span class="pw-tab-x">Tasks</span><span class="is-on">Deadlines</span></div>
+                  <div class="pw-table">
+                    <div class="pw-tr pw-th"><span>Deadline</span><span class="pw-src">Source</span><span>Date</span><span>Status</span></div>
+                    <div class="pw-tr is-focus"><span><b>Proof of loss</b></span><span class="pw-src">State rule, sample state</span><span class="pw-date">Dec 12</span><span><span class="pw-btn pw-btn--line pw-ring pw-press">Confirm date</span></span></div>
+                    <div class="pw-tr"><span>Reinspection</span><span class="pw-src">Carrier request</span><span class="pw-date">Dec 3</span><span><span class="pw-pill pw-pill--ok"><svg><use href="#i-check"/></svg>You confirmed</span></span></div>
+                    <div class="pw-tr"><span>Follow-up to carrier</span><span class="pw-src">Your task</span><span class="pw-date">Dec 5</span><span><span class="pw-pill pw-pill--ok"><svg><use href="#i-check"/></svg>You confirmed</span></span></div>
+                  </div>
+                  <div class="pw-callout"><svg><use href="#i-cal"/></svg><span><b>You confirm this date.</b> ClaimHive tracks the proof of loss deadline; you confirm the date for your state.</span></div>
+                  <div class="pw-feed">
+                    <div class="pw-feed__h">Recent activity</div>
+                    <div class="pw-row"><span class="pw-dot pw-dot--gold"></span>You confirmed the reinspection date<time>Mon</time></div>
+                    <div class="pw-row"><span class="pw-dot"></span>Proof of loss deadline added<time>Nov 20</time></div>
+                    <div class="pw-row"><span class="pw-dot"></span>Claim opened<time>Nov 20</time></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </figure>
-        </div>
-      </article>
-
-      <article class="st-chapter" aria-labelledby="ch3-title">
-        <div class="st-wrap st-chapter__grid">
-          <div class="st-chapter__copy reveal">
-            <p class="st-eyebrow">State deadlines</p>
-            <h2 id="ch3-title" class="st-chapter__title">Proof of loss dates, tracked.</h2>
-            <p class="st-chapter__text">ClaimHive tracks state deadlines, including proof of loss, and you confirm the dates for your states.</p>
+            <p class="st-sr">Illustration with sample data: a deadlines list with Proof of loss on a sample date and a Confirm date control, because you confirm the dates for your states.</p>
           </div>
-          <figure class="st-chapter__media reveal">
-            <div class="st-frame st-frame--lg" role="img" aria-label="Illustration of a ClaimHive deadline list where the adjuster confirms each date.">
-              <div class="st-frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ops.claimhive.app</span></div>
-              <div class="st-frame__body st-app" aria-hidden="true">
-                <div class="st-app__head">
-                  <div>
-                    <div class="st-app__kicker">Deadlines</div>
-                    <div class="st-app__title">Upcoming</div>
-                  </div>
-                </div>
-                <div class="st-row st-row--deadline"><span>Proof of loss</span><span class="st-mono">Dec 12</span><span class="st-pill st-pill--ok">You confirmed</span></div>
-                <div class="st-row st-row--deadline"><span>Proof of loss</span><span class="st-mono">Jan 8</span><span class="st-pill st-pill--wait">Confirm date</span></div>
-                <div class="st-row st-row--deadline"><span>Reinspection</span><span class="st-mono">Dec 3</span><span class="st-pill st-pill--ok">You confirmed</span></div>
-              </div>
-            </div>
-          </figure>
-        </div>
-      </article>
-    </section>
+        </article>
 
-    <!-- 4. THEN AND NOW -->
-    <section class="st-section st-then" aria-labelledby="then-title">
-      <div class="st-wrap">
-        <h2 id="then-title" class="st-h2 reveal">Then, and now.</h2>
-        <ul class="st-then__list" role="list">
-          <li class="st-then__row reveal">
-            <div class="st-then__was"><span class="st-tag">Then</span><p>A carrier email asks where the claim stands. You dig back through the thread to see what you already sent.</p></div>
-            <div class="st-then__now"><span class="st-tag st-tag--now">With ClaimHive</span><p>The email is on the claim. ClaimHive drafts the reply. You approve it, and only then it goes out.</p></div>
-          </li>
-          <li class="st-then__row reveal">
-            <div class="st-then__was"><span class="st-tag">Then</span><p>The proof of loss date is on a sticky note on your monitor.</p></div>
-            <div class="st-then__now"><span class="st-tag st-tag--now">With ClaimHive</span><p>The proof of loss deadline is tracked on the claim, with the date you confirmed for that state.</p></div>
-          </li>
-          <li class="st-then__row reveal">
-            <div class="st-then__was"><span class="st-tag">Then</span><p>The policy, the photos and the to-do list sit in a spreadsheet, a downloads folder and your head.</p></div>
-            <div class="st-then__now"><span class="st-tag st-tag--now">With ClaimHive</span><p>Documents, tasks, deadlines and a timeline live in one place for each claim.</p></div>
-          </li>
-        </ul>
       </div>
     </section>
 
-    <!-- 5. TRUST -->
-    <section class="st-section st-trust" aria-labelledby="trust-title">
-      <div class="st-wrap st-trust__inner reveal">
-        <h2 id="trust-title" class="st-trust__title">Your claim data.</h2>
-        <ul class="st-trust__list" role="list">
-          <li>ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI models or models shared across firms.</li>
-          <li>Google OAuth tokens encrypted with AES-256-GCM.</li>
-          <li>Encryption in transit (TLS).</li>
-          <li>Sign in with Google. Firm owners and admins must use two-step sign-in.</li>
-          <li>From our <a href="privacy.html">privacy policy</a>: &ldquo;Zero sale of adjuster or client data.&rdquo;</li>
-        </ul>
-        <a href="security.html" class="st-textlink">How we handle security</a>
-      </div>
-    </section>
-
-    <!-- 6. PRICE -->
-    <section class="st-section st-price" aria-labelledby="price-title">
-      <div class="st-wrap">
-        <div class="st-price__card reveal">
-          <h2 id="price-title" class="st-price__title">Start free.</h2>
-          <p class="st-offer st-offer--card">
-            <span class="st-offer__big">Free until January&nbsp;1,&nbsp;2027.</span>
-            <span class="st-offer__lead">Then $80/seat/month plus token usage.</span>
-            <span class="st-offer__card">A $1 authorization checks your card and is voided right away. You won't be charged until January&nbsp;1,&nbsp;2027.</span>
-          </p>
+    <!-- 4. THE OFFER (light): one idea, enormous type -->
+    <section class="st-offer st-light" aria-labelledby="offer-title">
+      <div class="st-wrap st-offer__inner">
+        <h2 id="offer-title" class="st-offer__big st-reveal">Free until January&nbsp;1,&nbsp;2027<span class="st-dot">.</span></h2>
+        <p class="st-offer__then st-reveal">Then $80/seat/month plus token usage<span class="st-dot">.</span></p>
+        <p class="st-offer__card">A $1 authorization checks your card and is voided right away. You won't be charged until January&nbsp;1,&nbsp;2027.</p>
+        <div class="st-actions">
           <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_price">Start free</a>
           <a href="request.html" class="st-textlink" data-cta-location="ads_request_beta_price">Request beta access</a>
         </div>
       </div>
     </section>
 
-    <!-- 7. FINAL CALL -->
-    <section class="st-final" aria-labelledby="final-title">
-      <div class="st-wrap st-final__inner reveal">
-        <h2 id="final-title" class="st-final__title">Put your next claim in one place.</h2>
+    <!-- 5. YOUR CLAIM DATA (dark, compact) -->
+    <section class="st-data st-dark" aria-labelledby="data-title">
+      <div class="st-wrap st-data__grid">
+        <div>
+          <h2 id="data-title" class="st-data__title">Your claim data<span class="st-dot">.</span></h2>
+          <p class="st-data__lead">ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI models or models shared across firms.</p>
+        </div>
+        <ul class="st-data__list" role="list">
+          <li>Google OAuth tokens encrypted with AES-256-GCM.</li>
+          <li>Encryption in transit (TLS).</li>
+          <li>Sign in with Google. Firm owners and admins must use two-step sign-in.</li>
+          <li>From our <a href="privacy.html">privacy policy</a>: &ldquo;Zero sale of adjuster or client data.&rdquo;</li>
+          <li><a href="security.html" class="st-textlink">How we handle security</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. FINAL CALL (dark) -->
+    <section class="st-final st-dark" aria-labelledby="final-title">
+      <div class="st-wrap st-final__inner">
+        <h2 id="final-title" class="st-final__title">Put your next claim in one place<span class="st-dot">.</span></h2>
         <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_final">Start free</a>
       </div>
     </section>
   </main>
 
-  <!-- 8. MINIMAL FOOTER -->
   <footer class="st-footer">
     <div class="st-wrap st-footer__inner">
       <nav aria-label="Legal">
