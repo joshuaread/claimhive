@@ -1,5 +1,5 @@
 /**
- * ClaimHive — /start (Google Ads landing page), v2
+ * ClaimHive — /start (Google Ads landing page), v3
  *
  * 1. Attribution: copies utm_* and gclid from the landing URL onto every
  *    https://ops.claimhive.app/login link (on load, on history changes, and
@@ -11,6 +11,11 @@
  *    rect per near-viewport [data-scene], then writes progress --p (0..1, non-inherited,
  *    see css/start.css) on that scene's [data-p] elements, only where CSS uses it.
  *    First run waits for first paint + idle. `is-live` gates will-change; `html.scenes` pinning.
+ * 5. Footage: the videos in the product windows carry no source until their window is within
+ *    about one viewport. ONE IntersectionObserver loads and plays them, and pauses them when they
+ *    leave. Nothing is requested before the page's load event; with reduced motion, no IntersectionObserver
+ *    or Save-Data the poster image stays and no video file is ever requested. In the pinned acts only the
+ *    act on screen plays.
  * CTA clicks are tracked by js/analytics.js via [data-cta-location].
  */
 (function () {
@@ -137,7 +142,6 @@
       el: roots[s],
       kind: roots[s].getAttribute('data-scene'),
       targets: roots[s].querySelectorAll('[data-p]'), // the only elements whose CSS reads --p
-      board: roots[s].querySelector('.st-board'),
       live: !hasIO,
       p: '', // last written value ('' = not set)
       flags: '' // acts: last ring/press state
@@ -146,36 +150,34 @@
 
   function clamp01(n) { return n < 0 ? 0 : n > 1 ? 1 : n; }
 
-  // Does CSS read --p for this scene at this size?
+  // Does CSS read --p for this scene at this size? The shift and the acts scrub only while pinned
+  // (phones and short screens show the final state); the hero tilts from 1024px.
   function uses(kind, pinned) {
     if (kind === 'hero') return matches(wideQuery);
-    if (kind === 'acts') return pinned;
-    return kind === 'shift';
-  }
-
-  // Unpinned, the shift follows its board: pieces land while it is on screen, lines swap below the header.
-  function rectEl(sc, pinned) {
-    return sc.kind === 'shift' && !pinned && sc.board ? sc.board : sc.el;
+    return pinned;
   }
 
   function progress(kind, pinned, r) {
     var run = r.height - (vh - hdrH);   // distance a pinned stage stays stuck
     if (kind === 'hero') return clamp01((hdrH - r.top) / (vh * 0.5));
-    if (kind === 'shift') {
-      // Pinned: finish at 85% of the run so the file rests assembled.
-      if (pinned) return run > 0 ? clamp01((hdrH - r.top) / (run * 0.85)) : 1;
-      return clamp01((vh * 0.9 - r.top) / (vh * 0.65));
-    }
-    return run > 0 ? clamp01((hdrH - r.top) / run) : 0;   // acts (pinned only)
+    // Shift: finish at 85% of the run so the window rests with its ghosts. Acts: the whole run.
+    if (kind === 'shift') return run > 0 ? clamp01((hdrH - r.top) / (run * 0.85)) : 1;
+    return run > 0 ? clamp01((hdrH - r.top) / run) : 0;
   }
 
-  // Acts: ring and press on the act-1 and act-3 controls, as classes on the scene root (timed in CSS)
-  var FLAGS = ['is-ring1', 'is-press1', 'is-ring3', 'is-press3'];
+  // Acts: ring and press on the Approve control (act 1), as classes on the scene root (timed in CSS)
+  var FLAGS = ['is-ring1', 'is-press1'];
   function actFlags(v) {
-    if (v === '') return '0000';
+    if (v === '') return '00';
     var t = Number(v) * 3;
-    return (t >= 0.55 ? '1' : '0') + (t >= 0.62 && t < 0.8 ? '1' : '0') +
-           (t >= 2.45 ? '1' : '0') + (t >= 2.52 && t < 2.7 ? '1' : '0');
+    return (t >= 0.5 ? '1' : '0') + (t >= 0.56 && t < 0.74 ? '1' : '0');
+  }
+
+  // Which act's footage should play (pinned: only the act on screen, with a margin for the cross-fade)
+  function wantAct(k, v) {
+    if (v === '') return true;   // stacked: every act is visible
+    var t = Number(v) * 3;
+    return t > k - 0.1 && t < k + 1.1;
   }
 
   function write(sc, v) {
@@ -192,7 +194,82 @@
         sc.flags = f;
         for (var j = 0; j < FLAGS.length; j++) sc.el.classList.toggle(FLAGS[j], f.charAt(j) === '1');
       }
+      for (var m = 0; m < vids.length; m++) {
+        if (vids[m].act < 0) continue;
+        var w = wantAct(vids[m].act, v);
+        if (w !== vids[m].want) { vids[m].want = w; syncVideo(vids[m]); }
+      }
     }
+  }
+
+  /* ------------------------------------------------------------------
+     5. Footage (see the header comment)
+     ------------------------------------------------------------------ */
+  var vids = [];                 // { el, media, act, near, want, loaded }
+  var videosStarted = false;
+  var saveData = !!(navigator.connection && navigator.connection.saveData);
+
+  function noop() {}
+
+  // Play when near, wanted and motion is allowed; load the sources the first time; pause otherwise.
+  function syncVideo(v) {
+    var go = v.near && v.want && motionOK && !saveData;
+    if (go) {
+      if (!v.loaded) {
+        v.loaded = true;
+        var srcs = v.el.querySelectorAll('source[data-src]');
+        for (var i = 0; i < srcs.length; i++) srcs[i].src = srcs[i].getAttribute('data-src');
+        v.el.load();
+      }
+      if (v.el.paused) {
+        var pr = v.el.play();
+        if (pr && typeof pr.catch === 'function') pr.catch(noop);   // autoplay refused: the poster stays
+      }
+    } else if (v.loaded && !v.el.paused) {
+      v.el.pause();
+    }
+  }
+
+  function startVideos() {
+    if (videosStarted || !hasIO) return;
+    videosStarted = true;
+    var els = document.querySelectorAll('.pw__vid');
+    for (var i = 0; i < els.length; i++) {
+      var act = els[i].getAttribute('data-act');
+      var v = { el: els[i], media: els[i].parentNode, act: act === null ? -1 : Number(act), near: false, want: true, loaded: false };
+      els[i].addEventListener('playing', (function (m) { return function () { m.classList.add('is-playing'); }; })(v.media));
+      vids.push(v);
+    }
+    // One observer for every video. Root margin = one viewport above and below.
+    var vio = new IntersectionObserver(function (entries) {
+      for (var k = 0; k < entries.length; k++) {
+        for (var j = 0; j < vids.length; j++) {
+          if (vids[j].el !== entries[k].target) continue;
+          vids[j].near = entries[k].isIntersecting;
+          syncVideo(vids[j]);
+        }
+      }
+    }, { rootMargin: '100% 0px 100% 0px' });
+    for (var n = 0; n < vids.length; n++) vio.observe(vids[n].el);
+  }
+
+  // Reduced motion switched on after load: back to the posters. Switched off: resume.
+  function syncAllVideos() {
+    for (var i = 0; i < vids.length; i++) {
+      if (!motionOK) vids[i].media.classList.remove('is-playing');
+      syncVideo(vids[i]);
+    }
+  }
+
+  // Footage starts only after the load event (the hero poster is the LCP image), then when idle.
+  function startVideosAfterLoad() {
+    var go = function () {
+      if ('requestIdleCallback' in window) window.requestIdleCallback(startVideos, { timeout: 1500 });
+      else window.setTimeout(startVideos, 200);
+    };
+    if (!motionOK || saveData || !hasIO) return;
+    if (document.readyState === 'complete') go();
+    else window.addEventListener('load', go);
   }
 
   var next = [];
@@ -205,7 +282,7 @@
       next[i] = null;                                   // null = leave as is
       if (!uses(sc.kind, pinned)) next[i] = '';
       else if (sc.live) {
-        var p = progress(sc.kind, pinned, rectEl(sc, pinned).getBoundingClientRect());
+        var p = progress(sc.kind, pinned, sc.el.getBoundingClientRect());
         next[i] = String(Math.round(p * 1000) / 1000);
       }
     }
@@ -239,7 +316,8 @@
       if (!on) { write(scenes[i], ''); scenes[i].el.classList.remove('is-live'); }
       else if (scenes[i].live) scenes[i].el.classList.add('is-live');
     }
-    if (on) setupReveal();
+    if (on) { setupReveal(); startVideosAfterLoad(); }
+    syncAllVideos();
     onResize();   // pinned sections change the page height
   }
 
@@ -270,6 +348,7 @@
     ready = true;
     measure();
     if (motionOK) setupReveal();
+    startVideosAfterLoad();
     if (hasIO) {
       var io = new IntersectionObserver(function (entries) {
         for (var k = 0; k < entries.length; k++) {

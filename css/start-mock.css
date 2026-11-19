@@ -1,16 +1,19 @@
 /**
- * ClaimHive — /start v2: product window (.pw) and the shift board (.st-board).
- * HTML/CSS illustrations with sample data, aria-hidden, each with a visually hidden text alternative.
- * Replace with real screenshots when they exist (see REPORT-v2.md).
+ * ClaimHive — /start v3: product window (.pw), real footage layers, the reply illustration (act 1)
+ * and the scene-2 board (gather and ghost).
  *
- * App type at 1x: 13-15px text, 12px minimum for meta. 8px grid, 8-12px radii, 1px token borders.
+ * The window chrome (the dots and the ops.claimhive.app bar) is built in the page. What sits inside it is
+ * either real footage of a test account (poster image + video, see js/start.js) or, for the reply screen
+ * only, an HTML/CSS illustration with sample data (no footage of that screen exists).
+ *
+ * Gold on this page means two things only: the primary CTA and the approved state of an item.
+ * Everything here that is not an approved state uses navy tints.
  */
 
 /* ==========================================================================
-   PRODUCT WINDOW
+   WINDOW FRAME
    ========================================================================== */
 .pw {
-  container: pw / inline-size;
   position: relative;
   background: #fff;
   border-radius: 12px;
@@ -42,67 +45,43 @@
 .pw__dots i { width: 12px; height: 12px; border-radius: 50%; background: #D3CCBE; }
 .pw__url {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  min-width: min(320px, 48cqw); height: 26px; padding: 0 12px;
+  height: 26px; padding: 0 12px;
   background: #fff; border: 1px solid var(--hive-border-default); border-radius: 8px;
   font: 500 12px/1 var(--hive-font-body); color: #4F556B;
 }
 .pw__url svg { width: 12px; height: 12px; color: #6B7085; }
+@media (min-width: 640px) { .pw__url { min-width: 280px; } }
 
-.pw__app {
-  display: grid;
-  grid-template-columns: 208px minmax(0, 1fr);
-  height: var(--pw-h, auto);
-  overflow: hidden;
-}
+/* ==========================================================================
+   FOOTAGE: poster image + video layered in a box whose ratio is fixed by the media itself,
+   so nothing moves when the poster or the video arrives.
+   The poster is the whole story with no JS, with reduced motion, and until the video plays.
+   ========================================================================== */
+.pw__media { position: relative; aspect-ratio: 1280 / 676; background: var(--hive-canvas); }
+.pw__media--wide { aspect-ratio: 1152 / 392; }
+.pw__poster, .pw__vid { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.pw__vid { opacity: 0; transition: opacity 240ms var(--st-ease-out); }
+.pw__media.is-playing .pw__vid { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .pw__vid { display: none; } }
 
-/* Sidebar */
-.pw__side { padding: 16px 12px; background: var(--hive-canvas); border-right: 1px solid var(--hive-border-default); }
-.pw__brand { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px; margin-bottom: 16px; font: 700 15px/1 var(--hive-font-display); letter-spacing: -0.015em; }
-.pw__brand img { width: 22px; height: 20px; }
-.pw__nav > div {
-  display: flex; align-items: center; gap: 10px;
-  height: 36px; padding: 0 10px; margin-bottom: 2px; border-radius: 8px;
-  font-weight: 500; color: #4A5068;
-}
-.pw__nav > .is-on { background: rgba(217, 162, 27, 0.14); color: var(--hive-navy-900); font-weight: 600; }
-.pw__nav > .is-on svg { color: var(--hive-gold-700); }
-
-/* Main: a column whose last block (.pw-feed, or the stretched panels) takes whatever height is left,
-   so a fixed-height window is filled to its bottom edge and clipped there, like a real app. */
-.pw__main { display: flex; flex-direction: column; min-width: 0; padding: 20px 24px 24px; }
-.pw__top { padding-bottom: 4px; }
+/* ==========================================================================
+   ACT 1: THE REPLY ILLUSTRATION (sample data, not footage)
+   ========================================================================== */
+.rp { display: grid; gap: 14px; padding: 16px; background: #fff; }
+@media (min-width: 640px) { .rp { padding: 20px 24px 24px; } }
+.rp-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .pw__title { display: flex; align-items: center; gap: 10px; font: 700 18px/1.3 var(--hive-font-display); letter-spacing: -0.015em; }
-/* Each part stays whole; on narrow windows only the reference stays (see the container queries) */
-.pw__meta { display: flex; flex-wrap: wrap; margin-top: 2px; font-size: 12px; color: #5A6075; }
-.pw__meta span { white-space: nowrap; }
-.pw__meta span + span::before { content: "\00B7"; margin: 0 6px; }
-.pw__tabs {
-  display: flex; gap: 24px; margin: 16px 0 20px;
-  border-bottom: 1px solid var(--hive-border-default);
-  font-size: 13px; font-weight: 500; color: #5A6075;
-  white-space: nowrap; overflow: hidden;
-}
-.pw__tabs span { flex: none; padding-bottom: 10px; }
-.pw__tabs .is-on { color: var(--hive-navy-900); font-weight: 600; box-shadow: inset 0 -2px 0 var(--hive-gold-500); }
+.pw__meta { white-space: nowrap; font-size: 12px; color: #5A6075; }
 
-/* Right rail (shown only when the window is wide enough) */
-.pw__rail { display: none; padding: 20px; background: #FCFBF8; border-left: 1px solid var(--hive-border-default); }
-.pw-card + .pw-card { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--hive-border-default); }
-.pw-card__h { margin-bottom: 12px; font: 600 13px/1.3 var(--hive-font-display); color: var(--hive-navy-900); }
-.pw-kv { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 13px; }
-.pw-kv dt { color: #5A6075; }
-.pw-kv dd { font-weight: 500; text-align: right; }
-
-/* Pills and buttons */
 .pw-pill {
   display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
   height: 24px; padding: 0 10px; border-radius: 999px;
   font: 600 12px/1 var(--hive-font-display); letter-spacing: 0;
-  background: #EEF0F5; color: #3A4160; border: 1px solid #DDE1EA;
+  background: var(--hive-navy-100); color: var(--hive-navy-700); border: 1px solid var(--hive-navy-200);
 }
 .pw-pill svg { width: 12px; height: 12px; stroke-width: 2.25; }
-.pw-pill--draft { background: var(--hive-warning-bg); color: #7A4508; border-color: var(--hive-warning-border); }
-.pw-pill--ok { background: var(--hive-success-bg); color: #0A603C; border-color: var(--hive-success-border); }
+/* Approved state: the one place gold appears inside the illustration */
+.pw-pill--ok { background: var(--hive-gold-500); border-color: var(--hive-gold-600); color: var(--hive-navy-950); }
 
 .pw-btn {
   position: relative;
@@ -111,265 +90,199 @@
   font: 600 13px/1 var(--hive-font-display);
   background: #fff; color: var(--hive-navy-900); border: 1px solid var(--hive-border-strong);
 }
-.pw-btn--gold { background: var(--hive-gold-500); border-color: var(--hive-gold-600); color: var(--hive-navy-950); }
-.pw-btn--line { border-color: var(--hive-gold-500); }
-/* Visible focus ring (static; in the pinned acts start.css shows it, then a short press, as the act ends) */
-.pw-ring::after {
-  content: ""; position: absolute; inset: -4px; border-radius: 11px;
-  border: 2px solid var(--hive-navy-900);
-}
-
+.pw-btn--primary { background: var(--hive-navy-900); border-color: var(--hive-navy-900); color: #fff; }
+/* Focus ring on Approve (static; the pinned acts show it, then a short press, as the gate opens) */
+.pw-ring::after { content: ""; position: absolute; inset: -4px; border-radius: 11px; border: 2px solid var(--hive-navy-900); }
 .pw-hint { font-size: 12px; color: #5A6075; }
 
-/* Rows (lists inside panels). Labels wrap between words when the column is narrow (never clipped
-   mid-word); icons, dates and times keep their size and never break. */
-.pw-row {
-  display: flex; align-items: center; gap: 10px;
-  min-height: 36px; padding: 6px 8px; margin: 0 -8px;
-  border-radius: 6px;
-  font-size: 14px; line-height: 1.35; font-weight: 500;
-  transition: background-color 160ms var(--st-ease-out);
-}
-.pw-row svg { color: var(--hive-navy-500); }
-.pw-row time { flex: none; margin-left: auto; padding-left: 8px; white-space: nowrap; font-size: 12px; font-weight: 400; color: #5A6075; }
-.pw-date {
-  margin-left: auto; flex: none; white-space: nowrap;
-  padding: 3px 8px; border-radius: 6px;
-  font: 600 12px/1.2 var(--hive-font-body); font-variant-numeric: tabular-nums;
-  background: var(--hive-gold-100); color: var(--hive-gold-800);
-}
-.pw-box { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 16px; height: 16px; border: 1.5px solid #A9AEC0; border-radius: 4px; }
-.pw-row.is-done { color: #5A6075; }
-.pw-row.is-done .pw-box { background: var(--hive-success); border-color: var(--hive-success); }
-.pw-row.is-done .pw-box svg { width: 12px; height: 12px; color: #fff; stroke-width: 2.5; }
-.pw-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--hive-navy-400); }
-.pw-dot--gold { background: var(--hive-gold-500); }
-@media (hover: hover) {
-  .pw-row:hover, .pw-tr:not(.pw-th):hover { background-color: rgba(22, 27, 51, 0.04); }
-  .pw__nav > div:not(.is-on):hover { background-color: rgba(22, 27, 51, 0.04); }
-}
-
-/* View (a): timeline with the email thread and the draft reply */
-.pw-msg { padding: 16px; border: 1px solid var(--hive-border-default); border-radius: 10px; }
-.pw-msg__head { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+/* The review: the carrier email beside the draft that answers it, so approving is a real read */
+.rp-review { display: grid; gap: 12px; }
+@media (min-width: 640px) { .rp-review { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; } }
+.pw-msg, .pw-draft { padding: 14px 16px; border: 1px solid var(--hive-border-default); border-radius: 10px; }
+.pw-msg__head { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; align-items: center; }
 .pw-msg__head b { display: block; font-weight: 600; }
 .pw-msg__head div span { display: block; font-size: 13px; color: #5A6075; }
-.pw-msg__head time { align-self: start; white-space: nowrap; font-size: 12px; color: #5A6075; }
 .pw-av { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--hive-navy-100); color: var(--hive-navy-700); font: 600 12px/1 var(--hive-font-display); }
-.pw-msg p, .pw-draft p { margin-top: 12px; color: #2A3048; }
+.pw-msg p, .pw-draft p { margin-top: 10px; font-size: 13px; line-height: 1.5; color: #2A3048; }
 
-.pw-draft { margin-top: 16px; padding: 16px; border: 1px solid rgba(217, 162, 27, 0.5); border-radius: 10px; background: #FFFCF3; }
+.pw-draft { position: relative; background: var(--hive-navy-50); }
+/* Approved border: gold, faded in with --o (1 = approved, the end state) */
+.pw-draft::after {
+  content: ""; position: absolute; inset: -1px; border-radius: 11px; pointer-events: none;
+  border: 2px solid var(--hive-gold-500);
+  opacity: var(--o, 1);
+}
 .pw-draft__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.pw-draft__label { display: inline-flex; align-items: center; gap: 8px; font: 600 13px/1 var(--hive-font-display); color: var(--hive-gold-800); }
+.pw-draft__label { display: inline-flex; align-items: center; gap: 8px; font: 600 13px/1 var(--hive-font-display); color: var(--hive-navy-700); }
 .pw-draft__label svg { width: 16px; height: 16px; }
-.pw-draft__foot { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
-.pw-draft__foot .pw-hint { flex: 1; min-width: 0; }
+.pw-draft__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-top: 12px; }
+.pw-draft__foot .pw-hint { flex: 1 1 120px; min-width: 0; }
 
-/* Earlier activity under the main view: fills the rest of a fixed-height window, clipped at its edge.
-   In a window sized to its content (stacked acts on phones) it takes no height at all. */
-.pw-feed { flex: 1 1 0; min-height: 0; overflow: hidden; margin-top: 20px; }
-.pw-feed__h { margin-bottom: 4px; font: 600 12px/1.3 var(--hive-font-display); color: #5A6075; }
-.pw-feed .pw-row { font-weight: 400; color: #2A3048; }
+/* "Draft, not sent" crossfades to "Approved" (both always in the DOM, one grid cell: no layout change) */
+.rp-state { display: grid; justify-items: end; }
+.rp-state > * { grid-area: 1 / 1; }
+.rp-state__a { opacity: calc(1 - var(--o, 1)); }
+.rp-state__b { opacity: var(--o, 1); }
 
-/* View (b): claim file, four panels. The panels stretch to the window's height, so there is no blank band. */
-.pw-quad { flex: 1 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-auto-rows: 1fr; gap: 16px; }
-.pw-panel { min-width: 0; padding: 12px 16px 8px; border: 1px solid var(--hive-border-default); border-radius: 10px; }
-.pw-panel__h { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font: 600 13px/1.3 var(--hive-font-display); }
-.pw-panel__h svg { width: 16px; height: 16px; color: var(--hive-gold-700); }
+/* The gate. Default = the end state: three drafts waiting at the bar, the approved one past it, in gold. */
+.rp-lane {
+  --gx: 58%; --cw: 92px; --jump: 136px;
+  --a1: 1; --a2: 1; --a3: 1; --a4: 1; --g: 1; --gold: 1;
+  position: relative; height: 140px; overflow: hidden;
+  border: 1px solid var(--hive-border-default); border-radius: 10px; background: var(--hive-canvas);
+}
+@media (min-width: 640px) { .rp-lane { --gx: 66%; --cw: 132px; --jump: 176px; } }
+.rp-gate { position: absolute; top: 0; bottom: 0; left: var(--gx); width: 4px; margin-left: -2px; background: var(--hive-navy-900); }
+.rp-gate__label {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  padding: 4px 10px; border-radius: 6px; white-space: nowrap;
+  background: var(--hive-navy-900); color: #fff;
+  font: 600 12px/1.2 var(--hive-font-display);
+}
+.rp-card {
+  position: absolute; z-index: calc(5 - var(--n, 0));
+  left: calc(var(--gx) - var(--cw) - 10px - var(--n, 0) * 22px);
+  top: calc(60px + var(--cy, 0px));
+  width: var(--cw); height: 52px; padding: 8px 10px;
+  border: 1px solid var(--hive-navy-200); border-radius: 8px;
+  background: var(--hive-navy-100); color: var(--hive-navy-700);
+  font: 600 13px/1.2 var(--hive-font-display);
+}
+.rp-card i { display: block; height: 5px; margin-top: 6px; border-radius: 3px; background: var(--hive-navy-200); }
+.rp-card i + i { width: 60%; }
+.rp-card--1 { --n: 0; --cy: 0px; transform: translateX(var(--jump)); }
+.rp-card--2 { --n: 1; --cy: 8px; }
+.rp-card--3 { --n: 2; --cy: -4px; }
+.rp-card--4 { --n: 3; --cy: 10px; }
+/* Approved card: a gold fill behind the text, faded in with --gold */
+.rp-card--ok { color: var(--hive-navy-950); }
+.rp-card--ok::before {
+  content: ""; position: absolute; inset: -1px; z-index: -1; border-radius: 8px;
+  background: var(--hive-gold-500); border: 1px solid var(--hive-gold-600);
+  opacity: var(--gold);
+}
+.rp-card--ok i { background: rgba(15, 18, 31, 0.28); }
 
-/* View (c): deadlines */
-.pw-table { border: 1px solid var(--hive-border-default); border-radius: 10px; overflow: hidden; }
-.pw-tr {
-  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr) auto minmax(132px, auto);
-  align-items: center; gap: 16px;
-  min-height: 56px; padding: 8px 16px;
-  border-top: 1px solid var(--hive-border-default);
-  font-size: 14px;
-  transition: background-color 160ms var(--st-ease-out);
-}
-.pw-tr > span { min-width: 0; line-height: 1.35; }
-.pw-tr > span:last-child { padding: 4px; }
-.pw-tr b { font-weight: 600; }
-.pw-tr .pw-date { margin-left: 0; }
-.pw-th { min-height: 40px; border-top: 0; background: var(--hive-canvas); font-size: 12px; font-weight: 600; color: #5A6075; }
-.pw-tr.is-focus { background: #FFFCF3; }
-.pw-src { color: #5A6075; }
-.pw-callout {
-  display: flex; gap: 12px; align-items: flex-start;
-  margin-top: 16px; padding: 12px 16px;
-  border-radius: 10px; background: var(--hive-navy-50);
-  font-size: 13px; color: #2A3048;
-}
-.pw-callout svg { color: var(--hive-navy-600); margin-top: 1px; }
-.pw-callout b { font-weight: 600; }
-
-/* Size of the window by where it is used. The hero window's height never depends on its text
-   (which reflows when the web fonts swap in): a fixed height per breakpoint, content clipped inside.
-   On phones it grows as the screen narrows (text wraps more): 645px at 375, 608px at 412, 700px at 320. */
-.pw--hero { --pw-h: clamp(560px, calc(1020px - 100vw), 700px); }
-@media (min-width: 640px) { .pw--hero { --pw-h: 560px; } }
-@media (min-width: 1024px) { .pw--hero { --pw-h: 600px; } }
-@container pw (min-width: 920px) {
-  .pw__app--rail { grid-template-columns: 216px minmax(0, 1fr) 280px; }
-  .pw__app--rail .pw__rail { display: block; }
-}
-/* Medium windows (the acts at 1024-1440): drop the Source column so names never truncate */
-@container pw (max-width: 760px) {
-  .pw-tr { grid-template-columns: minmax(0, 1fr) auto minmax(132px, auto); }
-  .pw-tr .pw-src { display: none; }
-}
-/* Narrow windows (acts at 1024, phones): icon-only sidebar */
-@container pw (max-width: 640px) {
-  .pw__app { grid-template-columns: 56px minmax(0, 1fr); }
-  .pw__side { padding: 12px 8px; }
-  .pw__brand { justify-content: center; padding: 0; }
-  .pw__brand span, .pw__nav span { display: none; }
-  .pw__nav > div { justify-content: center; padding: 0; }
-  .pw__main { padding: 16px 20px 20px; }
-  .pw__tabs { gap: 16px; }
-}
-/* Phones: one column; the status control drops under its row instead of squeezing the name.
-   Tabs: the ones marked optional drop out whole (the active tab is never optional), so the row never
-   ends in a cut word; the subtitle keeps only the claim reference. */
-@container pw (max-width: 520px) {
-  .pw__main { padding: 16px; }
-  .pw__tabs { gap: 16px; }
-  .pw__tabs .pw-tab-x { display: none; }
-  .pw__meta span + span { display: none; }
-  .pw-quad { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; gap: 12px; }
-  .pw-tr { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 10px 12px; }
-  .pw-tr > span:last-child { grid-column: 1 / -1; justify-self: start; }
-  .pw-th > span:last-child { display: none; }
-  .pw-draft__foot { flex-wrap: wrap; }
-  .pw-draft__foot .pw-hint { flex-basis: 100%; }
-  .pw-draft__foot .pw-btn:first-of-type { margin-left: auto; }
-}
-@container pw (max-width: 380px) {
-  .pw__url { min-width: 0; }
-  .pw__dots i { width: 10px; height: 10px; }
-  .pw__tabs { gap: 14px; }
-}
-/* 320px screens: two tabs */
-@container pw (max-width: 320px) {
-  .pw__tabs .pw-tab-x2 { display: none; }
+/* Scrubbed to the acts' progress (--p on the lane, the draft card and the headline word; see css/start.css for
+   the stage). t is act 1's own 0..1. Cards stream in from the left one after another, bunch at the bar, then the
+   approved one passes (g) and turns gold (--gold) just after the Approve press. Transform and opacity only.
+   No counters, no numbers. */
+@media (min-width: 1024px) and (min-height: 680px) {
+  html.scenes .rp-lane {
+    --t: clamp(0, calc(3 * var(--p, 0)), 1);
+    --a1: clamp(0, calc(var(--t) / 0.3), 1);
+    --a2: clamp(0, calc((var(--t) - 0.06) / 0.3), 1);
+    --a3: clamp(0, calc((var(--t) - 0.12) / 0.3), 1);
+    --a4: clamp(0, calc((var(--t) - 0.18) / 0.3), 1);
+    --g: clamp(0, calc((var(--t) - 0.6) / 0.16), 1);
+    --gold: clamp(0, calc((var(--t) - 0.68) / 0.1), 1);
+  }
+  html.scenes .rp-card { opacity: clamp(0, calc(var(--a) * 3), 1); transform: translateX(calc((1 - var(--a)) * -220px)); }
+  html.scenes .rp-card--1 { --a: var(--a1); transform: translateX(calc((1 - var(--a1)) * -220px + var(--g) * var(--jump))); }
+  html.scenes .rp-card--2 { --a: var(--a2); }
+  html.scenes .rp-card--3 { --a: var(--a3); }
+  html.scenes .rp-card--4 { --a: var(--a4); }
+  /* The draft card turns "approved" while the card passes the bar */
+  html.scenes .rp-draft { --o: clamp(0, calc((3 * var(--p, 0) - 0.62) / 0.1), 1); }
+  html.scenes .st-acts.is-live .rp-card { will-change: transform, opacity; }
 }
 
 /* ==========================================================================
-   SHIFT BOARD: scattered pieces assemble into one claim file
-   Default (no JS, reduced motion): assembled, raw pieces not rendered.
+   SCENE 2 BOARD: pieces gather into the claim file and leave a ghost behind
+   Default (phones, no JS, reduced motion, short screens): the final state, the real window alone.
+   Pieces and ghosts exist only while pinned with motion.
    ========================================================================== */
-/* Not a query container (media queries instead), so the scrubbed pieces never force a container relayout.
-   Desktop: the file is laid out at about 784px and zoomed, so its type and spacing scale with it
-   (about 900px wide at 1024, 980px from 1280). --sx/--sy: scatter distance per unit of --mx/--my. */
-.st-board {
-  position: relative;
-  width: 100%; max-width: 780px;
-  --sx: 0.32vw; --sy: 0.9vw;
-}
-@media (min-width: 1024px) {
-  .st-board { max-width: 900px; --sx: 3.2px; --sy: 6px; }
-  .st-board__file { zoom: 1.15; }
-}
-@media (min-width: 1280px) {
-  .st-board { max-width: 980px; --sx: 3.6px; }
-  .st-board__file { zoom: 1.25; }
-}
-@media (min-width: 1440px) { .st-board { --sx: 4.4px; } }
-
-.st-board__file {
-  --r: 1;
-  position: relative;
-  border-radius: 12px;
-  text-align: left;
-  color: var(--hive-navy-900);
-  font: 400 14px/1.45 var(--hive-font-body);
-}
-/* Window surface as a layer of its own, so it can fade in under the pieces */
+.st-board { position: relative; width: 100%; max-width: 900px; }
+.st-board__file { --r: 1; position: relative; }
+/* The empty file outline the window takes the place of */
 .st-board__file::before {
-  content: ""; position: absolute; inset: 0; border-radius: inherit;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgba(22, 27, 51, 0.08), 0 48px 96px -40px rgba(22, 27, 51, 0.35), 0 16px 32px -16px rgba(22, 27, 51, 0.16);
-  opacity: var(--r);
+  content: ""; position: absolute; inset: 0; border-radius: 12px; pointer-events: none;
+  border: 2px dashed rgba(22, 27, 51, 0.28);
+  opacity: calc(1 - var(--r));
 }
-.st-board__bar { position: relative; border-radius: 12px 12px 0 0; opacity: var(--r); }
-.st-board__bar .pw__url svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.75; }
-.st-board__head { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 16px 20px 0; opacity: var(--r); }
-.st-board__grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 16px; }
-@media (min-width: 600px) { .st-board__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.st-board__win { opacity: var(--r); }
+.st-board__cap { margin-top: 1rem; text-align: center; }
+.st-board__cap2 { display: none; }
+.st-piece { display: none; }
 
-.st-panel { position: relative; min-width: 0; padding: 12px 16px 8px; }
-.st-panel::before {
-  content: ""; position: absolute; inset: 0; border-radius: 10px;
-  background: var(--hive-canvas); border: 1px solid var(--hive-border-default);
-  opacity: var(--r);
+@media (min-width: 1024px) and (min-height: 680px) {
+  /* Window width (the board): leaves room for a 210px piece and its ghost on each side, down to 1024px,
+     and for the stage's height. --hx: distance from the center to a piece's home. */
+  html.scenes .st-board {
+    --bw: min(780px, calc(100vw - 520px), calc((100vh - var(--st-hdr) - 14rem) * 1.45));
+    --hx: calc(var(--bw) / 2 + 126px);
+    width: var(--bw);
+  }
+  html.scenes .st-board__cap2 { display: inline; }
+  /* The window takes the file's place at the end of the stage */
+  html.scenes .st-shift .st-board__file { --r: clamp(0, calc((var(--p, 0) - 0.42) / 0.3), 1); }
+
+  /* A piece: an anchor at the center of the file, moved to its home (static). The ghost stays at home;
+     the live copy (.st-raw) travels from home to the center.
+     q: this piece's flight, 0..1 over 0.45 of progress after its delay --d (the last lands at p = 0.65).
+     e = (1-q)^2 eases the distance, so a piece is within a few px of the center well before it fades.
+     The live copy fades out over q 0.62-0.92 while the window fades in; the ghost fades in as it leaves. */
+  html.scenes .st-piece {
+    --q: clamp(0, calc((var(--p, 0) - var(--d, 0)) / 0.45), 1);
+    --e: calc((1 - var(--q)) * (1 - var(--q)));
+    --k: calc(1 - var(--e));
+    display: block;
+    position: absolute; left: 50%; top: 50%; z-index: 2;
+    width: 210px;
+    transform: translate(-50%, -50%) translate(calc(var(--mx, 0) * var(--hx)), calc(var(--my, 0) * 1px));
+    pointer-events: none;
+  }
+  html.scenes .st-ghost {
+    position: absolute; inset: 0;
+    border: 1.5px solid var(--hive-navy-900); border-radius: 8px;
+    opacity: calc(clamp(0, var(--q) * 5, 1) * 0.28);
+    transform: rotate(calc(var(--mr, 0) * 1deg));
+  }
+  html.scenes .st-raw {
+    position: relative;
+    transform:
+      translate(calc(var(--mx, 0) * var(--hx) * var(--k) * -1), calc(var(--my, 0) * 1px * var(--k) * -1))
+      rotate(calc(var(--mr, 0) * 1deg * var(--e)));
+    opacity: clamp(0, calc((0.92 - var(--q)) / 0.3), 1);
+  }
+  html.scenes .st-shift.is-live .st-raw { will-change: transform, opacity; }
 }
-.st-panel__h { position: relative; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font: 600 13px/1.3 var(--hive-font-display); opacity: var(--r); }
-.st-board svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-.st-panel__h svg { color: var(--hive-gold-700); }
-.st-board .pw-row svg { width: 18px; height: 18px; }
 
-.st-piece { position: relative; }
-.st-board .st-raw { display: none; }   /* (0,2,0): beats the per-type display rules below until html.scenes */
-
-/* Raw pieces: big enough to read (14-17px), scattered, then flown into their slot */
+/* Loose pieces: 14px and up, so they read at a glance */
 .st-raw {
-  position: absolute; left: 0; top: 50%; z-index: 2;
-  width: min(300px, 100%);
   padding: 12px 14px;
   background: #fff; border-radius: 8px;
   box-shadow: 0 0 0 1px rgba(22, 27, 51, 0.1), 0 20px 40px -16px rgba(22, 27, 51, 0.35);
   font-size: 15px; line-height: 1.35; color: var(--hive-navy-900);
-  pointer-events: none;
 }
 .st-raw b { font-weight: 600; }
-.st-raw--pdf { align-items: center; gap: 10px; font-size: 14px; }
-.st-raw--pdf b { flex: none; padding: 3px 6px; border-radius: 4px; background: var(--hive-danger); color: #fff; font: 600 12px/1 var(--hive-font-body); }
 .st-raw--mail { border-left: 3px solid var(--hive-info); }
-.st-raw--mail b, .st-raw--mail span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.st-raw--mail b, .st-raw--mail span { display: block; }
 .st-raw--mail span { font-size: 14px; color: #4F556B; }
+.st-raw--pdf { display: flex; align-items: center; gap: 10px; font-size: 14px; overflow-wrap: anywhere; }
+.st-raw--pdf b { flex: none; padding: 3px 6px; border-radius: 4px; background: var(--hive-danger); color: #fff; font: 600 12px/1 var(--hive-font-body); }
 .st-raw--note {
-  width: min(200px, 75%);
-  padding: 16px 16px 24px;
+  padding: 16px 16px 22px;
   border-radius: 2px;
   background: #FBE7A1;
   font: 700 17px/1.3 var(--hive-font-display); letter-spacing: -0.01em; color: #3A2C02;
 }
-.st-raw--note2 { background: #F7DC85; }
 .st-raw--sheet {
-  grid-template-columns: 44px 1fr auto;
+  display: grid; grid-template-columns: 44px 1fr;
   padding: 0; border-radius: 2px;
   font-size: 14px;
   box-shadow: 0 0 0 1px #C9D3E0, 0 20px 40px -16px rgba(22, 27, 51, 0.3);
 }
-.st-raw--sheet > * { padding: 8px 10px; border-right: 1px solid #C9D3E0; white-space: nowrap; }
-.st-raw--sheet > :last-child { border-right: 0; color: #4F556B; }
-.st-raw--sheet i { font-style: normal; background: #EEF2F7; color: #4F556B; text-align: center; }
-
-/* Scrubbed assembly. start.js writes --p on the file and on each piece ([data-p]).
-   q: this piece's flight, 0..1 over 0.45 of progress after its delay --d (last piece lands at 0.65).
-   e = (1-q)^2: ease-out distance, so a piece is within a few px of its slot well before it turns clean.
-   The raw piece fades out over q 0.62-0.92 while the clean row fades in over q 0.7-0.95, so from about
-   p 0.62 on no raw text is visible, and no clean row is visible while it is still outside its panel. */
-html.scenes .st-shift .st-board__file { --r: clamp(0, calc((var(--p, 0) - 0.25) / 0.35), 1); }
-html.scenes .st-shift .st-piece {
-  --q: clamp(0, calc((var(--p, 0) - var(--d, 0)) / 0.45), 1);
-  --e: calc((1 - var(--q)) * (1 - var(--q)));
-  z-index: 2;
-  transform:
-    translate(calc(var(--mx, 0) * var(--sx) * var(--e)), calc(var(--my, 0) * var(--sy) * var(--e)))
-    rotate(calc(var(--mr, 0) * 1deg * var(--e)));
-}
-html.scenes .st-shift .st-raw {
-  display: block;
-  transform: translateY(-50%);
-  opacity: clamp(0, calc((0.92 - var(--q)) / 0.3), 1);
-}
-html.scenes .st-shift .st-raw--pdf { display: flex; }
-html.scenes .st-shift .st-raw--sheet { display: grid; }
-html.scenes .st-shift .st-clean { opacity: clamp(0, calc((var(--q) - 0.7) / 0.25), 1); }
-html.scenes .st-shift.is-live .st-piece { will-change: transform; }
+.st-raw--sheet > * { padding: 8px 10px; }
+.st-raw--sheet i { font-style: normal; border-right: 1px solid #C9D3E0; background: #EEF2F7; color: #4F556B; text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
-  .st-raw { display: none !important; }
-  .st-board__file, .st-piece { --r: 1 !important; --q: 1 !important; }
+  .st-piece { display: none !important; }
+  .st-board__file { --r: 1 !important; }
+  .st-board__cap2 { display: none !important; }
+  .rp-lane { --a1: 1 !important; --a2: 1 !important; --a3: 1 !important; --a4: 1 !important; --g: 1 !important; --gold: 1 !important; }
+  .rp-card { opacity: 1 !important; }
+  .rp-card--1 { transform: translateX(var(--jump)) !important; }
+  .rp-card--2, .rp-card--3, .rp-card--4 { transform: none !important; }
+  .pw-draft { --o: 1 !important; }
 }
