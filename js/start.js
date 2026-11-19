@@ -383,7 +383,17 @@
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', onResize, { passive: true });
   window.addEventListener('load', onResize);
-  window.addEventListener('pageshow', onResize);   // back/forward cache restores skip the load event
+  window.addEventListener('pageshow', function (e) {   // back/forward cache restores skip the load event
+    onResize();
+    if (e.persisted) syncAllVideos();   // a restored page keeps is-playing on a paused video
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      for (var i = 0; i < vids.length; i++) if (vids[i].loaded && !vids[i].el.paused) vids[i].el.pause();
+    } else {
+      syncAllVideos();
+    }
+  });
 
   window.requestAnimationFrame(function () {
     if ('requestIdleCallback' in window) window.requestIdleCallback(init, { timeout: 800 });

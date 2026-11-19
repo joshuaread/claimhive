@@ -126,7 +126,7 @@
 
 /* The gate. Default = the end state: three drafts waiting at the bar, the approved one past it, in gold. */
 .rp-lane {
-  --gx: 58%; --cw: 92px; --jump: 136px;
+  --gx: 58%; --cw: 92px; --jump: 108px;
   --a1: 1; --a2: 1; --a3: 1; --a4: 1; --g: 1; --gold: 1;
   position: relative; height: 140px; overflow: hidden;
   border: 1px solid var(--hive-border-default); border-radius: 10px; background: var(--hive-canvas);
