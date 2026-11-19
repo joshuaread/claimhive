@@ -131,10 +131,11 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 
 /* Below-the-fold scenes skip rendering until they come near the viewport. The pinned shift and acts
    opt out in the pinned block (their sticky stage and scroll math need them rendered). */
-.st-shift, .st-acts, .st-short, .st-beta, .st-offer, .st-faq, .st-data, .st-final { content-visibility: auto; }
-.st-short, .st-beta, .st-faq { contain: layout style; }
+.st-shift, .st-acts, .st-more, .st-short, .st-beta, .st-offer, .st-faq, .st-data, .st-final { content-visibility: auto; }
+.st-more, .st-short, .st-beta, .st-faq { contain: layout style; }
 .st-shift { contain-intrinsic-size: auto 900px; }
 .st-acts { contain-intrinsic-size: auto 2600px; }
+.st-more { contain-intrinsic-size: auto 620px; }
 .st-short { contain-intrinsic-size: auto 560px; }
 .st-beta { contain-intrinsic-size: auto 1500px; }
 .st-offer { contain-intrinsic-size: auto 820px; }
@@ -275,6 +276,9 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
   .st-hero__offer { font-size: 1rem; }
   .st-hero__free { font-size: 1.4375rem; }       /* about 1.4x the other offer lines */
 }
+/* Secondary in-page link under the offer: the existing .st-textlink look (44px tall) */
+.st-hero__more { margin-top: 0.5rem; }
+
 /* Desktop: the card sentence fits on one line, which keeps more of the window above the fold */
 @media (min-width: 1024px) { .st-hero__offer { max-width: 52em; } }
 
@@ -311,6 +315,8 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
    reduced tone, B is the answer at full strength. */
 .st-shift__a { color: var(--st-fg-3); }
 .st-shift__b { margin-top: 0.4em; }
+/* Body line under the two lines (static layouts). Visually hidden in the pinned stage, see the block below. */
+.st-shift__text { max-width: 36em; font-size: var(--st-fs-body); line-height: 1.5; color: var(--st-fg-2); }
 @media (min-width: 1024px) { .st-shift__lines { font-size: clamp(3rem, 5vw, 4.75rem); max-width: 24ch; } }
 /* Short laptop screens: the line and the board both fit the pinned stage */
 @supports (height: 1svh) {
@@ -331,6 +337,12 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
     padding: 0;
   }
   html.scenes .st-shift__inner { gap: 2rem; }
+  /* The pinned stage is sized to the lines, the board and its caption, so the body line cannot fit without
+     shrinking the board. It stays in the page for screen readers and in every unpinned layout. */
+  html.scenes .st-shift__text {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
   html.scenes .st-shift__a,
   html.scenes .st-shift__b { grid-area: 1 / 1; align-self: center; margin: 0; }
   html.scenes .st-shift__a {
@@ -432,6 +444,11 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 }
 .st-offer__inner { display: flex; flex-direction: column; align-items: center; }
 /* The big-number moment. min(): "January 1, 2027." never wraps and must fit 320px. */
+.st-offer__kicker {
+  margin-bottom: 1rem;
+  font-size: 0.875rem; font-weight: 600; line-height: 1.4; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--st-fg-2);
+}
 .st-offer__big { font-size: min(10vw, 10rem); line-height: 1; letter-spacing: -0.04em; max-width: 11em; }
 .st-offer__then {
   margin-top: clamp(1.25rem, 3vw, 2.25rem);
@@ -451,6 +468,19 @@ html.scenes .st-reveal {
 }
 html.scenes .st-reveal:not(.is-in) { opacity: 0; transform: translateY(24px); }
 html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
+
+/* ==========================================================================
+   4a-00. LEADS AND SETUP (light): two bordered blocks, side by side from 768px
+   ========================================================================== */
+.st-more { padding: clamp(4rem, 8vw, 6rem) 0 0; }
+.st-more__grid { display: grid; gap: 1.25rem; }
+.st-more__block {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid var(--hive-border-default); border-radius: 16px;
+}
+.st-more__title { font-size: clamp(1.75rem, 3.4vw, 2.5rem); }
+.st-more__text { margin-top: 1rem; max-width: 62ch; font-size: clamp(1.125rem, 1.5vw, 1.25rem); line-height: 1.55; color: var(--st-fg-2); }
+@media (min-width: 768px) { .st-more__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; } }
 
 /* ==========================================================================
    4a-0. THE SHORT ANSWER (light): one bordered box, one paragraph
@@ -573,6 +603,10 @@ html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
 .st-final__title { font-size: var(--st-fs-final); max-width: 13ch; }
 .st-final .btn { width: 100%; max-width: 360px; }
 @media (min-width: 640px) { .st-final .btn { width: auto; min-width: 220px; } }
+.st-final__offer { margin-top: -0.5rem; max-width: 36em; font-size: 0.9375rem; line-height: 1.5; color: var(--st-fg-2); }
+.st-final__offer p { text-wrap: balance; }
+.st-final__offer p:first-child { margin-bottom: 0.25rem; font: 700 1.25rem/1.3 var(--hive-font-display); letter-spacing: -0.015em; color: var(--st-fg); }
+@media (min-width: 768px) { .st-final__offer { font-size: 1rem; } .st-final__offer p:first-child { font-size: 1.4375rem; } }
 .st-final__founder { margin-top: -1rem; font-size: var(--hive-text-sm); line-height: 1.5; color: var(--st-fg-2); }
 .st-final__founder .st-textlink { font-size: inherit; color: var(--st-fg); text-decoration-color: var(--st-fg-3); text-underline-offset: 4px; }
 
