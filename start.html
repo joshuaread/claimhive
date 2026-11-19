@@ -21,6 +21,7 @@
   <!-- Fonts: Plus Jakarta Sans (display) + Inter (body) only -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="assets/start/claims-list-poster.webp" fetchpriority="high">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
 
@@ -84,25 +85,8 @@
 
     <!-- 1. HERO (dark): the product is the object. Real footage in the window; the poster is the LCP image. -->
     <section class="st-hero st-dark" data-scene="hero" aria-labelledby="hero-title">
-      <div class="st-wrap st-hero__copy">
-        <p class="st-eyebrow">Built for public adjusters</p>
-        <h1 id="hero-title" class="st-hero__title">
-          <span class="st-line">Every claim. <br class="st-mbr">Every deadline. <br class="st-mbr">Every check.</span>
-          <span class="st-line st-t2">One place<span class="st-dot">.</span></span>
-        </h1>
-        <p class="st-hero__sub">Carrier replies drafted for your yes.</p>
-        <div class="st-actions">
-          <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_hero">Start free</a>
-        </div>
-        <div class="st-hero__offer">
-          <p class="st-hero__free">Free until January&nbsp;1,&nbsp;2027.</p>
-          <p>Then $80/seat/month, the founding rate.</p>
-          <p>A $1 authorization checks your card and is voided right away. You won't be charged until January&nbsp;1,&nbsp;2027.</p>
-        </div>
-        <p class="st-hero__more"><a href="#act1-title" class="st-textlink">Watch it work a sample claim</a></p>
-      </div>
-
       <figure class="st-wrap st-hero__media">
+        <figcaption class="st-caption">Sample claim, test account</figcaption>
         <div class="st-tilt" data-p>
           <div class="pw" aria-hidden="true">
             <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
@@ -116,8 +100,26 @@
           </div>
         </div>
         <p class="st-sr">Recording of ClaimHive with sample data from a test account: the claims list, with a search bar, filters and a table of sample claims and their statuses.</p>
-        <figcaption class="st-caption">Sample claim, test account</figcaption>
       </figure>
+
+      <div class="st-wrap st-hero__copy">
+        <div class="st-hero__band">
+          <div class="st-hero__head">
+            <p class="st-hero__name">ClaimHive</p>
+            <h1 id="hero-title" class="st-hero__title">
+              <span class="st-line">Every claim. <br class="st-mbr">Every deadline. <br class="st-mbr">Every check.</span>
+              <span class="st-line st-t2">One place<span class="st-dot">.</span></span>
+            </h1>
+          </div>
+          <div class="st-hero__pill">
+            <p class="st-hero__free">Free until January&nbsp;1,&nbsp;2027.</p>
+            <p>Then $80/seat/month, the founding rate.</p>
+            <div class="st-actions">
+              <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_hero">Start free</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 2. ONE FILE (light): the loose pieces travel to the center and join the claim file, each leaving a ghost.
