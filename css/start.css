@@ -243,15 +243,9 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 @media (min-width: 768px) {
   .st-hero__copy { padding-left: max(var(--st-gutter), env(safe-area-inset-left)); padding-right: max(var(--st-gutter), env(safe-area-inset-right)); }
 }
-/* The product leads: the window first, then one band with the name and H1 (left) and the price pill (right).
+/* The product leads: the window first, then one band with the H1, ending in the name (left) and the price pill (right).
    Phones: stacked, left aligned. 1024px+: the band overlaps the window's bottom edge on a dark gradient. */
 .st-hero__band { display: grid; gap: 1.5rem; margin-top: 1.5rem; text-align: left; }
-/* Product name: small, above the headline. One fixed line height, so its wrap cannot change at font swap */
-.st-hero__name {
-  margin-bottom: 0.5rem;
-  font-size: 1.0625rem; font-weight: 600; line-height: 1.4; letter-spacing: 0.01em;
-  color: var(--st-fg-2);
-}
 .st-hero__title { font-size: var(--st-fs-hero); line-height: 1.04; }
 /* Each sentence is one fixed block that never wraps by itself: no reflow when the web font swaps in.
    Under 820px each sentence breaks once at its <br class="st-mbr">, giving four fixed lines. */
@@ -281,7 +275,7 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
   /* 1160px: the window (40px bar + the 1280x676 footage at 1160 wide = 653px) leaves about 40% of it above
      the fold at 1440x900, even while the tilt is still scaling it up from 0.9 */
   .st-hero__media { max-width: 1160px; }
-  /* The window width follows the viewport height, so the name, H1 and pill stay in the first screen.
+  /* The window width follows the viewport height, so the H1 and pill stay in the first screen.
      Footage is 1280x676 (ratio 1.89): width = height left for the footage x 1.89.
      14.5rem (232px) = 40px bar + 34px caption + 186px pill + 16px bottom margin + 4px slack - 48px the pill
      overlaps the window (band padding below). The clamp repeats the hero's own padding-top. Floor 560px. */
@@ -293,7 +287,7 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
     max-width: 1160px; margin: -4.5rem auto 0; padding-top: 1.5rem;   /* the pill overlaps the window's bottom 3rem */
     background: linear-gradient(to bottom, rgba(15, 18, 31, 0) 0, var(--hive-navy-950) 3.5rem);
   }
-  /* Smaller than the shared H1 size: the two lines sit beside the pill */
+  /* Smaller than the shared H1 size: the three lines sit beside the pill */
   .st-hero__title { font-size: min(2.7vw, 3.5rem); }
   html.motion .st-tilt {
     transform-origin: 50% 0;
