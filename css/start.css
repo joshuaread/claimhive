@@ -50,7 +50,7 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 
   /* Display scale: final > H1 > acts/shift > data. Body steps 3x-4x below.
      H1: four fixed lines under 820px (each sentence breaks once, see .st-mbr), two fixed lines from 820px.
-     The longest line is about 10.5em (phones) / 17.5em (two lines), so 7.6vw fits 320px and 5vw fits 820px+. */
+     The longest line is about 10.5em (phones) / 22em (two lines, "Replies drafted. Every claim in one file."), so 7.6vw fits 320px and 3.8vw fits 820px+. */
   --st-fs-hero: clamp(1.4rem, 7.6vw, 2.75rem);
   --st-fs-final: clamp(2.5rem, 10vw, 5rem);
   --st-fs-h2: clamp(2.25rem, 9vw, 3.75rem);
@@ -61,11 +61,11 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
   :root { --st-hdr: 64px; --st-gutter: 2rem; --st-fs-body: 1.1875rem; }
 }
 @media (min-width: 820px) {
-  :root { --st-fs-hero: min(5vw, 4.25rem); }
+  :root { --st-fs-hero: min(3.8vw, 4.25rem); }
   /* 8.5svh keeps the window's top edge above the fold on short laptop screens.
      Guarded: an unsupported unit inside a custom property would void the font-size, not fall back. */
   @supports (height: 1svh) {
-    :root { --st-fs-hero: min(5vw, 8.5svh, 4.25rem); }
+    :root { --st-fs-hero: min(3.8vw, 8.5svh, 4.25rem); }
   }
 }
 @media (min-width: 1024px) {
@@ -131,13 +131,14 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 
 /* Below-the-fold scenes skip rendering until they come near the viewport. The pinned shift and acts
    opt out in the pinned block (their sticky stage and scroll math need them rendered). */
-.st-shift, .st-acts, .st-beta, .st-offer, .st-faq, .st-data, .st-final { content-visibility: auto; }
-.st-beta, .st-faq { contain: layout style; }
+.st-shift, .st-acts, .st-short, .st-beta, .st-offer, .st-faq, .st-data, .st-final { content-visibility: auto; }
+.st-short, .st-beta, .st-faq { contain: layout style; }
 .st-shift { contain-intrinsic-size: auto 900px; }
 .st-acts { contain-intrinsic-size: auto 2600px; }
-.st-beta { contain-intrinsic-size: auto 760px; }
-.st-offer { contain-intrinsic-size: auto 700px; }
-.st-faq { contain-intrinsic-size: auto 520px; }
+.st-short { contain-intrinsic-size: auto 560px; }
+.st-beta { contain-intrinsic-size: auto 1500px; }
+.st-offer { contain-intrinsic-size: auto 820px; }
+.st-faq { contain-intrinsic-size: auto 960px; }
 .st-data { contain-intrinsic-size: auto 800px; }
 .st-final { contain-intrinsic-size: auto 500px; }
 
@@ -352,22 +353,13 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 .st-acts { padding: clamp(5rem, 12vw, 8rem) 0; }
 .st-act { display: grid; gap: 2rem; align-items: center; }
 .st-act + .st-act { margin-top: clamp(5rem, 12vw, 8rem); }
-.st-act__title { font-size: var(--st-fs-h2); max-width: 12ch; }
+.st-act__title { font-size: var(--st-fs-h2); max-width: 16ch; }
 .st-act__text { margin-top: 1.25rem; max-width: 34ch; font-size: var(--st-fs-body); line-height: 1.5; color: var(--st-fg-2); }
 .st-act__media { position: relative; min-width: 0; }
 .st-act__media .st-caption { margin-top: 0.75rem; }
-/* Page text beside the footage (not part of the video): the deadline note, F8 "you confirm the dates" */
-.st-note {
-  margin-top: 0.75rem; max-width: 46ch;
-  font-size: var(--hive-text-sm); line-height: 1.5; color: var(--st-fg-2);
-}
-.st-note b { color: var(--st-fg); font-weight: 600; }
-
-/* "Approve it." takes the gold when the reply is approved: a gold copy sits exactly over the base words and
-   fades in (opacity only). Static default = approved, so no JS and reduced motion show the end state. */
-.st-gold { position: relative; display: inline-block; white-space: nowrap; }
-.st-gold__off { color: var(--st-fg-3); }
-.st-gold__on { position: absolute; left: 0; top: 0; color: var(--hive-gold-500); opacity: 1; }
+/* "Approve it." takes the gold when the reply is approved: one text node, colour driven by --p (see the scenes
+   block). Static default = approved, so no JS and reduced motion show the end state. */
+.st-gold { position: relative; display: inline-block; color: var(--hive-gold-500); }   /* may wrap: "You approve each one." is wider than a 320px column */
 
 /* Desktop: the copy column starts on the page's left edge; the window column is 54-56% of the
    viewport (up to 880px) and runs to the right gutter, so the window fills its column. */
@@ -412,7 +404,9 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
   html.scenes .st-act--3 .st-act__media { opacity: clamp(0, calc((3 * var(--p, 0) - 1.92) / 0.16), 1); }
 
   /* Act 1: "Approve it." turns gold once the reply has passed the gate (the card turns gold at t 0.68-0.78) */
-  html.scenes .st-gold__on { opacity: clamp(0, calc((3 * var(--p, 0) - 0.7) / 0.12), 1); }
+  html.scenes .st-gold {
+    color: color-mix(in srgb, var(--hive-gold-500) calc(100% * clamp(0, calc((3 * var(--p, 0) - 0.7) / 0.12), 1)), var(--st-fg-3));
+  }
 
   /* Focus ring and press on Approve as the gate opens. start.js toggles the classes when t = 3p crosses the
      thresholds (ring at 0.5, press 0.56-0.74); the change itself is a short timed transition, so the window is
@@ -459,25 +453,58 @@ html.scenes .st-reveal:not(.is-in) { opacity: 0; transform: translateY(24px); }
 html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
 
 /* ==========================================================================
-   4a. WHAT'S IN THE BETA (light): a real <dl>, six rows, no icons
+   4a-0. THE SHORT ANSWER (light): one bordered box, one paragraph
    ========================================================================== */
-.st-beta { padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6.5rem); }
-.st-beta__title { font-size: var(--st-fs-h2); max-width: 14ch; }
-.st-beta__list { margin-top: clamp(2rem, 4vw, 3rem); }
-.st-beta__row {
-  display: grid; gap: 0.35rem;
-  padding: 1.25rem 0;
-  border-top: 1px solid var(--hive-border-default);
+.st-short { padding: clamp(4rem, 8vw, 6rem) 0 0; }
+.st-short__box {
+  max-width: calc(62ch + 2 * clamp(1.25rem, 3vw, 2.5rem));
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid var(--hive-border-default); border-radius: 16px;
 }
-.st-beta__row:last-child { border-bottom: 1px solid var(--hive-border-default); }
+.st-short__title { font-size: clamp(1.75rem, 3.4vw, 2.5rem); }
+.st-short__text { margin-top: 1rem; max-width: 62ch; font-size: clamp(1.125rem, 1.5vw, 1.25rem); line-height: 1.55; color: var(--st-fg-2); }
+
+/* ==========================================================================
+   4a. WHAT YOU GET IN THE BETA (light): a real <dl>, eight cards, one column on phones, two from 768px
+   ========================================================================== */
+.st-beta { padding: clamp(4rem, 8vw, 6rem) 0 clamp(4rem, 8vw, 6.5rem); }
+.st-beta__title { font-size: var(--st-fs-h2); max-width: 20ch; }
+.st-beta__list { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 1rem; }
+.st-beta__row {
+  display: grid; align-content: start; gap: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--hive-border-default); border-radius: 16px;
+}
 .st-beta__row dt {
   font: 600 0.875rem/1.4 var(--hive-font-body); letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--st-fg-3);
 }
-.st-beta__row dd { font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.4; color: var(--st-fg); max-width: 40ch; }
+.st-beta__row dd { font-size: 1.125rem; line-height: 1.45; color: var(--st-fg); max-width: 44ch; }
 @media (min-width: 768px) {
-  .st-beta__row { grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr); gap: 2rem; align-items: baseline; padding: 1.5rem 0; }
+  .st-beta__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .st-beta__row { padding: 1.5rem; }
 }
+
+/* ==========================================================================
+   4a-2. COMING BEFORE GA (dark): the homepage claim-run board (css/claim-run.css, js/claim-run.js).
+   It is not a [data-scene]: the board runs its own IntersectionObserver clock, and it stays out of
+   content-visibility because the script reads the board's width on load and on resize.
+   ========================================================================== */
+/* Real clash: ".start-page h1, .start-page h2" (0,1,1) outranks ".chs-h1" (0,1,0). Restore the homepage heading. */
+.start-page .chs .chs-h1 {
+  font-family: var(--hive-font-heading);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.08;
+  color: var(--hive-text-inverse);
+  text-wrap: wrap;
+}
+/* Below the fold like the other sections: skip rendering until near the viewport. This keeps the board's
+   markup out of the layout passes that js/start.js forces at load. js/claim-run.js is added only when the
+   section is within 1200px, and fit() re-runs through its ResizeObserver, so the width it reads is current. */
+.start-page .chs { content-visibility: auto; contain-intrinsic-size: auto 920px; }
+/* Muted body-small note under the board. --hive-navy-300 on the board's #12151B is about 8:1 (AA). */
+.chs .st-preview-note { margin-top: 1rem; font-size: var(--hive-text-sm); color: var(--hive-navy-300); }
 
 /* ==========================================================================
    4b. FAQ (light): native <details>, no JS. Keyboard: Tab to a question, Enter or Space opens it.
@@ -546,6 +573,8 @@ html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
 .st-final__title { font-size: var(--st-fs-final); max-width: 13ch; }
 .st-final .btn { width: 100%; max-width: 360px; }
 @media (min-width: 640px) { .st-final .btn { width: auto; min-width: 220px; } }
+.st-final__founder { margin-top: -1rem; font-size: var(--hive-text-sm); line-height: 1.5; color: var(--st-fg-2); }
+.st-final__founder .st-textlink { font-size: inherit; color: var(--st-fg); text-decoration-color: var(--st-fg-3); text-underline-offset: 4px; }
 
 .st-footer {
   --st-focus: var(--st-white);
@@ -571,7 +600,7 @@ html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
   }
   .st-shift__a, .st-shift__b { grid-area: auto !important; }
   .st-shift__b { margin-top: 0.4em !important; }
-  .st-gold__on { opacity: 1 !important; }
+  .st-gold { color: var(--hive-gold-500) !important; }
   .pw-ring::after { opacity: 1 !important; transition: none !important; }
   .st-faq__item summary::after { transition: none !important; }
   .st-btn, .st-textlink, .st-header { transition: none !important; }
