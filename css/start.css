@@ -492,24 +492,43 @@ html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
 .st-short__text { margin-top: 1rem; max-width: 62ch; font-size: clamp(1.125rem, 1.5vw, 1.25rem); line-height: 1.55; color: var(--st-fg-2); }
 
 /* ==========================================================================
-   4a. WHAT YOU GET IN THE BETA (light): a real <dl>, eight cards, one column on phones, two from 768px
+   4a. WHAT YOU GET IN THE BETA (light): features grid of ul/li tiles (icon + title + one line).
+   Phone: one column, compact row. 600px: two columns. 1024px: three (live) / four (coming before GA).
    ========================================================================== */
 .st-beta { padding: clamp(4rem, 8vw, 6rem) 0 clamp(4rem, 8vw, 6.5rem); }
 .st-beta__title { font-size: var(--st-fs-h2); max-width: 20ch; }
-.st-beta__list { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 1rem; }
-.st-beta__row {
-  display: grid; align-content: start; gap: 0.5rem;
-  padding: 1.25rem;
+.st-feat { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); list-style: none; padding: 0; }
+.st-feat__sub {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  font: 700 1.25rem/1.3 var(--hive-font-display); letter-spacing: -0.015em; color: var(--st-fg);
+}
+.st-feat__sub + .st-feat { margin-top: 1.25rem; }
+.st-feat__tile {
+  display: flex; align-items: flex-start; gap: 0.875rem;
+  padding: 1rem;
   border: 1px solid var(--hive-border-default); border-radius: 16px;
 }
-.st-beta__row dt {
-  font: 600 0.875rem/1.4 var(--hive-font-body); letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--st-fg-3);
+.st-feat__icon {
+  flex: none; width: 28px; height: 28px; color: var(--st-fg-2);
+  fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
 }
-.st-beta__row dd { font-size: 1.125rem; line-height: 1.45; color: var(--st-fg); max-width: 44ch; }
-@media (min-width: 768px) {
-  .st-beta__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-  .st-beta__row { padding: 1.5rem; }
+.st-feat__body { display: grid; gap: 0.375rem; justify-items: start; min-width: 0; }
+.st-feat__name { font: 700 1.0625rem/1.3 var(--hive-font-display); letter-spacing: -0.01em; color: var(--st-fg); }
+.st-feat__line { font-size: 1rem; line-height: 1.45; color: var(--st-fg-2); }
+.st-feat__tag {
+  display: inline-flex; align-items: center;
+  font: 600 var(--hive-text-2xs)/1 var(--hive-font-display); letter-spacing: 0.03em; text-transform: uppercase;
+  padding: 0.32rem 0.8rem; border-radius: var(--hive-radius-pill);
+  color: var(--hive-gold-700); border: 1px solid var(--hive-gold-500); /* #7D6409 on #FAF9F6: about 5.4:1 */
+}
+@media (min-width: 600px) {
+  .st-feat { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .st-feat__tile { flex-direction: column; gap: 0.75rem; padding: 1.25rem; }
+}
+@media (min-width: 1024px) {
+  .st-feat--now { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .st-feat--soon { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .st-feat__tile { padding: 1.5rem; }
 }
 
 /* ==========================================================================
