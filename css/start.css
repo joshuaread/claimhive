@@ -1,53 +1,111 @@
 /**
- * ClaimHive — /start (Google Ads landing page)
- * Page-specific layout and motion. Builds on css/tokens.css + css/components.css (.btn, .btn-gold, .btn-lg, .btn-sm).
- * site.css is intentionally not loaded; the few rules this page needs live here.
+ * ClaimHive — /start (Google Ads landing page), v3
+ * Scenes, type and motion. The product window, the footage layers, the reply illustration and the
+ * scene-2 board live in css/start-mock.css.
  *
- * Motion contract:
+ * Color discipline: gold marks exactly two things, the primary CTA (.btn-gold) and the approved state of an
+ * item (the gate animation, the "Approve it." words). Everything else is navy, white and gray.
+ * Headlines are two-tone: the first clause at full strength (--st-fg), the second in --st-fg-3.
+ * Builds on css/tokens.css + css/components.css (.btn, .btn-gold, .btn-lg, .btn-sm).
+ *
+ * Motion contract
  *   html.js      set by the inline head script
- *   html.motion  set only when prefers-reduced-motion: no-preference
- *   html.reveal-ready  set by js/start.js once IntersectionObserver is watching (so a failed script never hides content)
- *   --p on .st-shift   assembly progress 0..1, written by js/start.js; defaults to 1 (assembled) for no-JS / reduced motion
+ *   html.motion  set by the inline head script only when prefers-reduced-motion: no-preference.
+ *                Gates the hero tilt, which must be correct on first paint (before start.js runs).
+ *   html.scenes  set by js/start.js once it is driving progress. Gates pinning and scrubbing of the
+ *                shift and the acts, so a script that never runs leaves the static, assembled page.
+ *   --p          progress 0..1, written by js/start.js only on the [data-p] elements that read it.
+ *                Registered as NON-inherited: a write restyles that one element, never its subtree,
+ *                so the container-query windows below it are not restyled or relaid out per frame.
+ * Only transform and opacity are scrubbed. Everything else is static.
  */
+@property --p { syntax: '<number>'; inherits: false; initial-value: 0; }
+
+/* Metric-matched local fallback for Inter (no request). Arial-family advance widths and vertical
+   metrics scaled to Inter's, so body text wraps the same before and after the web font swaps in. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('ArialMT'), local('Helvetica'), local('Liberation Sans'), local('LiberationSans'), local('Arimo');
+  size-adjust: 107.4%;
+  ascent-override: 90.2%;
+  descent-override: 22.48%;
+  line-gap-override: 0%;
+}
 
 /* ==========================================================================
    BASE
    ========================================================================== */
-/* components.css sets overflow-x:hidden on html AND body, which turns <body> into a
-   scroll container and silently breaks position:sticky (sticky header, pinned stages).
-   Clip at the root instead; body stays visible so sticky resolves against the viewport. */
-html { overflow-x: clip; scroll-padding-top: var(--st-hdr); }
-body.start-page { overflow-x: visible; overflow-y: visible; }
+/* components.css sets overflow-x:hidden on html AND body, which makes <body> a scroll container
+   and breaks position:sticky. Clip at the root instead; body stays visible. */
+html { overflow-x: clip; scroll-padding-top: calc(var(--st-hdr) + 1rem); }
+body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hive-navy-950); letter-spacing: 0; }
 
 :root {
+  /* Same stack as tokens.css, with the metric-matched fallback right after Inter (this page only) */
+  --hive-font-body: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --st-hdr: 56px;
-  --st-gutter: 1rem;
-  --st-ink-2: var(--hive-text-secondary);      /* #4A4A4A: AA on canvas + white */
-  --st-gold-text: var(--hive-gold-700);       /* #7D6409: AA for small text on light surfaces */
-  --st-ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* same curve as --hive-transition-* */
+  --st-gutter: 1.25rem;
+  --st-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --st-white: #F5F6FA;
 
-  /* Display type scale: the H1 leads at every width, then the final line, then section H2s.
-     Each tier's max stays under the tier above it at the same viewport width. */
-  --st-fs-h1: clamp(2.375rem, 8vw + 0.5rem, 3.75rem);
-  --st-fs-final: clamp(2.25rem, 6vw + 0.25rem, 3.5rem);
-  --st-fs-h2: clamp(2.125rem, 5vw + 0.5rem, 3.25rem);
-  --st-track-display: -0.02em;                /* Merriweather 900 is wide; tighter tracking makes letters touch */
+  /* Display scale: final > H1 > acts/shift > data. Body steps 3x-4x below.
+     H1: four fixed lines under 820px (each sentence breaks once, see .st-mbr), two fixed lines from 820px.
+     The longest line is about 10.5em (phones) / 17.5em (two lines), so 7.6vw fits 320px and 5vw fits 820px+. */
+  --st-fs-hero: clamp(1.4rem, 7.6vw, 2.75rem);
+  --st-fs-final: clamp(2.5rem, 10vw, 5rem);
+  --st-fs-h2: clamp(2.25rem, 9vw, 3.75rem);
+  --st-fs-body: 1.125rem;
+  --st-track: -0.03em;
 }
-@media (min-width: 768px) { :root { --st-hdr: 64px; --st-gutter: 2rem; } }
+@media (min-width: 768px) {
+  :root { --st-hdr: 64px; --st-gutter: 2rem; --st-fs-body: 1.1875rem; }
+}
+@media (min-width: 820px) {
+  :root { --st-fs-hero: min(5vw, 4.25rem); }
+  /* 8.5svh keeps the window's top edge above the fold on short laptop screens.
+     Guarded: an unsupported unit inside a custom property would void the font-size, not fall back. */
+  @supports (height: 1svh) {
+    :root { --st-fs-hero: min(5vw, 8.5svh, 4.25rem); }
+  }
+}
 @media (min-width: 1024px) {
   :root {
-    /* Merriweather 900 is wide: H1 sized so "Work the claims / that pay." holds two lines in the copy column */
-    --st-fs-h1: clamp(3rem, 4.6vw, 4.25rem);
-    --st-fs-final: clamp(2.75rem, 4.2vw, 3.875rem);
-    --st-fs-h2: clamp(2.5rem, 3.6vw, 3.375rem);
+    --st-fs-final: clamp(4rem, 6.2vw, 6.5rem);
+    --st-fs-h2: clamp(2.75rem, 4.3vw, 4.5rem);
+    --st-fs-body: 1.25rem;
   }
 }
 
-/* Big type: no one-word last lines in headings; fewer stub lines in body copy */
-.st-shift__lines, .st-chapter__title, .st-h2,
-.st-trust__title, .st-price__title, .st-final__title { text-wrap: balance; }
-/* H1 keeps its natural break ("Work the claims / that pay."); balance moved it to "Work the / claims that pay." */
-.st-hero__title, .st-hero__sub, .st-offer > span, .st-chapter__text, .st-then__row p, .st-trust__list li { text-wrap: pretty; }
+/* Scene themes: a full-bleed switch of the whole screen */
+/* --st-fg-2: body-size secondary text. --st-fg-3: the reduced second clause of a display headline
+   (AA for large text on both surfaces; on dark it also clears 4.5:1 on navy-900). Ratios are in REPORT-v3.md. */
+.st-dark {
+  --st-fg: var(--st-white);
+  --st-fg-2: var(--hive-navy-200);        /* #C8D2E4 on #0F121F: 12.3:1 */
+  --st-fg-3: var(--hive-navy-300);        /* #A1B2D0 on #0F121F: 8.7:1, on #161B33: 7.9:1 */
+  --st-focus: var(--st-white);
+  background: var(--hive-navy-950);
+  color: var(--st-fg);
+}
+.st-light {
+  --st-fg: var(--hive-navy-900);
+  --st-fg-2: var(--hive-navy-600);        /* #334C72 on #FAF9F6: 8.3:1 */
+  --st-fg-3: var(--hive-navy-500);        /* #4B6993 on #FAF9F6: 5.3:1 */
+  --st-focus: var(--hive-navy-900);
+  background: var(--hive-canvas);
+  color: var(--st-fg);
+}
+.st-t2 { color: var(--st-fg-3); }
+
+.start-page h1, .start-page h2 {
+  font-family: var(--hive-font-display);
+  font-weight: 800;
+  letter-spacing: var(--st-track);
+  line-height: 1.04;
+  color: var(--st-fg);
+  text-wrap: balance;
+}
+.start-page main p { text-wrap: pretty; }
 
 .st-wrap {
   width: 100%;
@@ -57,45 +115,54 @@ body.start-page { overflow-x: visible; overflow-y: visible; }
   padding-right: max(var(--st-gutter), env(safe-area-inset-right));
 }
 
+.st-sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.st-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* Display lines end in a period in its own span: Plus Jakarta Sans 800 gives the period a wide
+   left bearing that reads as a space at display sizes. Visible text is unchanged. */
+.st-dot { margin-left: -0.06em; }
+
+/* Scene roots: style and layout invalidation stays inside each scene (sticky still works: layout
+   containment does not create a scroll container) */
+[data-scene] { contain: layout style; }
+
+/* Below-the-fold scenes skip rendering until they come near the viewport. The pinned shift and acts
+   opt out in the pinned block (their sticky stage and scroll math need them rendered). */
+.st-shift, .st-acts, .st-beta, .st-offer, .st-faq, .st-data, .st-final { content-visibility: auto; }
+.st-beta, .st-faq { contain: layout style; }
+.st-shift { contain-intrinsic-size: auto 900px; }
+.st-acts { contain-intrinsic-size: auto 2600px; }
+.st-beta { contain-intrinsic-size: auto 760px; }
+.st-offer { contain-intrinsic-size: auto 700px; }
+.st-faq { contain-intrinsic-size: auto 520px; }
+.st-data { contain-intrinsic-size: auto 800px; }
+.st-final { contain-intrinsic-size: auto 500px; }
+
 .st-skip {
   position: absolute; left: 0.75rem; top: -100px; z-index: 100;
-  background: var(--hive-navy-900); color: #fff; padding: 0.6rem 1rem; border-radius: var(--hive-radius-sm);
-  font: 600 var(--hive-text-sm) var(--hive-font-display); text-decoration: none;
+  background: var(--st-white); color: var(--hive-navy-950); padding: 0.6rem 1rem; border-radius: var(--hive-radius-sm);
+  font: 700 var(--hive-text-sm) var(--hive-font-display); text-decoration: none;
 }
 .st-skip:focus { top: 0.75rem; }
 
-.st-eyebrow {
-  font-family: var(--hive-font-display);
-  font-size: var(--hive-text-xs);
-  font-weight: var(--hive-weight-bold);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--st-gold-text);
-  margin-bottom: 0.875rem;
-}
-
-.st-h2 {
-  font-family: var(--hive-font-heading);
-  font-weight: var(--hive-weight-extrabold);
-  font-size: var(--st-fs-h2);
-  line-height: 1.08;
-  letter-spacing: var(--st-track-display);
-  color: var(--hive-navy-900);
-}
-
-/* Buttons: reuse .btn/.btn-gold; strengthen focus (gold-on-cream outline is under 3:1) */
+/* ==========================================================================
+   BUTTONS AND LINKS (this page only)
+   ========================================================================== */
 .st-btn:focus-visible,
 .st-textlink:focus-visible,
 .st-footer a:focus-visible,
-.st-trust a:focus-visible {
-  outline: 3px solid var(--hive-navy-900);
+.st-data a:focus-visible,
+.st-skip:focus-visible {
+  outline: 3px solid var(--st-focus, var(--st-white));
   outline-offset: 3px;
   border-radius: var(--hive-radius-pill);
 }
 .st-btn--primary { min-height: 52px; }
 
-/* Press feedback that answers the finger. Replaces the 320ms all-properties transition from .btn, on this page only:
-   transform is the only animated property; the lift is for real hover pointers, so a tap never leaves it stuck. */
+/* Replaces .btn's 320ms all-properties transition: transform only, lift only on real hover pointers */
 .st-btn {
   transition: transform 160ms var(--st-ease-out);
   -webkit-tap-highlight-color: transparent;
@@ -109,27 +176,42 @@ body.start-page { overflow-x: visible; overflow-y: visible; }
 .st-textlink {
   display: inline-flex; align-items: center; min-height: 44px;
   font-family: var(--hive-font-display);
-  font-weight: var(--hive-weight-semibold);
+  font-weight: 600;
   font-size: var(--hive-text-base);
-  color: var(--hive-navy-900);
+  color: var(--st-fg);
   text-decoration: underline;
-  text-decoration-color: var(--hive-gold-500);
+  text-decoration-color: var(--st-fg-3);
   text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
+  text-underline-offset: 6px;
   transition: text-decoration-color 150ms var(--st-ease-out);
+  -webkit-tap-highlight-color: transparent;
 }
-.st-textlink:hover { text-decoration-color: var(--hive-navy-900); }
+.st-textlink:hover { text-decoration-color: currentColor; }
+
+.st-actions {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 0.75rem 2rem;
+}
+.st-actions .btn { width: 100%; }
+@media (min-width: 640px) { .st-actions .btn { width: auto; min-width: 200px; } }
 
 /* ==========================================================================
-   HEADER (logo + persistent Start free)
+   HEADER: transparent on the hero, opaque navy-950 once scrolled (no JS = opaque throughout)
    ========================================================================== */
+/* Opaque (0.96) rather than a translucent blur: over the light scenes a see-through bar mixes into a
+   muddy gray-blue. No backdrop-filter, so scrolling does not re-blur the page under it every frame. */
 .st-header {
+  --st-focus: var(--st-white);
   position: sticky; top: 0; z-index: 50;
   height: var(--st-hdr);
-  background: rgba(250, 249, 246, 0.88);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
-  backdrop-filter: saturate(1.4) blur(14px);
-  border-bottom: 1px solid var(--hive-border-whisper);
+  background-color: rgba(15, 18, 31, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background-color 200ms var(--st-ease-out), border-color 200ms var(--st-ease-out);
+}
+/* .is-top is set by start.js only while the page sits at the top, so a script that never runs keeps the solid bar */
+.st-header.is-top {
+  background-color: rgba(15, 18, 31, 0);
+  border-bottom-color: transparent;
 }
 .st-header__inner {
   height: 100%;
@@ -138,397 +220,360 @@ body.start-page { overflow-x: visible; overflow-y: visible; }
   padding: 0 max(var(--st-gutter), env(safe-area-inset-right)) 0 max(var(--st-gutter), env(safe-area-inset-left));
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
 }
-.st-header__logo img { display: block; width: 122px; height: 30px; }
-.st-header .btn-sm { min-height: 40px; padding: 0.6rem 1.15rem; }
-@media (min-width: 768px) { .st-header__logo img { width: 146px; height: 36px; } }
+.st-logo { display: inline-flex; align-items: center; gap: 0.6rem; }
+.st-logo img { display: block; width: 30px; height: 27px; }
+.st-logo__word { font: 700 1.1875rem/1 var(--hive-font-display); letter-spacing: -0.02em; color: var(--st-white); }
+.st-header .btn-sm { min-height: 44px; padding: 0.6rem 1.25rem; }
 
 /* ==========================================================================
-   1. HERO
+   1. HERO (dark)
    ========================================================================== */
-.st-hero { padding: 1.75rem 0 3.5rem; }
-.st-hero__grid { display: grid; gap: 2.5rem; }
-.st-hero__title {
-  font-family: var(--hive-font-heading);
-  font-weight: var(--hive-weight-extrabold);
-  font-size: var(--st-fs-h1);
-  line-height: 1.04;
-  letter-spacing: var(--st-track-display);
-  color: var(--hive-navy-900);
+/* Font-swap stability: every box above the window has a numeric line-height, and widths are in em
+   (not ch, which changes with the font). Inter wraps the same as its metric-matched fallback. */
+.st-hero {
+  min-height: calc(100svh - var(--st-hdr));
+  padding: clamp(1.5rem, 4svh, 3.5rem) 0 clamp(3.5rem, 8vw, 7rem);
+  text-align: center;
+  overflow-x: clip;
 }
-.st-hero__sub {
-  margin-top: 1rem;
-  font-size: clamp(1.0625rem, 1vw + 0.85rem, 1.375rem);
-  line-height: 1.45;
-  color: var(--st-ink-2);
-  max-width: 34ch;
-}
-.st-hero__actions {
-  margin-top: 1.5rem;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.5rem;
-}
-.st-hero__actions .btn { width: 100%; }
-.st-hero__alt { margin-top: 0.25rem; }
-
-.st-offer {
-  margin-top: 1rem;
-  max-width: 44ch;
-  display: grid; gap: 0.25rem;
-  font-size: var(--hive-text-sm);
-  line-height: 1.5;
-}
-.st-offer__lead { color: var(--hive-navy-900); font-weight: var(--hive-weight-semibold); }
-.st-offer__card { color: var(--st-ink-2); }
-/* The hero's lead offer sentence uses the price card's .st-offer__big treatment, at the subhead's size
-   so the H1 stays the one focal point */
-.st-hero .st-offer__big { font-size: clamp(1.0625rem, 1vw + 0.85rem, 1.375rem); }
-
-.st-hero__media { margin: 0; }
-.st-caption { margin-top: 0.625rem; font-size: var(--hive-text-xs); color: var(--st-ink-2); text-align: center; }
-
-@media (min-width: 640px) {
-  .st-hero__actions .btn { width: auto; }
-}
-@media (min-width: 1024px) {
-  .st-hero { padding: clamp(4rem, 7vw, 7rem) 0 clamp(4rem, 7vw, 7rem); }
-  .st-hero__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: clamp(3rem, 5vw, 5rem); }
-  .st-hero__sub { margin-top: 1.5rem; }
-  .st-hero__actions { margin-top: 2rem; }
-  .st-offer { margin-top: 1.25rem; font-size: var(--hive-text-base); }
-}
-
-/* ==========================================================================
-   PRODUCT UI FRAMES (HTML stand-ins for real screenshots)
-   ========================================================================== */
-.st-frame {
-  background: var(--hive-surface);
-  border: 1px solid var(--hive-border-default);
-  border-radius: var(--hive-radius-md);
-  box-shadow: var(--hive-shadow-hero);
-  overflow: hidden;
-  font-family: var(--hive-font-body);
-  color: var(--hive-navy-900);
-}
-.st-frame__bar,
-.st-board__bar {
-  display: flex; align-items: center; gap: 6px;
-  height: 32px; padding: 0 12px;
-  background: var(--hive-canvas-alt);
-  border-bottom: 1px solid var(--hive-border-default);
-}
-.st-frame__bar i,
-.st-board__bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--hive-border-strong); }
-.st-frame__bar span,
-.st-board__bar span {
-  margin-left: 10px; font: 500 11px var(--hive-font-mono); color: var(--st-ink-2);
-  background: var(--hive-surface); border: 1px solid var(--hive-border-default); border-radius: 6px; padding: 2px 10px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.st-frame__body { padding: 1rem; }
-@media (min-width: 768px) { .st-frame__body { padding: 1.5rem; } }
-/* Desktop: the hero frame already fills its column; give its interface type the same scale as the chapter frames */
-@media (min-width: 1024px) {
-  .st-hero__media .st-frame__body { padding: 1.75rem; }
-  .st-hero__media .st-app__title { font-size: 17px; }
-  .st-hero__media .st-app__tabs { font-size: 13px; }
-  .st-hero__media .st-draft__meta { font-size: 13.5px; }
-  .st-hero__media .st-row { font-size: 13.5px; }
-}
-
-.st-app__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-.st-app__kicker { font: 700 10.5px var(--hive-font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--st-gold-text); }
-.st-app__title { font: 600 15px/1.3 var(--hive-font-display); margin-top: 2px; }
-.st-app__tabs { display: flex; gap: 1rem; margin: 0.875rem 0; border-bottom: 1px solid var(--hive-border-default); font-size: 12px; color: var(--st-ink-2); overflow: hidden; }
-.st-app__tabs span { padding-bottom: 8px; white-space: nowrap; }
-.st-app__tabs .is-on { color: var(--hive-navy-900); font-weight: 600; box-shadow: inset 0 -2px 0 var(--hive-gold-500); }
-
-.st-draft {
-  border: 1px solid var(--hive-border-gold);
-  background: var(--hive-gold-50);
-  border-radius: 12px;
-  padding: 0.875rem;
-}
-.st-draft--flat { background: var(--hive-gold-50); }
-.st-draft__meta { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; }
-.st-muted { color: var(--st-ink-2); font-weight: 400; }
-.st-draft__label { margin-top: 0.625rem; font: 700 10.5px var(--hive-font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--st-gold-text); }
-.st-draft__lines b { display: block; height: 7px; border-radius: 4px; background: var(--hive-navy-100); margin-top: 8px; }
-.st-draft__lines b.is-short { width: 58%; }
-.st-draft__foot { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 0.875rem; }
-
-.st-pill { display: inline-flex; align-items: center; white-space: nowrap; font: 600 11px/1 var(--hive-font-display); padding: 5px 9px; border-radius: var(--hive-radius-pill); border: 1px solid transparent; }
-.st-pill--open { background: var(--hive-info-bg); color: #15508F; border-color: var(--hive-info-border); }
-.st-pill--wait { background: var(--hive-warning-bg); color: #7A4508; border-color: var(--hive-warning-border); }
-.st-pill--ok { background: var(--hive-success-bg); color: #0A603C; border-color: var(--hive-success-border); }
-.st-fakebtn { font: 700 12px/1 var(--hive-font-display); background: var(--hive-gold-500); color: var(--hive-navy-950); padding: 8px 14px; border-radius: var(--hive-radius-pill); }
-
-.st-row {
-  display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 0.75rem;
-  margin-top: 0.625rem; padding: 0.625rem 0.75rem;
-  border: 1px solid var(--hive-border-default); border-radius: 10px; background: var(--hive-surface);
-  font-size: 13px; font-weight: 500;
-}
-.st-app__head + .st-row { margin-top: 1rem; }
-.st-mono { font: 500 12px var(--hive-font-mono); color: var(--st-ink-2); }
-.st-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--hive-gold-500); }
-.st-dot--navy { background: var(--hive-navy-500); }
-
-.st-li {
-  display: flex; align-items: center; gap: 7px;
-  padding: 6px 8px; margin-top: 6px;
-  background: var(--hive-surface); border: 1px solid var(--hive-border-default); border-radius: 8px;
-  font-size: 12px; line-height: 1.25; font-weight: 500; color: var(--hive-navy-900);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.st-li__ico { flex: none; font: 500 8.5px var(--hive-font-mono); color: var(--hive-navy-700); background: var(--hive-navy-50); border: 1px solid var(--hive-navy-100); border-radius: 4px; padding: 2px 4px; }
-.st-li__date { flex: none; font: 500 9.5px var(--hive-font-mono); color: var(--hive-gold-800); background: var(--hive-gold-100); border-radius: 4px; padding: 2px 5px; }
-.st-check { flex: none; width: 12px; height: 12px; border: 1.5px solid var(--hive-border-strong); border-radius: 3px; }
-.st-check.is-done { background: var(--hive-success); border-color: var(--hive-success); }
-
-.st-panel__h { font: 700 10px var(--hive-font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--st-ink-2); }
-
-.st-quad { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; margin-top: 1rem; }
-.st-quad__c { background: var(--hive-canvas); border: 1px solid var(--hive-border-whisper); border-radius: 10px; padding: 0.625rem; min-width: 0; }
-
-.st-mail { display: grid; gap: 0.75rem; }
-.st-mail__in { border: 1px solid var(--hive-border-default); border-radius: 12px; padding: 0.875rem; }
-.st-mail__arrow { display: flex; align-items: center; gap: 8px; font: 700 10.5px var(--hive-font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--st-gold-text); }
-.st-mail__arrow::before { content: ""; width: 2px; height: 18px; background: var(--hive-gold-300); border-radius: 2px; margin-left: 8px; }
-
-/* ==========================================================================
-   2. THE SHIFT — messy file assembles into one record
-   ========================================================================== */
-.st-shift {
-  --p: 1;                                   /* assembled unless start.js animates it */
-  background: var(--hive-surface);
-  border-top: 1px solid var(--hive-border-whisper);
-  border-bottom: 1px solid var(--hive-border-whisper);
-  overflow-x: clip;                         /* scattered pieces never cause horizontal scroll; clip keeps sticky working */
-}
-.st-shift__stage { padding: var(--hive-section-y) 0; }
-.st-shift__inner { display: grid; gap: 2.5rem; align-items: center; }
-.st-shift__lines {
-  font-family: var(--hive-font-heading);
-  font-weight: var(--hive-weight-bold);
-  font-size: clamp(1.875rem, 4.2vw + 0.5rem, 3.5rem);
-  line-height: 1.14;
-  letter-spacing: var(--st-track-display);
-  max-width: 18ch;
-}
-.st-shift__a { display: block; color: var(--st-ink-2); }
-.st-shift__b { display: block; margin-top: 0.5em; color: var(--hive-navy-900); }
-
-.st-board { container-type: inline-size; width: 100%; max-width: 760px; margin: 0 auto; }
-.st-board__record {
-  --r: clamp(0, calc((var(--p) - 0.35) / 0.45), 1);  /* record chrome fades in after pieces start moving */
-  position: relative;
-  border-radius: var(--hive-radius-md);
-}
-.st-board__record::before {
-  content: ""; position: absolute; inset: 0; z-index: 0; border-radius: inherit;
-  background: var(--hive-surface); border: 1px solid var(--hive-border-default); box-shadow: var(--hive-shadow-hero);
-  opacity: var(--r);
-}
-.st-board__bar { position: relative; z-index: 1; border-radius: var(--hive-radius-md) var(--hive-radius-md) 0 0; opacity: var(--r); }
-.st-board__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 0.625rem; }
-.st-panel { position: relative; padding: 0.5rem; min-height: 5.25rem; min-width: 0; }
-.st-panel::before { content: ""; position: absolute; inset: 0; border-radius: 10px; background: var(--hive-canvas); border: 1px solid var(--hive-border-whisper); opacity: var(--r); }
-.st-panel > .st-panel__h { position: relative; opacity: var(--r); }
-
-.st-piece {
-  --q: clamp(0, calc((var(--p) - var(--d, 0)) / 0.6), 1);
-  --u: calc(1 - var(--q));
-  position: relative; z-index: 2;
-  transform:
-    translate(calc(var(--mx, 0) * 1cqw * var(--u)), calc(var(--my, 0) * 1cqw * var(--u)))
-    rotate(calc(var(--mr, 0) * 1deg * var(--u)));
-  will-change: transform;
-}
-.st-piece__clean { opacity: var(--q); margin-top: 6px; }
-.st-piece__raw {
-  position: absolute; left: 0; top: 50%; z-index: 1;
-  transform: translateY(-50%) scale(calc(1 + 0.06 * var(--u)));
-  transform-origin: left center;
-  opacity: calc(1 - var(--q) * 1.4);
-  pointer-events: none;
-}
-.st-raw { width: min(168px, 44cqw); font-size: 11px; line-height: 1.3; color: var(--hive-navy-900); box-shadow: 0 8px 22px rgba(22, 27, 51, 0.12); }
-.st-raw--file { display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--hive-border-default); border-radius: 6px; padding: 8px; font-family: var(--hive-font-mono); font-size: 9.5px; overflow: hidden; }
-.st-raw__ico { flex: none; font: 600 8.5px var(--hive-font-mono); color: #fff; background: var(--hive-danger); border-radius: 3px; padding: 2px 4px; }
-.st-raw--mail { display: grid; gap: 2px; background: #fff; border: 1px solid var(--hive-border-default); border-left: 3px solid var(--hive-info); border-radius: 6px; padding: 7px 9px; }
-.st-raw__from { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.st-raw__sub { color: var(--st-ink-2); font-size: 10px; }
-.st-raw--note { width: min(132px, 38cqw); background: var(--hive-gold-200); border-radius: 2px; padding: 10px 10px 14px; font-family: var(--hive-font-editorial); font-style: italic; font-size: 14px; }
-.st-raw--note2 { background: #FBE7A1; font-size: 16px; }
-.st-raw--sheet { display: flex; gap: 0; background: #fff; border: 1px solid #CFD8E3; font-family: var(--hive-font-mono); font-size: 9.5px; }
-.st-raw--sheet span { background: #EEF2F7; color: var(--st-ink-2); padding: 6px; border-right: 1px solid #CFD8E3; }
-.st-raw--sheet { align-items: center; padding-right: 6px; }
-.st-raw--sheet span + * { padding-left: 6px; }
-
+/* At least 24px each side on phones, so the offer lines never run to the screen edge */
+.st-hero__copy { padding-left: max(1.5rem, env(safe-area-inset-left)); padding-right: max(1.5rem, env(safe-area-inset-right)); }
 @media (min-width: 768px) {
-  .st-board__grid { gap: 0.75rem; padding: 0.875rem; }
-  .st-panel { padding: 0.75rem; min-height: 7rem; }
-  .st-raw { font-size: 12px; }
+  .st-hero__copy { padding-left: max(var(--st-gutter), env(safe-area-inset-left)); padding-right: max(var(--st-gutter), env(safe-area-inset-right)); }
 }
+/* Small label above the H1: one fixed line height, sentence case, so its wrap cannot change at font swap */
+.st-eyebrow {
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.01em;
+  color: var(--st-fg-2);
+  text-wrap: balance;
+}
+.st-hero__title { font-size: var(--st-fs-hero); line-height: 1.04; }
+/* Each sentence is one fixed block that never wraps by itself: no reflow when the web font swaps in.
+   Under 820px each sentence breaks once at its <br class="st-mbr">, giving four fixed lines. */
+.st-line { display: block; white-space: nowrap; }
+@media (min-width: 820px) { .st-mbr { display: none; } }
+.st-hero__sub {
+  max-width: 34em; margin: 1rem auto 0;
+  font-size: var(--st-fs-body); line-height: 1.45; color: var(--st-fg-2);
+}
+@media (min-width: 1024px) { .st-hero__sub { max-width: 38em; } }
+.st-hero .st-actions { margin-top: 1.5rem; }
+.st-hero__offer {
+  max-width: 36em; margin: 1.25rem auto 0;
+  font-size: 0.9375rem; line-height: 1.5; color: var(--st-fg-2);
+  text-wrap: balance;
+}
+.st-hero__offer p { text-wrap: balance; }
+.st-hero__offer p + p { margin-top: 0.125rem; }
+.st-hero__free {
+  margin-bottom: 0.25rem;
+  font: 700 1.25rem/1.3 var(--hive-font-display); letter-spacing: -0.015em; color: var(--st-fg);
+}
+@media (min-width: 768px) {
+  .st-hero__offer { font-size: 1rem; }
+  .st-hero__free { font-size: 1.4375rem; }       /* about 1.4x the other offer lines */
+}
+/* Desktop: the card sentence fits on one line, which keeps more of the window above the fold */
+@media (min-width: 1024px) { .st-hero__offer { max-width: 52em; } }
+
+.st-hero__media { margin-top: clamp(2rem, 4svh, 3.5rem); }
+.st-caption { margin-top: 1rem; font-size: var(--hive-text-sm); color: var(--st-fg-2); }
+
+/* Desktop with motion: the window rises flat as the hero scrolls away (CSS-first, so it is right before JS).
+   The transform sits on .st-tilt, the one element start.js writes --p on; the window (a query container)
+   below it is never restyled by the scrub. */
 @media (min-width: 1024px) {
-  .st-shift__inner { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(3rem, 5vw, 5rem); }
-  .st-shift__lines { font-size: clamp(2.5rem, 3.8vw, 3.5rem); }   /* stays under the H1 and the final line */
+  /* 1160px: the window (40px bar + the 1280x676 footage at 1160 wide = 653px) leaves about 40% of it above
+     the fold at 1440x900, even while the tilt is still scaling it up from 0.9 */
+  .st-hero__media { max-width: 1160px; }
+  html.motion .st-tilt {
+    transform-origin: 50% 0;
+    transform: perspective(2200px) rotateX(calc(14deg * (1 - var(--p, 0)))) scale(calc(0.9 + 0.1 * var(--p, 0)));
+  }
+  html.motion .st-hero.is-live .st-tilt { will-change: transform; }
 }
-/* Desktop with motion: pin the stage while the file assembles (normal scroll keeps going; nothing traps input) */
+
+/* ==========================================================================
+   2. THE SHIFT (light)
+   ========================================================================== */
+.st-shift { overflow-x: clip; }   /* scattered pieces never cause horizontal scroll; clip keeps sticky working */
+.st-shift__stage { padding: clamp(5rem, 12vw, 9rem) 0; }
+.st-shift__inner { display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); justify-items: center; text-align: center; }
+.st-shift__lines {
+  display: grid;
+  max-width: 21ch;
+  font-size: clamp(2rem, 7.5vw, 4.75rem);
+  line-height: 1.06;
+}
+/* Static (phones, short screens, reduced motion, no JS): both lines, stacked. A is the problem in the
+   reduced tone, B is the answer at full strength. */
+.st-shift__a { color: var(--st-fg-3); }
+.st-shift__b { margin-top: 0.4em; }
+@media (min-width: 1024px) { .st-shift__lines { font-size: clamp(3rem, 5vw, 4.75rem); max-width: 24ch; } }
+/* Short laptop screens: the line and the board both fit the pinned stage */
+@supports (height: 1svh) {
+  @media (min-width: 1024px) { .st-shift__lines { font-size: clamp(3rem, min(5vw, 8svh), 4.75rem); } }
+}
+
+/* Pinned stage: a tall wrapper scrolls past a sticky screen. Normal scrolling; nothing traps input.
+   All of the scene-2 motion lives in this block (phones and short screens show the final state only).
+   Line A steps back, then line B takes the screen. Same grid cell and no overlap in time
+   (A is gone at 0.38, B starts at 0.42), so only one line is legible at any moment. The pieces fly in
+   css/start-mock.css (.st-piece), landing by 0.65; the window takes the file's place by 0.72. */
 @media (min-width: 1024px) and (min-height: 680px) {
-  html.motion .st-shift { height: 230vh; }
-  html.motion .st-shift__stage {
+  html.scenes .st-shift { height: 230vh; content-visibility: visible; }
+  html.scenes .st-shift__stage {
     position: sticky; top: var(--st-hdr);
-    height: calc(100vh - var(--st-hdr));
+    height: calc(100svh - var(--st-hdr));
     display: flex; align-items: center;
     padding: 0;
   }
-  html.motion .st-shift__a { opacity: calc(1 - 0.35 * var(--p)); }
-  html.motion .st-shift__b { opacity: calc(0.25 + 0.75 * var(--p)); }
+  html.scenes .st-shift__inner { gap: 2rem; }
+  html.scenes .st-shift__a,
+  html.scenes .st-shift__b { grid-area: 1 / 1; align-self: center; margin: 0; }
+  html.scenes .st-shift__a {
+    --o: calc(1 - clamp(0, calc((var(--p, 0) - 0.22) / 0.16), 1));
+    opacity: var(--o);
+    transform: translateY(calc((var(--o) - 1) * 0.35em));
+  }
+  html.scenes .st-shift__b {
+    --o: clamp(0, calc((var(--p, 0) - 0.42) / 0.16), 1);
+    opacity: var(--o);
+    transform: translateY(calc((1 - var(--o)) * 0.35em));
+  }
+  html.scenes .st-shift.is-live .st-shift__a,
+  html.scenes .st-shift.is-live .st-shift__b { will-change: transform, opacity; }
 }
 
 /* ==========================================================================
-   3. SHOWCASE CHAPTERS
+   3. THE THREE ACTS (dark)
    ========================================================================== */
-.st-chapters { padding: calc(var(--hive-section-y) * 0.5) 0; }
-.st-chapter { padding: calc(var(--hive-section-y) * 0.5) 0; }
-.st-chapter__grid { display: grid; gap: 2rem; }
-.st-chapter__title {
-  font-family: var(--hive-font-heading);
-  font-weight: var(--hive-weight-extrabold);
-  font-size: var(--st-fs-h2);
-  line-height: 1.06;
-  letter-spacing: var(--st-track-display);
-  max-width: 12ch;
+.st-acts { padding: clamp(5rem, 12vw, 8rem) 0; }
+.st-act { display: grid; gap: 2rem; align-items: center; }
+.st-act + .st-act { margin-top: clamp(5rem, 12vw, 8rem); }
+.st-act__title { font-size: var(--st-fs-h2); max-width: 12ch; }
+.st-act__text { margin-top: 1.25rem; max-width: 34ch; font-size: var(--st-fs-body); line-height: 1.5; color: var(--st-fg-2); }
+.st-act__media { position: relative; min-width: 0; }
+.st-act__media .st-caption { margin-top: 0.75rem; }
+/* Page text beside the footage (not part of the video): the deadline note, F8 "you confirm the dates" */
+.st-note {
+  margin-top: 0.75rem; max-width: 46ch;
+  font-size: var(--hive-text-sm); line-height: 1.5; color: var(--st-fg-2);
 }
-.st-chapter__text { margin-top: 1.25rem; font-size: clamp(1.0625rem, 0.6vw + 0.95rem, 1.375rem); line-height: 1.5; color: var(--st-ink-2); max-width: 32ch; }
-.st-chapter__media { margin: 0; }
-.st-frame--lg { max-width: 640px; margin: 0 auto; }
+.st-note b { color: var(--st-fg); font-weight: 600; }
 
+/* "Approve it." takes the gold when the reply is approved: a gold copy sits exactly over the base words and
+   fades in (opacity only). Static default = approved, so no JS and reduced motion show the end state. */
+.st-gold { position: relative; display: inline-block; white-space: nowrap; }
+.st-gold__off { color: var(--st-fg-3); }
+.st-gold__on { position: absolute; left: 0; top: 0; color: var(--hive-gold-500); opacity: 1; }
+
+/* Desktop: the copy column starts on the page's left edge; the window column is 54-56% of the
+   viewport (up to 880px) and runs to the right gutter, so the window fills its column. */
 @media (min-width: 1024px) {
-  .st-chapter__grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(3rem, 6vw, 6rem); align-items: center; }
-  .st-chapter:nth-child(even) .st-chapter__copy { order: 2; }
-  .st-frame--lg .st-frame__body { padding: 1.75rem; }
-  .st-frame--lg .st-app__title { font-size: 17px; }
-  .st-frame--lg .st-row, .st-frame--lg .st-li { font-size: 13.5px; }
-}
-/* Desktop with motion: each chapter pins briefly while it is read, then hands off to the next.
-   Same pattern as .st-shift__stage: pin the whole grid at the header and center the pair in the
-   remaining viewport height (min-height, so a tall chapter grows instead of overflowing). */
-@media (min-width: 1024px) and (min-height: 680px) {
-  html.motion .st-chapter { min-height: 135vh; padding: 0; }
-  html.motion .st-chapter__grid {
-    position: sticky; top: var(--st-hdr);
-    min-height: calc(100vh - var(--st-hdr));
+  .st-act {
+    max-width: none;
+    padding-left: max(var(--st-gutter), calc((100% - var(--hive-max-wide)) / 2 + var(--st-gutter)), env(safe-area-inset-left));
+    grid-template-columns: minmax(0, 1fr) min(880px, 54vw);
+    gap: 3rem;
   }
 }
+@media (min-width: 1280px) {
+  .st-act { grid-template-columns: minmax(0, 1fr) min(880px, 56vw); }
+}
 
-/* ==========================================================================
-   4. THEN AND NOW
-   ========================================================================== */
-.st-section { padding: var(--hive-section-y) 0; }
-.st-then { background: var(--hive-surface); border-top: 1px solid var(--hive-border-whisper); }
-.st-then__list { list-style: none; margin-top: clamp(2rem, 4vw, 3.5rem); display: grid; gap: 1.25rem; }
-.st-then__row { display: grid; gap: 0.75rem; }
-.st-then__was, .st-then__now { border-radius: var(--hive-radius-lg); padding: 1.25rem 1.25rem 1.5rem; }
-/* One raised surface per row: "Then" is plain, quieter text; "With ClaimHive" is the card */
-.st-then__was { padding-left: 0; padding-right: 0; }
-.st-then__now { background: var(--hive-surface); border: 1px solid var(--hive-border-gold); box-shadow: var(--hive-shadow-card); }
-.st-then__row p { margin-top: 0.625rem; font-size: var(--hive-text-lg); line-height: 1.5; color: var(--hive-navy-900); }
-.st-then__was p { color: var(--st-ink-2); }
-.st-tag { font: 700 var(--hive-text-xs) var(--hive-font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--st-ink-2); }
-.st-tag--now { color: var(--st-gold-text); }
-@media (min-width: 768px) {
-  .st-then__row { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-  .st-then__was, .st-then__now { padding: 1.75rem 2rem 2rem; }
-  .st-then__was { padding-left: 0; padding-right: 0; }
+/* Pinned: three acts share one stage; the copy and the window's view change with scroll.
+   s = 3p runs 0..3, one unit per act. Each [data-p] element computes its own value from --p. */
+@media (min-width: 1024px) and (min-height: 680px) {
+  html.scenes .st-acts { height: 330vh; padding: 0; content-visibility: visible; }
+  html.scenes .st-acts__stage {
+    position: sticky; top: var(--st-hdr);
+    height: calc(100svh - var(--st-hdr));
+    display: grid; align-items: center;
+  }
+  html.scenes .st-act { grid-area: 1 / 1; margin-top: 0; }
+
+  /* Copy cross-fade: --o is this act's visibility (it inherits only into the heading and the sentence) */
+  html.scenes .st-act--1 .st-act__copy { --o: clamp(0, calc((1.04 - 3 * var(--p, 0)) / 0.14), 1); }
+  html.scenes .st-act--2 .st-act__copy { --o: min(clamp(0, calc((3 * var(--p, 0) - 0.96) / 0.14), 1), clamp(0, calc((2.04 - 3 * var(--p, 0)) / 0.14), 1)); }
+  html.scenes .st-act--3 .st-act__copy { --o: clamp(0, calc((3 * var(--p, 0) - 1.96) / 0.14), 1); }
+  html.scenes .st-act__copy {
+    opacity: var(--o);
+    transform: translateY(calc((1 - var(--o)) * 20px));
+  }
+  /* The windows differ in height (the reply illustration, the tasks footage, the wider deadline footage), so each
+     one fades out as the next fades in: 3p = 1 and 2 are the hand-offs. Opacity is set on the media wrapper
+     itself, so nothing inside a footage window is restyled. */
+  html.scenes .st-act--1 .st-act__media { opacity: clamp(0, calc((1.08 - 3 * var(--p, 0)) / 0.16), 1); }
+  html.scenes .st-act--2 .st-act__media {
+    opacity: min(clamp(0, calc((3 * var(--p, 0) - 0.92) / 0.16), 1), clamp(0, calc((2.08 - 3 * var(--p, 0)) / 0.16), 1));
+  }
+  html.scenes .st-act--3 .st-act__media { opacity: clamp(0, calc((3 * var(--p, 0) - 1.92) / 0.16), 1); }
+
+  /* Act 1: "Approve it." turns gold once the reply has passed the gate (the card turns gold at t 0.68-0.78) */
+  html.scenes .st-gold__on { opacity: clamp(0, calc((3 * var(--p, 0) - 0.7) / 0.12), 1); }
+
+  /* Focus ring and press on Approve as the gate opens. start.js toggles the classes when t = 3p crosses the
+     thresholds (ring at 0.5, press 0.56-0.74); the change itself is a short timed transition, so the window is
+     restyled once, not every frame. */
+  html.scenes .st-acts .pw-ring::after { opacity: 0; transition: opacity 200ms var(--st-ease-out); }
+  html.scenes .st-acts.is-ring1 .pw-ring::after { opacity: 1; }
+  html.scenes .st-acts .pw-press { transition: transform 160ms var(--st-ease-out); }
+  html.scenes .st-acts.is-press1 .pw-press { transform: scale(0.96); }
+
+  html.scenes .st-acts.is-live .st-act__copy,
+  html.scenes .st-acts.is-live .st-act__media { will-change: opacity, transform; }
 }
 
 /* ==========================================================================
-   5. TRUST (understated)
+   4. THE OFFER (light): one screen, one idea
    ========================================================================== */
-.st-trust { background: var(--hive-canvas-alt); }
-.st-trust__inner { max-width: 980px; }
-.st-trust__title { font-family: var(--hive-font-heading); font-weight: var(--hive-weight-bold); font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); letter-spacing: -0.02em; }
-.st-trust__list { list-style: none; margin: 1.75rem 0 1.25rem; display: grid; gap: 1rem 2.5rem; }
-.st-trust__list li { position: relative; padding-left: 1.5rem; font-size: var(--hive-text-base); line-height: 1.55; color: var(--st-ink-2); }
-.st-trust__list li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 8px; height: 8px; border-radius: 2px; background: var(--hive-gold-500); transform: rotate(45deg); }
-.st-trust__list a { color: var(--hive-navy-900); text-decoration-color: var(--hive-gold-500); text-underline-offset: 3px; }
-@media (min-width: 768px) {
-  .st-trust__list { grid-template-columns: 1fr 1fr; }
-  .st-trust__list li:first-child { grid-column: 1 / -1; font-size: var(--hive-text-lg); color: var(--hive-navy-900); }
-}
-
-/* ==========================================================================
-   6. PRICE
-   ========================================================================== */
-.st-price__card {
-  max-width: 600px; margin: 0 auto;
-  background: var(--hive-surface);
-  border: 1px solid var(--hive-border-default);
-  border-top: 4px solid var(--hive-gold-500);
-  border-radius: var(--hive-radius-xl);
-  box-shadow: var(--hive-shadow-card);
-  padding: 2rem 1.25rem 1.5rem;
+.st-offer {
+  display: flex; align-items: center;
+  min-height: calc(100svh - var(--st-hdr));
+  padding: clamp(5rem, 12vw, 8rem) 0;
+  border-top: 1px solid var(--hive-border-default);   /* the list above is light too: a hairline, not a gap */
   text-align: center;
-  display: flex; flex-direction: column; align-items: center;
 }
-.st-price__title { font-family: var(--hive-font-heading); font-weight: var(--hive-weight-extrabold); font-size: var(--st-fs-h2); letter-spacing: var(--st-track-display); line-height: 1.05; }
-.st-offer--card { margin: 1.25rem auto 1.75rem; gap: 0.5rem; max-width: 40ch; font-size: var(--hive-text-base); }
-.st-offer__big { font: 700 clamp(1.25rem, 2vw + 0.75rem, 1.625rem)/1.3 var(--hive-font-display); color: var(--hive-navy-900); letter-spacing: -0.015em; }
-.st-offer--card .st-offer__lead { font-size: var(--hive-text-lg); }
-.st-offer--card .st-offer__card { font-size: var(--hive-text-sm); }
-.st-price__card .btn { width: 100%; max-width: 360px; }
-.st-price__card .st-textlink { margin-top: 0.5rem; }
-@media (min-width: 768px) { .st-price__card { padding: 3rem 3rem 2.25rem; } }
+.st-offer__inner { display: flex; flex-direction: column; align-items: center; }
+/* The big-number moment. min(): "January 1, 2027." never wraps and must fit 320px. */
+.st-offer__big { font-size: min(10vw, 10rem); line-height: 1; letter-spacing: -0.04em; max-width: 11em; }
+.st-offer__then {
+  margin-top: clamp(1.25rem, 3vw, 2.25rem);
+  font: 700 clamp(1.375rem, 3.6vw, 3rem)/1.15 var(--hive-font-display);
+  letter-spacing: -0.025em;
+  color: var(--st-fg-3);                 /* second clause of the offer headline: reduced tone */
+}
+.st-offer__card {
+  margin-top: 1.25rem; max-width: 46ch;
+  font-size: var(--st-fs-body); line-height: 1.5; color: var(--st-fg-2);
+}
+.st-offer .st-actions { margin-top: clamp(2rem, 4vw, 3rem); }
+
+/* One entrance on this page: the offer arrives once as it enters (not scrubbed) */
+html.scenes .st-reveal {
+  transition: opacity 600ms var(--st-ease-out), transform 600ms var(--st-ease-out);
+}
+html.scenes .st-reveal:not(.is-in) { opacity: 0; transform: translateY(24px); }
+html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
 
 /* ==========================================================================
-   7. FINAL CALL
+   4a. WHAT'S IN THE BETA (light): a real <dl>, six rows, no icons
+   ========================================================================== */
+.st-beta { padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6.5rem); }
+.st-beta__title { font-size: var(--st-fs-h2); max-width: 14ch; }
+.st-beta__list { margin-top: clamp(2rem, 4vw, 3rem); }
+.st-beta__row {
+  display: grid; gap: 0.35rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--hive-border-default);
+}
+.st-beta__row:last-child { border-bottom: 1px solid var(--hive-border-default); }
+.st-beta__row dt {
+  font: 600 0.875rem/1.4 var(--hive-font-body); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--st-fg-3);
+}
+.st-beta__row dd { font-size: clamp(1.125rem, 1.8vw, 1.5rem); line-height: 1.4; color: var(--st-fg); max-width: 40ch; }
+@media (min-width: 768px) {
+  .st-beta__row { grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr); gap: 2rem; align-items: baseline; padding: 1.5rem 0; }
+}
+
+/* ==========================================================================
+   4b. FAQ (light): native <details>, no JS. Keyboard: Tab to a question, Enter or Space opens it.
+   ========================================================================== */
+.st-faq { padding: clamp(3rem, 7vw, 5rem) 0 clamp(5rem, 10vw, 8rem); border-top: 1px solid var(--hive-border-default); }
+.st-faq__inner { display: grid; gap: 1.5rem; }
+.st-faq__title { font-size: clamp(2rem, 4vw, 3rem); }
+.st-faq__item { border-top: 1px solid var(--hive-border-default); }
+.st-faq__item:last-child { border-bottom: 1px solid var(--hive-border-default); }
+.st-faq__item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 56px; padding: 0.75rem 0;
+  font: 600 clamp(1.0625rem, 1.6vw, 1.375rem)/1.3 var(--hive-font-display); letter-spacing: -0.01em;
+  color: var(--st-fg);
+  cursor: pointer; list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.st-faq__item summary::-webkit-details-marker { display: none; }
+.st-faq__item summary::after {
+  content: ""; flex: none; width: 10px; height: 10px; margin-right: 4px;
+  border-right: 2px solid var(--st-fg-3); border-bottom: 2px solid var(--st-fg-3);
+  transform: rotate(45deg);
+  transition: transform 200ms var(--st-ease-out);
+}
+.st-faq__item[open] summary::after { transform: rotate(-135deg); }
+.st-faq__item summary:focus-visible { outline: 3px solid var(--st-focus); outline-offset: 2px; border-radius: 6px; }
+.st-faq__item p { padding: 0 0 1.25rem; max-width: 52ch; font-size: var(--st-fs-body); line-height: 1.5; color: var(--st-fg-2); }
+@media (min-width: 900px) {
+  .st-faq__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(3rem, 7vw, 7rem); align-items: start; }
+}
+
+/* ==========================================================================
+   5. YOUR CLAIM DATA (dark, compact)
+   ========================================================================== */
+.st-data {
+  background: var(--hive-navy-900);
+  padding: clamp(4.5rem, 9vw, 7rem) 0;
+}
+.st-data__grid { display: grid; gap: 2.5rem; }
+/* Display scale, in step with the acts and the shift: 4.5rem at 1440, 2.5rem on phones */
+.st-data__title { font-size: clamp(2.5rem, 5vw, 4.75rem); }
+.st-data__lead { margin-top: 1.25rem; max-width: 36ch; font-size: clamp(1.1875rem, 1.6vw, 1.5rem); line-height: 1.45; color: var(--st-fg); }
+.st-data__list { list-style: none; }
+.st-data__list li {
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 1.0625rem; line-height: 1.5; color: var(--st-fg-2);
+}
+.st-data__list li:last-child { padding-bottom: 0; }
+.st-data__list a { color: var(--st-fg); text-decoration-color: var(--st-fg-3); text-underline-offset: 4px; }
+.st-data__list .st-textlink { min-height: 44px; }
+@media (min-width: 900px) {
+  .st-data__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(3rem, 7vw, 7rem); align-items: start; }
+}
+
+/* ==========================================================================
+   6. FINAL CALL (dark) + FOOTER
    ========================================================================== */
 .st-final {
-  background-color: var(--hive-navy-900);
-  background-image: var(--hive-pattern-dark);
-  color: #fff;
-  padding: clamp(5rem, 10vw, 9rem) 0;
+  display: flex; align-items: center;
+  min-height: 70svh;
+  padding: clamp(5rem, 10vw, 8rem) 0;
   text-align: center;
 }
-.st-final__inner { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-.st-final__title { color: #fff; font-family: var(--hive-font-heading); font-weight: var(--hive-weight-extrabold); font-size: var(--st-fs-final); line-height: 1.06; letter-spacing: var(--st-track-display); max-width: 14ch; }
+.st-final__inner { display: flex; flex-direction: column; align-items: center; gap: clamp(2rem, 4vw, 3rem); }
+.st-final__title { font-size: var(--st-fs-final); max-width: 13ch; }
 .st-final .btn { width: 100%; max-width: 360px; }
-.st-final .st-btn:focus-visible { outline-color: var(--hive-gold-highlight); }
+@media (min-width: 640px) { .st-final .btn { width: auto; min-width: 220px; } }
 
-/* ==========================================================================
-   8. FOOTER
-   ========================================================================== */
-.st-footer { background: var(--hive-navy-950); color: var(--hive-navy-200); padding: 1.75rem 0 calc(1.75rem + env(safe-area-inset-bottom)); font-size: var(--hive-text-sm); }
+.st-footer {
+  --st-focus: var(--st-white);
+  background: var(--hive-navy-950); color: var(--hive-navy-200);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.75rem 0 calc(1.75rem + env(safe-area-inset-bottom)); font-size: var(--hive-text-sm);
+}
 .st-footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; }
 .st-footer nav { display: flex; gap: 0.25rem 1.25rem; flex-wrap: wrap; }
 .st-footer a { color: #fff; text-decoration: none; display: inline-flex; min-height: 44px; align-items: center; }
 .st-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.st-footer a:focus-visible { outline-color: var(--hive-gold-highlight); border-radius: 4px; }
+.st-footer a:focus-visible { border-radius: 4px; }
 
 /* ==========================================================================
-   REVEAL (fade / scale in) — only when motion is allowed AND start.js is watching
+   REDUCED MOTION (belt and braces if the OS setting flips after load; start.js also drops the classes)
    ========================================================================== */
-/* Reveal only where the entrance explains something: a chapter's product frame arriving beside its
-   sentence, and each Then/Now pair (Then first, With ClaimHive a beat later). Headings, trust, price
-   and the final call keep their .reveal hook (start.js still marks them) but are shown in place. */
-html.motion.reveal-ready .st-chapter__media.reveal,
-html.motion.reveal-ready .st-then__row.reveal > * {
-  opacity: 0;
-  transform: translateY(16px) scale(0.96);
-  transition: opacity 560ms var(--st-ease-out), transform 560ms var(--st-ease-out);
-}
-html.motion.reveal-ready .st-then__row.reveal > .st-then__now { transition-delay: 90ms; }
-html.motion.reveal-ready .st-chapter__media.reveal.is-in,
-html.motion.reveal-ready .st-then__row.reveal.is-in > * { opacity: 1; transform: none; }
-
-/* Belt and braces: if the OS setting flips after load, drop every transition and show the assembled state */
 @media (prefers-reduced-motion: reduce) {
-  .st-shift { --p: 1 !important; height: auto !important; }
-  .st-shift__stage { position: static !important; height: auto !important; }
-  .st-chapter { min-height: 0 !important; }
-  .st-chapter__grid { position: static !important; min-height: 0 !important; }
-  .reveal, .st-then__row > * { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .btn, .st-btn, .st-textlink { transition: none !important; }
-  .btn:hover, .st-btn.btn-gold:hover, .st-btn.btn-gold:active { transform: none !important; }
+  .st-shift, .st-acts { height: auto !important; }
+  .st-shift__stage, .st-acts__stage { position: static !important; height: auto !important; }
+  .st-tilt, .st-shift__a, .st-shift__b,
+  .st-act__copy, .st-act__media, .st-reveal, .pw-press {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+  .st-shift__a, .st-shift__b { grid-area: auto !important; }
+  .st-shift__b { margin-top: 0.4em !important; }
+  .st-gold__on { opacity: 1 !important; }
+  .pw-ring::after { opacity: 1 !important; transition: none !important; }
+  .st-faq__item summary::after { transition: none !important; }
+  .st-btn, .st-textlink, .st-header { transition: none !important; }
+  .st-btn.btn-gold:hover, .st-btn.btn-gold:active { transform: none !important; }
 }

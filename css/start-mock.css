@@ -1,0 +1,288 @@
+/**
+ * ClaimHive — /start v3: product window (.pw), real footage layers, the reply illustration (act 1)
+ * and the scene-2 board (gather and ghost).
+ *
+ * The window chrome (the dots and the ops.claimhive.app bar) is built in the page. What sits inside it is
+ * either real footage of a test account (poster image + video, see js/start.js) or, for the reply screen
+ * only, an HTML/CSS illustration with sample data (no footage of that screen exists).
+ *
+ * Gold on this page means two things only: the primary CTA and the approved state of an item.
+ * Everything here that is not an approved state uses navy tints.
+ */
+
+/* ==========================================================================
+   WINDOW FRAME
+   ========================================================================== */
+.pw {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+  color: var(--hive-navy-900);
+  font: 400 14px/1.45 var(--hive-font-body);
+  letter-spacing: -0.005em;
+  /* The one allowed effect: a hairline edge and a deep soft shadow, so it reads as an object */
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 60px 120px -40px rgba(0, 0, 0, 0.7),
+    0 24px 48px -24px rgba(0, 0, 0, 0.5);
+}
+.pw svg {
+  width: 18px; height: 18px; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* Browser chrome, with a 1px top-edge highlight */
+.pw__bar {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  height: 40px; padding: 0 16px;
+  background: #EFECE4;
+  border-bottom: 1px solid var(--hive-border-default);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.pw__dots { display: flex; gap: 8px; }
+.pw__dots i { width: 12px; height: 12px; border-radius: 50%; background: #D3CCBE; }
+.pw__url {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 26px; padding: 0 12px;
+  background: #fff; border: 1px solid var(--hive-border-default); border-radius: 8px;
+  font: 500 12px/1 var(--hive-font-body); color: #4F556B;
+}
+.pw__url svg { width: 12px; height: 12px; color: #6B7085; }
+@media (min-width: 640px) { .pw__url { min-width: 280px; } }
+
+/* ==========================================================================
+   FOOTAGE: poster image + video layered in a box whose ratio is fixed by the media itself,
+   so nothing moves when the poster or the video arrives.
+   The poster is the whole story with no JS, with reduced motion, and until the video plays.
+   ========================================================================== */
+.pw__media { position: relative; aspect-ratio: 1280 / 676; background: var(--hive-canvas); }
+.pw__media--wide { aspect-ratio: 1152 / 392; }
+.pw__poster, .pw__vid { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.pw__vid { opacity: 0; transition: opacity 240ms var(--st-ease-out); }
+.pw__media.is-playing .pw__vid { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .pw__vid { display: none; } }
+
+/* ==========================================================================
+   ACT 1: THE REPLY ILLUSTRATION (sample data, not footage)
+   ========================================================================== */
+.rp { display: grid; gap: 14px; padding: 16px; background: #fff; }
+@media (min-width: 640px) { .rp { padding: 20px 24px 24px; } }
+.rp-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.pw__title { display: flex; align-items: center; gap: 10px; font: 700 18px/1.3 var(--hive-font-display); letter-spacing: -0.015em; }
+.pw__meta { white-space: nowrap; font-size: 12px; color: #5A6075; }
+
+.pw-pill {
+  display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+  height: 24px; padding: 0 10px; border-radius: 999px;
+  font: 600 12px/1 var(--hive-font-display); letter-spacing: 0;
+  background: var(--hive-navy-100); color: var(--hive-navy-700); border: 1px solid var(--hive-navy-200);
+}
+.pw-pill svg { width: 12px; height: 12px; stroke-width: 2.25; }
+/* Approved state: the one place gold appears inside the illustration */
+.pw-pill--ok { background: var(--hive-gold-500); border-color: var(--hive-gold-600); color: var(--hive-navy-950); }
+
+.pw-btn {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; flex: none; white-space: nowrap;
+  height: 32px; padding: 0 16px; border-radius: 8px;
+  font: 600 13px/1 var(--hive-font-display);
+  background: #fff; color: var(--hive-navy-900); border: 1px solid var(--hive-border-strong);
+}
+.pw-btn--primary { background: var(--hive-navy-900); border-color: var(--hive-navy-900); color: #fff; }
+/* Focus ring on Approve (static; the pinned acts show it, then a short press, as the gate opens) */
+.pw-ring::after { content: ""; position: absolute; inset: -4px; border-radius: 11px; border: 2px solid var(--hive-navy-900); }
+.pw-hint { font-size: 12px; color: #5A6075; }
+
+/* The review: the carrier email beside the draft that answers it, so approving is a real read */
+.rp-review { display: grid; gap: 12px; }
+@media (min-width: 640px) { .rp-review { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; } }
+.pw-msg, .pw-draft { padding: 14px 16px; border: 1px solid var(--hive-border-default); border-radius: 10px; }
+.pw-msg__head { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; align-items: center; }
+.pw-msg__head b { display: block; font-weight: 600; }
+.pw-msg__head div span { display: block; font-size: 13px; color: #5A6075; }
+.pw-av { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--hive-navy-100); color: var(--hive-navy-700); font: 600 12px/1 var(--hive-font-display); }
+.pw-msg p, .pw-draft p { margin-top: 10px; font-size: 13px; line-height: 1.5; color: #2A3048; }
+
+.pw-draft { position: relative; background: var(--hive-navy-50); }
+/* Approved border: gold, faded in with --o (1 = approved, the end state) */
+.pw-draft::after {
+  content: ""; position: absolute; inset: -1px; border-radius: 11px; pointer-events: none;
+  border: 2px solid var(--hive-gold-500);
+  opacity: var(--o, 1);
+}
+.pw-draft__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.pw-draft__label { display: inline-flex; align-items: center; gap: 8px; font: 600 13px/1 var(--hive-font-display); color: var(--hive-navy-700); }
+.pw-draft__label svg { width: 16px; height: 16px; }
+.pw-draft__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-top: 12px; }
+.pw-draft__foot .pw-hint { flex: 1 1 120px; min-width: 0; }
+
+/* "Draft, not sent" crossfades to "Approved" (both always in the DOM, one grid cell: no layout change) */
+.rp-state { display: grid; justify-items: end; }
+.rp-state > * { grid-area: 1 / 1; }
+.rp-state__a { opacity: calc(1 - var(--o, 1)); }
+.rp-state__b { opacity: var(--o, 1); }
+
+/* The gate. Default = the end state: three drafts waiting at the bar, the approved one past it, in gold. */
+.rp-lane {
+  --gx: 58%; --cw: 92px; --jump: 108px;
+  --a1: 1; --a2: 1; --a3: 1; --a4: 1; --g: 1; --gold: 1;
+  position: relative; height: 140px; overflow: hidden;
+  border: 1px solid var(--hive-border-default); border-radius: 10px; background: var(--hive-canvas);
+}
+@media (min-width: 640px) { .rp-lane { --gx: 66%; --cw: 132px; --jump: 176px; } }
+.rp-gate { position: absolute; top: 0; bottom: 0; left: var(--gx); width: 4px; margin-left: -2px; background: var(--hive-navy-900); }
+.rp-gate__label {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  padding: 4px 10px; border-radius: 6px; white-space: nowrap;
+  background: var(--hive-navy-900); color: #fff;
+  font: 600 12px/1.2 var(--hive-font-display);
+}
+.rp-card {
+  position: absolute; z-index: calc(5 - var(--n, 0));
+  left: calc(var(--gx) - var(--cw) - 10px - var(--n, 0) * 22px);
+  top: calc(60px + var(--cy, 0px));
+  width: var(--cw); height: 52px; padding: 8px 10px;
+  border: 1px solid var(--hive-navy-200); border-radius: 8px;
+  background: var(--hive-navy-100); color: var(--hive-navy-700);
+  font: 600 13px/1.2 var(--hive-font-display);
+}
+.rp-card i { display: block; height: 5px; margin-top: 6px; border-radius: 3px; background: var(--hive-navy-200); }
+.rp-card i + i { width: 60%; }
+.rp-card--1 { --n: 0; --cy: 0px; transform: translateX(var(--jump)); }
+.rp-card--2 { --n: 1; --cy: 8px; }
+.rp-card--3 { --n: 2; --cy: -4px; }
+.rp-card--4 { --n: 3; --cy: 10px; }
+/* Approved card: a gold fill behind the text, faded in with --gold */
+.rp-card--ok { color: var(--hive-navy-950); }
+.rp-card--ok::before {
+  content: ""; position: absolute; inset: -1px; z-index: -1; border-radius: 8px;
+  background: var(--hive-gold-500); border: 1px solid var(--hive-gold-600);
+  opacity: var(--gold);
+}
+.rp-card--ok i { background: rgba(15, 18, 31, 0.28); }
+
+/* Scrubbed to the acts' progress (--p on the lane, the draft card and the headline word; see css/start.css for
+   the stage). t is act 1's own 0..1. Cards stream in from the left one after another, bunch at the bar, then the
+   approved one passes (g) and turns gold (--gold) just after the Approve press. Transform and opacity only.
+   No counters, no numbers. */
+@media (min-width: 1024px) and (min-height: 680px) {
+  html.scenes .rp-lane {
+    --t: clamp(0, calc(3 * var(--p, 0)), 1);
+    --a1: clamp(0, calc(var(--t) / 0.3), 1);
+    --a2: clamp(0, calc((var(--t) - 0.06) / 0.3), 1);
+    --a3: clamp(0, calc((var(--t) - 0.12) / 0.3), 1);
+    --a4: clamp(0, calc((var(--t) - 0.18) / 0.3), 1);
+    --g: clamp(0, calc((var(--t) - 0.6) / 0.16), 1);
+    --gold: clamp(0, calc((var(--t) - 0.68) / 0.1), 1);
+  }
+  html.scenes .rp-card { opacity: clamp(0, calc(var(--a) * 3), 1); transform: translateX(calc((1 - var(--a)) * -220px)); }
+  html.scenes .rp-card--1 { --a: var(--a1); transform: translateX(calc((1 - var(--a1)) * -220px + var(--g) * var(--jump))); }
+  html.scenes .rp-card--2 { --a: var(--a2); }
+  html.scenes .rp-card--3 { --a: var(--a3); }
+  html.scenes .rp-card--4 { --a: var(--a4); }
+  /* The draft card turns "approved" while the card passes the bar */
+  html.scenes .rp-draft { --o: clamp(0, calc((3 * var(--p, 0) - 0.62) / 0.1), 1); }
+  html.scenes .st-acts.is-live .rp-card { will-change: transform, opacity; }
+}
+
+/* ==========================================================================
+   SCENE 2 BOARD: pieces gather into the claim file and leave a ghost behind
+   Default (phones, no JS, reduced motion, short screens): the final state, the real window alone.
+   Pieces and ghosts exist only while pinned with motion.
+   ========================================================================== */
+.st-board { position: relative; width: 100%; max-width: 900px; }
+.st-board__file { --r: 1; position: relative; }
+/* The empty file outline the window takes the place of */
+.st-board__file::before {
+  content: ""; position: absolute; inset: 0; border-radius: 12px; pointer-events: none;
+  border: 2px dashed rgba(22, 27, 51, 0.28);
+  opacity: calc(1 - var(--r));
+}
+.st-board__win { opacity: var(--r); }
+.st-board__cap { margin-top: 1rem; text-align: center; }
+.st-board__cap2 { display: none; }
+.st-piece { display: none; }
+
+@media (min-width: 1024px) and (min-height: 680px) {
+  /* Window width (the board): leaves room for a 210px piece and its ghost on each side, down to 1024px,
+     and for the stage's height. --hx: distance from the center to a piece's home. */
+  html.scenes .st-board {
+    --bw: min(780px, calc(100vw - 520px), calc((100vh - var(--st-hdr) - 14rem) * 1.45));
+    --hx: calc(var(--bw) / 2 + 126px);
+    width: var(--bw);
+  }
+  html.scenes .st-board__cap2 { display: inline; }
+  /* The window takes the file's place at the end of the stage */
+  html.scenes .st-shift .st-board__file { --r: clamp(0, calc((var(--p, 0) - 0.42) / 0.3), 1); }
+
+  /* A piece: an anchor at the center of the file, moved to its home (static). The ghost stays at home;
+     the live copy (.st-raw) travels from home to the center.
+     q: this piece's flight, 0..1 over 0.45 of progress after its delay --d (the last lands at p = 0.65).
+     e = (1-q)^2 eases the distance, so a piece is within a few px of the center well before it fades.
+     The live copy fades out over q 0.62-0.92 while the window fades in; the ghost fades in as it leaves. */
+  html.scenes .st-piece {
+    --q: clamp(0, calc((var(--p, 0) - var(--d, 0)) / 0.45), 1);
+    --e: calc((1 - var(--q)) * (1 - var(--q)));
+    --k: calc(1 - var(--e));
+    display: block;
+    position: absolute; left: 50%; top: 50%; z-index: 2;
+    width: 210px;
+    transform: translate(-50%, -50%) translate(calc(var(--mx, 0) * var(--hx)), calc(var(--my, 0) * 1px));
+    pointer-events: none;
+  }
+  html.scenes .st-ghost {
+    position: absolute; inset: 0;
+    border: 1.5px solid var(--hive-navy-900); border-radius: 8px;
+    opacity: calc(clamp(0, var(--q) * 5, 1) * 0.28);
+    transform: rotate(calc(var(--mr, 0) * 1deg));
+  }
+  html.scenes .st-raw {
+    position: relative;
+    transform:
+      translate(calc(var(--mx, 0) * var(--hx) * var(--k) * -1), calc(var(--my, 0) * 1px * var(--k) * -1))
+      rotate(calc(var(--mr, 0) * 1deg * var(--e)));
+    opacity: clamp(0, calc((0.92 - var(--q)) / 0.3), 1);
+  }
+  html.scenes .st-shift.is-live .st-raw { will-change: transform, opacity; }
+}
+
+/* Loose pieces: 14px and up, so they read at a glance */
+.st-raw {
+  padding: 12px 14px;
+  background: #fff; border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(22, 27, 51, 0.1), 0 20px 40px -16px rgba(22, 27, 51, 0.35);
+  font-size: 15px; line-height: 1.35; color: var(--hive-navy-900);
+}
+.st-raw b { font-weight: 600; }
+.st-raw--mail { border-left: 3px solid var(--hive-info); }
+.st-raw--mail b, .st-raw--mail span { display: block; }
+.st-raw--mail span { font-size: 14px; color: #4F556B; }
+.st-raw--pdf { display: flex; align-items: center; gap: 10px; font-size: 14px; overflow-wrap: anywhere; }
+.st-raw--pdf b { flex: none; padding: 3px 6px; border-radius: 4px; background: var(--hive-danger); color: #fff; font: 600 12px/1 var(--hive-font-body); }
+.st-raw--note {
+  padding: 16px 16px 22px;
+  border-radius: 2px;
+  background: #FBE7A1;
+  font: 700 17px/1.3 var(--hive-font-display); letter-spacing: -0.01em; color: #3A2C02;
+}
+.st-raw--sheet {
+  display: grid; grid-template-columns: 44px 1fr;
+  padding: 0; border-radius: 2px;
+  font-size: 14px;
+  box-shadow: 0 0 0 1px #C9D3E0, 0 20px 40px -16px rgba(22, 27, 51, 0.3);
+}
+.st-raw--sheet > * { padding: 8px 10px; }
+.st-raw--sheet i { font-style: normal; border-right: 1px solid #C9D3E0; background: #EEF2F7; color: #4F556B; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .st-piece { display: none !important; }
+  .st-board__file { --r: 1 !important; }
+  .st-board__cap2 { display: none !important; }
+  .rp-lane { --a1: 1 !important; --a2: 1 !important; --a3: 1 !important; --a4: 1 !important; --g: 1 !important; --gold: 1 !important; }
+  .rp-card { opacity: 1 !important; }
+  .rp-card--1 { transform: translateX(var(--jump)) !important; }
+  .rp-card--2, .rp-card--3, .rp-card--4 { transform: none !important; }
+  .pw-draft { --o: 1 !important; }
+}
