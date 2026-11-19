@@ -473,6 +473,27 @@ html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
 }
 
 /* ==========================================================================
+   4a-2. COMING BEFORE GA (dark): the homepage claim-run board (css/claim-run.css, js/claim-run.js).
+   It is not a [data-scene]: the board runs its own IntersectionObserver clock, and it stays out of
+   content-visibility because the script reads the board's width on load and on resize.
+   ========================================================================== */
+/* Real clash: ".start-page h1, .start-page h2" (0,1,1) outranks ".chs-h1" (0,1,0). Restore the homepage heading. */
+.start-page .chs .chs-h1 {
+  font-family: var(--hive-font-heading);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.08;
+  color: var(--hive-text-inverse);
+  text-wrap: wrap;
+}
+/* Below the fold like the other sections: skip rendering until near the viewport. This keeps the board's
+   markup out of the layout passes that js/start.js forces at load. js/claim-run.js is added only when the
+   section is within 1200px, and fit() re-runs through its ResizeObserver, so the width it reads is current. */
+.start-page .chs { content-visibility: auto; contain-intrinsic-size: auto 920px; }
+/* Muted body-small note under the board. --hive-navy-300 on the board's #12151B is about 8:1 (AA). */
+.chs .st-preview-note { margin-top: 1rem; font-size: var(--hive-text-sm); color: var(--hive-navy-300); }
+
+/* ==========================================================================
    4b. FAQ (light): native <details>, no JS. Keyboard: Tab to a question, Enter or Space opens it.
    ========================================================================== */
 .st-faq { padding: clamp(3rem, 7vw, 5rem) 0 clamp(5rem, 10vw, 8rem); border-top: 1px solid var(--hive-border-default); }

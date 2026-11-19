@@ -34,6 +34,14 @@ var EV=[
 ];
 var CAPS=[[0,'00','A claim comes in','email · photos · policy · voice note'],[2.0,'01','Claim in','sorted, typed and filed'],[5.2,'02','Read & screened','three agents at once'],[8.6,'03','License checked','before the firm engages'],[11.0,'04','Paperwork drafted','the PA approves the send'],[14.4,'05','Proof of loss built','checked in code, dates held for a person'],[18.0,'06','Carrier pushes back','reply drafted · human in the loop'],[22.6,'07','Check routed','matched by claim # · lender path'],[25.6,'08','Ready for you','one approval and it goes']];
 var CH=[[5.4,7.8,'3 agents in parallel','wx',220,30],[12.6,13.8,'review LOR + W-9','gate',-150,96,1],[16.4,18.6,'needs a person','dl',-10,-30],[20.6,22.0,'review reply','gate',-110,96,1],[25.6,26.9,'one click to approve','gate',-150,96,1]];
+/* /start variant: the page has no roof or fee-cap example, so swap those strings once, before the board is built.
+   The homepage has no data-variant, so it keeps the text above. */
+var chsRoot=document.getElementById('chs');
+if(chsRoot&&chsRoot.getAttribute('data-variant')==='start'){
+ var SUB={'24 roof photos':'24 photos','fee within cap':'fee reviewed','Paperwork Drafter|fee review → within cap':'Paperwork Drafter|fee review → ready for PA'};
+ N.forEach(function(n){if(SUB.hasOwnProperty(n[3]))n[3]=SUB[n[3]]});
+ EV.forEach(function(e){for(var i=3;i<5;i++){if(typeof e[i]==='string'&&SUB.hasOwnProperty(e[i]))e[i]=SUB[e[i]]}});
+}
 EV.forEach(function(e){e[0]/=SPEED});CAPS.forEach(function(c){c[0]/=SPEED});CH.forEach(function(c){c[0]/=SPEED;c[1]/=SPEED});
 var stage=document.getElementById('chsStage'),svg=document.getElementById('chsSvg'),box=document.getElementById('chsBox'),NE={},PATH={};
 var r=(function(s){return function(){s=(s*16807)%2147483647;return s/2147483647}})(7),bgs=[];
@@ -74,22 +82,27 @@ function setAt(t){
 }
 function fit(){stage.style.transform=innerWidth<=700?'':'scale('+(box.clientWidth/1000)+') translateY(-12px)'}
 addEventListener('resize',fit);fit();
+if(window.ResizeObserver){new ResizeObserver(fit).observe(box)}
 var raf,t0=0,started=false;function tick(ts){if(!t0)t0=ts;var t=(ts-t0)/1000;setAt(t);if(t<END)raf=requestAnimationFrame(tick)}
 function play(){cancelAnimationFrame(raf);t0=0;started=true;raf=requestAnimationFrame(tick)}
 window.__chsSeek=function(t){cancelAnimationFrame(raf);started=true;setAt(t)};
 setAt(0);
 if(rm){setAt(99)}else{var io=new IntersectionObserver(function(es){if(es[0].isIntersecting&&!started)play()},{threshold:.25});io.observe(box)}
 document.getElementById('chxReplay').onclick=function(){rm?setAt(99):play()};
-var modal=document.getElementById('chxModal'),vid=document.getElementById('chxVid'),opener;
+var modal=document.getElementById('chxModal'),vid=document.getElementById('chxVid'),watch=document.getElementById('chxWatch'),xbtn=document.getElementById('chxClose'),opener;
+/* the video modal exists on the homepage only (/start has no video) */
+if(modal&&vid&&watch&&xbtn){
 /* the 17 MB video loads only once someone asks for it */
-document.getElementById('chxWatch').onclick=function(e){opener=e.currentTarget;if(!vid.getAttribute('src'))vid.src=vid.getAttribute('data-src');modal.classList.add('open');document.getElementById('chxClose').focus();vid.play&&vid.play().catch(function(){})};
-function close(){modal.classList.remove('open');vid.pause();opener&&opener.focus()}
-document.getElementById('chxClose').onclick=close;modal.onclick=function(e){if(e.target===modal)close()};
+watch.onclick=function(e){opener=e.currentTarget;if(!vid.getAttribute('src'))vid.src=vid.getAttribute('data-src');modal.classList.add('open');xbtn.focus();vid.play&&vid.play().catch(function(){})};
+var close=function(){modal.classList.remove('open');vid.pause();opener&&opener.focus()};
+xbtn.onclick=close;modal.onclick=function(e){if(e.target===modal)close()};
 addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close()});
+}
 })();
 
 (function(){
 var root=document.getElementById('chx');
+if(!root)return; /* /start has the board only, no stepped stage */
 var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* stepped section */
 var STEPS=[
