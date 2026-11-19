@@ -136,7 +136,7 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 .st-shift { contain-intrinsic-size: auto 900px; }
 .st-acts { contain-intrinsic-size: auto 2600px; }
 .st-beta { contain-intrinsic-size: auto 760px; }
-.st-offer { contain-intrinsic-size: auto 700px; }
+.st-offer { contain-intrinsic-size: auto 820px; }
 .st-faq { contain-intrinsic-size: auto 520px; }
 .st-data { contain-intrinsic-size: auto 800px; }
 .st-final { contain-intrinsic-size: auto 500px; }
@@ -356,18 +356,9 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 .st-act__text { margin-top: 1.25rem; max-width: 34ch; font-size: var(--st-fs-body); line-height: 1.5; color: var(--st-fg-2); }
 .st-act__media { position: relative; min-width: 0; }
 .st-act__media .st-caption { margin-top: 0.75rem; }
-/* Page text beside the footage (not part of the video): the deadline note, F8 "you confirm the dates" */
-.st-note {
-  margin-top: 0.75rem; max-width: 46ch;
-  font-size: var(--hive-text-sm); line-height: 1.5; color: var(--st-fg-2);
-}
-.st-note b { color: var(--st-fg); font-weight: 600; }
-
-/* "Approve it." takes the gold when the reply is approved: a gold copy sits exactly over the base words and
-   fades in (opacity only). Static default = approved, so no JS and reduced motion show the end state. */
-.st-gold { position: relative; display: inline-block; white-space: nowrap; }
-.st-gold__off { color: var(--st-fg-3); }
-.st-gold__on { position: absolute; left: 0; top: 0; color: var(--hive-gold-500); opacity: 1; }
+/* "Approve it." takes the gold when the reply is approved: one text node, colour driven by --p (see the scenes
+   block). Static default = approved, so no JS and reduced motion show the end state. */
+.st-gold { position: relative; display: inline-block; white-space: nowrap; color: var(--hive-gold-500); }
 
 /* Desktop: the copy column starts on the page's left edge; the window column is 54-56% of the
    viewport (up to 880px) and runs to the right gutter, so the window fills its column. */
@@ -412,7 +403,9 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
   html.scenes .st-act--3 .st-act__media { opacity: clamp(0, calc((3 * var(--p, 0) - 1.92) / 0.16), 1); }
 
   /* Act 1: "Approve it." turns gold once the reply has passed the gate (the card turns gold at t 0.68-0.78) */
-  html.scenes .st-gold__on { opacity: clamp(0, calc((3 * var(--p, 0) - 0.7) / 0.12), 1); }
+  html.scenes .st-gold {
+    color: color-mix(in srgb, var(--hive-gold-500) calc(100% * clamp(0, calc((3 * var(--p, 0) - 0.7) / 0.12), 1)), var(--st-fg-3));
+  }
 
   /* Focus ring and press on Approve as the gate opens. start.js toggles the classes when t = 3p crosses the
      thresholds (ring at 0.5, press 0.56-0.74); the change itself is a short timed transition, so the window is
@@ -546,6 +539,8 @@ html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
 .st-final__title { font-size: var(--st-fs-final); max-width: 13ch; }
 .st-final .btn { width: 100%; max-width: 360px; }
 @media (min-width: 640px) { .st-final .btn { width: auto; min-width: 220px; } }
+.st-final__founder { margin-top: -1rem; font-size: var(--hive-text-sm); line-height: 1.5; color: var(--st-fg-2); }
+.st-final__founder .st-textlink { font-size: inherit; color: var(--st-fg); text-decoration-color: var(--st-fg-3); text-underline-offset: 4px; }
 
 .st-footer {
   --st-focus: var(--st-white);
@@ -571,7 +566,7 @@ html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
   }
   .st-shift__a, .st-shift__b { grid-area: auto !important; }
   .st-shift__b { margin-top: 0.4em !important; }
-  .st-gold__on { opacity: 1 !important; }
+  .st-gold { color: var(--hive-gold-500) !important; }
   .pw-ring::after { opacity: 1 !important; transition: none !important; }
   .st-faq__item summary::after { transition: none !important; }
   .st-btn, .st-textlink, .st-header { transition: none !important; }
