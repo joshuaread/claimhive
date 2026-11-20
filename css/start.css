@@ -243,46 +243,29 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
 @media (min-width: 768px) {
   .st-hero__copy { padding-left: max(var(--st-gutter), env(safe-area-inset-left)); padding-right: max(var(--st-gutter), env(safe-area-inset-right)); }
 }
-/* Small label above the H1: one fixed line height, sentence case, so its wrap cannot change at font swap */
-.st-eyebrow {
-  margin-bottom: 0.75rem;
-  font-size: 0.875rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.01em;
-  color: var(--st-fg-2);
-  text-wrap: balance;
-}
+/* The product leads: the window first, then one band with the H1, ending in the name (left) and the price pill (right).
+   Phones: stacked, left aligned. 1024px+: the band overlaps the window's bottom edge on a dark gradient. */
+.st-hero__band { display: grid; gap: 1.5rem; margin-top: 1.5rem; text-align: left; }
 .st-hero__title { font-size: var(--st-fs-hero); line-height: 1.04; }
 /* Each sentence is one fixed block that never wraps by itself: no reflow when the web font swaps in.
    Under 820px each sentence breaks once at its <br class="st-mbr">, giving four fixed lines. */
 .st-line { display: block; white-space: nowrap; }
 @media (min-width: 820px) { .st-mbr { display: none; } }
-.st-hero__sub {
-  max-width: 34em; margin: 1rem auto 0;
-  font-size: var(--st-fs-body); line-height: 1.45; color: var(--st-fg-2);
+/* Price pill: two short lines and the one button */
+.st-hero__pill {
+  padding: 1.25rem;
+  border: 1px solid rgba(245, 246, 250, 0.16); border-radius: 1.5rem;
+  background: rgba(22, 27, 51, 0.92);
+  font-size: 0.9375rem; line-height: 1.45; color: var(--st-fg-2);
 }
-@media (min-width: 1024px) { .st-hero__sub { max-width: 38em; } }
-.st-hero .st-actions { margin-top: 1.5rem; }
-.st-hero__offer {
-  max-width: 36em; margin: 1.25rem auto 0;
-  font-size: 0.9375rem; line-height: 1.5; color: var(--st-fg-2);
-  text-wrap: balance;
-}
-.st-hero__offer p { text-wrap: balance; }
-.st-hero__offer p + p { margin-top: 0.125rem; }
 .st-hero__free {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.125rem;
   font: 700 1.25rem/1.3 var(--hive-font-display); letter-spacing: -0.015em; color: var(--st-fg);
 }
-@media (min-width: 768px) {
-  .st-hero__offer { font-size: 1rem; }
-  .st-hero__free { font-size: 1.4375rem; }       /* about 1.4x the other offer lines */
-}
-/* Secondary in-page link under the offer: the existing .st-textlink look (44px tall) */
-.st-hero__more { margin-top: 0.5rem; }
+.st-hero .st-actions { margin-top: 1rem; }
+.st-hero .st-actions .btn { width: 100%; }
 
-/* Desktop: the card sentence fits on one line, which keeps more of the window above the fold */
-@media (min-width: 1024px) { .st-hero__offer { max-width: 52em; } }
-
-.st-hero__media { margin-top: clamp(2rem, 4svh, 3.5rem); }
+.st-hero__media .st-caption { margin: 0 0 0.75rem; }
 .st-caption { margin-top: 1rem; font-size: var(--hive-text-sm); color: var(--st-fg-2); }
 
 /* Desktop with motion: the window rises flat as the hero scrolls away (CSS-first, so it is right before JS).
@@ -292,6 +275,20 @@ body.start-page { overflow-x: visible; overflow-y: visible; background: var(--hi
   /* 1160px: the window (40px bar + the 1280x676 footage at 1160 wide = 653px) leaves about 40% of it above
      the fold at 1440x900, even while the tilt is still scaling it up from 0.9 */
   .st-hero__media { max-width: 1160px; }
+  /* The window width follows the viewport height, so the H1 and pill stay in the first screen.
+     Footage is 1280x676 (ratio 1.89): width = height left for the footage x 1.89.
+     14.5rem (232px) = 40px bar + 34px caption + 186px pill + 16px bottom margin + 4px slack - 48px the pill
+     overlaps the window (band padding below). The clamp repeats the hero's own padding-top. Floor 560px. */
+  .st-hero__media .st-tilt { width: min(100%, max(560px, calc((100svh - var(--st-hdr) - clamp(1.5rem, 4svh, 3.5rem) - 14.5rem) * 1.89))); margin: 0 auto; }
+  .st-hero { padding-bottom: clamp(2rem, 4svh, 3rem); }
+  .st-hero__copy { position: relative; z-index: 1; }
+  .st-hero__band {
+    grid-template-columns: minmax(0, 1fr) 19rem; align-items: end; gap: 2rem;
+    max-width: 1160px; margin: -4.5rem auto 0; padding-top: 1.5rem;   /* the pill overlaps the window's bottom 3rem */
+    background: linear-gradient(to bottom, rgba(15, 18, 31, 0) 0, var(--hive-navy-950) 3.5rem);
+  }
+  /* Smaller than the shared H1 size: the three lines sit beside the pill */
+  .st-hero__title { font-size: min(2.7vw, 3.5rem); }
   html.motion .st-tilt {
     transform-origin: 50% 0;
     transform: perspective(2200px) rotateX(calc(14deg * (1 - var(--p, 0)))) scale(calc(0.9 + 0.1 * var(--p, 0)));
@@ -495,24 +492,43 @@ html.scenes .st-offer__then.st-reveal { transition-delay: 80ms; }
 .st-short__text { margin-top: 1rem; max-width: 62ch; font-size: clamp(1.125rem, 1.5vw, 1.25rem); line-height: 1.55; color: var(--st-fg-2); }
 
 /* ==========================================================================
-   4a. WHAT YOU GET IN THE BETA (light): a real <dl>, eight cards, one column on phones, two from 768px
+   4a. WHAT YOU GET IN THE BETA (light): features grid of ul/li tiles (icon + title + one line).
+   Phone: one column, compact row. 600px: two columns. 1024px: three (live) / four (coming before GA).
    ========================================================================== */
 .st-beta { padding: clamp(4rem, 8vw, 6rem) 0 clamp(4rem, 8vw, 6.5rem); }
 .st-beta__title { font-size: var(--st-fs-h2); max-width: 20ch; }
-.st-beta__list { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 1rem; }
-.st-beta__row {
-  display: grid; align-content: start; gap: 0.5rem;
-  padding: 1.25rem;
+.st-feat { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: 0.75rem; grid-template-columns: minmax(0, 1fr); list-style: none; padding: 0; }
+.st-feat__sub {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  font: 700 1.25rem/1.3 var(--hive-font-display); letter-spacing: -0.015em; color: var(--st-fg);
+}
+.st-feat__sub + .st-feat { margin-top: 1.25rem; }
+.st-feat__tile {
+  display: flex; align-items: flex-start; gap: 0.875rem;
+  padding: 1rem;
   border: 1px solid var(--hive-border-default); border-radius: 16px;
 }
-.st-beta__row dt {
-  font: 600 0.875rem/1.4 var(--hive-font-body); letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--st-fg-3);
+.st-feat__icon {
+  flex: none; width: 28px; height: 28px; color: var(--st-fg-2);
+  fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
 }
-.st-beta__row dd { font-size: 1.125rem; line-height: 1.45; color: var(--st-fg); max-width: 44ch; }
-@media (min-width: 768px) {
-  .st-beta__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-  .st-beta__row { padding: 1.5rem; }
+.st-feat__body { display: grid; gap: 0.375rem; justify-items: start; min-width: 0; }
+.st-feat__name { font: 700 1.0625rem/1.3 var(--hive-font-display); letter-spacing: -0.01em; color: var(--st-fg); }
+.st-feat__line { font-size: 1rem; line-height: 1.45; color: var(--st-fg-2); }
+.st-feat__tag {
+  display: inline-flex; align-items: center;
+  font: 600 var(--hive-text-2xs)/1 var(--hive-font-display); letter-spacing: 0.03em; text-transform: uppercase;
+  padding: 0.32rem 0.8rem; border-radius: var(--hive-radius-pill);
+  color: var(--hive-gold-700); border: 1px solid var(--hive-gold-500); /* #7D6409 on #FAF9F6: about 5.4:1 */
+}
+@media (min-width: 600px) {
+  .st-feat { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .st-feat__tile { flex-direction: column; gap: 0.75rem; padding: 1.25rem; }
+}
+@media (min-width: 1024px) {
+  .st-feat--now { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .st-feat--soon { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .st-feat__tile { padding: 1.5rem; }
 }
 
 /* ==========================================================================
