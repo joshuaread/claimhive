@@ -31,6 +31,42 @@
   <link rel="stylesheet" href="css/claim-run.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="css/claim-run.css"></noscript>
 
+  <!-- DRAFT-ONLY additions (unpublished): tiny page-scoped styles for the new sections. Existing css files are untouched. -->
+  <style id="draft-extras">
+    .stx-kicker { margin-bottom: 0.75rem; font-size: 0.8125rem; font-weight: 600; line-height: 1.4; letter-spacing: 0.06em; text-transform: uppercase; color: var(--st-fg-2); }
+    .stx-sub { margin-top: 1rem; max-width: 44em; font-size: 1rem; line-height: 1.55; color: var(--st-fg-2); }
+    .stx-herolink { margin-top: 0.5rem; }
+    .stx-soon { display: inline-flex; align-items: center; vertical-align: middle; margin: 0 0 0 0.4em; padding: 0.28rem 0.7rem; border: 1px solid var(--hive-gold-500); border-radius: var(--hive-radius-pill); font: 600 var(--hive-text-2xs)/1 var(--hive-font-display); letter-spacing: 0.03em; text-transform: uppercase; color: var(--hive-gold-700); white-space: nowrap; }
+    .st-dark .stx-soon { color: var(--hive-gold-500); }
+    .stx-title .stx-soon { font-size: 0.75rem; }
+    .st-more__text + .st-more__text { margin-top: 0.75rem; }
+    .stx-punch { color: var(--st-fg); font-weight: 700; }
+    .stx-list { margin: 0.75rem 0 0; padding-left: 1.25rem; max-width: 62ch; list-style: disc; font-size: 1.0625rem; line-height: 1.5; color: var(--st-fg-2); }
+    .stx-list li + li { margin-top: 0.4rem; }
+    .stx-panel { margin-top: 1.25rem; padding: 1rem; border: 1px solid var(--hive-border-default); border-radius: 12px; background: #fff; color: var(--hive-navy-900); }
+    .stx-panel__label { font-size: 0.8125rem; line-height: 1.4; color: var(--st-fg-2); }
+    .stx-steps { margin: 0.75rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.5rem; }
+    .stx-steps li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 0.75rem; align-items: center; padding: 0.75rem; border: 1px solid var(--hive-border-default); border-radius: 10px; font-size: 0.9375rem; line-height: 1.4; }
+    .stx-steps b { display: block; font-family: var(--hive-font-display); }
+    .stx-steps span.stx-meta { display: block; color: var(--st-fg-2); font-size: 0.875rem; }
+    .stx-state { padding: 0.25rem 0.65rem; border-radius: 999px; background: #EFECE4; font-size: 0.8125rem; font-weight: 600; white-space: nowrap; }
+    .stx-state--wait { background: var(--hive-navy-900); color: #fff; }
+    .stx-flow { margin: 1.25rem 0 0; padding-left: 1.25rem; max-width: 62ch; font-size: clamp(1.0625rem, 1.4vw, 1.1875rem); line-height: 1.5; color: var(--st-fg-2); }
+    .stx-flow li + li { margin-top: 0.6rem; }
+    .stx-flow strong { color: var(--st-fg); }
+    .stx-cmpnav { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+    .stx-cmpnav a, .stx-back { min-height: 44px; display: inline-flex; align-items: center; }
+    .stx-back { margin-top: 0.25rem; font-size: 0.9375rem; }
+    .stx-feat__tile { scroll-margin-top: calc(var(--st-hdr) + 1rem); }
+    .stx-head { margin-bottom: 1.5rem; }
+    .stx-quote { margin: 1rem 0 0; }
+    .stx-quote p { font: 700 clamp(1.375rem, 2.6vw, 1.875rem)/1.3 var(--hive-font-display); letter-spacing: -0.015em; color: var(--st-fg); max-width: 22ch; }
+    .stx-quote footer { margin-top: 1rem; font-size: 1rem; color: var(--st-fg-2); }
+    .stx-note { margin-top: 1rem; font-size: 0.9375rem; line-height: 1.5; color: var(--st-fg-2); max-width: 62ch; }
+    /* Warp idea 20: benefit line under the closing headline */
+  .st-final__benefit { margin-top: -1rem; max-width: 36em; font-size: 1.0625rem; line-height: 1.5; color: var(--st-fg-2); text-wrap: balance; }
+</style>
+
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -115,11 +151,13 @@
       <div class="st-wrap st-hero__copy">
         <div class="st-hero__band">
           <div class="st-hero__head">
+            <p class="stx-kicker">Built for public adjusters. Not adapted for them.</p>
             <h1 id="hero-title" class="st-hero__title">
-              <span class="st-line">Every claim. <br class="st-mbr">Every deadline. <br class="st-mbr">Every check.</span>
-              <span class="st-line st-t2">One place<span class="st-dot">.</span></span>
-              <span class="st-line st-t2">ClaimHive<span class="st-dot">.</span></span>
+              <span class="st-line">Double your <br class="st-mbr">production<span class="st-dot">.</span></span>
+              <span class="st-line st-t2">Not your hours<span class="st-dot">.</span></span>
             </h1>
+            <p class="stx-sub">ClaimHive is the AI claims platform for public adjusters: private AI agents<span class="stx-soon">Coming soon</span>, one file per claim, a lead engine<span class="stx-soon">Coming soon</span> and a client portal<span class="stx-soon">Coming soon</span>, all in one login. We're building toward doubling your production and profit without adding a single hour to your week.</p>
+            <p class="stx-herolink"><a href="#sample-reply" class="st-textlink">See the sample claim</a></p>
           </div>
           <div class="st-hero__pill">
             <p class="st-hero__free">Free until January&nbsp;1,&nbsp;2027.</p>
@@ -139,10 +177,10 @@
       <div class="st-shift__stage">
         <div class="st-wrap st-shift__inner">
           <h2 id="shift-title" class="st-shift__lines">
-            <span class="st-shift__a" data-p>Still duct-taping your claims together?</span>
-            <span class="st-shift__b" data-p>ClaimHive keeps each claim in a single file<span class="st-dot">.</span></span>
+            <span class="st-shift__a" data-p>Still duct-taping 6+ tools together?</span>
+            <span class="st-shift__b" data-p>ClaimHive replaces the pile<span class="st-dot">.</span></span>
           </h2>
-          <p class="st-shift__text">A CRM that doesn't know what a proof of loss is. Email. Folders. A spreadsheet. A task app. Sticky notes. Every handoff is a place a claim can die.</p>
+          <p class="st-shift__text">A CRM that doesn't know what a proof of loss is. Email. Drive. A spreadsheet. A task app. A portal bolted on the side. Or you paid tens of thousands to bend generic software into something that almost fits. Every handoff is a place a claim can die. ClaimHive keeps each claim in a single file.</p>
 
           <div class="st-board">
             <div class="st-board__file" data-p>
@@ -183,7 +221,7 @@
 
     <!-- 3. THE THREE ACTS (dark): one pinned stage. Act 1 is an illustration (no footage exists for the reply
          screen); acts 2 and 3 are real footage in the same window frame. -->
-    <section class="st-acts st-dark" data-scene="acts" aria-label="What ClaimHive does">
+    <section class="st-acts st-dark" id="sample-reply" data-scene="acts" aria-label="What ClaimHive does">
       <div class="st-acts__stage">
 
         <article class="st-act st-act--1 st-wrap" aria-labelledby="act1-title">
@@ -273,16 +311,115 @@
       </div>
     </section>
 
+    <!-- 3-W. SAMPLE WORKFLOW (light): carrier email, draft, your approval, claim timeline. Sits beside the pinned acts,
+         not inside them, so the pinned stage geometry stays as it is. All values are sample values. -->
+    <section class="st-more st-light" id="workflow" aria-label="Sample workflow: from carrier email to your approval">
+      <div class="st-wrap st-more__grid">
+        <div class="st-more__block">
+          <h2 class="st-more__title">Review the draft. Approve the reply. <span class="st-t2">See the activity on the claim<span class="st-dot">.</span></span></h2>
+          <p class="st-more__text">ClaimHive asks where the decision is yours, and the claim's activity timeline records actions on the claim.</p>
+          <div class="stx-panel" role="group" aria-label="Sample workflow with sample values">
+            <p class="stx-panel__label">Sample workflow with sample values. It is an illustration made for this page.</p>
+            <ol class="stx-steps">
+              <li><div><b>Reading</b><span class="stx-meta">Reinspection request from Sample Carrier adjuster</span></div><span class="stx-state">Read</span></li>
+              <li><div><b>Drafting</b><span class="stx-meta">Reply for Sample Policyholder, claim SAMPLE-0001</span></div><span class="stx-state">Drafted</span></li>
+              <li><div><b>Your decision</b><span class="stx-meta">Nothing goes out until you approve it</span></div><span class="stx-state stx-state--wait">Awaiting your approval</span></li>
+            </ol>
+          </div>
+        </div>
+        <div class="st-more__block">
+          <h2 class="st-more__title">A carrier email comes in. <span class="st-t2">The reply is waiting for your yes<span class="st-dot">.</span></span></h2>
+          <ol class="stx-flow">
+            <li><strong>Carrier email.</strong> It lands in your connected Gmail.</li>
+            <li><strong>Draft.</strong> ClaimHive writes the reply for you to read.</li>
+            <li><strong>Your approval.</strong> You decide. The reply is not sent automatically.</li>
+            <li><strong>Claim timeline.</strong> The activity shows up on the claim.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
     <!-- 3a. LEADS AND SETUP (light): two short blocks, side by side from 768px -->
     <section class="st-more st-light" aria-label="Leads and setup">
       <div class="st-wrap st-more__grid">
         <div class="st-more__block">
           <h2 class="st-more__title">Stop waiting on contractors to feed you claims<span class="st-dot">.</span></h2>
           <p class="st-more__text">When someone else controls your referrals, someone else controls your future. ClaimHive has a lead form you can put on your own website, and a leads list with AI review.</p>
+          <p class="st-more__text">Take it back. Leads at $1.33 each, reviewed by AI and dropped straight into your pipeline.<span class="stx-soon">Coming soon</span> Then share leads with your contractor partners and hand value back to the people who used to hold the leash.<span class="stx-soon">Coming soon</span></p>
+          <p class="st-more__text stx-punch">Referral-dependent is a business model. Lead-independent is a business.</p>
         </div>
         <div class="st-more__block">
-          <h2 class="st-more__title">Your first claims come from your own inbox<span class="st-dot">.</span></h2>
+          <h2 class="st-more__title">Onboard today. Run claims today<span class="st-dot">.</span></h2>
           <p class="st-more__text">Guided setup walks you through your firm, card, company, team, Gmail and first claim. Connect Gmail and ClaimHive proposes claims from your inbox. You confirm each one before it becomes a claim.</p>
+          <p class="st-more__text">AI agents walk you through setup.<span class="stx-soon">Coming soon</span> Connect Gmail, import your contacts, upload your documents, and ClaimHive proposes your active claims for you to confirm. No consultants. No six-week rollout. Start running claims on day one.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3a-2. NOTHING SLIPS + ESTIMATE COMPARISON (light) -->
+    <section class="st-more st-light" aria-label="Deadlines and estimate comparison">
+      <div class="st-wrap st-more__grid">
+        <div class="st-more__block">
+          <h2 class="st-more__title">Never lose a claim in the cracks<span class="st-dot">.</span></h2>
+          <p class="st-more__text">Every claim gets a timeline, tasks and state deadlines, including proof of loss, so the next move is always in front of you. You confirm every date for your state.</p>
+          <p class="st-more__text">Also on the file: AI document upload, automatic contact import, Gmail connection, and a firm admin and commissions view (admin roles only). Client portal<span class="stx-soon">Coming soon</span> and contractor lead sharing<span class="stx-soon">Coming soon</span>.</p>
+        </div>
+        <div class="st-more__block">
+          <h2 class="st-more__title">Line by line. The carrier can't hide the difference<span class="st-dot">.</span></h2>
+          <p class="st-more__text">Compare your Xactimate estimate against the carrier's, line by line. Every missing item, every cut quantity, every price drop, surfaced. Three clicks and done.</p>
+          <p class="st-more__text stx-punch">The differences were always there. Now you see them in seconds.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3a-3. STRATEGY + EXPORTS (light) -->
+    <section class="st-more st-light" aria-label="Claim analysis and attorney exports">
+      <div class="st-wrap st-more__grid">
+        <div class="st-more__block">
+          <h2 class="st-more__title stx-title">Know the carrier's next move before they do<span class="st-dot">.</span><span class="stx-soon">Coming soon</span></h2>
+          <p class="st-more__text">ClaimHive analyzes the file and the correspondence, then shows you where the carrier is likely to go next, so your response is ready before theirs lands.<span class="stx-soon">Coming soon</span></p>
+        </div>
+        <div class="st-more__block">
+          <h2 class="st-more__title">Attorney needs the file? Export it<span class="st-dot">.</span></h2>
+          <p class="st-more__text">Export the complete PA file for attorneys in one step: documents, correspondence and timeline, organized and ready.</p>
+          <p class="st-more__text">Built to make subpoena responses automatic instead of an all-nighter.<span class="stx-soon">Coming soon</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3a-4. AGENTS + PRIVACY (light). The full third-party provider and logging disclosure is in the data section below. -->
+    <section class="st-more st-light" aria-label="AI agents and privacy">
+      <div class="st-wrap st-more__grid">
+        <div class="st-more__block">
+          <h2 class="st-more__title stx-title">AI agents that draft your claim strategy while you work the next file<span class="st-dot">.</span><span class="stx-soon">Coming soon</span></h2>
+          <p class="st-more__text">They read carrier emails, draft the replies and the claim strategy,<span class="stx-soon">Coming soon</span> upload and sort documents, and import contacts automatically. You read it. You approve it. Nothing goes out without your yes.</p>
+          <p class="st-more__text stx-punch">Private AI, shaped by real-world public adjusters. Not a public chatbot guessing at your industry.</p>
+          <p class="st-more__text"><strong class="stx-punch">Trained on 300,000 carrier and public adjuster rebuttals and responses.</strong> The agents have seen how carriers push back and how experienced adjusters answer, so every draft starts from how real claims actually go back and forth.</p>
+          <p class="st-more__text"><a href="#data-title" class="st-textlink">See what happens to your client files</a></p>
+        </div>
+        <div class="st-more__block">
+          <h2 class="st-more__title">Pasting a client's file into a public AI is a risk. Don't take it<span class="st-dot">.</span></h2>
+          <p class="st-more__text">Policy numbers. Claim details. Financials. Client information was never meant to run through a public chatbot, and using a public AI can put you at risk of violating federal privacy laws. ClaimHive keeps your claim data in a private environment, built to support your privacy obligations.</p>
+          <ul class="stx-list">
+            <li>ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI models or models shared across firms.</li>
+            <li>Google OAuth tokens encrypted with AES-256-GCM. Data encrypted in transit with TLS.</li>
+            <li>Two-step sign-in required for firm owners and admins.</li>
+          </ul>
+          <p class="st-more__text stx-punch">Find out before a complaint does.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3a-5. INTEGRATIONS + COMMUNITY (light): both coming soon -->
+    <section class="st-more st-light" aria-label="Integrations and community">
+      <div class="st-wrap st-more__grid">
+        <div class="st-more__block">
+          <h2 class="st-more__title stx-title">Integrations galore. On the way<span class="st-dot">.</span><span class="stx-soon">Coming soon</span></h2>
+          <p class="st-more__text">Roof measurements. Weather reports. And more, so the data you chase today shows up on the claim file on its own.<span class="stx-soon">Coming soon</span></p>
+        </div>
+        <div class="st-more__block">
+          <h2 class="st-more__title stx-title">Run your own shop. Never run it alone<span class="st-dot">.</span><span class="stx-soon">Coming soon</span></h2>
+          <p class="st-more__text">Join a growing ClaimHive community of public adjusters. Work through tough claims together and group-think the problems no one should solve alone. Weekly meetings. A monthly newsletter that keeps you current on the industry. A one-person show, with a hive behind you.<span class="stx-soon">Coming soon</span></p>
         </div>
       </div>
     </section>
@@ -312,12 +449,12 @@
           <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-chart"/></svg><div class="st-feat__body"><p class="st-feat__name">Firm back office</p><p class="st-feat__line">A CFO view, commissions and carrier check tracking, for admin roles.</p></div></li>
           <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg><div class="st-feat__body"><p class="st-feat__name">Sign-in</p><p class="st-feat__line">Sign in with Google. Firm owners and admins must use two-step sign-in.</p></div></li>
         </ul>
-        <h3 class="st-feat__sub">Coming before GA</h3>
+        <h3 class="st-feat__sub">Coming soon</h3>
         <ul class="st-feat st-feat--soon">
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-storm"/></svg><div class="st-feat__body"><p class="st-feat__name">Storm search</p><p class="st-feat__line">Look up past storms by area and date.</p><span class="st-feat__tag">Coming before GA</span></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-roof"/></svg><div class="st-feat__body"><p class="st-feat__name">Roof measurements</p><p class="st-feat__line">Roof measurements attached to the claim file.</p><span class="st-feat__tag">Coming before GA</span></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg><div class="st-feat__body"><p class="st-feat__name">AI-assisted inspections</p><p class="st-feat__line">Inspection photos and notes captured on site and filed to the claim.</p><span class="st-feat__tag">Coming before GA</span></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-weather"/></svg><div class="st-feat__body"><p class="st-feat__name">Historical weather</p><p class="st-feat__line">Past weather for the property on the date of loss.</p><span class="st-feat__tag">Coming before GA</span></div></li>
+          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-storm"/></svg><div class="st-feat__body"><p class="st-feat__name">Storm search</p><p class="st-feat__line">Look up past storms by area and date.</p><span class="st-feat__tag">Coming soon</span></div></li>
+          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-roof"/></svg><div class="st-feat__body"><p class="st-feat__name">Roof measurements</p><p class="st-feat__line">Roof measurements attached to the claim file.</p><span class="st-feat__tag">Coming soon</span></div></li>
+          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg><div class="st-feat__body"><p class="st-feat__name">AI-assisted inspections</p><p class="st-feat__line">Inspection photos and notes captured on site and filed to the claim.</p><span class="st-feat__tag">Coming soon</span></div></li>
+          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-weather"/></svg><div class="st-feat__body"><p class="st-feat__name">Historical weather</p><p class="st-feat__line">Past weather for the property on the date of loss.</p><span class="st-feat__tag">Coming soon</span></div></li>
         </ul>
       </div>
     </section>
@@ -328,7 +465,7 @@
       <div class="container container-wide chs-wrap">
         <div class="chs-head">
           <div>
-            <div class="chs-top"><span class="chs-eyebrow">For public adjusting firms · Coming before GA</span></div>
+            <div class="chs-top"><span class="chs-eyebrow">For public adjusting firms · Coming soon</span></div>
             <h2 id="preview-title" class="chs-h1">Your whole claim team, working at once.<em>Nothing leaves without your yes.</em></h2>
             <p class="chs-sub">One claim comes in. Specialist agents read the policy, screen for red flags, draft the paperwork and build the proof of loss, in parallel. Then it lands on your desk, ready to approve.</p>
           </div>
@@ -363,6 +500,62 @@
       </div>
     </section>
 
+    <!-- 4c. COMPARE APPROACHES (light): same-page, anchor-linked cards. No competitor is named and no competitor
+         capability or price is claimed. -->
+    <section class="st-beta st-light" id="compare" aria-labelledby="compare-title">
+      <div class="st-wrap st-beta__inner">
+        <h2 id="compare-title" class="st-beta__title">Not another CRM. Not another weekend project<span class="st-dot">.</span></h2>
+        <p class="st-more__text">More than another CRM. More than software you vibe-coded on a Sunday. Built by real software developers. Shaped by real public adjusters.</p>
+        <nav class="stx-cmpnav" aria-label="Compare approaches">
+          <a href="#cmp-crm" class="st-textlink">A generic CRM</a>
+          <a href="#cmp-stack" class="st-textlink">A six-app stack</a>
+          <a href="#cmp-diy" class="st-textlink">DIY software</a>
+        </nav>
+        <ul class="st-feat st-feat--now">
+          <li class="st-feat__tile stx-feat__tile" id="cmp-crm"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-person-plus"/></svg><div class="st-feat__body"><p class="st-feat__name">ClaimHive and a generic CRM</p><p class="st-feat__line">A generic CRM tracks contacts. ClaimHive runs claims: state deadlines, carrier correspondence, documents, tasks and timeline on one file.</p><a href="#compare-title" class="st-textlink stx-back">Back to the comparison</a></div></li>
+          <li class="st-feat__tile stx-feat__tile" id="cmp-stack"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-folder"/></svg><div class="st-feat__body"><p class="st-feat__name">ClaimHive and a six-app stack</p><p class="st-feat__line">A CRM that doesn't know what a proof of loss is. Email. Drive. A spreadsheet. A task app. A portal bolted on the side. Every handoff is a place a claim can die. ClaimHive replaces the pile.</p><a href="#compare-title" class="st-textlink stx-back">Back to the comparison</a></div></li>
+          <li class="st-feat__tile stx-feat__tile" id="cmp-diy"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-doc"/></svg><div class="st-feat__body"><p class="st-feat__name">ClaimHive and DIY software</p><p class="st-feat__line">A vibe-coded tool works until the day it has to carry a real claim, a real deadline and real client data. ClaimHive is built by real software developers and shaped by working public adjusters.</p><a href="#compare-title" class="st-textlink stx-back">Back to the comparison</a></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4d. PROVEN AT SCALE (light): Tom's proof line and body, exact. The origin firm is not named. -->
+    <section class="st-short st-light" aria-labelledby="scale-title">
+      <div class="st-wrap">
+        <div class="st-short__box">
+          <h2 id="scale-title" class="st-short__title">Grow without the growing pains<span class="st-dot">.</span></h2>
+          <p class="st-short__text stx-punch">Already running a semi-national public adjusting firm, scaling without the headaches that usually come with growth.</p>
+          <p class="st-short__text">ClaimHive already runs a semi-national public adjusting firm that is scaling without the headaches that normally come with growth. More claims across more states, without a pile of disconnected software and without a claim slipping through the cracks. Same platform. Same login. Built in the field and tested on real claims.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4e. FROM THE TEAM (light): two quotes exactly as written, each labeled co-founder. Not customer reviews. -->
+    <section class="st-more st-light" aria-labelledby="team-title">
+      <div class="st-wrap">
+        <h2 id="team-title" class="st-more__title stx-head">From the team<span class="st-dot">.</span></h2>
+        <div class="st-more__grid">
+          <div class="st-more__block">
+            <blockquote class="stx-quote"><p>“Better than anything else out there.”</p><footer>Tom, Alpha Tester</footer></blockquote>
+          </div>
+          <div class="st-more__block">
+            <blockquote class="stx-quote"><p>“This is the only software that will allow us to scale.”</p><footer>Jon, Alpha Tester</footer></blockquote>
+          </div>
+        </div>
+        <p class="stx-note">These two quotes are from ClaimHive's co-founders.</p>
+      </div>
+    </section>
+
+    <!-- 4f. THE GAP (light) -->
+    <section class="st-short st-light" aria-labelledby="gap-title">
+      <div class="st-wrap">
+        <div class="st-short__box">
+          <h2 id="gap-title" class="st-short__title">The gap is opening. Fast<span class="st-dot">.</span></h2>
+          <p class="st-short__text">Every claim you work by hand is a claim a ClaimHive firm worked by approval click. They're answering carriers faster, tracking every deadline and generating their own leads. The free window closes January&nbsp;1,&nbsp;2027. Start now and you've got a head start. Wait, and you're catching up.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- 5. THE OFFER (light): one idea, enormous type -->
     <section class="st-offer st-light" aria-labelledby="offer-title">
       <div class="st-wrap st-offer__inner">
@@ -389,11 +582,11 @@
           </details>
           <details class="st-faq__item">
             <summary>Will it replace my CRM?</summary>
-            <p>ClaimHive is claim management for public adjusters, with a leads list and a lead form for your website. Each claim has its documents, tasks, deadlines and timeline in one file.</p>
+            <p>It's built to. Claims, contacts, documents, tasks, deadlines and leads live in one place. The client portal is Coming soon. ClaimHive is claim management for public adjusters, with a leads list and a lead form for your website. Each claim has its documents, tasks, deadlines and timeline in one file.</p>
           </details>
           <details class="st-faq__item">
             <summary>Do I lose control?</summary>
-            <p>No. ClaimHive drafts the reply. Nothing goes out until you approve it.</p>
+            <p>No. ClaimHive drafts the reply. You approve every reply. Nothing goes out until you approve it.</p>
           </details>
           <details class="st-faq__item">
             <summary>How much does ClaimHive cost?</summary>
@@ -454,6 +647,7 @@
     <section class="st-final st-dark" aria-labelledby="final-title">
       <div class="st-wrap st-final__inner">
         <h2 id="final-title" class="st-final__title">Your next claim shouldn't live in six places<span class="st-dot">.</span></h2>
+        <p class="st-final__benefit">Replies drafted for your yes, and every claim in one file with the deadlines you confirm.</p>
         <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_final">Start free</a>
         <div class="st-final__offer">
           <p>Free until January&nbsp;1,&nbsp;2027.</p>
