@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Claim management for public adjusters | ClaimHive</title>
-  <meta name="description" content="Every claim. Every deadline. Every check. One place. ClaimHive drafts carrier replies for your yes, tracks state deadlines you confirm, and follows carrier checks and commissions.">
+  <meta name="description"
+    content="Every claim. Every deadline. Every check. One place. ClaimHive drafts carrier replies for your yes, tracks state deadlines you confirm, and follows carrier checks and commissions.">
   <link rel="canonical" href="https://claimhive.app/start">
-  <meta name="theme-color" content="#0F121F">
+  <meta name="theme-color" content="#FFFFFF">
 
   <!-- Motion gate: runs before first paint. No JS or reduced motion = static, fully assembled page. -->
   <script>
@@ -17,52 +19,20 @@
     })(document);
   </script>
 
-  <!-- Fonts: Plus Jakarta Sans (display) + Inter (body) only -->
+  <!-- Fonts: Archivo (Brooklyn industrial grotesque display) + IBM Plex Sans (editorial body) + IBM Plex Mono (tabular data) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="assets/start/claims-list-poster.webp" fetchpriority="high">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"></noscript>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 
+  <!-- Tokens + Parallel Claim Board stylesheet + Dedicated HUGE Brooklyn stylesheet -->
   <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/start.css">
-  <link rel="stylesheet" href="css/start-mock.css">
   <link rel="stylesheet" href="css/claim-run.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="css/claim-run.css"></noscript>
-
-  <!-- DRAFT-ONLY additions (unpublished): tiny page-scoped styles for the new sections. Existing css files are untouched. -->
-  <style id="draft-extras">
-    .stx-kicker { margin-bottom: 0.75rem; font-size: 0.8125rem; font-weight: 600; line-height: 1.4; letter-spacing: 0.06em; text-transform: uppercase; color: var(--st-fg-2); }
-    .stx-sub { margin-top: 1rem; max-width: 44em; font-size: 1rem; line-height: 1.55; color: var(--st-fg-2); }
-    .stx-herolink { margin-top: 0.5rem; }
-    .st-more__text + .st-more__text { margin-top: 0.75rem; }
-    .stx-punch { color: var(--st-fg); font-weight: 700; }
-    .stx-list { margin: 0.75rem 0 0; padding-left: 1.25rem; max-width: 62ch; list-style: disc; font-size: 1.0625rem; line-height: 1.5; color: var(--st-fg-2); }
-    .stx-list li + li { margin-top: 0.4rem; }
-    .stx-panel { margin-top: 1.25rem; padding: 1rem; border: 1px solid var(--hive-border-default); border-radius: 12px; background: #fff; color: var(--hive-navy-900); }
-    .stx-panel__label { font-size: 0.8125rem; line-height: 1.4; color: var(--st-fg-2); }
-    .stx-steps { margin: 0.75rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.5rem; }
-    .stx-steps li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 0.75rem; align-items: center; padding: 0.75rem; border: 1px solid var(--hive-border-default); border-radius: 10px; font-size: 0.9375rem; line-height: 1.4; }
-    .stx-steps b { display: block; font-family: var(--hive-font-display); }
-    .stx-steps span.stx-meta { display: block; color: var(--st-fg-2); font-size: 0.875rem; }
-    .stx-state { padding: 0.25rem 0.65rem; border-radius: 999px; background: #EFECE4; font-size: 0.8125rem; font-weight: 600; white-space: nowrap; }
-    .stx-state--wait { background: var(--hive-navy-900); color: #fff; }
-    .stx-flow { margin: 1.25rem 0 0; padding-left: 1.25rem; max-width: 62ch; font-size: clamp(1.0625rem, 1.4vw, 1.1875rem); line-height: 1.5; color: var(--st-fg-2); }
-    .stx-flow li + li { margin-top: 0.6rem; }
-    .stx-flow strong { color: var(--st-fg); }
-    .stx-cmpnav { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
-    .stx-cmpnav a, .stx-back { min-height: 44px; display: inline-flex; align-items: center; }
-    .stx-back { margin-top: 0.25rem; font-size: 0.9375rem; }
-    .stx-feat__tile { scroll-margin-top: calc(var(--st-hdr) + 1rem); }
-    .stx-head { margin-bottom: 1.5rem; }
-    .stx-quote { margin: 1rem 0 0; }
-    .stx-quote p { font: 700 clamp(1.375rem, 2.6vw, 1.875rem)/1.3 var(--hive-font-display); letter-spacing: -0.015em; color: var(--st-fg); max-width: 22ch; }
-    .stx-quote footer { margin-top: 1rem; font-size: 1rem; color: var(--st-fg-2); }
-    .stx-note { margin-top: 1rem; font-size: 0.9375rem; line-height: 1.5; color: var(--st-fg-2); max-width: 62ch; }
-    /* Warp idea 20: benefit line under the closing headline */
-  .st-final__benefit { margin-top: -1rem; max-width: 36em; font-size: 1.0625rem; line-height: 1.5; color: var(--st-fg-2); text-wrap: balance; }
-</style>
+  <noscript>
+    <link rel="stylesheet" href="css/claim-run.css">
+  </noscript>
+  <link rel="stylesheet" href="css/start-huge.css">
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -75,7 +45,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://claimhive.app/start">
   <meta property="og:title" content="Claim management for public adjusters | ClaimHive">
-  <meta property="og:description" content="Every claim. Every deadline. Every check. One place. ClaimHive drafts carrier replies for your yes, tracks state deadlines you confirm, and follows carrier checks and commissions.">
+  <meta property="og:description"
+    content="Every claim. Every deadline. Every check. One place. ClaimHive drafts carrier replies for your yes, tracks state deadlines you confirm, and follows carrier checks and commissions.">
   <meta property="og:image" content="https://claimhive.app/assets/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -85,386 +56,897 @@
   <meta name="twitter:site" content="@ClaimHiveApp">
   <meta name="twitter:url" content="https://claimhive.app/start">
   <meta name="twitter:title" content="Claim management for public adjusters | ClaimHive">
-  <meta name="twitter:description" content="Every claim. Every deadline. Every check. One place. ClaimHive drafts carrier replies for your yes, tracks state deadlines you confirm, and follows carrier checks and commissions.">
+  <meta name="twitter:description"
+    content="Every claim. Every deadline. Every check. One place. ClaimHive drafts carrier replies for your yes, tracks state deadlines you confirm, and follows carrier checks and commissions.">
   <meta name="twitter:image" content="https://claimhive.app/assets/og-image.png">
 
-  <!-- Unified Analytics (cta_click on [data-cta-location]) + page script -->
+  <!-- Inertial smooth scrolling (Lenis) + Unified Analytics + Parallel Agent Board + Page Engine -->
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js" defer></script>
   <script src="js/analytics.js" defer></script>
-  <script src="js/start.js" defer></script>
+  <script src="js/claim-run.js" defer></script>
+  <script src="js/start-huge.js" defer></script>
 </head>
-<body class="start-page">
-  <a class="st-skip" href="#main">Skip to content</a>
 
-  <!-- Icon sprite for the page-built window chrome and the reply illustration (stroke icons, currentColor) -->
-  <svg class="st-sprite" aria-hidden="true" focusable="false">
-    <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.5 11h11v9h-11zM9 11V8a3 3 0 0 1 6 0v3"/></symbol>
-    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4.5 6.5L12 12l7.5-5.5"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-4 4v-4H4z"/></symbol>
-    <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M4 13l2.5-7h11L20 13v6H4zM4 13h5l1 2h4l1-2h5"/></symbol>
-    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 6h6l2 2.5h9v10.5h-17z"/></symbol>
-    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10.5h16M8.5 4v4M15.5 4v4"/></symbol>
-    <symbol id="i-person-plus" viewBox="0 0 24 24"><path d="M3.5 19.5v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1M9.5 10a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5zM19 8v6M16 11h6"/></symbol>
-    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3.5h8l4 4v13H6zM14 3.5v4h4M9 12h6M9 15.5h6"/></symbol>
-    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16M8 16v-4M12 16V8M16 16v-6"/></symbol>
-    <symbol id="i-storm" viewBox="0 0 24 24"><path d="M7 15.5a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 7.5a4 4 0 0 1 .5 8M12.5 11l-3 5h4l-2 4.5"/></symbol>
-    <symbol id="i-roof" viewBox="0 0 24 24"><path d="M3 12l9-7 9 7M5.5 10.5V20h13v-9.5M9 20v-5h6v5"/></symbol>
-    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3.5 8h4l1.5-2.5h6L16.5 8h4v11.5h-17zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></symbol>
-    <symbol id="i-weather" viewBox="0 0 24 24"><path d="M8 4v1.5M3.5 8.5H5M11 6l-1 1M5 6l1 1M7 16.5a3.5 3.5 0 0 1 0-7 3.5 3.5 0 0 1 3.4 2.6A3.5 3.5 0 1 1 11 18.5H7z"/></symbol>
+<body>
+  <a class="hg-skip" href="#main">Skip to content</a>
+
+  <!-- Stroke icon sprite (consistent 1.75px line weight, currentColor) -->
+  <svg class="hg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <path d="M6.5 11h11v9h-11zM9 11V8a3 3 0 0 1 6 0v3" />
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24">
+      <path d="M4 6h16v12H4zM4.5 6.5L12 12l7.5-5.5" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24">
+      <path d="M4 5h16v11H10l-4 4v-4H4z" />
+    </symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24">
+      <path d="M4 13l2.5-7h11L20 13v6H4zM4 13h5l1 2h4l1-2h5" />
+    </symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24">
+      <path d="M3.5 6h6l2 2.5h9v10.5h-17z" />
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <path d="M4 6h16v14H4zM4 10.5h16M8.5 4v4M15.5 4v4" />
+    </symbol>
+    <symbol id="i-person-plus" viewBox="0 0 24 24">
+      <path
+        d="M3.5 19.5v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1M9.5 10a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5zM19 8v6M16 11h6" />
+    </symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24">
+      <path d="M6 3.5h8l4 4v13H6zM14 3.5v4h4M9 12h6M9 15.5h6" />
+    </symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24">
+      <path d="M4 4v16h16M8 16v-4M12 16V8M16 16v-6" />
+    </symbol>
+    <symbol id="i-storm" viewBox="0 0 24 24">
+      <path d="M7 15.5a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 7.5a4 4 0 0 1 .5 8M12.5 11l-3 5h4l-2 4.5" />
+    </symbol>
+    <symbol id="i-roof" viewBox="0 0 24 24">
+      <path d="M3 12l9-7 9 7M5.5 10.5V20h13v-9.5M9 20v-5h6v5" />
+    </symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24">
+      <path d="M3.5 8h4l1.5-2.5h6L16.5 8h4v11.5h-17zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+    </symbol>
+    <symbol id="i-weather" viewBox="0 0 24 24">
+      <path
+        d="M8 4v1.5M3.5 8.5H5M11 6l-1 1M5 6l1 1M7 16.5a3.5 3.5 0 0 1 0-7 3.5 3.5 0 0 1 3.4 2.6A3.5 3.5 0 1 1 11 18.5H7z" />
+    </symbol>
   </svg>
 
-  <!-- Slim header: logo + persistent Start free. Transparent on the hero, opaque navy once scrolled. -->
-  <header class="st-header">
-    <div class="st-header__inner">
-      <span class="st-logo">
-        <img src="assets/claim-hive-icon.svg" alt="" width="30" height="27">
-        <span class="st-logo__word">ClaimHive</span>
-      </span>
-      <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-sm st-btn" data-cta-location="ads_start_free_header">Start free</a>
+  <!-- ARCHITECTURAL MASTHEAD -->
+  <header class="hg-header" id="hgHeader">
+    <div class="hg-wrap hg-header__inner">
+      <a href="#top" class="hg-brand">
+        <img src="assets/claim-hive-icon.svg" alt="" width="26" height="24">
+        <span>ClaimHive</span>
+      </a>
+      <nav aria-label="Page chapters">
+        <ul class="hg-nav">
+          <li><a href="#one-file">One File</a></li>
+          <li><a href="#approval">Approval</a></li>
+          <li><a href="#properties">Properties</a></li>
+          <li><a href="#beta">Beta</a></li>
+          <li><a href="#offer">Offer</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a href="https://ops.claimhive.app/login" class="hg-btn hg-btn--soft-gold hg-btn--sm"
+        data-cta-location="ads_start_free_header">
+        <span>Start free</span>
+        <span class="hg-btn__arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
+    <div class="hg-progress" id="hgProgress" aria-hidden="true"></div>
   </header>
 
   <main id="main">
 
-    <!-- 1. HERO (dark): the product is the object. Real footage in the window; the poster is the LCP image. -->
-    <section class="st-hero st-dark" data-scene="hero" aria-labelledby="hero-title">
-      <figure class="st-wrap st-hero__media">
-        <figcaption class="st-caption">Sample claim, test account</figcaption>
-        <div class="st-tilt" data-p>
-          <div class="pw" aria-hidden="true">
-            <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
-            <div class="pw__media">
-              <img class="pw__poster" src="assets/start/claims-list-poster.webp" alt="" width="1280" height="676" fetchpriority="high" decoding="async">
-              <video class="pw__vid" muted playsinline loop preload="none" poster="assets/start/claims-list-poster.webp" width="1280" height="676" aria-hidden="true" tabindex="-1">
-                <source data-src="assets/start/claims-list.webm" type="video/webm">
-                <source data-src="assets/start/claims-list.mp4" type="video/mp4">
-              </video>
+    <!-- ===================================================================
+         CHAPTER 1: MONUMENTAL BROOKLYN EDITORIAL HERO
+         =================================================================== -->
+    <section class="hg-hero" id="top" aria-labelledby="hero-title">
+      <div class="hg-wrap">
+        <div class="hg-hero__title-row">
+          <h1 id="hero-title" class="hg-h1">
+            <span class="hg-h1__line"><span>Double your production<span class="hg-dot">.</span></span></span>
+            <span class="hg-h1__line"><span class="hg-h1__muted">Not your hours<span
+                  class="hg-dot">.</span></span></span>
+          </h1>
+        </div>
+
+        <div class="hg-hero__meta-grid">
+          <div class="hg-hero__pitch">
+            <p class="hg-hero__lead">
+              <strong>Built for public adjusters. Not adapted for them.</strong> ClaimHive puts your whole job in one
+              login: private AI agents, one file per claim, a lead engine, and a client portal. Work twice as many
+              claims and keep more profit without adding a single hour to your week.
+            </p>
+            <div>
+              <a href="#approval" class="hg-link">See the sample claim <span aria-hidden="true">&darr;</span></a>
+            </div>
+          </div>
+
+          <div class="hg-hero__cta-col">
+            <div class="hg-hero__terms">
+              <p class="hg-hero__free">Free until January&nbsp;1,&nbsp;2027.</p>
+              <p class="hg-hero__rate">Then $80/seat/month, the founding rate.</p>
+            </div>
+            <div class="hg-hero__actions">
+              <a href="https://ops.claimhive.app/login" class="hg-btn hg-btn--gold hg-btn--full"
+                data-cta-location="ads_start_free_hero">
+                <span>Start free</span>
+                <span class="hg-btn__arrow" aria-hidden="true">&rarr;</span>
+              </a>
             </div>
           </div>
         </div>
-        <p class="st-sr">Recording of ClaimHive with sample data from a test account: the claims list, with a search bar, filters and a table of sample claims and their statuses.</p>
-      </figure>
 
-      <div class="st-wrap st-hero__copy">
-        <div class="st-hero__band">
-          <div class="st-hero__head">
-            <p class="stx-kicker">Built for public adjusters. Not adapted for them.</p>
-            <h1 id="hero-title" class="st-hero__title">
-              <span class="st-line">Double your <br class="st-mbr">production<span class="st-dot">.</span></span>
-              <span class="st-line st-t2">Not your hours<span class="st-dot">.</span></span>
-            </h1>
-            <p class="stx-sub">ClaimHive is the AI claims platform for public adjusters: private AI agents, one file per claim, a lead engine and a client portal, all in one login. We're building toward doubling your production and profit without adding a single hour to your week.</p>
-            <p class="stx-herolink"><a href="#sample-reply" class="st-textlink">See the sample claim</a></p>
-          </div>
-          <div class="st-hero__pill">
-            <p class="st-hero__free">Free until January&nbsp;1,&nbsp;2027.</p>
-            <p>Then $80/seat/month, the founding rate.</p>
-            <div class="st-actions">
-              <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_hero">Start free</a>
+        <!-- Real ClaimHive Product Stage (Full-frame uncut UI with subtle scroll perspective settle) -->
+        <div class="hg-stage-perspective">
+          <figure class="hg-stage hg-hero-stage" id="hgHeroStage">
+            <div class="hg-stage__bar">
+              <span class="hg-stage__url"><svg aria-hidden="true">
+                  <use href="#i-lock" />
+                </svg> ops.claimhive.app</span>
+              <span>Sample claim, test account</span>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. ONE FILE (light): the loose pieces travel to the center and join the claim file, each leaving a ghost.
-         The real claim window takes the file's place at the end. Pieces and ghosts exist only while pinned with motion;
-         everywhere else the page shows the final state (the window alone). -->
-    <section class="st-shift st-light" data-scene="shift" aria-labelledby="shift-title">
-      <div class="st-shift__stage">
-        <div class="st-wrap st-shift__inner">
-          <h2 id="shift-title" class="st-shift__lines">
-            <span class="st-shift__a" data-p>Still duct-taping 6+ tools together?</span>
-            <span class="st-shift__b" data-p>ClaimHive replaces the pile<span class="st-dot">.</span></span>
-          </h2>
-          <p class="st-shift__text">A CRM that doesn't know what a proof of loss is. Email. Drive. A spreadsheet. A task app. A portal bolted on the side. Or you paid tens of thousands to bend generic software into something that almost fits. Every handoff is a place a claim can die. ClaimHive keeps each claim in a single file.</p>
-
-          <div class="st-board">
-            <div class="st-board__file" data-p>
-              <div class="pw st-board__win" aria-hidden="true">
-                <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
-                <div class="pw__media">
-                  <img class="pw__poster" src="assets/start/claim-overview-poster.webp" alt="" width="1280" height="676" loading="lazy" decoding="async">
-                  <video class="pw__vid" muted playsinline loop preload="none" poster="assets/start/claim-overview-poster.webp" width="1280" height="676" aria-hidden="true" tabindex="-1">
-                    <source data-src="assets/start/claim-overview.webm" type="video/webm">
-                    <source data-src="assets/start/claim-overview.mp4" type="video/mp4">
-                  </video>
-                </div>
-              </div>
-
-              <div class="st-piece" data-p style="--mx:-1;--my:-88;--mr:-4;--d:0" aria-hidden="true">
-                <span class="st-ghost"></span>
-                <div class="st-raw st-raw--mail"><b>RE: RE: RE: Sample claim</b><span>Sample Carrier adjuster</span></div>
-              </div>
-              <div class="st-piece" data-p style="--mx:-1;--my:92;--mr:3;--d:.07" aria-hidden="true">
-                <span class="st-ghost"></span>
-                <div class="st-raw st-raw--pdf"><b>PDF</b><span>policy_scan_FINAL_v2.pdf</span></div>
-              </div>
-              <div class="st-piece" data-p style="--mx:1;--my:-84;--mr:4;--d:.13" aria-hidden="true">
-                <span class="st-ghost"></span>
-                <div class="st-raw st-raw--note">call policyholder back!</div>
-              </div>
-              <div class="st-piece" data-p style="--mx:1;--my:96;--mr:-3;--d:.2" aria-hidden="true">
-                <span class="st-ghost"></span>
-                <div class="st-raw st-raw--sheet"><i>B14</i><span>schedule reinspect?</span></div>
-              </div>
+            <div class="hg-stage__media hg-stage__media--still">
+              <img class="hg-stage__poster" src="assets/start/claims-list-poster.webp"
+                alt="ClaimHive claims list with search bar, filters, and a table of sample claims and their statuses"
+                width="1280" height="676" fetchpriority="high" decoding="async">
             </div>
-            <p class="st-sr">Recording of ClaimHive with sample data from a test account: one claim file with status tracking, a proof of loss deadline row, an activity feed and tabs for files and financials. On large screens with motion on, an illustration shows an email, a PDF, a sticky note and a spreadsheet row joining the file as you scroll.</p>
-            <p class="st-caption st-board__cap">Sample claim, test account<span class="st-board__cap2">. The loose pieces are an illustration with sample data.</span></p>
-          </div>
+            <figcaption class="hg-sr">Screenshot of ClaimHive with sample data from a test account: the claims list,
+              with a search bar, filters and a table of sample claims and their statuses.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <!-- 3. THE THREE ACTS (dark): one pinned stage. Act 1 is an illustration (no footage exists for the reply
-         screen); acts 2 and 3 are real footage in the same window frame. -->
-    <section class="st-acts st-dark" id="sample-reply" data-scene="acts" aria-label="What ClaimHive does">
-      <div class="st-acts__stage">
+    <!-- ===================================================================
+         CHAPTER 2: THE 7-TOOL ANXIETY PILE -> ONE CLAIMHIVE FILE (Scroll-Driven)
+         =================================================================== -->
+    <section class="hg-pile-runway" id="one-file" aria-labelledby="shift-title">
+      <div class="hg-pile-sticky" id="hgPileRoot" data-phase="chaos">
+        <div class="hg-wrap hg-pile-grid">
+          <div class="hg-pile-copy">
+            <h2 id="shift-title" class="hg-h2 hg-pile-h2">
+              <span class="hg-pile-h2__a">Still duct-taping 6+ tools together?</span>
+              <span class="hg-pile-h2__b">ClaimHive replaces the pile<span class="hg-dot">.</span></span>
+            </h2>
+            <p class="hg-body">
+              A CRM that doesn't know what a proof of loss is. Email. Drive. A spreadsheet. A task app. A portal bolted
+              on the side. Or you paid tens of thousands to bend generic software into something that almost fits. Every
+              handoff is a place a claim can die. ClaimHive keeps each claim in a single file.
+            </p>
 
-        <article class="st-act st-act--1 st-wrap" aria-labelledby="act1-title">
-          <div class="st-act__copy" data-p>
-            <h2 id="act1-title" class="st-act__title"><span>Replies drafted</span> <span class="st-gold" data-p>while you work the next file<span class="st-dot">.</span></span></h2>
-            <p class="st-act__text">ClaimHive reads the claim emails in your connected Gmail and writes a draft reply for each one. You read the draft, and it goes out only when you approve it.</p>
+            <!-- Scroll Scrub Progress Indicator (also clickable to jump cleanly between Chaos and Calm) -->
+            <div class="hg-pile-scrub" aria-label="Scroll progress from scattered tools to one ClaimHive file">
+              <div class="hg-pile-scrub__labels">
+                <button type="button" class="hg-pile-scrub__btn is-active" id="hgPileJumpChaos">7 scattered
+                  tools</button>
+                <button type="button" class="hg-pile-scrub__btn" id="hgPileJumpCalm">One ClaimHive file</button>
+              </div>
+              <div class="hg-pile-scrub__track" aria-hidden="true">
+                <span class="hg-pile-scrub__fill" id="hgPileFill"></span>
+              </div>
+              <p class="hg-pile-scrub__hint" id="hgPileHint">Scroll down to collapse the pile into one file &darr;</p>
+            </div>
           </div>
-          <div class="st-act__media" data-p>
-            <div class="pw pw--reply" aria-hidden="true">
-              <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
-              <div class="rp">
-                <div class="rp-top"><span class="pw__title">Sample claim <span class="pw-pill">Open</span></span><span class="pw__meta">SAMPLE-0001</span></div>
 
-                <!-- The gate: draft replies queue at the bar; only the approved one passes and turns gold -->
-                <div class="rp-lane" data-p>
-                  <span class="rp-gate"><span class="rp-gate__label">Your approval</span></span>
-                  <div class="rp-card rp-card--1 rp-card--ok"><b>Draft reply</b><i></i><i></i></div>
-                  <div class="rp-card rp-card--2"><b>Draft reply</b><i></i><i></i></div>
-                  <div class="rp-card rp-card--3"><b>Draft reply</b><i></i><i></i></div>
-                  <div class="rp-card rp-card--4"><b>Draft reply</b><i></i><i></i></div>
-                </div>
+          <div class="hg-pile-stage" id="hgPileStage">
+            <!-- Top Live Stress -> Relief Banner -->
+            <div class="hg-pile-status" id="hgPileStatus">
+              <span class="hg-pile-status__chaos">
+                <span class="hg-pile-alert-dot" aria-hidden="true"></span>
+                7 open tools &middot; 87 unread &middot; 12 overdue &middot; Deadline at risk
+              </span>
+              <span class="hg-pile-status__calm">
+                <span class="hg-pile-calm-dot" aria-hidden="true"></span>
+                1 login &middot; 1 claim file &middot; Sample claim, test account
+              </span>
+            </div>
 
-                <!-- The review: the carrier email beside the draft that answers it -->
-                <div class="rp-review">
-                  <div class="pw-msg">
-                    <div class="pw-msg__head"><span class="pw-av">SC</span><div><b>Sample Carrier adjuster</b><span>Re: Sample claim, reinspection</span></div></div>
-                    <p>Hello, we would like to reinspect the property. Please send two times next week that work for the policyholder.</p>
+            <div class="hg-pile-viewport">
+              <!-- LAYER 1: Overwhelming 7-tool overlapping chaos pile with recognizable app chrome & full-color icons -->
+              <div class="hg-chaos-layer" id="hgChaosLayer"
+                aria-label="Illustration of seven scattered tools colliding with sample data">
+
+                <!-- 1. Generic Sales CRM -->
+                <article class="hg-chaos-card hg-cc--1 hg-cc--crm" data-cx="120" data-cy="95" data-rot="-3.0">
+                  <div class="hg-cc__bar">
+                    <span class="hg-cc__app">
+                      <span class="hg-cc__ico hg-cc__ico--crm" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="4" fill="#FF7A59" />
+                          <circle cx="19" cy="6" r="2.2" fill="#FF7A59" />
+                          <circle cx="5" cy="18" r="2.2" fill="#FF7A59" />
+                          <path d="M14.8 9.5L17.4 7.3M9.2 14.5L6.6 16.7" stroke="#FF7A59" stroke-width="1.8" />
+                        </svg>
+                      </span>
+                      <span>Sales CRM</span>
+                    </span>
+                    <span class="hg-cc__pill hg-cc__pill--err">No POL field</span>
                   </div>
-                  <div class="pw-draft rp-draft" data-p>
-                    <div class="pw-draft__head">
-                      <span class="pw-draft__label"><svg><use href="#i-mail"/></svg>Draft reply</span>
-                      <span class="rp-state"><span class="pw-pill rp-state__a">Draft, not sent</span><span class="pw-pill pw-pill--ok rp-state__b"><svg><use href="#i-check"/></svg>Approved</span></span>
+                  <p class="hg-cc__title">Contact #441 — Sample Policyholder</p>
+                  <div class="hg-cc__funnel" aria-hidden="true">
+                    <span>Lead</span><span>Qualified</span><span class="is-on">Closed Won</span>
+                  </div>
+                  <p class="hg-cc__meta">Built for sales deals—not proof of loss or state deadlines.</p>
+                </article>
+
+                <!-- 2. Gmail Inbox (Real full-color Gmail mark + unread row chrome) -->
+                <article class="hg-chaos-card hg-cc--2 hg-cc--gmail" data-cx="-135" data-cy="100" data-rot="2.5">
+                  <div class="hg-cc__bar">
+                    <span class="hg-cc__app">
+                      <img class="hg-cc__brand-img" src="assets/start/icons/gmail.svg" alt="" width="18" height="14">
+                      <span>Gmail · Inbox</span>
+                    </span>
+                    <span class="hg-cc__pill hg-cc__pill--err">87 unread</span>
+                  </div>
+                  <div class="hg-cc__mailrow">
+                    <div class="hg-cc__mailhead">
+                      <p class="hg-cc__title">RE: RE: RE: FW: Sample claim</p>
+                      <span class="hg-cc__time">11:42 PM</span>
                     </div>
-                    <p>Thanks for the note. Sample Policyholder can meet you Tuesday or Thursday morning next week. Tell me which works and I will be on site. The updated photo set is on the claim file.</p>
-                    <div class="pw-draft__foot"><span class="pw-hint">Nothing goes out until you approve it.</span><span class="pw-btn pw-btn--primary pw-ring pw-press">Approve</span></div>
+                    <p class="hg-cc__meta">Sample Carrier adjuster — “Did you send the updated photos yet? Waiting since
+                      Tuesday.”</p>
                   </div>
-                </div>
-              </div>
-            </div>
-            <p class="st-sr">Illustration with sample data: a carrier email beside the drafted reply that answers it. Draft replies wait at a gate labelled Your approval, and only the reply you approve passes through.</p>
-            <p class="st-caption">Illustration with sample data</p>
-          </div>
-        </article>
+                </article>
 
-        <article class="st-act st-act--2 st-wrap" aria-labelledby="act2-title">
-          <div class="st-act__copy" data-p>
-            <h2 id="act2-title" class="st-act__title"><span>A CRM tracks contacts.</span> <span class="st-t2">ClaimHive runs claims<span class="st-dot">.</span></span></h2>
-            <p class="st-act__text">Every claim carries its state deadlines, carrier emails, documents, tasks and timeline on one file. ClaimHive is built with working public adjusters.</p>
-          </div>
-          <div class="st-act__media" data-p>
-            <div class="pw" aria-hidden="true">
-              <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
-              <div class="pw__media">
-                <img class="pw__poster" src="assets/start/claim-overview-poster.webp" alt="" width="1280" height="676" loading="lazy" decoding="async">
-                <video class="pw__vid" muted playsinline loop preload="none" poster="assets/start/claim-overview-poster.webp" width="1280" height="676" aria-hidden="true" tabindex="-1" data-act="1">
+                <!-- 3. Google Drive (Real full-color Drive mark + PDF file chip) -->
+                <article class="hg-chaos-card hg-cc--3 hg-cc--drive" data-cx="130" data-cy="5" data-rot="2.0">
+                  <div class="hg-cc__bar">
+                    <span class="hg-cc__app">
+                      <img class="hg-cc__brand-img" src="assets/start/icons/google-drive.svg" alt="" width="17"
+                        height="16">
+                      <span>My Drive › Claims_2026</span>
+                    </span>
+                    <span class="hg-cc__pill hg-cc__pill--warn">4 duplicates</span>
+                  </div>
+                  <div class="hg-cc__filechip">
+                    <span class="hg-cc__pdf">PDF</span>
+                    <span class="hg-cc__title">policy_scan_FINAL_v2.pdf</span>
+                  </div>
+                  <p class="hg-cc__meta">Old_Uploads / estimate_copy (3).xlsx — which version went out?</p>
+                </article>
+
+                <!-- 4. Spreadsheet (Classic emerald green Sheets/Excel header + fx bar + #REF!) -->
+                <article class="hg-chaos-card hg-cc--4 hg-cc--sheetcard" data-cx="-20" data-cy="-15" data-rot="-2.1">
+                  <div class="hg-cc__bar hg-cc__bar--green">
+                    <span class="hg-cc__app">
+                      <span class="hg-cc__ico hg-cc__ico--sheet" aria-hidden="true">
+                        <svg viewBox="0 0 20 20">
+                          <rect x="2" y="2" width="16" height="16" rx="2" fill="#FFFFFF" />
+                          <path d="M2 7h16M2 12h16M8 7v11" stroke="#188038" stroke-width="1.5" />
+                        </svg>
+                      </span>
+                      <span>Tracker_v9.xlsx</span>
+                    </span>
+                    <span class="hg-cc__pill hg-cc__pill--err hg-mono">#REF!</span>
+                  </div>
+                  <div class="hg-cc__fx"><i>fx</i><span>=SUM(B14:D14)</span></div>
+                  <div class="hg-cc__sheet">
+                    <span>B14</span><b>schedule reinspect?</b>
+                    <span>C14</span><b class="is-err">#REF!</b>
+                    <span>D14</span><b>check mailed???</b>
+                  </div>
+                </article>
+
+                <!-- 5. Task App (Real full-color task dots mark + red overdue badges) -->
+                <article class="hg-chaos-card hg-cc--5 hg-cc--tasks" data-cx="-125" data-cy="-35" data-rot="-3.2">
+                  <div class="hg-cc__bar">
+                    <span class="hg-cc__app">
+                      <img class="hg-cc__brand-img" src="assets/start/icons/asana.svg" alt="" width="17" height="16">
+                      <span>Task List</span>
+                    </span>
+                    <span class="hg-cc__pill hg-cc__pill--err">12 overdue</span>
+                  </div>
+                  <div class="hg-cc__taskrow">
+                    <span class="hg-cc__chk" aria-hidden="true"></span>
+                    <span class="hg-cc__title">Follow up on <span class="hg-mono">SAMPLE-0001</span></span>
+                    <span class="hg-cc__late">4d late</span>
+                  </div>
+                  <div class="hg-cc__taskrow">
+                    <span class="hg-cc__chk" aria-hidden="true"></span>
+                    <span class="hg-cc__meta">Confirm state proof of loss date</span>
+                    <span class="hg-cc__late">Today</span>
+                  </div>
+                </article>
+
+                <!-- 6. Bolted-On Client Portal -->
+                <article class="hg-chaos-card hg-cc--6 hg-cc--portal" data-cx="115" data-cy="-105" data-rot="2.6">
+                  <div class="hg-cc__bar hg-cc__bar--portal">
+                    <span class="hg-cc__app">
+                      <span class="hg-cc__ico hg-cc__ico--portal" aria-hidden="true">
+                        <svg viewBox="0 0 20 20">
+                          <circle cx="10" cy="10" r="8" fill="#4F46E5" />
+                          <path d="M5 10h10M10 3a11 11 0 0 1 0 14M10 3a11 11 0 0 0 0 14" fill="none" stroke="#FFFFFF"
+                            stroke-width="1.3" />
+                        </svg>
+                      </span>
+                      <span>Client Portal Add-On</span>
+                    </span>
+                    <span class="hg-cc__pill hg-cc__pill--warn">Not synced</span>
+                  </div>
+                  <p class="hg-cc__title">3 missed calls from policyholder</p>
+                  <p class="hg-cc__meta">“Portal hasn't updated in 2 weeks. Did the carrier reply?”</p>
+                </article>
+
+                <!-- 7. Yellow Desk Sticky Note (Authentic top adhesive strip) -->
+                <article class="hg-chaos-card hg-cc--7" data-cx="0" data-cy="-90" data-rot="-4.2">
+                  <div class="hg-cc__stickybar">
+                    <span>Desk sticky note</span>
+                    <span class="hg-cc__pill hg-cc__pill--note">Urgent</span>
+                  </div>
+                  <div class="hg-cc__stickybody">
+                    <p class="hg-cc__title">CALL POLICYHOLDER BACK!! POL DUE FRIDAY??</p>
+                    <p class="hg-cc__meta">Which app did I put the carrier adjuster's phone number in?</p>
+                  </div>
+                </article>
+
+              </div>
+
+              <!-- LAYER 2: Calm, Single ClaimHive File (Real full-frame Claim Overview recording) -->
+              <div class="hg-calm-layer" id="hgCalmLayer">
+                <img class="hg-stage__poster" src="assets/start/claim-overview-poster.webp"
+                  alt="ClaimHive single claim file showing status, deadlines, activity feed and files" width="1280"
+                  height="676" loading="lazy" decoding="async">
+                <video class="hg-stage__vid" muted playsinline loop preload="none"
+                  poster="assets/start/claim-overview-poster.webp" width="1280" height="676" aria-hidden="true"
+                  tabindex="-1">
                   <source data-src="assets/start/claim-overview.webm" type="video/webm">
                   <source data-src="assets/start/claim-overview.mp4" type="video/mp4">
                 </video>
               </div>
             </div>
-            <p class="st-sr">Recording of ClaimHive with sample data from a test account: an opened claim with its status, an activity timeline, and tabs for tasks and files.</p>
-            <p class="st-caption">Sample claim, test account</p>
           </div>
-        </article>
+        </div>
+      </div>
+    </section>
 
-        <article class="st-act st-act--3 st-wrap" aria-labelledby="act3-title">
-          <div class="st-act__copy" data-p>
-            <h2 id="act3-title" class="st-act__title"><span>See what's due</span> <span class="st-t2">on each claim<span class="st-dot">.</span></span></h2>
-            <p class="st-act__text">Every claim gets a timeline, tasks and state deadlines, including proof of loss, so the next move is in front of you. You confirm the dates for your states.</p>
+    <!-- ===================================================================
+         CHAPTER 3: SCROLL-CHOREOGRAPHED GMAIL -> CLAIMHIVE -> APPROVAL GATE
+         =================================================================== -->
+    <section class="hg-gate-runway" id="approval" aria-labelledby="act1-title">
+      <div class="hg-gate-sticky" id="hgGateRoot" data-step="1">
+        <div class="hg-wrap">
+          <div class="hg-approval-head hg-approval-head--tight">
+            <h2 id="act1-title" class="hg-h2">
+              Replies drafted <span class="hg-h2__muted">while you work the next file<span
+                  class="hg-dot">.</span></span>
+            </h2>
+            <p class="hg-body">
+              ClaimHive reads the claim emails in your connected Gmail and writes a draft reply for each one. You read
+              the draft, and it goes out only when you approve it.
+            </p>
           </div>
-          <div class="st-act__media" data-p>
-            <div class="pw" aria-hidden="true">
-              <div class="pw__bar"><span class="pw__dots"><i></i><i></i><i></i></span><span class="pw__url"><svg><use href="#i-lock"/></svg>ops.claimhive.app</span></div>
-              <div class="pw__media pw__media--wide">
-                <img class="pw__poster" src="assets/start/deadline-poster.webp" alt="" width="1152" height="392" loading="lazy" decoding="async">
-                <video class="pw__vid" muted playsinline loop preload="none" poster="assets/start/deadline-poster.webp" width="1152" height="392" aria-hidden="true" tabindex="-1" data-act="2">
-                  <source data-src="assets/start/deadline.webm" type="video/webm">
-                  <source data-src="assets/start/deadline.mp4" type="video/mp4">
-                </video>
+
+          <!-- Interactive 4-Step Process Rail (advances automatically on scroll; clickable to jump) -->
+          <div class="hg-gate-rail" role="tablist" aria-label="How ClaimHive drafts carrier replies">
+            <button type="button" class="hg-gate-rail__step is-active" data-gate-jump="0.06">
+              <span class="hg-gate-rail__num">Step 1</span>
+              <b>Carrier email</b>
+              <span>Lands in connected Gmail</span>
+            </button>
+            <button type="button" class="hg-gate-rail__step" data-gate-jump="0.42">
+              <span class="hg-gate-rail__num">Step 2</span>
+              <b>ClaimHive reads &amp; drafts</b>
+              <span>Matches claim &amp; writes reply</span>
+            </button>
+            <button type="button" class="hg-gate-rail__step" data-gate-jump="0.82">
+              <span class="hg-gate-rail__num">Step 3</span>
+              <b>Held for your approval</b>
+              <span>Never sent automatically</span>
+            </button>
+            <button type="button" class="hg-gate-rail__step" data-gate-jump="approve" id="hgGateStep4">
+              <span class="hg-gate-rail__num">Step 4</span>
+              <b>Approve &amp; log</b>
+              <span id="hgStep4Sub">Click &ldquo;Approve reply&rdquo; below</span>
+            </button>
+            <div class="hg-gate-rail__bar" aria-hidden="true"><span id="hgGateBarFill"></span></div>
+          </div>
+
+          <!-- Two-Pane Connected Workbench: Gmail (Left) -> Conduit -> ClaimHive Approval Gate (Right) -->
+          <div class="hg-workbench hg-workbench--live" id="hgWorkbench" role="region"
+            aria-label="Scroll-driven Gmail to ClaimHive approval workflow">
+            <div class="hg-wb-pipeline">
+
+              <!-- LEFT PANE: Authentic Connected Gmail Inbox -->
+              <div class="hg-wb-gmail">
+                <div class="hg-wb-chrome hg-wb-chrome--gmail">
+                  <span class="hg-wb-chrome__brand">
+                    <img src="assets/start/icons/gmail.svg" alt="" width="18" height="14">
+                    <b>Connected Gmail</b>
+                  </span>
+                  <span class="hg-wb-chrome__badge hg-wb-chrome__badge--sync">Synced &middot; Live</span>
+                </div>
+
+                <!-- Background inbox noise rows (shows ClaimHive ignores non-claim email) -->
+                <div class="hg-gm-row hg-gm-row--dim" aria-hidden="true">
+                  <span class="hg-gm-from">Office Supply Co.</span>
+                  <span class="hg-gm-subj">Your monthly invoice receipt</span>
+                  <span class="hg-gm-tag">Ignored</span>
+                </div>
+
+                <!-- Active Incoming Claim Email -->
+                <div class="hg-gm-active" id="hgGmActive">
+                  <div class="hg-gm-active__top">
+                    <span class="hg-wb-av" aria-hidden="true">SC</span>
+                    <div class="hg-gm-active__who">
+                      <b>Sample Carrier adjuster</b>
+                      <span>Re: Sample claim, reinspection</span>
+                    </div>
+                    <span class="hg-gm-active__pill" id="hgGmPill">New in Gmail</span>
+                  </div>
+                  <p class="hg-gm-active__body">
+                    Hello, we would like to reinspect the property. Please send two times next week that work for the
+                    policyholder.
+                  </p>
+
+                  <!-- Live Extraction Signals (light up during Step 2 as ClaimHive reads Gmail) -->
+                  <div class="hg-gm-extract" id="hgGmExtract">
+                    <span class="hg-gm-chip" data-chip="1">Claim matched: <span
+                        class="hg-mono">SAMPLE-0001</span></span>
+                    <span class="hg-gm-chip" data-chip="2">Detected: Reinspection request</span>
+                    <span class="hg-gm-chip" data-chip="3">File checked: Photo set ready</span>
+                  </div>
+                </div>
+
+                <div class="hg-gm-row hg-gm-row--dim" aria-hidden="true">
+                  <span class="hg-gm-from">Calendar</span>
+                  <span class="hg-gm-subj">Reminder: Friday team check-in</span>
+                  <span class="hg-gm-tag">Ignored</span>
+                </div>
+              </div>
+
+              <!-- CENTER BRIDGE: Visual signal transfer from Gmail into ClaimHive -->
+              <div class="hg-wb-bridge" aria-hidden="true">
+                <span class="hg-wb-bridge__line"><i id="hgBridgeFill"></i></span>
+                <span class="hg-wb-bridge__node" id="hgBridgeNode">
+                  <img src="assets/claim-hive-icon.svg" alt="" width="20" height="18">
+                </span>
+                <span class="hg-wb-bridge__label" id="hgBridgeLabel">Synced</span>
+              </div>
+
+              <!-- RIGHT PANE: ClaimHive Draft + Physical Approval Gate -->
+              <div class="hg-wb-hive">
+                <div class="hg-wb-chrome">
+                  <span class="hg-wb-chrome__brand">
+                    <img src="assets/claim-hive-icon.svg" alt="" width="18" height="16">
+                    <b>ClaimHive &middot; <span class="hg-mono">SAMPLE-0001</span></b>
+                  </span>
+                  <span class="hg-wb-chrome__badge" id="hgDraftState">Waiting for Gmail</span>
+                </div>
+
+                <div class="hg-wb-draft-stage">
+                  <div class="hg-wb-draft-box hg-wb-draft-box--staged" id="hgDraftBox">
+                    <span class="hg-draft-line" data-dline="1">Thanks for the note. Sample Policyholder can meet you
+                      Tuesday or Thursday morning next week.</span>
+                    <span class="hg-draft-line" data-dline="2">Tell me which works and I will be on site.</span>
+                    <span class="hg-draft-line" data-dline="3">The updated photo set is on the claim file.</span>
+                  </div>
+                </div>
+
+                <!-- Approval Gate Action Bar -->
+                <div class="hg-wb-actionbar hg-wb-actionbar--gate" id="hgGateBar">
+                  <div class="hg-wb-gatecopy">
+                    <span class="hg-wb-gatekicker" id="hgGateKicker">Approval gate</span>
+                    <p class="hg-wb-hint" id="hgGateHint"><strong>Scroll down</strong> to watch ClaimHive read this
+                      Gmail thread and draft the reply.</p>
+                  </div>
+                  <div class="hg-wb-btns">
+                    <button type="button" class="hg-wb-reset" id="hgResetBtn">Reset</button>
+                    <button type="button" class="hg-btn hg-btn--gold hg-wb-approve" id="hgApproveBtn">
+                      <span>Approve reply</span>
+                      <span class="hg-btn__arrow" aria-hidden="true">&rarr;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Bottom Live Claim Timeline Strip -->
+            <div class="hg-wb-timeline">
+              <span class="hg-wb-log-status">
+                <span class="hg-wb-log-dot" aria-hidden="true"></span>
+                <span id="hgTimelineLog">Carrier email arrived in your connected Gmail.</span>
+              </span>
+              <span>Sample workflow with sample values. Illustration made for this page.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         CHAPTER 4: SEAMLESS ISOMETRIC ARCHITECTURAL EXHIBIT (Signature Moment)
+         Full-bleed color-matched studio grounds across all 4 property types
+         paired with ClaimHive's exact core capabilities
+         =================================================================== -->
+    <section class="hg-exhibit hg-exhibit--pinned" id="properties" style="--ex-bg:#BBD7C2"
+      aria-label="Every property type and ClaimHive capability">
+      <div class="hg-exhibit__sticky">
+
+        <!-- Architectural Property Selector Tabs -->
+        <div class="hg-exhibit__topbar">
+          <div class="hg-wrap">
+            <div class="hg-exhibit__tabs" role="tablist" aria-label="Property types handled by public adjusters">
+              <button type="button" class="hg-exhibit__tab is-active" role="tab" aria-selected="true" data-bg="#BBD7C2"
+                data-label="Residential Homes">
+                <span class="hg-exhibit__tab-num">Residential</span>
+                <span class="hg-exhibit__tab-name">Residential Homes</span>
+              </button>
+              <button type="button" class="hg-exhibit__tab" role="tab" aria-selected="false" data-bg="#CECCCB"
+                data-label="Apartment Complexes">
+                <span class="hg-exhibit__tab-num">Multi-family</span>
+                <span class="hg-exhibit__tab-name">Apartment Complexes</span>
+              </button>
+              <button type="button" class="hg-exhibit__tab" role="tab" aria-selected="false" data-bg="#B8C8D0"
+                data-label="Commercial High-Rises">
+                <span class="hg-exhibit__tab-num">Commercial</span>
+                <span class="hg-exhibit__tab-name">Commercial High-Rises</span>
+              </button>
+              <button type="button" class="hg-exhibit__tab" role="tab" aria-selected="false" data-bg="#C7C3B8"
+                data-label="Industrial Warehouses">
+                <span class="hg-exhibit__tab-num">Industrial</span>
+                <span class="hg-exhibit__tab-name">Industrial Warehouses</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seamless Full-Bleed Architectural Canvas -->
+        <div class="hg-exhibit__canvas">
+          <!-- Full-bleed isometric building renders (mirrored where needed so all 4 anchor harmoniously lower-right) -->
+          <div class="hg-exhibit__visual-layer" aria-hidden="true">
+            <div class="hg-iso-frame is-active">
+              <div class="hg-iso-img-wrap">
+                <img class="hg-iso-img hg-iso-img--flip" src="assets/start/arch-modern-villas.jpg" alt="" width="1024"
+                  height="722" decoding="async">
+              </div>
+              <div class="hg-cad-callout">
+                <span class="hg-cad-callout__node"></span>
+                <span class="hg-cad-callout__line"></span>
+                <span>Residential &middot; One File Per Claim</span>
               </div>
             </div>
-            <p class="st-sr">Recording of ClaimHive with sample data from a test account: a claim's status tracking with a proof of loss deadline row.</p>
-            <p class="st-caption">Sample claim, test account</p>
+
+            <div class="hg-iso-frame">
+              <div class="hg-iso-img-wrap">
+                <img class="hg-iso-img hg-iso-img--flip" src="assets/start/arch-apartment-midrise.jpg" alt=""
+                  width="1024" height="722" loading="lazy" decoding="async">
+              </div>
+              <div class="hg-cad-callout">
+                <span class="hg-cad-callout__node"></span>
+                <span class="hg-cad-callout__line"></span>
+                <span>Multi-family &middot; Xactimate Comparison</span>
+              </div>
+            </div>
+
+            <div class="hg-iso-frame">
+              <div class="hg-iso-img-wrap">
+                <img class="hg-iso-img" src="assets/start/arch-commercial-highrise.jpg" alt="" width="1200" height="896"
+                  loading="lazy" decoding="async">
+              </div>
+              <div class="hg-cad-callout">
+                <span class="hg-cad-callout__node"></span>
+                <span class="hg-cad-callout__line"></span>
+                <span>Commercial &middot; One-Click Export &amp; Checks</span>
+              </div>
+            </div>
+
+            <div class="hg-iso-frame">
+              <div class="hg-iso-img-wrap">
+                <img class="hg-iso-img" src="assets/start/arch-industrial-warehouse.jpg" alt="" width="1200"
+                  height="896" loading="lazy" decoding="async">
+              </div>
+              <div class="hg-cad-callout">
+                <span class="hg-cad-callout__node"></span>
+                <span class="hg-cad-callout__line"></span>
+                <span>Industrial &middot; Built-In Lead Engine</span>
+              </div>
+            </div>
           </div>
-        </article>
 
-      </div>
-    </section>
+          <div class="hg-exhibit__scrim" aria-hidden="true"></div>
 
-    <!-- 3-W. SAMPLE WORKFLOW (light): carrier email, draft, your approval, claim timeline. Sits beside the pinned acts,
-         not inside them, so the pinned stage geometry stays as it is. All values are sample values. -->
-    <section class="st-more st-light" id="workflow" aria-label="Sample workflow: from carrier email to your approval">
-      <div class="st-wrap st-more__grid">
-        <div class="st-more__block">
-          <h2 class="st-more__title">Review the draft. Approve the reply. <span class="st-t2">See the activity on the claim<span class="st-dot">.</span></span></h2>
-          <p class="st-more__text">ClaimHive asks where the decision is yours, and the claim's activity timeline records actions on the claim.</p>
-          <div class="stx-panel" role="group" aria-label="Sample workflow with sample values">
-            <p class="stx-panel__label">Sample workflow with sample values. It is an illustration made for this page.</p>
-            <ol class="stx-steps">
-              <li><div><b>Reading</b><span class="stx-meta">Reinspection request from Sample Carrier adjuster</span></div><span class="stx-state">Read</span></li>
-              <li><div><b>Drafting</b><span class="stx-meta">Reply for Sample Policyholder, claim SAMPLE-0001</span></div><span class="stx-state">Drafted</span></li>
-              <li><div><b>Your decision</b><span class="stx-meta">Nothing goes out until you approve it</span></div><span class="stx-state stx-state--wait">Awaiting your approval</span></li>
-            </ol>
+          <!-- Left Editorial Column (Plain-English, Benefit-First ClaimHive Copy) -->
+          <div class="hg-wrap hg-exhibit__stage">
+            <div class="hg-exhibit__copy-col">
+              <!-- Slide 1: Residential + Deadlines & Single File -->
+              <article class="hg-exhibit__slide-copy is-active">
+                <span class="hg-exhibit__scope-code">Residential Claims &middot; One File Per Claim</span>
+                <h2 class="hg-exhibit__h2">A CRM tracks contacts. ClaimHive runs claims<span class="hg-dot">.</span>
+                </h2>
+                <p class="hg-exhibit__text">
+                  Every claim keeps its carrier emails, documents, tasks, and deadlines including proof of
+                  loss in one place. You double-check the dates for your state, and your next step is always right
+                  in front of you.
+                </p>
+                <p class="hg-exhibit__text">
+                  Drop in files and AI organizes them for you. Connect Gmail to pull in contacts automatically, share
+                  leads with trusted contractors, and let firm owners track commissions from one dashboard.
+                </p>
+                <p class="hg-exhibit__punch">Never let a claim slip through the cracks.</p>
+              </article>
+
+              <!-- Slide 2: Apartments + Line-by-Line Xactimate & Strategy -->
+              <article class="hg-exhibit__slide-copy">
+                <span class="hg-exhibit__scope-code">Apartment Complexes &middot; Estimate Comparison</span>
+                <h2 class="hg-exhibit__h2">Line by line. The carrier can't hide the difference<span
+                    class="hg-dot">.</span></h2>
+                <p class="hg-exhibit__text">
+                  Put your Xactimate estimate next to the carrier's and compare them in three clicks. Every missing
+                  item,
+                  cut quantity, and lower price shows up right away.
+                </p>
+                <p class="hg-exhibit__text">
+                  ClaimHive reads the full claim file and carrier emails to spot how the insurer is likely to push back
+                  next so your answer is ready before their email even lands.
+                </p>
+                <p class="hg-exhibit__punch">The differences were always there. Now you see them in seconds.</p>
+              </article>
+
+              <!-- Slide 3: Commercial High-Rise + Attorney Exports & Back Office -->
+              <article class="hg-exhibit__slide-copy">
+                <span class="hg-exhibit__scope-code">Commercial High-Rises &middot; Attorney Exports &amp; Checks</span>
+                <h2 class="hg-exhibit__h2">Attorney needs the file? Export it<span class="hg-dot">.</span></h2>
+                <p class="hg-exhibit__text">
+                  When an attorney or subpoena asks for a claim file, export the whole thing in one step. Every
+                  document, email, and timeline event already in order. No more late nights digging through folders.
+                </p>
+                <p class="hg-exhibit__text">
+                  Firm owners also get a built-in back office to track carrier checks, adjuster commissions, and firm
+                  numbers across every residential and commercial claim.
+                </p>
+                <p class="hg-exhibit__punch">Same platform. Same login. Built in the field and tested on real claims.
+                </p>
+              </article>
+
+              <!-- Slide 4: Industrial Warehouse + Lead Engine -->
+              <article class="hg-exhibit__slide-copy">
+                <span class="hg-exhibit__scope-code">Industrial Warehouses &middot; Your Own Lead Engine</span>
+                <h2 class="hg-exhibit__h2">Stop waiting on contractors to feed you claims<span class="hg-dot">.</span>
+                </h2>
+                <p class="hg-exhibit__text">
+                  If someone else controls your referrals, they control your income. Add ClaimHive's lead form to your
+                  own website and get leads for under $1.50 each. AI checked and dropped straight into your pipeline.
+                </p>
+                <p class="hg-exhibit__text">
+                  Then you can pass jobs back to your contractor partners, so you're the one bringing value to the table
+                  instead of waiting by the phone.
+                </p>
+                <p class="hg-exhibit__punch">Own your leads. Own your business.</p>
+              </article>
+            </div>
           </div>
         </div>
-        <div class="st-more__block">
-          <h2 class="st-more__title">A carrier email comes in. <span class="st-t2">The reply is waiting for your yes<span class="st-dot">.</span></span></h2>
-          <ol class="stx-flow">
-            <li><strong>Carrier email.</strong> It lands in your connected Gmail.</li>
-            <li><strong>Draft.</strong> ClaimHive writes the reply for you to read.</li>
-            <li><strong>Your approval.</strong> You decide. The reply is not sent automatically.</li>
-            <li><strong>Claim timeline.</strong> The activity shows up on the claim.</li>
-          </ol>
+
+        <!-- Bottom Architectural Control Bar -->
+        <div class="hg-exhibit__foot">
+          <div class="hg-wrap hg-exhibit__foot-inner">
+            <span id="hgExhibitCounter">1 of 4 &middot; Residential Homes</span>
+            <div class="hg-exhibit__controls">
+              <button type="button" class="hg-exhibit__stepbtn" id="hgExhibitPrev"
+                aria-label="Previous property type">&larr; Prev</button>
+              <button type="button" class="hg-exhibit__stepbtn" id="hgExhibitNext" aria-label="Next property type">Next
+                &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         CHAPTER 5: REAL DEADLINES FOOTAGE + ONBOARDING, INTEGRATIONS, COMMUNITY
+         =================================================================== -->
+    <section class="hg-sec hg-sec--white" id="deadlines"
+      aria-labelledby="deadline-title">
+      <div class="hg-wrap">
+        <div class="hg-approval-head">
+          <h2 id="deadline-title" class="hg-h2">
+            Never miss what's due <span class="hg-h2__muted">on a claim<span class="hg-dot">.</span></span>
+          </h2>
+          <p class="hg-body">
+            Every claim shows its timeline, tasks, and key deadlines, like proof of loss, in one clear view.
+            You double-check the dates for your state, so you always know what needs to happen next.
+          </p>
+        </div>
+
+        <figure class="hg-stage hg-wide-deadline">
+          <div class="hg-stage__bar">
+            <span class="hg-stage__url"><svg aria-hidden="true">
+                <use href="#i-lock" />
+              </svg> ops.claimhive.app</span>
+            <span>Proof of loss deadline row &middot; Sample claim, test account</span>
+          </div>
+          <div class="hg-stage__media hg-stage__media--wide">
+            <img class="hg-stage__poster" src="assets/start/deadline-poster.webp"
+              alt="ClaimHive proof of loss deadline tracking row on a sample claim" width="1152" height="392"
+              decoding="async">
+            <video class="hg-stage__vid" muted playsinline loop preload="none"
+              poster="assets/start/deadline-poster.webp" width="1152" height="392" aria-hidden="true" tabindex="-1">
+              <source data-src="assets/start/deadline.webm" type="video/webm">
+              <source data-src="assets/start/deadline.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+
+        <!-- Three Hairline Editorial Columns -->
+        <div class="hg-editorial-tri">
+          <div class="hg-editorial-tri__cell">
+            <h3 class="hg-h3">Set up today. Run claims today<span class="hg-dot">.</span></h3>
+            <p class="hg-body">Step-by-step setup gets your firm, team, and Gmail connected in minutes. Drop in your
+              contacts and files, review the active claims ClaimHive pulls together, then hit approve. No consultants.
+              No
+              six-week rollout. You're running real claims on day one.</p>
+          </div>
+          <div class="hg-editorial-tri__cell">
+            <h3 class="hg-h3">Built-in reports, on the way<span class="hg-dot">.</span></h3>
+            <p class="hg-body">Roof measurements, weather reports, and more are coming straight to ClaimHive. Instead of
+              hunting across outside sites and re-uploading PDFs, the reports you need will drop right into the claim
+              file.</p>
+          </div>
+          <div class="hg-editorial-tri__cell">
+            <h3 class="hg-h3">Run your own shop. Never run it alone<span class="hg-dot">.</span></h3>
+            <p class="hg-body">Join a growing community of working public adjusters inside ClaimHive. Talk through tough
+              claims in weekly calls, stay sharp with a monthly industry newsletter, and get backup on the hard files.
+              You run your own show with a whole hive behind you.</p>
+          </div>
+        </div>
+
+        <!-- The Short Answer (plain-English summary for skimmers) -->
+        <div class="hg-short-band">
+          <h2 class="hg-h2">The short answer<span class="hg-dot">.</span></h2>
+          <p class="hg-body-xl">
+            ClaimHive is one simple workspace built with working public adjusters. It reads claim emails in your Gmail
+            and writes draft replies that only send when you click approve. Every claim keeps its files, tasks,
+            timeline, and state deadlines in one place so nothing slips. You also get a lead form for your website and
+            an owner dashboard to track carrier checks and commissions, with full AI claim teams coming before
+            public launch.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- 3a. LEADS AND SETUP (light): two short blocks, side by side from 768px -->
-    <section class="st-more st-light" aria-label="Leads and setup">
-      <div class="st-wrap st-more__grid">
-        <div class="st-more__block">
-          <h2 class="st-more__title">Stop waiting on contractors to feed you claims<span class="st-dot">.</span></h2>
-          <p class="st-more__text">When someone else controls your referrals, someone else controls your future. ClaimHive has a lead form you can put on your own website, and a leads list with AI review.</p>
-          <p class="st-more__text">Take it back. Leads at $1.33 each, reviewed by AI and dropped straight into your pipeline. Then share leads with your contractor partners and hand value back to the people who used to hold the leash.</p>
-          <p class="st-more__text stx-punch">Referral-dependent is a business model. Lead-independent is a business.</p>
-        </div>
-        <div class="st-more__block">
-          <h2 class="st-more__title">Onboard today. Run claims today<span class="st-dot">.</span></h2>
-          <p class="st-more__text">Guided setup walks you through your firm, card, company, team, Gmail and first claim. Connect Gmail and ClaimHive proposes claims from your inbox. You confirm each one before it becomes a claim.</p>
-          <p class="st-more__text">AI agents walk you through setup. Connect Gmail, import your contacts, upload your documents, and ClaimHive proposes your active claims for you to confirm. No consultants. No six-week rollout. Start running claims on day one.</p>
-        </div>
-      </div>
-    </section>
+    <!-- ===================================================================
+         CHAPTER 6: WHAT YOU GET IN THE BETA (Hairline Matrix)
+         =================================================================== -->
+    <section class="hg-sec" id="beta" aria-labelledby="beta-title">
+      <div class="hg-wrap">
+        <h2 id="beta-title" class="hg-h2">What you get in the beta<span class="hg-dot">.</span></h2>
 
-    <!-- 3a-2. NOTHING SLIPS + ESTIMATE COMPARISON (light) -->
-    <section class="st-more st-light" aria-label="Deadlines and estimate comparison">
-      <div class="st-wrap st-more__grid">
-        <div class="st-more__block">
-          <h2 class="st-more__title">Never lose a claim in the cracks<span class="st-dot">.</span></h2>
-          <p class="st-more__text">Every claim gets a timeline, tasks and state deadlines, including proof of loss, so the next move is always in front of you. You confirm every date for your state.</p>
-          <p class="st-more__text">Also on the file: AI document upload, automatic contact import, Gmail connection, and a firm admin and commissions view (admin roles only). Client portal and contractor lead sharing.</p>
-        </div>
-        <div class="st-more__block">
-          <h2 class="st-more__title">Line by line. The carrier can't hide the difference<span class="st-dot">.</span></h2>
-          <p class="st-more__text">Compare your Xactimate estimate against the carrier's, line by line. Every missing item, every cut quantity, every price drop, surfaced. Three clicks and done.</p>
-          <p class="st-more__text stx-punch">The differences were always there. Now you see them in seconds.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3a-3. STRATEGY + EXPORTS (light) -->
-    <section class="st-more st-light" aria-label="Claim analysis and attorney exports">
-      <div class="st-wrap st-more__grid">
-        <div class="st-more__block">
-          <h2 class="st-more__title stx-title">Know the carrier's next move before they do<span class="st-dot">.</span></h2>
-          <p class="st-more__text">ClaimHive analyzes the file and the correspondence, then shows you where the carrier is likely to go next, so your response is ready before theirs lands.</p>
-        </div>
-        <div class="st-more__block">
-          <h2 class="st-more__title">Attorney needs the file? Export it<span class="st-dot">.</span></h2>
-          <p class="st-more__text">Export the complete PA file for attorneys in one step: documents, correspondence and timeline, organized and ready.</p>
-          <p class="st-more__text">Built to make subpoena responses automatic instead of an all-nighter.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3a-4. AGENTS + PRIVACY (light). The full third-party provider and logging disclosure is in the data section below. -->
-    <section class="st-more st-light" aria-label="AI agents and privacy">
-      <div class="st-wrap st-more__grid">
-        <div class="st-more__block">
-          <h2 class="st-more__title stx-title">AI agents that draft your claim strategy while you work the next file<span class="st-dot">.</span></h2>
-          <p class="st-more__text">They read carrier emails, draft the replies and the claim strategy, upload and sort documents, and import contacts automatically. You read it. You approve it. Nothing goes out without your yes.</p>
-          <p class="st-more__text stx-punch">Private AI, shaped by real-world public adjusters. Not a public chatbot guessing at your industry.</p>
-          <p class="st-more__text"><strong class="stx-punch">Trained on 300,000 carrier and public adjuster rebuttals and responses.</strong> The agents have seen how carriers push back and how experienced adjusters answer, so every draft starts from how real claims actually go back and forth.</p>
-          <p class="st-more__text"><a href="#data-title" class="st-textlink">See what happens to your client files</a></p>
-        </div>
-        <div class="st-more__block">
-          <h2 class="st-more__title">Pasting a client's file into a public AI is a risk. Don't take it<span class="st-dot">.</span></h2>
-          <p class="st-more__text">Policy numbers. Claim details. Financials. Client information was never meant to run through a public chatbot, and using a public AI can put you at risk of violating federal privacy laws. ClaimHive keeps your claim data in a private environment, built to support your privacy obligations.</p>
-          <ul class="stx-list">
-            <li>ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI models or models shared across firms.</li>
-            <li>Google OAuth tokens encrypted with AES-256-GCM. Data encrypted in transit with TLS.</li>
-            <li>Two-step sign-in required for firm owners and admins.</li>
-          </ul>
-          <p class="st-more__text stx-punch">Find out before a complaint does.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3a-5. INTEGRATIONS + COMMUNITY (light): both coming soon -->
-    <section class="st-more st-light" aria-label="Integrations and community">
-      <div class="st-wrap st-more__grid">
-        <div class="st-more__block">
-          <h2 class="st-more__title stx-title">Integrations galore. On the way<span class="st-dot">.</span></h2>
-          <p class="st-more__text">Roof measurements. Weather reports. And more, so the data you chase today shows up on the claim file on its own.</p>
-        </div>
-        <div class="st-more__block">
-          <h2 class="st-more__title stx-title">Run your own shop. Never run it alone<span class="st-dot">.</span></h2>
-          <p class="st-more__text">Join a growing ClaimHive community of public adjusters. Work through tough claims together and group-think the problems no one should solve alone. Weekly meetings. A monthly newsletter that keeps you current on the industry. A one-person show, with a hive behind you.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3b. THE SHORT ANSWER (light): a plain summary box for readers who skim -->
-    <section class="st-short st-light" aria-labelledby="short-title">
-      <div class="st-wrap">
-        <div class="st-short__box">
-          <h2 id="short-title" class="st-short__title">The short answer<span class="st-dot">.</span></h2>
-          <p class="st-short__text">ClaimHive is the AI command center built with working public adjusters. It reads the claim emails in your connected Gmail and drafts the reply for you to approve. Each claim keeps its documents, tasks, deadlines and timeline in one file, and state deadlines are tracked on the claim for you to confirm. It also has a leads list with a lead form for your website, and a firm admin view with a CFO view, commissions and carrier check tracking. Agents that work one claim in parallel are coming before GA.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. WHAT YOU GET IN THE BETA (light): features grid, live today then coming before GA -->
-    <section class="st-beta st-light" aria-labelledby="beta-title">
-      <div class="st-wrap st-beta__inner">
-        <h2 id="beta-title" class="st-beta__title">What you get in the beta<span class="st-dot">.</span></h2>
-        <ul class="st-feat st-feat--now">
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg><div class="st-feat__body"><p class="st-feat__name">Chip, your claim assistant</p><p class="st-feat__line">Ask about any claim. Chip suggests tasks and changes, and you approve each one.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg><div class="st-feat__body"><p class="st-feat__name">Drafted replies</p><p class="st-feat__line">Claim emails in your connected Gmail get a drafted reply. Nothing goes out until you approve it.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-inbox"/></svg><div class="st-feat__body"><p class="st-feat__name">Claims from your inbox</p><p class="st-feat__line">Connect Gmail and ClaimHive proposes claims. You confirm each one before it becomes a claim.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-folder"/></svg><div class="st-feat__body"><p class="st-feat__name">One file per claim</p><p class="st-feat__line">Documents, tasks, deadlines and a timeline in one place, plus a claims list that shows where each claim stands.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg><div class="st-feat__body"><p class="st-feat__name">State deadlines</p><p class="st-feat__line">Deadlines on the claim, including proof of loss. You confirm the dates for your states.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-person-plus"/></svg><div class="st-feat__body"><p class="st-feat__name">Leads</p><p class="st-feat__line">A leads list with AI review, and a lead form you can put on your own website.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-doc"/></svg><div class="st-feat__body"><p class="st-feat__name">Templates</p><p class="st-feat__line">Letters and documents built from your own templates.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-chart"/></svg><div class="st-feat__body"><p class="st-feat__name">Firm back office</p><p class="st-feat__line">A CFO view, commissions and carrier check tracking, for admin roles.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg><div class="st-feat__body"><p class="st-feat__name">Sign-in</p><p class="st-feat__line">Sign in with Google. Firm owners and admins must use two-step sign-in.</p></div></li>
+        <ul class="hg-matrix">
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-chat" />
+              </svg></div>
+            <p class="hg-matrix__name">Chip, your claim assistant</p>
+            <p class="hg-matrix__desc">Ask Chip anything about a claim. He suggests next steps and updates, and nothing
+              changes until you approve it.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-mail" />
+              </svg></div>
+            <p class="hg-matrix__name">Drafted replies</p>
+            <p class="hg-matrix__desc">ClaimHive reads incoming claim emails in your Gmail and writes a reply for you.
+              Nothing sends until you click approve.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-inbox" />
+              </svg></div>
+            <p class="hg-matrix__name">Claims from your inbox</p>
+            <p class="hg-matrix__desc">Connect Gmail and ClaimHive finds active claims in your inbox for you. Review
+              the list and click to add them.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-folder" />
+              </svg></div>
+            <p class="hg-matrix__name">One file per claim</p>
+            <p class="hg-matrix__desc">Every file, task, deadline, and update lives in one claim folder. Your claims
+              list shows where every job stands at a glance.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-calendar" />
+              </svg></div>
+            <p class="hg-matrix__name">State deadlines</p>
+            <p class="hg-matrix__desc">Key deadlines, including proof of loss, sit right on the claim so nothing sneaks
+              up on you. Just double-check the dates for your state.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-person-plus" />
+              </svg></div>
+            <p class="hg-matrix__name">Leads</p>
+            <p class="hg-matrix__desc">Put a lead form right on your own website. AI reviews new inquiries as they come
+              in and drops them straight into your leads list.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-doc" />
+              </svg></div>
+            <p class="hg-matrix__name">Templates</p>
+            <p class="hg-matrix__desc">Stop rewriting the same letters from scratch. Upload your own templates and
+              generate claim documents in seconds.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-chart" />
+              </svg></div>
+            <p class="hg-matrix__name">Firm back office</p>
+            <p class="hg-matrix__desc">Built-in owner dashboard to track carrier checks, adjuster commissions, and firm
+              revenue in one place.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-lock" />
+              </svg></div>
+            <p class="hg-matrix__name">Secure sign-in</p>
+            <p class="hg-matrix__desc">Log in fast with Google. Extra two-step verification protects owner and admin
+              accounts so client files stay locked down.</p>
+          </li>
         </ul>
-        <h3 class="st-feat__sub">Coming soon</h3>
-        <ul class="st-feat st-feat--soon">
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-storm"/></svg><div class="st-feat__body"><p class="st-feat__name">Storm search</p><p class="st-feat__line">Look up past storms by area and date.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-roof"/></svg><div class="st-feat__body"><p class="st-feat__name">Roof measurements</p><p class="st-feat__line">Roof measurements attached to the claim file.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg><div class="st-feat__body"><p class="st-feat__name">AI-assisted inspections</p><p class="st-feat__line">Inspection photos and notes captured on site and filed to the claim.</p></div></li>
-          <li class="st-feat__tile"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-weather"/></svg><div class="st-feat__body"><p class="st-feat__name">Historical weather</p><p class="st-feat__line">Past weather for the property on the date of loss.</p></div></li>
+
+        <h3 class="hg-soon-head">Coming soon</h3>
+        <ul class="hg-matrix hg-matrix--4">
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-storm" />
+              </svg></div>
+            <p class="hg-matrix__name">Storm search</p>
+            <p class="hg-matrix__desc">Search past storms by area and date to spot where severe weather hit and verify
+              claim dates fast.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-roof" />
+              </svg></div>
+            <p class="hg-matrix__name">Roof measurements</p>
+            <p class="hg-matrix__desc">Pull roof measurements straight onto the claim file instead of chasing reports
+              across other sites.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-camera" />
+              </svg></div>
+            <p class="hg-matrix__name">AI-assisted inspections</p>
+            <p class="hg-matrix__desc">Snap inspection photos and notes on site, and have them organized onto the right
+              claim automatically.</p>
+          </li>
+          <li class="hg-matrix__item">
+            <div class="hg-matrix__top"><svg class="hg-matrix__icon" aria-hidden="true">
+                <use href="#i-weather" />
+              </svg></div>
+            <p class="hg-matrix__name">Historical weather</p>
+            <p class="hg-matrix__desc">Pull past weather reports for the exact property and date of loss right onto the
+              claim file.</p>
+          </li>
         </ul>
       </div>
     </section>
 
-    <!-- 4b. COMING BEFORE GA: the homepage claim-run board (same markup, ids and js/claim-run.js). It runs its own
-         IntersectionObserver clock, so it carries no data-scene or data-p and js/start.js never touches it. -->
-    <section class="chs" id="chs" data-variant="start" aria-labelledby="preview-title">
-      <div class="container container-wide chs-wrap">
+    <!-- REAL INTERACTIVE PARALLEL CLAIM TEAM BOARD (#chs — exact IDs for js/claim-run.js) -->
+    <section class="chs" id="chs" data-variant="start" data-surface="dark"
+      aria-labelledby="preview-title">
+      <div class="chs-wrap">
         <div class="chs-head">
           <div>
             <div class="chs-top"><span class="chs-eyebrow">For public adjusting firms · Coming soon</span></div>
-            <h2 id="preview-title" class="chs-h1">Your whole claim team, working at once.<em>Nothing leaves without your yes.</em></h2>
-            <p class="chs-sub">One claim comes in. Specialist agents read the policy, screen for red flags, draft the paperwork and build the proof of loss, in parallel. Then it lands on your desk, ready to approve.</p>
+            <h2 id="preview-title" class="chs-h1">Your whole claim team, working at once.<em>Nothing leaves without your
+                yes.</em></h2>
+            <p class="chs-sub">One claim comes in. Specialist agents read the policy, screen for red flags, draft the
+              paperwork and build the proof of loss, in parallel. Then it lands on your desk, ready to approve.</p>
           </div>
           <div class="chs-foot">
             <button type="button" class="chs-btn out" id="chxReplay">Replay</button>
@@ -473,190 +955,280 @@
         <div class="chs-main">
           <div class="chs-board">
             <div class="chs-prog"><b id="chsProg"></b></div>
-            <div class="chs-stagebox" id="chsBox"><div class="chs-stage" id="chsStage"><svg class="chs-svg" id="chsSvg" viewBox="0 0 1000 620"></svg></div></div>
-            <div class="chs-pay" id="chsPay"><div class="chs-pc">
-              <div class="chs-ring">✓</div>
-              <div class="chs-pt" id="chsPt">Claim package ready.<em>Approved by the PA.</em></div>
-              <div class="chs-ps" id="chsPs">Built by the agents. Nothing went to the carrier until a person said yes.</div>
-              <div class="chs-pk"><span>PA Agreement</span><span>Letter of Representation</span><span>Proof of loss</span><span>Carrier reply</span><span>Check route</span></div>
-            </div></div>
+            <div class="chs-stagebox" id="chsBox">
+              <div class="chs-stage" id="chsStage"><svg class="chs-svg" id="chsSvg" viewBox="0 0 1000 620"></svg></div>
+            </div>
+            <div class="chs-pay" id="chsPay">
+              <div class="chs-pc">
+                <div class="chs-ring">✓</div>
+                <div class="chs-pt" id="chsPt">Claim package ready.<em>Approved by the PA.</em></div>
+                <div class="chs-ps" id="chsPs">Built by the agents. Nothing went to the carrier until a person said yes.
+                </div>
+                <div class="chs-pk"><span>PA Agreement</span><span>Letter of Representation</span><span>Proof of
+                    loss</span><span>Carrier reply</span><span>Check route</span></div>
+              </div>
+            </div>
           </div>
           <aside class="chs-side">
             <div class="chs-panel chs-split" aria-label="Who did the work on this example claim">
-              <div class="chs-row"><span class="chs-mark chip" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 L14.6 9.4 L21 12 L14.6 14.6 L12 21 L9.4 14.6 L3 12 L9.4 9.4 Z" fill="#D9A21B"/></svg></span>
-                <div class="chs-rt"><span class="chs-who">Chip <em>· AI agents</em></span><span class="chs-what"><b class="chs-n1" id="chsCount">0</b> decisions handled</span></div></div>
-              <div class="chs-row"><span class="chs-mark pa" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20c0-4 3.4-6 7.5-6s7.5 2 7.5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><i>✓</i></span>
-                <div class="chs-rt"><span class="chs-who">Your PA <em>· human</em></span><span class="chs-what"><b class="chs-n2" id="chsApp">0</b> approvals given</span></div></div>
-              <p class="chs-take"><span id="chsT1">0</span> done for you. <span id="chsT2">0</span> taps from you.<small>On this example claim</small></p>
+              <div class="chs-row"><span class="chs-mark chip" aria-hidden="true"><svg viewBox="0 0 24 24">
+                    <path d="M12 3 L14.6 9.4 L21 12 L14.6 14.6 L12 21 L9.4 14.6 L3 12 L9.4 9.4 Z" fill="#D9A21B" />
+                  </svg></span>
+                <div class="chs-rt"><span class="chs-who">Chip <em>· AI agents</em></span><span class="chs-what"><b
+                      class="chs-n1" id="chsCount">0</b> decisions handled</span></div>
+              </div>
+              <div class="chs-row"><span class="chs-mark pa" aria-hidden="true"><svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M4.5 20c0-4 3.4-6 7.5-6s7.5 2 7.5 6" fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" />
+                  </svg><i>✓</i></span>
+                <div class="chs-rt"><span class="chs-who">Your PA <em>· human</em></span><span class="chs-what"><b
+                      class="chs-n2" id="chsApp">0</b> approvals given</span></div>
+              </div>
+              <p class="chs-take"><span id="chsT1">0</span> done for you. <span id="chsT2">0</span> taps from
+                you.<small>On this example claim</small></p>
             </div>
-            <div class="chs-panel"><div class="chs-lab">Agents working</div><div class="chs-dots" id="chsDots"></div><div class="chs-hu" style="font-size:18px"><span id="chsWork">0</span><small>right now · <span id="chsDone">0</span> finished</small></div></div>
-            <div class="chs-panel"><div class="chs-lab">Agent log <span class="chs-live">LIVE</span></div><ol class="chs-log" id="chsLog"></ol></div>
+            <div class="chs-panel">
+              <div class="chs-lab">Agents working</div>
+              <div class="chs-dots" id="chsDots"></div>
+              <div class="chs-hu" style="font-size:18px"><span id="chsWork">0</span><small>right now · <span
+                    id="chsDone">0</span> finished</small></div>
+            </div>
+            <div class="chs-panel">
+              <div class="chs-lab">Agent log <span class="chs-live">LIVE</span></div>
+              <ol class="chs-log" id="chsLog"></ol>
+            </div>
           </aside>
         </div>
         <p class="st-preview-note">Preview of a feature coming before GA. Example values are fictional.</p>
       </div>
     </section>
 
-    <!-- 4c. COMPARE APPROACHES (light): same-page, anchor-linked cards. No competitor is named and no competitor
-         capability or price is claimed. -->
-    <section class="st-beta st-light" id="compare" aria-labelledby="compare-title">
-      <div class="st-wrap st-beta__inner">
-        <h2 id="compare-title" class="st-beta__title">Not another CRM. Not another weekend project<span class="st-dot">.</span></h2>
-        <p class="st-more__text">More than another CRM. More than software you vibe-coded on a Sunday. Built by real software developers. Shaped by real public adjusters.</p>
-        <nav class="stx-cmpnav" aria-label="Compare approaches">
-          <a href="#cmp-crm" class="st-textlink">A generic CRM</a>
-          <a href="#cmp-stack" class="st-textlink">A six-app stack</a>
-          <a href="#cmp-diy" class="st-textlink">DIY software</a>
-        </nav>
-        <ul class="st-feat st-feat--now">
-          <li class="st-feat__tile stx-feat__tile" id="cmp-crm"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-person-plus"/></svg><div class="st-feat__body"><p class="st-feat__name">ClaimHive and a generic CRM</p><p class="st-feat__line">A generic CRM tracks contacts. ClaimHive runs claims: state deadlines, carrier correspondence, documents, tasks and timeline on one file.</p><a href="#compare-title" class="st-textlink stx-back">Back to the comparison</a></div></li>
-          <li class="st-feat__tile stx-feat__tile" id="cmp-stack"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-folder"/></svg><div class="st-feat__body"><p class="st-feat__name">ClaimHive and a six-app stack</p><p class="st-feat__line">A CRM that doesn't know what a proof of loss is. Email. Drive. A spreadsheet. A task app. A portal bolted on the side. Every handoff is a place a claim can die. ClaimHive replaces the pile.</p><a href="#compare-title" class="st-textlink stx-back">Back to the comparison</a></div></li>
-          <li class="st-feat__tile stx-feat__tile" id="cmp-diy"><svg class="st-feat__icon" aria-hidden="true" focusable="false"><use href="#i-doc"/></svg><div class="st-feat__body"><p class="st-feat__name">ClaimHive and DIY software</p><p class="st-feat__line">A vibe-coded tool works until the day it has to carry a real claim, a real deadline and real client data. ClaimHive is built by real software developers and shaped by working public adjusters.</p><a href="#compare-title" class="st-textlink stx-back">Back to the comparison</a></div></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 4d. PROVEN AT SCALE (light): Tom's proof line and body, exact. The origin firm is not named. -->
-    <section class="st-short st-light" aria-labelledby="scale-title">
-      <div class="st-wrap">
-        <div class="st-short__box">
-          <h2 id="scale-title" class="st-short__title">Grow without the growing pains<span class="st-dot">.</span></h2>
-          <p class="st-short__text stx-punch">Already running a semi-national public adjusting firm, scaling without the headaches that usually come with growth.</p>
-          <p class="st-short__text">ClaimHive already runs a semi-national public adjusting firm that is scaling without the headaches that normally come with growth. More claims across more states, without a pile of disconnected software and without a claim slipping through the cracks. Same platform. Same login. Built in the field and tested on real claims.</p>
+    <!-- ===================================================================
+         CHAPTER 7: ENTERPRISE STANDARD + PROVEN AT SCALE + SEPARATE TEAM QUOTES
+         =================================================================== -->
+    <section class="hg-sec" id="compare"
+      aria-labelledby="compare-title">
+      <div class="hg-wrap">
+        <div class="hg-approval-head">
+          <h2 id="compare-title" class="hg-h2">Enterprise-level CRM. <span class="hg-h2__muted">Built for public
+              adjusters<span class="hg-dot">.</span></span></h2>
+          <p class="hg-body">Engineered from the ground up by experienced software developers and shaped side-by-side
+            with working public adjusters. Built to carry real claim volume, real deadlines, and real client data
+            without breaking a sweat.</p>
         </div>
-      </div>
-    </section>
 
-    <!-- 4e. FROM THE TEAM (light): two quotes exactly as written, each labeled co-founder. Not customer reviews. -->
-    <section class="st-more st-light" aria-labelledby="team-title">
-      <div class="st-wrap">
-        <h2 id="team-title" class="st-more__title stx-head">From the team<span class="st-dot">.</span></h2>
-        <div class="st-more__grid">
-          <div class="st-more__block">
-            <blockquote class="stx-quote"><p>“Better than anything else out there.”</p><footer>Tom, Alpha Tester</footer></blockquote>
+        <div class="hg-compare-grid">
+          <div class="hg-compare-col" id="cmp-crm">
+            <h3 class="hg-h3">Built for claims, not sales contacts</h3>
+            <p class="hg-body">A sales tool only tracks names and phone numbers. ClaimHive runs the entire claim from
+              intake to final check: state deadlines, carrier emails, documents, tasks, and full claim history in one
+              place.</p>
           </div>
-          <div class="st-more__block">
-            <blockquote class="stx-quote"><p>“This is the only software that will allow us to scale.”</p><footer>Jon, Alpha Tester</footer></blockquote>
+          <div class="hg-compare-col" id="cmp-stack">
+            <h3 class="hg-h3">One platform from intake to payout</h3>
+            <p class="hg-body">Replace the tangle of email, Drive folders, spreadsheets, and task apps with a single
+              system built to work together. Fewer handoffs mean fewer mistakes and faster answers for your clients.</p>
+          </div>
+          <div class="hg-compare-col" id="cmp-diy">
+            <h3 class="hg-h3">Engineered for real firms and real data</h3>
+            <p class="hg-body">Dedicated software engineers, strict data security, and workflows tested on live claims
+              every day. When your firm's reputation and client files are on the line, your software has to hold up.</p>
           </div>
         </div>
-        <p class="stx-note">These two quotes are from ClaimHive's co-founders.</p>
-      </div>
-    </section>
 
-    <!-- 4f. THE GAP (light) -->
-    <section class="st-short st-light" aria-labelledby="gap-title">
-      <div class="st-wrap">
-        <div class="st-short__box">
-          <h2 id="gap-title" class="st-short__title">The gap is opening. Fast<span class="st-dot">.</span></h2>
-          <p class="st-short__text">Every claim you work by hand is a claim a ClaimHive firm worked by approval click. They're answering carriers faster, tracking every deadline and generating their own leads. The free window closes January&nbsp;1,&nbsp;2027. Start now and you've got a head start. Wait, and you're catching up.</p>
+        <!-- Proven at Scale (origin firm unnamed) -->
+        <div class="hg-scale-block">
+          <h2 id="scale-title" class="hg-h2">Grow without the growing pains<span class="hg-dot">.</span></h2>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <p class="hg-body hg-punch">The public adjusting firm in our alpha test has been scaling across more states
+              without the usual headaches.</p>
+            <p class="hg-body">Add adjusters, expand into new states, and take on bigger files without losing track of
+              a single claim. One platform. One login. Proven in the field on real claims every day.</p>
+          </div>
+        </div>
+
+        <!-- From the Team: Two COMPLETELY SEPARATE quotes, verbatim, labeled co-founders -->
+        <div class="hg-team-block" aria-labelledby="team-title">
+          <h2 id="team-title" class="hg-h3">From real users<span class="hg-dot">.</span></h2>
+          <div class="hg-quotes">
+            <blockquote class="hg-quote">
+              <p>“Better than anything else out there.”</p>
+              <footer>Tom, Alpha Tester</footer>
+            </blockquote>
+            <blockquote class="hg-quote">
+              <p>“This is the only software that will allow us to scale.”</p>
+              <footer>Jon, Alpha Tester</footer>
+            </blockquote>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. THE OFFER (light): one idea, enormous type -->
-    <section class="st-offer st-light" aria-labelledby="offer-title">
-      <div class="st-wrap st-offer__inner">
-        <p class="st-offer__kicker">The founding rate has a deadline.</p>
-        <h2 id="offer-title" class="st-offer__big st-reveal">Free until January&nbsp;1,&nbsp;2027<span class="st-dot">.</span></h2>
-        <p class="st-offer__then st-reveal">Then $80/seat/month, the founding rate<span class="st-dot">.</span></p>
-        <p class="st-offer__card">We estimate AI usage at about $50 per seat per month for a typical seat. It is an estimate, not a guarantee.</p>
-        <p class="st-offer__card">Join before January&nbsp;31,&nbsp;2027 to lock the founding rate of $80/seat/month for as long as you stay subscribed.</p>
-        <p class="st-offer__card">A $1 authorization checks your card and is voided right away. You won't be charged until January&nbsp;1,&nbsp;2027.</p>
-        <div class="st-actions">
-          <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_price">Start free</a>
+    <!-- FULL-BLEED SOLID HONEY GOLD STATEMENT SLAB (Huge Magenta Moment) -->
+    <section class="hg-sec hg-sec--gold" aria-labelledby="gap-title">
+      <div class="hg-wrap hg-gap-grid">
+        <h2 id="gap-title" class="hg-h2">The gap is opening. Fast.</h2>
+        <p class="hg-body">
+          Every claim you work by hand is one that a ClaimHive firm worked by approval click. They're answering carriers
+          faster, tracking every deadline and generating their own leads. The free window closes
+          January&nbsp;1,&nbsp;2027. Start now and you've got a head start. Wait, and you're catching up.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         CHAPTER 8: THE OFFER & HAIRLINE ACCORDION FAQ
+         =================================================================== -->
+    <section class="hg-sec hg-sec--white" id="offer" aria-labelledby="offer-title">
+      <div class="hg-wrap">
+        <div class="hg-offer__head">
+          <div>
+            <h2 id="offer-title" class="hg-offer__big">Free until January&nbsp;1,&nbsp;2027<span class="hg-dot">.</span>
+            </h2>
+            <p class="hg-offer__then">Then $80/seat/month, the founding rate.</p>
+          </div>
+          <div>
+            <a href="https://ops.claimhive.app/login" class="hg-btn hg-btn--gold hg-btn--full"
+              data-cta-location="ads_start_free_price">
+              <span>Start free</span>
+              <span class="hg-btn__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hg-offer__facts">
+          <p class="hg-offer__fact">
+            <span class="hg-offer__fact-num">AI usage estimate</span>
+            We estimate AI usage at about $50 per seat per month for a typical seat. It is an estimate, not a guarantee.
+          </p>
+          <p class="hg-offer__fact">
+            <span class="hg-offer__fact-num">Founding rate deadline</span>
+            Join before January&nbsp;31,&nbsp;2027 to lock the founding rate of $80/seat/month for as long as you stay
+            subscribed.
+          </p>
+          <p class="hg-offer__fact">
+            <span class="hg-offer__fact-num">Card verification</span>
+            A $1 authorization checks your card and is voided right away. You won't be charged until
+            January&nbsp;1,&nbsp;2027.
+          </p>
+        </div>
+
+        <!-- FAQ (All 11 exact questions, native details, zero JS dependency) -->
+        <div class="hg-faq-grid" id="faq">
+          <h2 id="faq-title" class="hg-h2">FAQ<span class="hg-dot">.</span></h2>
+          <div class="hg-faq-list">
+            <details class="hg-faq-item">
+              <summary><span>Is my client data used to train public AI?</span><span class="hg-faq-plus"
+                  aria-hidden="true"></span></summary>
+              <p>No. ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI
+                models or models shared across firms, and we never sell adjuster or client data.</p>
+              <ul class="hg-faq-sublist">
+                <li>When ClaimHive's AI sorts email, reads a document, or drafts a reply, that content goes to a
+                  third-party AI provider that processes it under its own terms (we do not make a retention guarantee on
+                  its behalf). AI requests and responses may also be logged for debugging by our observability provider.
+                </li>
+                <li>Google OAuth tokens are encrypted with AES-256-GCM, all data is encrypted in transit (TLS), and firm
+                  owners and admins must use two-step sign-in.</li>
+                <li>Read more in our <a href="privacy.html">privacy policy</a> and on our <a
+                    href="security.html">security page</a>.</li>
+              </ul>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>Will it replace my CRM?</span><span class="hg-faq-plus" aria-hidden="true"></span>
+              </summary>
+              <p>It's built to. Claims, contacts, documents, tasks, deadlines and leads live in one place. The client
+                portal is Coming soon. ClaimHive is claim management for public adjusters, with a leads list and a lead
+                form for your website. Each claim has its documents, tasks, deadlines and timeline in one file.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>Do I lose control?</span><span class="hg-faq-plus" aria-hidden="true"></span></summary>
+              <p>No. ClaimHive drafts the reply. You approve every reply. Nothing goes out until you approve it.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>How much does ClaimHive cost?</span><span class="hg-faq-plus" aria-hidden="true"></span>
+              </summary>
+              <p>Free until January&nbsp;1,&nbsp;2027. Then $80/seat/month, the founding rate. We estimate AI usage at
+                about $50 per seat per month for a typical seat. It is an estimate, not a guarantee.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>What does the claim team preview show?</span><span class="hg-faq-plus"
+                  aria-hidden="true"></span></summary>
+              <p>A preview of specialist agents working one claim at the same time, with you approving what leaves. It
+                is coming before GA and is not in the beta today.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>What software do public adjusters use to manage claims?</span><span class="hg-faq-plus"
+                  aria-hidden="true"></span></summary>
+              <p>Public adjusters often spread a claim across email, folders, spreadsheets and notes. ClaimHive is claim
+                management built for that work. It drafts replies to your claim emails and keeps each claim's documents,
+                tasks, deadlines and timeline in one file.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>Which email does ClaimHive work with?</span><span class="hg-faq-plus"
+                  aria-hidden="true"></span></summary>
+              <p>Your Gmail. You connect it during setup.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>How does ClaimHive track state deadlines?</span><span class="hg-faq-plus"
+                  aria-hidden="true"></span></summary>
+              <p>ClaimHive tracks state deadlines on the claim, including proof of loss. You confirm the dates for your
+                states.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>Can I get leads from my own website?</span><span class="hg-faq-plus"
+                  aria-hidden="true"></span></summary>
+              <p>Yes. ClaimHive has a lead form you can put on your own website, and a leads list with AI review.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>Can I use my own templates for letters and documents?</span><span class="hg-faq-plus"
+                  aria-hidden="true"></span></summary>
+              <p>Yes. ClaimHive builds letters and documents from your own templates.</p>
+            </details>
+            <details class="hg-faq-item">
+              <summary><span>Can I track carrier checks and commissions?</span><span class="hg-faq-plus"
+                  aria-hidden="true"></span></summary>
+              <p>Yes, for admin roles. ClaimHive has a CFO view, commissions and carrier check tracking.</p>
+            </details>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. FAQ (light): native details, no JS -->
-    <section class="st-faq st-light" aria-labelledby="faq-title">
-      <div class="st-wrap st-faq__inner">
-        <h2 id="faq-title" class="st-faq__title">FAQ</h2>
-        <div class="st-faq__list">
-          <details class="st-faq__item">
-            <summary>Is my client data used to train public AI?</summary>
-            <p>No. ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI models or models shared across firms.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>Will it replace my CRM?</summary>
-            <p>It's built to. Claims, contacts, documents, tasks, deadlines and leads live in one place. The client portal is Coming soon. ClaimHive is claim management for public adjusters, with a leads list and a lead form for your website. Each claim has its documents, tasks, deadlines and timeline in one file.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>Do I lose control?</summary>
-            <p>No. ClaimHive drafts the reply. You approve every reply. Nothing goes out until you approve it.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>How much does ClaimHive cost?</summary>
-            <p>Free until January&nbsp;1,&nbsp;2027. Then $80/seat/month, the founding rate. We estimate AI usage at about $50 per seat per month for a typical seat. It is an estimate, not a guarantee.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>What does the claim team preview show?</summary>
-            <p>A preview of specialist agents working one claim at the same time, with you approving what leaves. It is coming before GA and is not in the beta today.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>What software do public adjusters use to manage claims?</summary>
-            <p>Public adjusters often spread a claim across email, folders, spreadsheets and notes. ClaimHive is claim management built for that work. It drafts replies to your claim emails and keeps each claim's documents, tasks, deadlines and timeline in one file.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>Which email does ClaimHive work with?</summary>
-            <p>Your Gmail. You connect it during setup.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>How does ClaimHive track state deadlines?</summary>
-            <p>ClaimHive tracks state deadlines on the claim, including proof of loss. You confirm the dates for your states.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>Can I get leads from my own website?</summary>
-            <p>Yes. ClaimHive has a lead form you can put on your own website, and a leads list with AI review.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>Can I use my own templates for letters and documents?</summary>
-            <p>Yes. ClaimHive builds letters and documents from your own templates.</p>
-          </details>
-          <details class="st-faq__item">
-            <summary>Can I track carrier checks and commissions?</summary>
-            <p>Yes, for admin roles. ClaimHive has a CFO view, commissions and carrier check tracking.</p>
-          </details>
+    <!-- ===================================================================
+         CHAPTER 9: FINAL CALL (Carbon Dark)
+         =================================================================== -->
+    <section class="hg-sec hg-sec--dark hg-dark" data-surface="dark"
+      aria-labelledby="final-title">
+      <div class="hg-wrap">
+        <div class="hg-final">
+          <div>
+            <h2 id="final-title" class="hg-final__title">Your next claim shouldn't live in six places<span
+                class="hg-dot">.</span></h2>
+            <p class="hg-body" style="margin-top:20px;">Replies drafted for your approval, and every claim in one file
+              with every deadline right in front of you.</p>
+          </div>
+          <div class="hg-final__right">
+            <a href="https://ops.claimhive.app/login" class="hg-btn hg-btn--gold hg-btn--full"
+              data-cta-location="ads_start_free_final">
+              <span>Start free</span>
+              <span class="hg-btn__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <div class="hg-final__offer">
+              <p>Free until January&nbsp;1,&nbsp;2027.</p>
+              <p>A $1 authorization checks your card and is voided right away. You won't be charged until
+                January&nbsp;1,&nbsp;2027.</p>
+            </div>
+            <p class="hg-final__founder">Josh Read, founder. <a href="mailto:josh@claimhive.app">josh@claimhive.app</a>
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- 7. YOUR CLAIM DATA (dark, compact) -->
-    <section class="st-data st-dark" aria-labelledby="data-title">
-      <div class="st-wrap st-data__grid">
-        <div>
-          <h2 id="data-title" class="st-data__title">What happens to your client files<span class="st-dot">.</span></h2>
-          <p class="st-data__lead">ClaimHive does not use customer claim documents, estimates, photos, or messages to train public AI models or models shared across firms.</p>
-        </div>
-        <ul class="st-data__list" role="list">
-          <li>When ClaimHive's AI sorts email, reads a document or drafts a reply, the content, including email content, goes to a third-party AI provider. The provider processes it under its own terms, and we do not make a retention guarantee on its behalf.</li>
-          <li>AI requests and responses may be logged for debugging by our observability provider.</li>
-          <li>Google OAuth tokens encrypted with AES-256-GCM.</li>
-          <li>Encryption in transit (TLS).</li>
-          <li>Sign in with Google. Firm owners and admins must use two-step sign-in.</li>
-          <li>We do not sell adjuster or client data. That is in our <a href="privacy.html">privacy policy</a>.</li>
-          <li><a href="security.html" class="st-textlink">Read the full security page</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 8. FINAL CALL (dark) -->
-    <section class="st-final st-dark" aria-labelledby="final-title">
-      <div class="st-wrap st-final__inner">
-        <h2 id="final-title" class="st-final__title">Your next claim shouldn't live in six places<span class="st-dot">.</span></h2>
-        <p class="st-final__benefit">Replies drafted for your yes, and every claim in one file with the deadlines you confirm.</p>
-        <a href="https://ops.claimhive.app/login" class="btn btn-gold btn-lg st-btn st-btn--primary" data-cta-location="ads_start_free_final">Start free</a>
-        <div class="st-final__offer">
-          <p>Free until January&nbsp;1,&nbsp;2027.</p>
-          <p>A $1 authorization checks your card and is voided right away. You won't be charged until January&nbsp;1,&nbsp;2027.</p>
-        </div>
-        <p class="st-final__founder">Josh Read, founder. <a href="mailto:josh@claimhive.app" class="st-textlink">josh@claimhive.app</a></p>
       </div>
     </section>
   </main>
 
-  <footer class="st-footer">
-    <div class="st-wrap st-footer__inner">
+  <footer class="hg-footer" data-surface="dark">
+    <div class="hg-wrap hg-footer__inner">
       <nav aria-label="Legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
@@ -665,29 +1237,6 @@
       <p>&copy; 2026 ClaimHive Inc.</p>
     </div>
   </footer>
-
-  <!-- Board loader: the stylesheet loads at page load (non-blocking, as on the homepage) and reserves the
-       board's height. The script, which builds the board and measures its width, waits until #chs comes within
-       1200px of the viewport. If the stylesheet has somehow not applied by then, js/claim-run.js already re-runs
-       its fit() through a ResizeObserver when the box width changes.
-       No IntersectionObserver = load at once. Runs once. No JS = the section's text only. -->
-  <script>
-    (function (d) {
-      var s = d.getElementById('chs'), loaded = false;
-      if (!s) return;
-      function load() {
-        if (loaded) return;
-        loaded = true;
-        var j = d.createElement('script');
-        j.src = 'js/claim-run.js';
-        d.body.appendChild(j);
-      }
-      if (!('IntersectionObserver' in window)) { load(); return; }
-      var io = new IntersectionObserver(function (es) {
-        if (es[0].isIntersecting) { io.disconnect(); load(); }
-      }, { rootMargin: '1200px 0px' });
-      io.observe(s);
-    })(document);
-  </script>
 </body>
+
 </html>
